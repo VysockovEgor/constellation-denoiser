@@ -1,0 +1,115 @@
+complex N=7: starting at step 0
+complex N=7: step 1000/20000; val BER=0.010687; test BER=0.010609; best val=0.010687@1000; elapsed=0.1 min
+complex N=7: step 2000/20000; val BER=0.010833; test BER=0.010805; best val=0.010687@1000; elapsed=0.3 min
+complex N=7: step 3000/20000; val BER=0.010727; test BER=0.010639; best val=0.010687@1000; elapsed=0.4 min
+complex N=7: step 4000/20000; val BER=0.010871; test BER=0.010804; best val=0.010687@1000; elapsed=0.6 min
+complex N=7: step 5000/20000; val BER=0.010524; test BER=0.010460; best val=0.010524@5000; elapsed=0.7 min
+complex N=7: step 6000/20000; val BER=0.010626; test BER=0.010543; best val=0.010524@5000; elapsed=0.8 min
+complex N=7: step 7000/20000; val BER=0.009691; test BER=0.009663; best val=0.009691@7000; elapsed=1.0 min
+complex N=7: step 8000/20000; val BER=0.008490; test BER=0.008422; best val=0.008490@8000; elapsed=1.1 min
+complex N=7: step 9000/20000; val BER=0.007556; test BER=0.007441; best val=0.007556@9000; elapsed=1.2 min
+complex N=7: step 10000/20000; val BER=0.006562; test BER=0.006436; best val=0.006562@10000; elapsed=1.4 min
+complex N=7: step 11000/20000; val BER=0.006216; test BER=0.006061; best val=0.006216@11000; elapsed=1.5 min
+complex N=7: step 12000/20000; val BER=0.005746; test BER=0.005604; best val=0.005746@12000; elapsed=1.6 min
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/home/user/projects/constellation-denoiser/src/constellation_denoiser/fixed_step_curve.py", line 260, in <module>
+    main()
+  File "/home/user/projects/constellation-denoiser/src/constellation_denoiser/fixed_step_curve.py", line 253, in main
+    train_one(
+  File "/home/user/projects/constellation-denoiser/src/constellation_denoiser/fixed_step_curve.py", line 193, in train_one
+    test_ber = evaluate_model(model, model_name, test_data)
+  File "/home/user/.local/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+    return func(*args, **kwargs)
+  File "/home/user/projects/constellation-denoiser/src/constellation_denoiser/fixed_step_curve.py", line 115, in evaluate_model
+    prediction = predict(model, x, torch.device("cpu")) if model_name == "tanh" else predict_complex(model, x)
+  File "/home/user/projects/constellation-denoiser/src/constellation_denoiser/paper_complex_mlp.py", line 165, in predict_complex
+    p = model(torch.from_numpy(x[start:start + batch_size]))
+  File "/home/user/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/user/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/user/projects/constellation-denoiser/src/constellation_denoiser/paper_complex_mlp.py", line 54, in forward
+    z = self.act1(self.fc1(z))
+  File "/home/user/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/user/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/user/projects/constellation-denoiser/src/constellation_denoiser/paper_complex_mlp.py", line 39, in forward
+    return torch.exp(1j * self.c * z.abs().square()) * z
+KeyboardInterrupt
+complex N=7: resumed at step 12000
+complex N=7: step 13000/20000; val BER=0.005610; test BER=0.005476; best val=0.005610@13000; elapsed=0.2 min
+complex N=7: step 14000/20000; val BER=0.005286; test BER=0.005163; best val=0.005286@14000; elapsed=0.3 min
+complex N=7: step 15000/20000; val BER=0.005033; test BER=0.004877; best val=0.005033@15000; elapsed=0.5 min
+complex N=7: step 16000/20000; val BER=0.005070; test BER=0.004943; best val=0.005033@15000; elapsed=0.6 min
+complex N=7: step 17000/20000; val BER=0.004973; test BER=0.004861; best val=0.004973@17000; elapsed=0.8 min
+complex N=7: step 18000/20000; val BER=0.005151; test BER=0.004999; best val=0.004973@17000; elapsed=0.9 min
+complex N=7: step 19000/20000; val BER=0.004879; test BER=0.004737; best val=0.004879@19000; elapsed=1.1 min
+complex N=7: step 20000/20000; val BER=0.004785; test BER=0.004655; best val=0.004785@20000; elapsed=1.3 min
+complex N=30: starting at step 0
+complex N=30: step 1000/20000; val BER=0.010689; test BER=0.010659; best val=0.010689@1000; elapsed=0.2 min
+complex N=30: step 2000/20000; val BER=0.010838; test BER=0.010756; best val=0.010689@1000; elapsed=0.3 min
+complex N=30: step 3000/20000; val BER=0.011316; test BER=0.011406; best val=0.010689@1000; elapsed=0.5 min
+complex N=30: step 4000/20000; val BER=0.010849; test BER=0.010737; best val=0.010689@1000; elapsed=0.6 min
+complex N=30: step 5000/20000; val BER=0.010559; test BER=0.010497; best val=0.010559@5000; elapsed=0.7 min
+complex N=30: step 6000/20000; val BER=0.010277; test BER=0.010240; best val=0.010277@6000; elapsed=0.9 min
+complex N=30: step 7000/20000; val BER=0.009664; test BER=0.009614; best val=0.009664@7000; elapsed=1.0 min
+complex N=30: step 8000/20000; val BER=0.008093; test BER=0.007989; best val=0.008093@8000; elapsed=1.2 min
+complex N=30: step 9000/20000; val BER=0.006836; test BER=0.006706; best val=0.006836@9000; elapsed=1.4 min
+complex N=30: step 10000/20000; val BER=0.006185; test BER=0.006039; best val=0.006185@10000; elapsed=1.6 min
+complex N=30: step 11000/20000; val BER=0.005738; test BER=0.005641; best val=0.005738@11000; elapsed=1.7 min
+complex N=30: step 12000/20000; val BER=0.006144; test BER=0.006022; best val=0.005738@11000; elapsed=1.9 min
+complex N=30: step 13000/20000; val BER=0.005390; test BER=0.005249; best val=0.005390@13000; elapsed=2.0 min
+complex N=30: step 14000/20000; val BER=0.005281; test BER=0.005137; best val=0.005281@14000; elapsed=2.2 min
+complex N=30: step 15000/20000; val BER=0.005212; test BER=0.005038; best val=0.005212@15000; elapsed=2.3 min
+complex N=30: step 16000/20000; val BER=0.004971; test BER=0.004774; best val=0.004971@16000; elapsed=2.5 min
+complex N=30: step 17000/20000; val BER=0.004852; test BER=0.004692; best val=0.004852@17000; elapsed=2.7 min
+complex N=30: step 18000/20000; val BER=0.004881; test BER=0.004737; best val=0.004852@17000; elapsed=2.8 min
+complex N=30: step 19000/20000; val BER=0.004842; test BER=0.004636; best val=0.004842@19000; elapsed=3.0 min
+complex N=30: step 20000/20000; val BER=0.004934; test BER=0.004764; best val=0.004842@19000; elapsed=3.1 min
+complex N=105: starting at step 0
+complex N=105: step 1000/20000; val BER=0.010515; test BER=0.010527; best val=0.010515@1000; elapsed=0.2 min
+complex N=105: step 2000/20000; val BER=0.011087; test BER=0.010968; best val=0.010515@1000; elapsed=0.3 min
+complex N=105: step 3000/20000; val BER=0.010551; test BER=0.010518; best val=0.010515@1000; elapsed=0.4 min
+complex N=105: step 4000/20000; val BER=0.010618; test BER=0.010500; best val=0.010515@1000; elapsed=0.6 min
+complex N=105: step 5000/20000; val BER=0.010757; test BER=0.010696; best val=0.010515@1000; elapsed=0.8 min
+complex N=105: step 6000/20000; val BER=0.010215; test BER=0.010260; best val=0.010215@6000; elapsed=0.9 min
+complex N=105: step 7000/20000; val BER=0.009596; test BER=0.009507; best val=0.009596@7000; elapsed=1.1 min
+complex N=105: step 8000/20000; val BER=0.008214; test BER=0.008078; best val=0.008214@8000; elapsed=1.3 min
+complex N=105: step 9000/20000; val BER=0.007135; test BER=0.006973; best val=0.007135@9000; elapsed=1.4 min
+complex N=105: step 10000/20000; val BER=0.006476; test BER=0.006301; best val=0.006476@10000; elapsed=1.6 min
+complex N=105: step 11000/20000; val BER=0.005805; test BER=0.005652; best val=0.005805@11000; elapsed=1.8 min
+complex N=105: step 12000/20000; val BER=0.005470; test BER=0.005274; best val=0.005470@12000; elapsed=1.9 min
+complex N=105: step 13000/20000; val BER=0.005241; test BER=0.005039; best val=0.005241@13000; elapsed=2.1 min
+complex N=105: step 14000/20000; val BER=0.005265; test BER=0.005133; best val=0.005241@13000; elapsed=2.2 min
+complex N=105: step 15000/20000; val BER=0.005022; test BER=0.004911; best val=0.005022@15000; elapsed=2.4 min
+complex N=105: step 16000/20000; val BER=0.004981; test BER=0.004846; best val=0.004981@16000; elapsed=2.5 min
+complex N=105: step 17000/20000; val BER=0.004895; test BER=0.004774; best val=0.004895@17000; elapsed=2.7 min
+complex N=105: step 18000/20000; val BER=0.004938; test BER=0.004789; best val=0.004895@17000; elapsed=2.9 min
+complex N=105: step 19000/20000; val BER=0.004815; test BER=0.004668; best val=0.004815@19000; elapsed=3.0 min
+complex N=105: step 20000/20000; val BER=0.004819; test BER=0.004684; best val=0.004815@19000; elapsed=3.2 min
+complex N=210: starting at step 0
+complex N=210: step 1000/20000; val BER=0.010576; test BER=0.010588; best val=0.010576@1000; elapsed=0.1 min
+complex N=210: step 2000/20000; val BER=0.011047; test BER=0.011019; best val=0.010576@1000; elapsed=0.2 min
+complex N=210: step 3000/20000; val BER=0.010800; test BER=0.010675; best val=0.010576@1000; elapsed=0.3 min
+complex N=210: step 4000/20000; val BER=0.010867; test BER=0.010869; best val=0.010576@1000; elapsed=0.4 min
+complex N=210: step 5000/20000; val BER=0.010676; test BER=0.010624; best val=0.010576@1000; elapsed=0.5 min
+complex N=210: step 6000/20000; val BER=0.010208; test BER=0.010229; best val=0.010208@6000; elapsed=0.6 min
+complex N=210: step 7000/20000; val BER=0.009660; test BER=0.009601; best val=0.009660@7000; elapsed=0.7 min
+complex N=210: step 8000/20000; val BER=0.008326; test BER=0.008193; best val=0.008326@8000; elapsed=0.8 min
+complex N=210: step 9000/20000; val BER=0.006950; test BER=0.006778; best val=0.006950@9000; elapsed=0.9 min
+complex N=210: step 10000/20000; val BER=0.006536; test BER=0.006316; best val=0.006536@10000; elapsed=1.0 min
+complex N=210: step 11000/20000; val BER=0.005859; test BER=0.005622; best val=0.005859@11000; elapsed=1.1 min
+complex N=210: step 12000/20000; val BER=0.005472; test BER=0.005288; best val=0.005472@12000; elapsed=1.2 min
+complex N=210: step 13000/20000; val BER=0.005326; test BER=0.005138; best val=0.005326@13000; elapsed=1.3 min
+complex N=210: step 14000/20000; val BER=0.005209; test BER=0.005076; best val=0.005209@14000; elapsed=1.4 min
+complex N=210: step 15000/20000; val BER=0.004958; test BER=0.004833; best val=0.004958@15000; elapsed=1.5 min
+complex N=210: step 16000/20000; val BER=0.005135; test BER=0.004986; best val=0.004958@15000; elapsed=1.6 min
+complex N=210: step 17000/20000; val BER=0.004956; test BER=0.004838; best val=0.004956@17000; elapsed=1.7 min
+complex N=210: step 18000/20000; val BER=0.004951; test BER=0.004832; best val=0.004951@18000; elapsed=1.8 min
+complex N=210: step 19000/20000; val BER=0.004781; test BER=0.004703; best val=0.004781@19000; elapsed=1.9 min
+complex N=210: step 20000/20000; val BER=0.004704; test BER=0.004627; best val=0.004704@20000; elapsed=2.0 min

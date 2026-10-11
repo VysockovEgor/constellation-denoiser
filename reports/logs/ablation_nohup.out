@@ -1,0 +1,2 @@
+nohup: ignoring input
+scripts/launch_ablation_max.sh: line 45: 134213 Killed                  "$PYTHON" -u -m constellation_denoiser.complex_mlp_ablation_train --variant "$variant" --seed "$seed" --threads "$THREADS" --resume >> "$log" 2>&1

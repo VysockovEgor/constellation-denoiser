@@ -1,0 +1,22 @@
+variant=a, window=31, hidden=48, N=30, seed=17, Adam lr=0.001, steps=20000, batch=1024; train mult=15696; merged mult=6480; raw BER=0.009552
+ablation_a_w31_h48_N30_seed17: starting at step 0
+ablation_a_w31_h48_N30_seed17: step 1000/20000; val BER=0.010839; test BER=0.010728; best val=0.010839@1000; merge_diff=7.18e-07; elapsed=0.4 min
+ablation_a_w31_h48_N30_seed17: step 2000/20000; val BER=0.011120; test BER=0.011031; best val=0.010839@1000; merge_diff=6.14e-07; elapsed=0.7 min
+ablation_a_w31_h48_N30_seed17: step 3000/20000; val BER=0.011225; test BER=0.011252; best val=0.010839@1000; merge_diff=6.27e-07; elapsed=1.0 min
+ablation_a_w31_h48_N30_seed17: step 4000/20000; val BER=0.010544; test BER=0.010451; best val=0.010544@4000; merge_diff=5.13e-07; elapsed=1.3 min
+ablation_a_w31_h48_N30_seed17: step 5000/20000; val BER=0.009371; test BER=0.009266; best val=0.009371@5000; merge_diff=4.34e-07; elapsed=1.6 min
+ablation_a_w31_h48_N30_seed17: step 6000/20000; val BER=0.007006; test BER=0.006776; best val=0.007006@6000; merge_diff=4.79e-07; elapsed=1.9 min
+ablation_a_w31_h48_N30_seed17: step 7000/20000; val BER=0.005985; test BER=0.005803; best val=0.005985@7000; merge_diff=3.82e-07; elapsed=2.2 min
+ablation_a_w31_h48_N30_seed17: step 8000/20000; val BER=0.005038; test BER=0.004948; best val=0.005038@8000; merge_diff=4.34e-07; elapsed=2.4 min
+ablation_a_w31_h48_N30_seed17: step 9000/20000; val BER=0.004637; test BER=0.004524; best val=0.004637@9000; merge_diff=4.34e-07; elapsed=2.7 min
+ablation_a_w31_h48_N30_seed17: step 10000/20000; val BER=0.004466; test BER=0.004353; best val=0.004466@10000; merge_diff=3.77e-07; elapsed=3.0 min
+ablation_a_w31_h48_N30_seed17: step 11000/20000; val BER=0.004216; test BER=0.004043; best val=0.004216@11000; merge_diff=3.77e-07; elapsed=3.3 min
+ablation_a_w31_h48_N30_seed17: step 12000/20000; val BER=0.004607; test BER=0.004452; best val=0.004216@11000; merge_diff=3.63e-07; elapsed=3.6 min
+ablation_a_w31_h48_N30_seed17: step 13000/20000; val BER=0.004141; test BER=0.003980; best val=0.004141@13000; merge_diff=3.77e-07; elapsed=3.8 min
+ablation_a_w31_h48_N30_seed17: step 14000/20000; val BER=0.004055; test BER=0.003959; best val=0.004055@14000; merge_diff=3.82e-07; elapsed=4.1 min
+ablation_a_w31_h48_N30_seed17: step 15000/20000; val BER=0.004031; test BER=0.003844; best val=0.004031@15000; merge_diff=4.30e-07; elapsed=4.4 min
+ablation_a_w31_h48_N30_seed17: step 16000/20000; val BER=0.003839; test BER=0.003659; best val=0.003839@16000; merge_diff=4.92e-07; elapsed=4.6 min
+ablation_a_w31_h48_N30_seed17: step 17000/20000; val BER=0.003878; test BER=0.003719; best val=0.003839@16000; merge_diff=4.77e-07; elapsed=4.9 min
+ablation_a_w31_h48_N30_seed17: step 18000/20000; val BER=0.003842; test BER=0.003674; best val=0.003839@16000; merge_diff=3.82e-07; elapsed=5.1 min
+ablation_a_w31_h48_N30_seed17: step 19000/20000; val BER=0.003803; test BER=0.003628; best val=0.003803@19000; merge_diff=4.55e-07; elapsed=5.3 min
+ablation_a_w31_h48_N30_seed17: step 20000/20000; val BER=0.003903; test BER=0.003783; best val=0.003803@19000; merge_diff=4.66e-07; elapsed=5.6 min
