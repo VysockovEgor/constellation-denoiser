@@ -1,0 +1,132 @@
+Configuration (window=65, hidden=48): parameters=11140; dense real multiplies=21888; phase real multiplies=672; total=22560; raw BER=0.009552
+complex_w65_h48_N30_seed29: starting at step 0
+complex_w65_h48_N30_seed29: step 1000/20000; val BER=0.011363; test BER=0.011272; best val=0.011363@1000; elapsed=0.2 min
+complex_w65_h48_N30_seed29: step 2000/20000; val BER=0.010926; test BER=0.010892; best val=0.010926@2000; elapsed=0.5 min
+complex_w65_h48_N30_seed29: step 3000/20000; val BER=0.010998; test BER=0.010877; best val=0.010926@2000; elapsed=0.7 min
+complex_w65_h48_N30_seed29: step 4000/20000; val BER=0.010817; test BER=0.010741; best val=0.010817@4000; elapsed=0.9 min
+complex_w65_h48_N30_seed29: step 5000/20000; val BER=0.011110; test BER=0.011054; best val=0.010817@4000; elapsed=1.1 min
+complex_w65_h48_N30_seed29: step 6000/20000; val BER=0.010530; test BER=0.010415; best val=0.010530@6000; elapsed=1.3 min
+complex_w65_h48_N30_seed29: step 7000/20000; val BER=0.009288; test BER=0.009226; best val=0.009288@7000; elapsed=1.6 min
+complex_w65_h48_N30_seed29: step 8000/20000; val BER=0.007298; test BER=0.007215; best val=0.007298@8000; elapsed=1.8 min
+complex_w65_h48_N30_seed29: step 9000/20000; val BER=0.006169; test BER=0.006027; best val=0.006169@9000; elapsed=2.1 min
+complex_w65_h48_N30_seed29: step 10000/20000; val BER=0.005741; test BER=0.005652; best val=0.005741@10000; elapsed=2.3 min
+complex_w65_h48_N30_seed29: step 11000/20000; val BER=0.005378; test BER=0.005257; best val=0.005378@11000; elapsed=2.6 min
+complex_w65_h48_N30_seed29: step 12000/20000; val BER=0.005325; test BER=0.005236; best val=0.005325@12000; elapsed=2.8 min
+complex_w65_h48_N30_seed29: step 13000/20000; val BER=0.005049; test BER=0.004867; best val=0.005049@13000; elapsed=3.1 min
+complex_w65_h48_N30_seed29: step 14000/20000; val BER=0.004996; test BER=0.004860; best val=0.004996@14000; elapsed=3.3 min
+complex_w65_h48_N30_seed29: step 15000/20000; val BER=0.004773; test BER=0.004602; best val=0.004773@15000; elapsed=3.6 min
+complex_w65_h48_N30_seed29: step 16000/20000; val BER=0.004472; test BER=0.004326; best val=0.004472@16000; elapsed=3.8 min
+complex_w65_h48_N30_seed29: step 17000/20000; val BER=0.004290; test BER=0.004149; best val=0.004290@17000; elapsed=4.1 min
+complex_w65_h48_N30_seed29: step 18000/20000; val BER=0.004232; test BER=0.004064; best val=0.004232@18000; elapsed=4.4 min
+complex_w65_h48_N30_seed29: step 19000/20000; val BER=0.004277; test BER=0.004129; best val=0.004232@18000; elapsed=4.7 min
+complex_w65_h48_N30_seed29: step 20000/20000; val BER=0.004246; test BER=0.004110; best val=0.004232@18000; elapsed=4.9 min
+Configuration (window=31, hidden=32): parameters=4228; dense real multiplies=8192; phase real multiplies=448; total=8640; raw BER=0.009552
+complex_w31_h32_N30_seed29: starting at step 0
+complex_w31_h32_N30_seed29: step 1000/20000; val BER=0.010613; test BER=0.010574; best val=0.010613@1000; elapsed=0.2 min
+complex_w31_h32_N30_seed29: step 2000/20000; val BER=0.010701; test BER=0.010671; best val=0.010613@1000; elapsed=0.5 min
+complex_w31_h32_N30_seed29: step 3000/20000; val BER=0.010584; test BER=0.010516; best val=0.010584@3000; elapsed=0.6 min
+complex_w31_h32_N30_seed29: step 4000/20000; val BER=0.010410; test BER=0.010291; best val=0.010410@4000; elapsed=0.9 min
+complex_w31_h32_N30_seed29: step 5000/20000; val BER=0.010551; test BER=0.010507; best val=0.010410@4000; elapsed=1.0 min
+complex_w31_h32_N30_seed29: step 6000/20000; val BER=0.010400; test BER=0.010364; best val=0.010400@6000; elapsed=1.3 min
+complex_w31_h32_N30_seed29: step 7000/20000; val BER=0.009682; test BER=0.009549; best val=0.009682@7000; elapsed=1.5 min
+complex_w31_h32_N30_seed29: step 8000/20000; val BER=0.008136; test BER=0.007995; best val=0.008136@8000; elapsed=1.7 min
+complex_w31_h32_N30_seed29: step 9000/20000; val BER=0.006747; test BER=0.006600; best val=0.006747@9000; elapsed=1.9 min
+complex_w31_h32_N30_seed29: step 10000/20000; val BER=0.005875; test BER=0.005744; best val=0.005875@10000; elapsed=2.1 min
+complex_w31_h32_N30_seed29: step 11000/20000; val BER=0.005591; test BER=0.005509; best val=0.005591@11000; elapsed=2.2 min
+complex_w31_h32_N30_seed29: step 12000/20000; val BER=0.005605; test BER=0.005492; best val=0.005591@11000; elapsed=2.4 min
+complex_w31_h32_N30_seed29: step 13000/20000; val BER=0.005249; test BER=0.005149; best val=0.005249@13000; elapsed=2.6 min
+complex_w31_h32_N30_seed29: step 14000/20000; val BER=0.004909; test BER=0.004888; best val=0.004909@14000; elapsed=2.8 min
+complex_w31_h32_N30_seed29: step 15000/20000; val BER=0.005120; test BER=0.005054; best val=0.004909@14000; elapsed=3.0 min
+complex_w31_h32_N30_seed29: step 16000/20000; val BER=0.004875; test BER=0.004750; best val=0.004875@16000; elapsed=3.2 min
+complex_w31_h32_N30_seed29: step 17000/20000; val BER=0.004848; test BER=0.004751; best val=0.004848@17000; elapsed=3.4 min
+complex_w31_h32_N30_seed29: step 18000/20000; val BER=0.004815; test BER=0.004731; best val=0.004815@18000; elapsed=3.7 min
+complex_w31_h32_N30_seed29: step 19000/20000; val BER=0.004639; test BER=0.004534; best val=0.004639@19000; elapsed=3.9 min
+complex_w31_h32_N30_seed29: step 20000/20000; val BER=0.004633; test BER=0.004560; best val=0.004633@20000; elapsed=4.1 min
+Configuration (window=127, hidden=48): parameters=17092; dense real multiplies=33792; phase real multiplies=672; total=34464; raw BER=0.009558
+complex_w127_h48_N30_seed29: starting at step 0
+complex_w127_h48_N30_seed29: step 1000/20000; val BER=0.012179; test BER=0.012110; best val=0.012179@1000; elapsed=0.3 min
+complex_w127_h48_N30_seed29: step 2000/20000; val BER=0.012112; test BER=0.012121; best val=0.012112@2000; elapsed=0.6 min
+complex_w127_h48_N30_seed29: step 3000/20000; val BER=0.011887; test BER=0.011892; best val=0.011887@3000; elapsed=0.8 min
+complex_w127_h48_N30_seed29: step 4000/20000; val BER=0.011485; test BER=0.011429; best val=0.011485@4000; elapsed=1.1 min
+complex_w127_h48_N30_seed29: step 5000/20000; val BER=0.011426; test BER=0.011335; best val=0.011426@5000; elapsed=1.3 min
+complex_w127_h48_N30_seed29: step 6000/20000; val BER=0.010740; test BER=0.010673; best val=0.010740@6000; elapsed=1.7 min
+complex_w127_h48_N30_seed29: step 7000/20000; val BER=0.010583; test BER=0.010594; best val=0.010583@7000; elapsed=2.0 min
+complex_w127_h48_N30_seed29: step 8000/20000; val BER=0.008958; test BER=0.008831; best val=0.008958@8000; elapsed=2.3 min
+complex_w127_h48_N30_seed29: step 9000/20000; val BER=0.007852; test BER=0.007714; best val=0.007852@9000; elapsed=2.6 min
+complex_w127_h48_N30_seed29: step 10000/20000; val BER=0.007210; test BER=0.007136; best val=0.007210@10000; elapsed=2.8 min
+complex_w127_h48_N30_seed29: step 11000/20000; val BER=0.006647; test BER=0.006522; best val=0.006647@11000; elapsed=3.2 min
+complex_w127_h48_N30_seed29: step 12000/20000; val BER=0.006186; test BER=0.006154; best val=0.006186@12000; elapsed=3.4 min
+complex_w127_h48_N30_seed29: step 13000/20000; val BER=0.006177; test BER=0.006046; best val=0.006177@13000; elapsed=3.7 min
+complex_w127_h48_N30_seed29: step 14000/20000; val BER=0.005829; test BER=0.005690; best val=0.005829@14000; elapsed=4.0 min
+complex_w127_h48_N30_seed29: step 15000/20000; val BER=0.005714; test BER=0.005573; best val=0.005714@15000; elapsed=4.2 min
+complex_w127_h48_N30_seed29: step 16000/20000; val BER=0.005491; test BER=0.005397; best val=0.005491@16000; elapsed=4.5 min
+complex_w127_h48_N30_seed29: step 17000/20000; val BER=0.005420; test BER=0.005340; best val=0.005420@17000; elapsed=4.8 min
+complex_w127_h48_N30_seed29: step 18000/20000; val BER=0.005174; test BER=0.005059; best val=0.005174@18000; elapsed=5.1 min
+complex_w127_h48_N30_seed29: step 19000/20000; val BER=0.005006; test BER=0.004930; best val=0.005006@19000; elapsed=5.4 min
+complex_w127_h48_N30_seed29: step 20000/20000; val BER=0.004957; test BER=0.004820; best val=0.004957@20000; elapsed=5.7 min
+Configuration (window=65, hidden=32): parameters=6404; dense real multiplies=12544; phase real multiplies=448; total=12992; raw BER=0.009552
+complex_w65_h32_N30_seed29: starting at step 0
+complex_w65_h32_N30_seed29: step 1000/20000; val BER=0.011276; test BER=0.011213; best val=0.011276@1000; elapsed=0.2 min
+complex_w65_h32_N30_seed29: step 2000/20000; val BER=0.011644; test BER=0.011529; best val=0.011276@1000; elapsed=0.4 min
+complex_w65_h32_N30_seed29: step 3000/20000; val BER=0.010940; test BER=0.010809; best val=0.010940@3000; elapsed=0.6 min
+complex_w65_h32_N30_seed29: step 4000/20000; val BER=0.011353; test BER=0.011284; best val=0.010940@3000; elapsed=0.9 min
+complex_w65_h32_N30_seed29: step 5000/20000; val BER=0.010973; test BER=0.010920; best val=0.010940@3000; elapsed=1.1 min
+complex_w65_h32_N30_seed29: step 6000/20000; val BER=0.010687; test BER=0.010653; best val=0.010687@6000; elapsed=1.4 min
+complex_w65_h32_N30_seed29: step 7000/20000; val BER=0.011121; test BER=0.011047; best val=0.010687@6000; elapsed=1.6 min
+complex_w65_h32_N30_seed29: step 8000/20000; val BER=0.010555; test BER=0.010530; best val=0.010555@8000; elapsed=1.8 min
+complex_w65_h32_N30_seed29: step 9000/20000; val BER=0.010245; test BER=0.010122; best val=0.010245@9000; elapsed=2.1 min
+complex_w65_h32_N30_seed29: step 10000/20000; val BER=0.008435; test BER=0.008279; best val=0.008435@10000; elapsed=2.4 min
+complex_w65_h32_N30_seed29: step 11000/20000; val BER=0.007466; test BER=0.007355; best val=0.007466@11000; elapsed=2.7 min
+complex_w65_h32_N30_seed29: step 12000/20000; val BER=0.007224; test BER=0.007122; best val=0.007224@12000; elapsed=3.2 min
+complex_w65_h32_N30_seed29: step 13000/20000; val BER=0.006714; test BER=0.006551; best val=0.006714@13000; elapsed=3.5 min
+complex_w65_h32_N30_seed29: step 14000/20000; val BER=0.006622; test BER=0.006529; best val=0.006622@14000; elapsed=3.8 min
+complex_w65_h32_N30_seed29: step 15000/20000; val BER=0.006231; test BER=0.006105; best val=0.006231@15000; elapsed=4.2 min
+complex_w65_h32_N30_seed29: step 16000/20000; val BER=0.005876; test BER=0.005719; best val=0.005876@16000; elapsed=4.6 min
+complex_w65_h32_N30_seed29: step 17000/20000; val BER=0.005653; test BER=0.005583; best val=0.005653@17000; elapsed=4.8 min
+complex_w65_h32_N30_seed29: step 18000/20000; val BER=0.005652; test BER=0.005478; best val=0.005652@18000; elapsed=5.1 min
+complex_w65_h32_N30_seed29: step 19000/20000; val BER=0.005380; test BER=0.005245; best val=0.005380@19000; elapsed=5.2 min
+complex_w65_h32_N30_seed29: step 20000/20000; val BER=0.005320; test BER=0.005189; best val=0.005320@20000; elapsed=5.4 min
+Configuration (window=31, hidden=48): parameters=7876; dense real multiplies=15360; phase real multiplies=672; total=16032; raw BER=0.009552
+complex_w31_h48_N30_seed29: starting at step 0
+complex_w31_h48_N30_seed29: step 1000/20000; val BER=0.011096; test BER=0.011053; best val=0.011096@1000; elapsed=0.3 min
+complex_w31_h48_N30_seed29: step 2000/20000; val BER=0.010961; test BER=0.010880; best val=0.010961@2000; elapsed=0.6 min
+complex_w31_h48_N30_seed29: step 3000/20000; val BER=0.010958; test BER=0.010888; best val=0.010958@3000; elapsed=0.8 min
+complex_w31_h48_N30_seed29: step 4000/20000; val BER=0.010561; test BER=0.010469; best val=0.010561@4000; elapsed=1.1 min
+complex_w31_h48_N30_seed29: step 5000/20000; val BER=0.009649; test BER=0.009538; best val=0.009649@5000; elapsed=1.4 min
+complex_w31_h48_N30_seed29: step 6000/20000; val BER=0.007512; test BER=0.007426; best val=0.007512@6000; elapsed=1.6 min
+complex_w31_h48_N30_seed29: step 7000/20000; val BER=0.006106; test BER=0.005968; best val=0.006106@7000; elapsed=1.8 min
+complex_w31_h48_N30_seed29: step 8000/20000; val BER=0.005278; test BER=0.005125; best val=0.005278@8000; elapsed=2.0 min
+complex_w31_h48_N30_seed29: step 9000/20000; val BER=0.004874; test BER=0.004690; best val=0.004874@9000; elapsed=2.2 min
+complex_w31_h48_N30_seed29: step 10000/20000; val BER=0.004673; test BER=0.004548; best val=0.004673@10000; elapsed=2.5 min
+complex_w31_h48_N30_seed29: step 11000/20000; val BER=0.004443; test BER=0.004299; best val=0.004443@11000; elapsed=2.8 min
+complex_w31_h48_N30_seed29: step 12000/20000; val BER=0.004399; test BER=0.004274; best val=0.004399@12000; elapsed=3.1 min
+complex_w31_h48_N30_seed29: step 13000/20000; val BER=0.004088; test BER=0.003974; best val=0.004088@13000; elapsed=3.3 min
+complex_w31_h48_N30_seed29: step 14000/20000; val BER=0.004013; test BER=0.003861; best val=0.004013@14000; elapsed=3.6 min
+complex_w31_h48_N30_seed29: step 15000/20000; val BER=0.004087; test BER=0.003977; best val=0.004013@14000; elapsed=3.9 min
+complex_w31_h48_N30_seed29: step 16000/20000; val BER=0.004094; test BER=0.003937; best val=0.004013@14000; elapsed=4.1 min
+complex_w31_h48_N30_seed29: step 17000/20000; val BER=0.003973; test BER=0.003840; best val=0.003973@17000; elapsed=4.4 min
+complex_w31_h48_N30_seed29: step 18000/20000; val BER=0.003952; test BER=0.003805; best val=0.003952@18000; elapsed=4.7 min
+complex_w31_h48_N30_seed29: step 19000/20000; val BER=0.003797; test BER=0.003662; best val=0.003797@19000; elapsed=5.0 min
+complex_w31_h48_N30_seed29: step 20000/20000; val BER=0.003754; test BER=0.003647; best val=0.003754@20000; elapsed=5.3 min
+Configuration (window=127, hidden=32): parameters=10372; dense real multiplies=20480; phase real multiplies=448; total=20928; raw BER=0.009558
+complex_w127_h32_N30_seed29: starting at step 0
+complex_w127_h32_N30_seed29: step 1000/20000; val BER=0.012161; test BER=0.012054; best val=0.012161@1000; elapsed=0.3 min
+complex_w127_h32_N30_seed29: step 2000/20000; val BER=0.011949; test BER=0.011990; best val=0.011949@2000; elapsed=0.6 min
+complex_w127_h32_N30_seed29: step 3000/20000; val BER=0.011692; test BER=0.011718; best val=0.011692@3000; elapsed=0.9 min
+complex_w127_h32_N30_seed29: step 4000/20000; val BER=0.011350; test BER=0.011346; best val=0.011350@4000; elapsed=1.1 min
+complex_w127_h32_N30_seed29: step 5000/20000; val BER=0.011405; test BER=0.011362; best val=0.011350@4000; elapsed=1.3 min
+complex_w127_h32_N30_seed29: step 6000/20000; val BER=0.010988; test BER=0.010946; best val=0.010988@6000; elapsed=1.6 min
+complex_w127_h32_N30_seed29: step 7000/20000; val BER=0.010835; test BER=0.010811; best val=0.010835@7000; elapsed=1.9 min
+complex_w127_h32_N30_seed29: step 8000/20000; val BER=0.011100; test BER=0.011123; best val=0.010835@7000; elapsed=2.2 min
+complex_w127_h32_N30_seed29: step 9000/20000; val BER=0.010721; test BER=0.010674; best val=0.010721@9000; elapsed=2.5 min
+complex_w127_h32_N30_seed29: step 10000/20000; val BER=0.010253; test BER=0.010210; best val=0.010253@10000; elapsed=2.7 min
+complex_w127_h32_N30_seed29: step 11000/20000; val BER=0.009252; test BER=0.009118; best val=0.009252@11000; elapsed=2.9 min
+complex_w127_h32_N30_seed29: step 12000/20000; val BER=0.008177; test BER=0.008086; best val=0.008177@12000; elapsed=3.1 min
+complex_w127_h32_N30_seed29: step 13000/20000; val BER=0.007635; test BER=0.007566; best val=0.007635@13000; elapsed=3.4 min
+complex_w127_h32_N30_seed29: step 14000/20000; val BER=0.007139; test BER=0.007022; best val=0.007139@14000; elapsed=3.7 min
+complex_w127_h32_N30_seed29: step 15000/20000; val BER=0.006958; test BER=0.006861; best val=0.006958@15000; elapsed=3.9 min
+complex_w127_h32_N30_seed29: step 16000/20000; val BER=0.006811; test BER=0.006705; best val=0.006811@16000; elapsed=4.2 min
+complex_w127_h32_N30_seed29: step 17000/20000; val BER=0.006820; test BER=0.006711; best val=0.006811@16000; elapsed=4.4 min
+complex_w127_h32_N30_seed29: step 18000/20000; val BER=0.006430; test BER=0.006349; best val=0.006430@18000; elapsed=4.6 min
+complex_w127_h32_N30_seed29: step 19000/20000; val BER=0.006199; test BER=0.006122; best val=0.006199@19000; elapsed=4.9 min
+complex_w127_h32_N30_seed29: step 20000/20000; val BER=0.006057; test BER=0.005933; best val=0.006057@20000; elapsed=5.1 min

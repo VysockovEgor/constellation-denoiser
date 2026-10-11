@@ -1,0 +1,2 @@
+model,window,parameters_complex,validation_ber,test_ber,test_raw_ber,test_mse_per_iq
+Complex FFE,7,8,0.01131090487238979,0.010662168762974723,0.01021950177066797,0.01873058109226709

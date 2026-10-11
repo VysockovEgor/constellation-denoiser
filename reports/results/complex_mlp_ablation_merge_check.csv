@@ -1,0 +1,5 @@
+variant,seed,merge_max_abs_diff,merge_windows_checked,ok
+a,17,4.549127083919302e-07,1000,True
+a,29,3.769728778024728e-07,1000,True
+c,17,2.980232238769531e-07,1000,True
+c,29,3.588674815091508e-07,1000,True

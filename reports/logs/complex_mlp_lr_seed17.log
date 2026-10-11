@@ -1,0 +1,66 @@
+N=30, window=31, hidden=32, seed=17, Adam cosine lr=0.001->0, steps=20000, batch=1024; raw BER=0.009552
+complex_cosine_w31_h32_N30_seed17: starting at step 0
+complex_cosine_w31_h32_N30_seed17: step 1000/20000; lr=0.00099384417; val BER=0.010687; test BER=0.010655; best val=0.010687@1000; elapsed=0.2 min
+complex_cosine_w31_h32_N30_seed17: step 2000/20000; lr=0.00097552826; val BER=0.010788; test BER=0.010715; best val=0.010687@1000; elapsed=0.4 min
+complex_cosine_w31_h32_N30_seed17: step 3000/20000; lr=0.00094550326; val BER=0.011248; test BER=0.011276; best val=0.010687@1000; elapsed=0.6 min
+complex_cosine_w31_h32_N30_seed17: step 4000/20000; lr=0.0009045085; val BER=0.010735; test BER=0.010628; best val=0.010687@1000; elapsed=0.9 min
+complex_cosine_w31_h32_N30_seed17: step 5000/20000; lr=0.00085355339; val BER=0.010497; test BER=0.010453; best val=0.010497@5000; elapsed=1.2 min
+complex_cosine_w31_h32_N30_seed17: step 6000/20000; lr=0.00079389263; val BER=0.010521; test BER=0.010506; best val=0.010497@5000; elapsed=1.5 min
+complex_cosine_w31_h32_N30_seed17: step 7000/20000; lr=0.00072699525; val BER=0.010015; test BER=0.009988; best val=0.010015@7000; elapsed=1.8 min
+complex_cosine_w31_h32_N30_seed17: step 8000/20000; lr=0.0006545085; val BER=0.009153; test BER=0.009067; best val=0.009153@8000; elapsed=2.2 min
+complex_cosine_w31_h32_N30_seed17: step 9000/20000; lr=0.00057821723; val BER=0.008188; test BER=0.008075; best val=0.008188@9000; elapsed=2.5 min
+complex_cosine_w31_h32_N30_seed17: step 10000/20000; lr=0.0005; val BER=0.007438; test BER=0.007291; best val=0.007438@10000; elapsed=2.8 min
+complex_cosine_w31_h32_N30_seed17: step 11000/20000; lr=0.00042178277; val BER=0.006881; test BER=0.006736; best val=0.006881@11000; elapsed=3.1 min
+complex_cosine_w31_h32_N30_seed17: step 12000/20000; lr=0.0003454915; val BER=0.006472; test BER=0.006301; best val=0.006472@12000; elapsed=3.4 min
+complex_cosine_w31_h32_N30_seed17: step 13000/20000; lr=0.00027300475; val BER=0.006150; test BER=0.005984; best val=0.006150@13000; elapsed=3.6 min
+complex_cosine_w31_h32_N30_seed17: step 14000/20000; lr=0.00020610737; val BER=0.005961; test BER=0.005809; best val=0.005961@14000; elapsed=3.8 min
+complex_cosine_w31_h32_N30_seed17: step 15000/20000; lr=0.00014644661; val BER=0.005808; test BER=0.005650; best val=0.005808@15000; elapsed=4.1 min
+complex_cosine_w31_h32_N30_seed17: step 16000/20000; lr=9.5491503e-05; val BER=0.005693; test BER=0.005525; best val=0.005693@16000; elapsed=4.3 min
+complex_cosine_w31_h32_N30_seed17: step 17000/20000; lr=5.4496738e-05; val BER=0.005642; test BER=0.005489; best val=0.005642@17000; elapsed=4.6 min
+complex_cosine_w31_h32_N30_seed17: step 18000/20000; lr=2.4471742e-05; val BER=0.005611; test BER=0.005463; best val=0.005611@18000; elapsed=4.9 min
+complex_cosine_w31_h32_N30_seed17: step 19000/20000; lr=6.1558297e-06; val BER=0.005586; test BER=0.005441; best val=0.005586@19000; elapsed=5.1 min
+complex_cosine_w31_h32_N30_seed17: step 20000/20000; lr=0; val BER=0.005585; test BER=0.005437; best val=0.005585@20000; elapsed=5.3 min
+N=30, window=31, hidden=48, seed=17, Adam cosine lr=0.001->0, steps=20000, batch=1024; raw BER=0.009552
+complex_cosine_w31_h48_N30_seed17: starting at step 0
+complex_cosine_w31_h48_N30_seed17: step 1000/20000; lr=0.00099384417; val BER=0.010799; test BER=0.010698; best val=0.010799@1000; elapsed=0.3 min
+complex_cosine_w31_h48_N30_seed17: step 2000/20000; lr=0.00097552826; val BER=0.011098; test BER=0.011008; best val=0.010799@1000; elapsed=0.6 min
+complex_cosine_w31_h48_N30_seed17: step 3000/20000; lr=0.00094550326; val BER=0.011138; test BER=0.011126; best val=0.010799@1000; elapsed=0.8 min
+complex_cosine_w31_h48_N30_seed17: step 4000/20000; lr=0.0009045085; val BER=0.010511; test BER=0.010428; best val=0.010511@4000; elapsed=1.1 min
+complex_cosine_w31_h48_N30_seed17: step 5000/20000; lr=0.00085355339; val BER=0.009730; test BER=0.009614; best val=0.009730@5000; elapsed=1.4 min
+complex_cosine_w31_h48_N30_seed17: step 6000/20000; lr=0.00079389263; val BER=0.008244; test BER=0.008089; best val=0.008244@6000; elapsed=1.7 min
+complex_cosine_w31_h48_N30_seed17: step 7000/20000; lr=0.00072699525; val BER=0.006481; test BER=0.006308; best val=0.006481@7000; elapsed=1.9 min
+complex_cosine_w31_h48_N30_seed17: step 8000/20000; lr=0.0006545085; val BER=0.005519; test BER=0.005420; best val=0.005519@8000; elapsed=2.1 min
+complex_cosine_w31_h48_N30_seed17: step 9000/20000; lr=0.00057821723; val BER=0.005023; test BER=0.004892; best val=0.005023@9000; elapsed=2.3 min
+complex_cosine_w31_h48_N30_seed17: step 10000/20000; lr=0.0005; val BER=0.004727; test BER=0.004604; best val=0.004727@10000; elapsed=2.6 min
+complex_cosine_w31_h48_N30_seed17: step 11000/20000; lr=0.00042178277; val BER=0.004622; test BER=0.004513; best val=0.004622@11000; elapsed=2.8 min
+complex_cosine_w31_h48_N30_seed17: step 12000/20000; lr=0.0003454915; val BER=0.004462; test BER=0.004341; best val=0.004462@12000; elapsed=3.1 min
+complex_cosine_w31_h48_N30_seed17: step 13000/20000; lr=0.00027300475; val BER=0.004319; test BER=0.004150; best val=0.004319@13000; elapsed=3.3 min
+complex_cosine_w31_h48_N30_seed17: step 14000/20000; lr=0.00020610737; val BER=0.004254; test BER=0.004091; best val=0.004254@14000; elapsed=3.6 min
+complex_cosine_w31_h48_N30_seed17: step 15000/20000; lr=0.00014644661; val BER=0.004155; test BER=0.004002; best val=0.004155@15000; elapsed=3.9 min
+complex_cosine_w31_h48_N30_seed17: step 16000/20000; lr=9.5491503e-05; val BER=0.004077; test BER=0.003938; best val=0.004077@16000; elapsed=4.2 min
+complex_cosine_w31_h48_N30_seed17: step 17000/20000; lr=5.4496738e-05; val BER=0.004073; test BER=0.003922; best val=0.004073@17000; elapsed=4.4 min
+complex_cosine_w31_h48_N30_seed17: step 18000/20000; lr=2.4471742e-05; val BER=0.004043; test BER=0.003899; best val=0.004043@18000; elapsed=4.6 min
+complex_cosine_w31_h48_N30_seed17: step 19000/20000; lr=6.1558297e-06; val BER=0.004013; test BER=0.003891; best val=0.004013@19000; elapsed=4.9 min
+complex_cosine_w31_h48_N30_seed17: step 20000/20000; lr=0; val BER=0.004019; test BER=0.003886; best val=0.004013@19000; elapsed=5.0 min
+N=30, window=65, hidden=48, seed=17, Adam cosine lr=0.001->0, steps=20000, batch=1024; raw BER=0.009552
+complex_cosine_w65_h48_N30_seed17: starting at step 0
+complex_cosine_w65_h48_N30_seed17: step 1000/20000; lr=0.00099384417; val BER=0.011250; test BER=0.011200; best val=0.011250@1000; elapsed=0.3 min
+complex_cosine_w65_h48_N30_seed17: step 2000/20000; lr=0.00097552826; val BER=0.011264; test BER=0.011209; best val=0.011250@1000; elapsed=0.6 min
+complex_cosine_w65_h48_N30_seed17: step 3000/20000; lr=0.00094550326; val BER=0.010984; test BER=0.010896; best val=0.010984@3000; elapsed=0.9 min
+complex_cosine_w65_h48_N30_seed17: step 4000/20000; lr=0.0009045085; val BER=0.011222; test BER=0.011169; best val=0.010984@3000; elapsed=1.2 min
+complex_cosine_w65_h48_N30_seed17: step 5000/20000; lr=0.00085355339; val BER=0.010725; test BER=0.010685; best val=0.010725@5000; elapsed=1.4 min
+complex_cosine_w65_h48_N30_seed17: step 6000/20000; lr=0.00079389263; val BER=0.010593; test BER=0.010523; best val=0.010593@6000; elapsed=1.6 min
+complex_cosine_w65_h48_N30_seed17: step 7000/20000; lr=0.00072699525; val BER=0.010583; test BER=0.010502; best val=0.010583@7000; elapsed=1.9 min
+complex_cosine_w65_h48_N30_seed17: step 8000/20000; lr=0.0006545085; val BER=0.009376; test BER=0.009222; best val=0.009376@8000; elapsed=2.1 min
+complex_cosine_w65_h48_N30_seed17: step 9000/20000; lr=0.00057821723; val BER=0.007815; test BER=0.007668; best val=0.007815@9000; elapsed=2.4 min
+complex_cosine_w65_h48_N30_seed17: step 10000/20000; lr=0.0005; val BER=0.006865; test BER=0.006737; best val=0.006865@10000; elapsed=2.6 min
+complex_cosine_w65_h48_N30_seed17: step 11000/20000; lr=0.00042178277; val BER=0.006243; test BER=0.006088; best val=0.006243@11000; elapsed=2.9 min
+complex_cosine_w65_h48_N30_seed17: step 12000/20000; lr=0.0003454915; val BER=0.006116; test BER=0.005984; best val=0.006116@12000; elapsed=3.2 min
+complex_cosine_w65_h48_N30_seed17: step 13000/20000; lr=0.00027300475; val BER=0.005768; test BER=0.005647; best val=0.005768@13000; elapsed=3.5 min
+complex_cosine_w65_h48_N30_seed17: step 14000/20000; lr=0.00020610737; val BER=0.005488; test BER=0.005324; best val=0.005488@14000; elapsed=3.8 min
+complex_cosine_w65_h48_N30_seed17: step 15000/20000; lr=0.00014644661; val BER=0.005336; test BER=0.005181; best val=0.005336@15000; elapsed=4.1 min
+complex_cosine_w65_h48_N30_seed17: step 16000/20000; lr=9.5491503e-05; val BER=0.005217; test BER=0.005079; best val=0.005217@16000; elapsed=4.4 min
+complex_cosine_w65_h48_N30_seed17: step 17000/20000; lr=5.4496738e-05; val BER=0.005114; test BER=0.005002; best val=0.005114@17000; elapsed=4.7 min
+complex_cosine_w65_h48_N30_seed17: step 18000/20000; lr=2.4471742e-05; val BER=0.005085; test BER=0.004959; best val=0.005085@18000; elapsed=5.0 min
+complex_cosine_w65_h48_N30_seed17: step 19000/20000; lr=6.1558297e-06; val BER=0.005077; test BER=0.004935; best val=0.005077@19000; elapsed=5.4 min
+complex_cosine_w65_h48_N30_seed17: step 20000/20000; lr=0; val BER=0.005076; test BER=0.004932; best val=0.005076@20000; elapsed=5.6 min

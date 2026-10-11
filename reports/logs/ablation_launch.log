@@ -1,0 +1,20 @@
+=== launch 2026-10-11T11:08:05+07:00 ===
+cores=12 jobs=8 threads_per_job=1 python=/home/user/.virtualenvs/constellation-denoiser/bin/python
+torch 2.14.1+cu130
+[start] variant=a seed=17 threads=1 -> reports/logs/complex_mlp_ablation_a_seed17.log
+[start] variant=a seed=29 threads=1 -> reports/logs/complex_mlp_ablation_a_seed29.log
+[start] variant=b seed=17 threads=1 -> reports/logs/complex_mlp_ablation_b_seed17.log
+[start] variant=b seed=29 threads=1 -> reports/logs/complex_mlp_ablation_b_seed29.log
+[start] variant=c seed=17 threads=1 -> reports/logs/complex_mlp_ablation_c_seed17.log
+[start] variant=c seed=29 threads=1 -> reports/logs/complex_mlp_ablation_c_seed29.log
+[start] variant=d seed=17 threads=1 -> reports/logs/complex_mlp_ablation_d_seed17.log
+[start] variant=d seed=29 threads=1 -> reports/logs/complex_mlp_ablation_d_seed29.log
+[ok] a_s17
+[ok] a_s29
+[ok] b_s17
+[ok] b_s29
+[fail] c_s17 pid=134213
+[ok] c_s29
+[ok] d_s17
+[ok] d_s29
+=== done 2026-10-11T11:13:47+07:00 exit=1 ===
