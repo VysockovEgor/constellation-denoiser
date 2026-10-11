@@ -18,10 +18,11 @@ import torch
 from torch import nn
 
 from .core import load_channel_data
-from .experiment import PROJECT_ROOT, ber_from_iq, make_windows, predict, set_seed
+from .experiment import ber_from_iq, make_windows, predict, set_seed
 from .large_scale_pilot import get_unique_files
 from .models import build_model
 from .paper_complex_mlp import PaperComplexMLP, predict_complex
+from .paths import E003_DIR, E004_DIR, E005_CHECKPOINTS, E005_RESULTS, MANIFEST_DIR, project_path
 
 
 CSV_FIELDS = ["model", "N", "seed", "step", "val_ber", "test_ber", "raw_ber"]
@@ -131,9 +132,9 @@ def training_batch(x: torch.Tensor, y: torch.Tensor, permutation: torch.Tensor,
 
 def train_one(model_name: str, n_files: int, train_data, val_data, test_data,
               raw_ber: float, steps: int, interval: int, threads: int, resume: bool,
-              csv_path: Path, seed: int = SEED):
+              csv_path: Path, seed: int = SEED,
+              checkpoint_dir: Path = E005_CHECKPOINTS):
     torch.set_num_threads(threads)
-    checkpoint_dir = PROJECT_ROOT / "models/step_curve"
     seed_tag = "" if seed == SEED else f"_seed{seed}"
     last_path = checkpoint_dir / f"{model_name}_N{n_files}{seed_tag}_last.pt"
     best_path = checkpoint_dir / f"{model_name}_N{n_files}{seed_tag}_best.pt"
@@ -235,8 +236,9 @@ def main():
     parser.add_argument("--threads", type=int, default=4)
     parser.add_argument("--resume", action="store_true")
     parser.add_argument("--seed", type=int, default=SEED)
-    parser.add_argument("--csv-path", type=Path, default=PROJECT_ROOT / "reports/results/fixed_step_learning_curve.csv")
-    parser.add_argument("--config", type=Path, default=PROJECT_ROOT / "reports/results/learning_curve_config.json")
+    parser.add_argument("--csv-path", type=Path, default=E005_RESULTS / "fixed_step_learning_curve.csv")
+    parser.add_argument("--checkpoint-dir", type=Path, default=E005_CHECKPOINTS)
+    parser.add_argument("--config", type=Path, default=E004_DIR / "config.json")
     args = parser.parse_args()
 
     config = json.loads(args.config.read_text(encoding="utf-8"))
@@ -245,9 +247,9 @@ def main():
     train_pool = config["train_pool_files"]
     if max(args.sizes) > len(train_pool):
         raise ValueError("A requested N exceeds the fixed 210-file training pool")
-    pilot_config = json.loads((PROJECT_ROOT / "reports/results/large_scale_pilot_config.json").read_text())
-    data_dir = Path(pilot_config["dataset_root"])
-    candidates = get_unique_files(data_dir, PROJECT_ROOT / "reports/results/data_audit_all.csv")
+    pilot_config = json.loads((E003_DIR / "config.json").read_text())
+    data_dir = project_path(pilot_config["dataset_root"])
+    candidates = get_unique_files(data_dir, MANIFEST_DIR / "data_audit_all.csv")
     by_name = {p.name: p for p in candidates.path}
     val_data = collect([by_name[name] for name in config["validation_files"]], WINDOW)
     test_data = collect([by_name[name] for name in config["test_files"]], WINDOW)
@@ -260,7 +262,7 @@ def main():
         train_one(
             args.model, n_files, train_data, val_data, test_data, raw_ber,
             args.steps, args.checkpoint_every, args.threads, args.resume, csv_path,
-            args.seed,
+            args.seed, args.checkpoint_dir,
         )
 
 

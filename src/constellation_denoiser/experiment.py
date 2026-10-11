@@ -7,7 +7,6 @@ import json
 import random
 import re
 import time
-from pathlib import Path
 
 import numpy as np
 import pandas as pd
@@ -17,8 +16,8 @@ from torch.utils.data import DataLoader, TensorDataset
 
 from .core import BIT_TABLE, RAW_DATA_DIR, calculate_ber, get_indexes, load_channel_data
 from .models import build_model
+from .paths import E001_CHECKPOINTS, E001_RESULTS, PROJECT_ROOT
 
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
 MODEL_NAMES = ("MLP", "1D-CNN", "LSTM", "Transformer")
 
 
@@ -227,8 +226,8 @@ def run_experiment(args):
         # Final stored weights are picked using validation BER, never test BER.
         chosen[name] = min(runs, key=lambda r: (r["val"]["ber"], r["val"]["mse"]))
 
-    output_dir = PROJECT_ROOT / "reports" / "results"
-    model_dir = PROJECT_ROOT / "models"
+    output_dir = E001_RESULTS
+    model_dir = E001_CHECKPOINTS
     output_dir.mkdir(parents=True, exist_ok=True)
     model_dir.mkdir(parents=True, exist_ok=True)
     frame = pd.DataFrame(results)

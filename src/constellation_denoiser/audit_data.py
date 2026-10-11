@@ -12,6 +12,7 @@ import numpy as np
 import pandas as pd
 
 from .core import RAW_DATA_DIR, load_channel_data, symbols_to_bits
+from .paths import MANIFEST_DIR
 
 
 PR_PATTERN = re.compile(r"PR[ _-]*(\d+)", re.IGNORECASE)
@@ -96,7 +97,7 @@ def main():
     duplicate_ids = {k: v for k, v in by_id.items() if len(v) > 1}
     duplicate_content = {k: v for k, v in by_hash.items() if len(v) > 1}
 
-    output = args.output or (root.parent.parent / "reports" / "results" / "data_audit.csv")
+    output = args.output or (MANIFEST_DIR / "data_audit.csv")
     output.parent.mkdir(parents=True, exist_ok=True)
     frame.to_csv(output, index=False)
     print(f"\nFiles: {len(files)}; unique PR numbers: {len(by_id)}; unique contents: {len(by_hash)}; rows with errors: {(frame.error != '').sum()}")

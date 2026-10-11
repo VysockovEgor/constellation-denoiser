@@ -1,0 +1,16 @@
+{
+  "experiment_id": "E009",
+  "git_commit": "64f0316614205e45ca8a6fd7d5149cc5e921ee59",
+  "data_manifest_sha256": "cb5f2de47145c02d6485969ce116df2253a271c979a927452ea454551a48c0a8",
+  "date": "unknown",
+  "model": "complex",
+  "variants": ["a", "b", "c", "d"],
+  "window": 31,
+  "hidden": 48,
+  "training_files": 30,
+  "seeds": [17, 29],
+  "steps": 20000,
+  "learning_rate": 0.001,
+  "diagnostic_steps": [0, 5000, 20000],
+  "historical_command": "bash experiments/E009_kerr_ablation/scripts/launch_ablation_max.sh"
+}

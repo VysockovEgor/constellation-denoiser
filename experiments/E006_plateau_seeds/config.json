@@ -1,0 +1,13 @@
+{
+  "experiment_id": "E006",
+  "git_commit": "64f0316614205e45ca8a6fd7d5149cc5e921ee59",
+  "data_manifest_sha256": "cb5f2de47145c02d6485969ce116df2253a271c979a927452ea454551a48c0a8",
+  "date": "unknown",
+  "model": "complex",
+  "training_sizes": [7, 210],
+  "requested_seeds": [17, 29, 43],
+  "requested_max_steps": 100000,
+  "data_config": "../../data/manifest/split_E004_learning_curve.json",
+  "historical_command": "unknown",
+  "coverage_note": "The CSV and logs show unequal coverage; see README.md. Do not infer missing runs."
+}

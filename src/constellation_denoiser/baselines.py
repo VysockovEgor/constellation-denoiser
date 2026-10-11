@@ -5,7 +5,8 @@ from __future__ import annotations
 import numpy as np
 import pandas as pd
 
-from .experiment import PROJECT_ROOT, ber_from_iq, load_split
+from .experiment import ber_from_iq, load_split
+from .paths import E001_CHECKPOINTS, E001_RESULTS
 
 
 def to_complex(iq: np.ndarray) -> np.ndarray:
@@ -62,10 +63,10 @@ def score_linear_ffe(train_data, validation_data, test_data, window: int = 7):
 def main():
     train_data, validation_data, test_data = load_split(window=7)
     result, per_run, coefficients = score_linear_ffe(train_data, validation_data, test_data)
-    output_dir = PROJECT_ROOT / "reports" / "results"
+    output_dir = E001_RESULTS
     pd.DataFrame([result]).to_csv(output_dir / "linear_ffe_baseline.csv", index=False)
     pd.DataFrame(per_run).to_csv(output_dir / "linear_ffe_per_run.csv", index=False)
-    np.savez_compressed(PROJECT_ROOT / "models" / "complex_ffe.npz", coefficients=coefficients)
+    np.savez_compressed(E001_CHECKPOINTS / "complex_ffe.npz", coefficients=coefficients)
     print(pd.Series(result).to_string())
     print(pd.DataFrame(per_run).to_string(index=False))
 

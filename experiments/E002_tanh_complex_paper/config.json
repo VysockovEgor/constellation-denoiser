@@ -1,0 +1,40 @@
+{
+  "experiment_id": "E002",
+  "git_commit": "64f0316614205e45ca8a6fd7d5149cc5e921ee59",
+  "data_manifest_sha256": "cb5f2de47145c02d6485969ce116df2253a271c979a927452ea454551a48c0a8",
+  "date": "unknown",
+  "configs": [
+    [
+      7,
+      64
+    ],
+    [
+      15,
+      64
+    ],
+    [
+      31,
+      64
+    ],
+    [
+      31,
+      128
+    ]
+  ],
+  "seeds": [
+    17,
+    29,
+    43
+  ],
+  "selected_by": "lowest mean validation BER across seeds; MSE breaks ties",
+  "validation_files": [
+    "Symbols_1m_1ch_PR_8"
+  ],
+  "test_files": [
+    "Symbols_1m_1ch_PR_9",
+    "Symbols_1m_1ch_PR_10"
+  ],
+  "activation": "tanh",
+  "target": "I/Q of the central transmitted symbol",
+  "loss": "MSE"
+}

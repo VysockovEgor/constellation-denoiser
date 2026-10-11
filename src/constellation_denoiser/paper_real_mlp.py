@@ -12,7 +12,8 @@ import torch
 from torch import nn
 from torch.utils.data import DataLoader, TensorDataset
 
-from .experiment import PROJECT_ROOT, ber_from_iq, load_split, predict, set_seed, evaluate_raw
+from .experiment import ber_from_iq, load_split, predict, set_seed, evaluate_raw
+from .paths import E002_CHECKPOINTS, E002_RESULTS
 from .models import WindowMLP
 
 
@@ -107,7 +108,7 @@ def main():
         models.append((model, val_ber, val_mse, seed))
         print(f"  best epoch={best_epoch}/{epochs_run}; val BER={val_ber:.6f}; test BER={test_ber:.6f}; time={seconds:.1f}s", flush=True)
 
-    output = PROJECT_ROOT / "reports" / "results"
+    output = E002_RESULTS
     output.mkdir(parents=True, exist_ok=True)
     frame = pd.DataFrame(results)
     frame.to_csv(output / "paper_real_mlp.csv", index=False)
@@ -118,7 +119,7 @@ def main():
         "initializer": "Xavier normal", "optimizer": "Adam", "seed": selected_seed,
         "state_dict": selected.state_dict(), "validation_ber": selected_ber,
         "train_files": train_data[5], "validation_files": val_data[5], "test_files": test_data[5],
-    }, PROJECT_ROOT / "models" / "paper_real_mlp.pt")
+    }, E002_CHECKPOINTS / "paper_real_mlp.pt")
     print("\nResults by seed:")
     print(frame.to_string(index=False, float_format=lambda x: f"{x:.6f}"))
     print(f"\nMean test BER={frame.test_ber.mean():.6f}; selected seed={selected_seed} by validation BER.")

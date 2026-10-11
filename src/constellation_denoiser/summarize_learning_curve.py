@@ -5,11 +5,11 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import pandas as pd
 
-from .experiment import PROJECT_ROOT
+from .paths import E004_DIR, E004_RESULTS
 
 
 def main():
-    results = PROJECT_ROOT / "reports/results"
+    results = E004_RESULTS
     runs = pd.read_csv(results / "learning_curve_runs.csv")
     # Keep one identical initialization seed at every sample size. The run log
     # also contains completed exploratory seeds for the smallest sizes.
@@ -58,11 +58,13 @@ def main():
     ax_gain.grid(True, alpha=0.25)
     ax_gain.legend(frameon=False)
     fig.suptitle("Learning curve on a fixed test set · seed 17", fontsize=14)
-    fig.savefig(PROJECT_ROOT / "reports/figures/learning_curve_seed17.png", dpi=180)
+    figure = E004_DIR / "figures" / "E004_learning_curve_seed17.png"
+    figure.parent.mkdir(parents=True, exist_ok=True)
+    fig.savefig(figure, dpi=180)
     print(table.to_string(index=False, float_format=lambda v: f"{v:.6f}"))
     print(f"Raw BER={raw:.6f}")
     print(f"Wrote {results / 'learning_curve_seed17.csv'}")
-    print(f"Wrote {PROJECT_ROOT / 'reports/figures/learning_curve_seed17.png'}")
+    print(f"Wrote {figure}")
 
 
 if __name__ == "__main__":

@@ -11,7 +11,8 @@ import torch
 from torch import nn
 from torch.utils.data import DataLoader, TensorDataset
 
-from .experiment import PROJECT_ROOT, ber_from_iq, evaluate_raw, load_split, predict, set_seed
+from .experiment import ber_from_iq, evaluate_raw, load_split, predict, set_seed
+from .paths import E002_CHECKPOINTS, E002_RESULTS
 
 
 class ComplexDense(nn.Module):
@@ -142,7 +143,7 @@ def main():
         models.append((model, val_ber, val_mse, seed))
         print(f"  best epoch={best_epoch}/{epochs_run}; val BER={val_ber:.6f}; test BER={test_ber:.6f}; time={seconds:.1f}s", flush=True)
     frame = pd.DataFrame(rows)
-    out = PROJECT_ROOT / "reports" / "results"
+    out = E002_RESULTS
     out.mkdir(parents=True, exist_ok=True)
     frame.to_csv(out / "paper_complex_mlp.csv", index=False)
     selected, val_ber, val_mse, seed = min(models, key=lambda x: (x[1], x[2]))
@@ -151,7 +152,7 @@ def main():
         "activation": "exp(i*c*|z|^2)*z", "optimizer": "Adam", "seed": seed,
         "state_dict": selected.state_dict(), "validation_ber": val_ber,
         "train_files": train_data[5], "validation_files": val_data[5], "test_files": test_data[5],
-    }, PROJECT_ROOT / "models" / "paper_complex_mlp.pt")
+    }, E002_CHECKPOINTS / "paper_complex_mlp.pt")
     print("\nResults by seed:")
     print(frame.to_string(index=False, float_format=lambda x: f"{x:.6f}"))
     print(f"\nMean test BER={frame.test_ber.mean():.6f}; mean improvement vs raw={frame.test_improvement_pct_vs_raw.mean():.2f}%; selected seed={seed} by validation BER.")

@@ -11,7 +11,16 @@ import pandas as pd
 import torch
 
 from .complex_mlp_ablation import complexity, verify_merge
-from .experiment import PROJECT_ROOT
+from .paths import (
+    E003_DIR,
+    E004_DIR,
+    E007_RESULTS,
+    E009_CHECKPOINTS,
+    E009_DIR,
+    E009_RESULTS,
+    MANIFEST_DIR,
+    project_path,
+)
 WINDOW = 31
 HIDDEN = 48
 N_FILES = 30
@@ -73,8 +82,7 @@ def verify_best_checkpoints(ablation_csv: Path, train_windows) -> pd.DataFrame:
                 continue
             best_row = subset.sort_values(["val_ber", "step"]).iloc[0]
             ckpt = (
-                PROJECT_ROOT
-                / "models/complex_mlp_ablation"
+                E009_CHECKPOINTS
                 / f"ablation_{variant}_w{WINDOW}_h{HIDDEN}_N{N_FILES}_seed{seed}_best.pt"
             )
             if not ckpt.is_file():
@@ -146,9 +154,9 @@ def interpret(summary: pd.DataFrame) -> list[str]:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--sweep-csv", type=Path, default=PROJECT_ROOT / "reports/results/complex_mlp_sweep.csv")
-    parser.add_argument("--ablation-csv", type=Path, default=PROJECT_ROOT / "reports/results/complex_mlp_ablation.csv")
-    parser.add_argument("--output-dir", type=Path, default=PROJECT_ROOT / "reports/results")
+    parser.add_argument("--sweep-csv", type=Path, default=E007_RESULTS / "complex_mlp_sweep.csv")
+    parser.add_argument("--ablation-csv", type=Path, default=E009_RESULTS / "complex_mlp_ablation.csv")
+    parser.add_argument("--output-dir", type=Path, default=E009_RESULTS)
     args = parser.parse_args()
 
     baseline = load_baseline_rows(args.sweep_csv)
@@ -161,18 +169,18 @@ def main() -> None:
     summary_path = out_dir / "complex_mlp_ablation_summary.csv"
     summary.to_csv(summary_path, index=False)
 
-    config = json.loads((PROJECT_ROOT / "reports/results/learning_curve_config.json").read_text(encoding="utf-8"))
+    config = json.loads((E004_DIR / "config.json").read_text(encoding="utf-8"))
     from .fixed_step_curve import collect
     from .large_scale_pilot import get_unique_files
 
-    pilot = json.loads((PROJECT_ROOT / "reports/results/large_scale_pilot_config.json").read_text(encoding="utf-8"))
-    candidates = get_unique_files(Path(pilot["dataset_root"]), PROJECT_ROOT / "reports/results/data_audit_all.csv")
+    pilot = json.loads((E003_DIR / "config.json").read_text(encoding="utf-8"))
+    candidates = get_unique_files(project_path(pilot["dataset_root"]), MANIFEST_DIR / "data_audit_all.csv")
     by_name = {path.name: path for path in candidates.path}
     train_data = collect([by_name[name] for name in config["train_pool_files"][:N_FILES]], WINDOW)
     merge_report = verify_best_checkpoints(args.ablation_csv, train_data[0])
     merge_report.to_csv(out_dir / "complex_mlp_ablation_merge_check.csv", index=False)
 
-    plot_tradeoff(summary, out_dir / "complex_mlp_ablation_tradeoff.png")
+    plot_tradeoff(summary, E009_DIR / "figures" / "E009_complex_mlp_ablation_tradeoff.png")
 
     print("Summary table (variant × BER improvement, multiplies):")
     printable = summary[

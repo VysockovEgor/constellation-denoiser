@@ -12,8 +12,9 @@ import pandas as pd
 import torch
 
 from .core import load_channel_data
-from .experiment import PROJECT_ROOT, ber_from_iq, make_windows, train_one
+from .experiment import ber_from_iq, make_windows, train_one
 from .large_scale_pilot import get_unique_files
+from .paths import E003_DIR, E004_RESULTS, MANIFEST_DIR, project_path
 from .paper_complex_mlp import predict_complex, train as train_complex
 
 
@@ -62,12 +63,12 @@ def main():
     p.add_argument("--learning-rate", type=float, default=1e-3)
     p.add_argument("--threads", type=int, default=6)
     p.add_argument("--resume", action="store_true", help="continue from completed runs in the results CSVs")
-    p.add_argument("--audit-csv", type=Path, default=PROJECT_ROOT / "reports/results/data_audit_all.csv")
-    p.add_argument("--pilot-config", type=Path, default=PROJECT_ROOT / "reports/results/large_scale_pilot_config.json")
+    p.add_argument("--audit-csv", type=Path, default=MANIFEST_DIR / "data_audit_all.csv")
+    p.add_argument("--pilot-config", type=Path, default=E003_DIR / "config.json")
     a = p.parse_args()
 
     config = json.loads(a.pilot_config.read_text(encoding="utf-8"))
-    data_dir = Path(config["dataset_root"])
+    data_dir = project_path(config["dataset_root"])
     candidates = get_unique_files(data_dir, a.audit_csv)
     by_name = {path.name: path for path in candidates.path}
     train_pool = [by_name[name] for name in config["train_files"]]
@@ -89,7 +90,7 @@ def main():
     )
     raw_ber = float(np.mean([r["raw_ber"] for r in raw_per_file]))
 
-    out = PROJECT_ROOT / "reports/results"
+    out = E004_RESULTS
     out.mkdir(parents=True, exist_ok=True)
     rows_path = out / "learning_curve_runs.csv"
     per_file_path = out / "learning_curve_per_file.csv"

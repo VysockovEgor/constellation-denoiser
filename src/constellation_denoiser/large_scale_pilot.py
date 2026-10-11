@@ -11,9 +11,10 @@ import numpy as np
 import pandas as pd
 import torch
 
-from .core import RAW_DATA_DIR, load_channel_data
-from .experiment import PROJECT_ROOT, ber_from_iq, evaluate, make_windows, train_one
+from .core import load_channel_data
+from .experiment import ber_from_iq, evaluate, make_windows, train_one
 from .paper_complex_mlp import predict_complex, train as train_complex
+from .paths import ARCHIVE_DATA_DIR, E003_CHECKPOINTS, E003_RESULTS, MANIFEST_DIR
 
 
 def get_unique_files(data_dir: Path, audit_csv: Path) -> pd.DataFrame:
@@ -21,8 +22,7 @@ def get_unique_files(data_dir: Path, audit_csv: Path) -> pd.DataFrame:
     required = {"relative_path", "sha256", "pr_id", "error"}
     if not required.issubset(audit.columns):
         raise ValueError(f"Audit file needs columns {sorted(required)}; rerun audit_data first")
-    # Use the newly provided top-level archive as canonical; the original PR1–10
-    # under data/raw are byte-for-byte copies of the archive's PR1–10.
+    # Use only top-level entries in the audit; raw PR1–10 are exact duplicate copies.
     root_files = audit[
         audit.relative_path.astype(str).map(lambda p: "/" not in p and "\\" not in p)
         & audit.sha256.notna()
@@ -73,8 +73,8 @@ def summarize_per_file(model, data, kind: str):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--data-dir", type=Path, default=PROJECT_ROOT / "data")
-    parser.add_argument("--audit-csv", type=Path, default=PROJECT_ROOT / "reports/results/data_audit_all.csv")
+    parser.add_argument("--data-dir", type=Path, default=ARCHIVE_DATA_DIR)
+    parser.add_argument("--audit-csv", type=Path, default=MANIFEST_DIR / "data_audit_all.csv")
     parser.add_argument("--sample-files", type=int, default=300)
     parser.add_argument("--seeds", type=int, nargs="+", default=[17, 29, 43])
     parser.add_argument("--split-seed", type=int, default=20261003)
@@ -122,7 +122,7 @@ def main():
         patience=args.patience, optimizer="adam", initializer="xavier_normal",
     )
 
-    output_dir = PROJECT_ROOT / "reports" / "results"
+    output_dir = E003_RESULTS
     output_dir.mkdir(parents=True, exist_ok=True)
     per_file_rows, run_rows = [], []
     for kind in ("real", "complex"):
@@ -137,7 +137,7 @@ def main():
                     "model": "paper-real-tanh-MLP", "seed": seed, "window": args.window,
                     "hidden_per_layer": args.hidden, "initializer": "Xavier normal", "optimizer": "Adam",
                     "state_dict": model.state_dict(),
-                }, PROJECT_ROOT / "models" / f"large_real_tanh_seed_{seed}.pt")
+                }, E003_CHECKPOINTS / f"large_real_tanh_seed_{seed}.pt")
             else:
                 model, best_epoch, epochs_run, val_ber, val_mse, seconds = train_complex(
                     seed, train_data, val_data, window=args.window,
@@ -149,7 +149,7 @@ def main():
                     "model": "paper-complex-MLP", "seed": seed, "window": args.window,
                     "hidden_per_layer": args.complex_hidden, "activation": "exp(i*c*|z|^2)*z",
                     "optimizer": "Adam", "state_dict": model.state_dict(),
-                }, PROJECT_ROOT / "models" / f"large_complex_seed_{seed}.pt")
+                }, E003_CHECKPOINTS / f"large_complex_seed_{seed}.pt")
             per_file = summarize_per_file(model, test_data, kind)
             per_file["model"] = kind
             per_file["seed"] = seed
