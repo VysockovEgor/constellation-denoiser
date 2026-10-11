@@ -15,10 +15,11 @@ import numpy as np
 import torch
 from torch import nn
 
-from .experiment import PROJECT_ROOT, ber_from_iq, make_windows, set_seed
+from .experiment import ber_from_iq, make_windows, set_seed
 from .fixed_step_curve import collect
 from .large_scale_pilot import get_unique_files
 from .paper_complex_mlp import PaperComplexMLP, predict_complex
+from .paths import E003_DIR, E004_DIR, E007_CHECKPOINTS, E007_RESULTS, MANIFEST_DIR, project_path
 
 
 CONFIGS = [(65, 48), (31, 32), (127, 48), (65, 32), (31, 48), (127, 32)]
@@ -108,7 +109,7 @@ def train_run(window, hidden, seed, train_data, val_data, test_data, raw_ber,
               steps, interval, threads, resume, csv_path):
     torch.set_num_threads(threads)
     run_id = f"complex_w{window}_h{hidden}_N{TRAIN_FILES}_seed{seed}"
-    checkpoint_dir = PROJECT_ROOT / "models/complex_mlp_sweep"
+    checkpoint_dir = E007_CHECKPOINTS
     last_path = checkpoint_dir / f"{run_id}_last.pt"
     best_path = checkpoint_dir / f"{run_id}_best.pt"
     model = PaperComplexMLP(window=window, hidden=hidden)
@@ -199,14 +200,14 @@ def main():
     parser.add_argument("--checkpoint-every", type=int, default=INTERVAL)
     parser.add_argument("--threads", type=int, default=6)
     parser.add_argument("--resume", action="store_true")
-    parser.add_argument("--csv-path", type=Path, default=PROJECT_ROOT / "reports/results/complex_mlp_sweep.csv")
-    parser.add_argument("--config", type=Path, default=PROJECT_ROOT / "reports/results/learning_curve_config.json")
+    parser.add_argument("--csv-path", type=Path, default=E007_RESULTS / "complex_mlp_sweep.csv")
+    parser.add_argument("--config", type=Path, default=E004_DIR / "config.json")
     args = parser.parse_args()
     torch.set_num_threads(args.threads)
     torch.set_num_interop_threads(1)
     config = json.loads(args.config.read_text(encoding="utf-8"))
-    pilot = json.loads((PROJECT_ROOT / "reports/results/large_scale_pilot_config.json").read_text())
-    candidates = get_unique_files(Path(pilot["dataset_root"]), PROJECT_ROOT / "reports/results/data_audit_all.csv")
+    pilot = json.loads((E003_DIR / "config.json").read_text())
+    candidates = get_unique_files(project_path(pilot["dataset_root"]), MANIFEST_DIR / "data_audit_all.csv")
     by_name = {path.name: path for path in candidates.path}
     configs = [CONFIGS[args.config_index]] if args.config_index is not None else CONFIGS
     for window, hidden in configs:

@@ -6,10 +6,11 @@ __pycache__/
 venv/
 .env
 .ipynb_checkpoints/
-data/
+data/*
+!data/manifest/
+!data/manifest/**
 checkpoints/
 __pycache__/
-*.pyc
 *.pt
 *.npz
 *.pid

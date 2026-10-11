@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import time
-from pathlib import Path
 
 import numpy as np
 import pandas as pd
@@ -11,8 +10,7 @@ import torch
 
 from .experiment import MODEL_NAMES, ber_from_iq, evaluate, load_split
 from .models import build_model
-
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
+from .paths import E001_CHECKPOINTS, E001_RESULTS
 
 
 def benchmark():
@@ -30,7 +28,7 @@ def benchmark():
     latency_rows = []
 
     for name in MODEL_NAMES:
-        checkpoint_path = PROJECT_ROOT / "models" / f"{name.lower().replace('-', '')}.pt"
+        checkpoint_path = E001_CHECKPOINTS / f"{name.lower().replace('-', '')}.pt"
         checkpoint = torch.load(checkpoint_path, map_location=device, weights_only=False)
         model = build_model(name, window).to(device)
         model.load_state_dict(checkpoint["state_dict"])
@@ -74,7 +72,7 @@ def benchmark():
             }
         )
 
-    results_dir = PROJECT_ROOT / "reports" / "results"
+    results_dir = E001_RESULTS
     pd.DataFrame(run_rows).to_csv(results_dir / "selected_checkpoint_per_run.csv", index=False)
     pd.DataFrame(latency_rows).to_csv(results_dir / "inference_benchmark.csv", index=False)
     print(pd.DataFrame(latency_rows).to_string(index=False, float_format=lambda x: f"{x:.6f}"))

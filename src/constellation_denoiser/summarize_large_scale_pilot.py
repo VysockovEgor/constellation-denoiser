@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-from .experiment import PROJECT_ROOT
+from .paths import E003_DIR, E003_RESULTS
 
 
 def bootstrap_ci(values: np.ndarray, rng: np.random.Generator, reps: int = 20_000):
@@ -19,7 +19,7 @@ def bootstrap_ci(values: np.ndarray, rng: np.random.Generator, reps: int = 20_00
 
 
 def main():
-    result_dir = PROJECT_ROOT / "reports" / "results"
+    result_dir = E003_RESULTS
     per_file = pd.read_csv(result_dir / "large_scale_pilot_per_file.csv")
     summary = pd.read_csv(result_dir / "large_scale_pilot_summary.csv")
     rng = np.random.default_rng(20261003)
@@ -93,7 +93,7 @@ def main():
     fig.suptitle("Pilot: контекст 31; train/validation/test = 210/45/45 уникальных PR", fontsize=12)
     fig.tight_layout()
 
-    figure = PROJECT_ROOT / "reports" / "figures" / "large_scale_pilot.png"
+    figure = E003_DIR / "figures" / "E003_large_scale_pilot.png"
     figure.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(figure, dpi=180, bbox_inches="tight")
     print(f"\nSaved {figure}")

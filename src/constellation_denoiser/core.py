@@ -1,10 +1,10 @@
 from itertools import product
-from pathlib import Path
 import numpy as np
 import pandas as pd
+from pathlib import Path
 
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
-RAW_DATA_DIR = PROJECT_ROOT / "data" / "raw"
+from .paths import RAW_DATA_DIR
+
 
 SQRT10 = np.sqrt(10.0)
 LEVELS = np.array([-3 / SQRT10, -1 / SQRT10, 1 / SQRT10, 3 / SQRT10])

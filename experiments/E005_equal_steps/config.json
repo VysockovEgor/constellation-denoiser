@@ -1,0 +1,17 @@
+{
+  "experiment_id": "E005",
+  "git_commit": "64f0316614205e45ca8a6fd7d5149cc5e921ee59",
+  "data_manifest_sha256": "cb5f2de47145c02d6485969ce116df2253a271c979a927452ea454551a48c0a8",
+  "date": "unknown",
+  "models": ["tanh", "complex"],
+  "training_sizes": [7, 30, 105, 210],
+  "steps": 20000,
+  "checkpoint_every": 1000,
+  "window": 31,
+  "batch_size": 1024,
+  "learning_rate": 0.001,
+  "seed": null,
+  "seed_note": "Historical command did not record the seed; current code default is 17.",
+  "data_config": "../../data/manifest/split_E004_learning_curve.json",
+  "historical_command": "unknown"
+}

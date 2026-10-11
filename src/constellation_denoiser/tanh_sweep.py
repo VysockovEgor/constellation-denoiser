@@ -9,7 +9,8 @@ from types import SimpleNamespace
 import pandas as pd
 import torch
 
-from .experiment import PROJECT_ROOT, evaluate, evaluate_raw, load_split, parse_args, train_one
+from .experiment import evaluate, evaluate_raw, load_split, parse_args, train_one
+from .paths import E002_CHECKPOINTS, E002_RESULTS
 
 
 CONFIGS = [(7, 64), (15, 64), (31, 64), (31, 128)]
@@ -98,9 +99,9 @@ def main():
             }
         )
 
-    output_dir = PROJECT_ROOT / "reports" / "results"
+    output_dir = E002_RESULTS
     output_dir.mkdir(parents=True, exist_ok=True)
-    model_dir = PROJECT_ROOT / "models"
+    model_dir = E002_CHECKPOINTS
     model_dir.mkdir(parents=True, exist_ok=True)
     sweep.to_csv(output_dir / "tanh_mlp_sweep.csv", index=False)
     summary.to_csv(output_dir / "tanh_mlp_sweep_summary.csv", index=False)

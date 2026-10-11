@@ -1,0 +1,14 @@
+{
+  "experiment_id": "E007",
+  "git_commit": "64f0316614205e45ca8a6fd7d5149cc5e921ee59",
+  "data_manifest_sha256": "cb5f2de47145c02d6485969ce116df2253a271c979a927452ea454551a48c0a8",
+  "date": "unknown",
+  "model": "complex",
+  "configurations_window_hidden": [[65, 48], [31, 32], [127, 48], [65, 32], [31, 48], [127, 32]],
+  "training_files": 30,
+  "seeds": [17, 29],
+  "steps": 20000,
+  "checkpoint_every": 1000,
+  "learning_rate": 0.001,
+  "historical_command": "bash experiments/E007_window_width_sweep/scripts/run_complex_mlp_sweep.sh"
+}

@@ -21,10 +21,11 @@ from .complex_mlp_ablation import (
     complexity,
     verify_merge,
 )
-from .experiment import PROJECT_ROOT, ber_from_iq, set_seed
+from .experiment import ber_from_iq, set_seed
 from .fixed_step_curve import collect
 from .large_scale_pilot import get_unique_files
 from .paper_complex_mlp import predict_complex
+from .paths import E003_DIR, E004_DIR, E009_CHECKPOINTS, E009_RESULTS, MANIFEST_DIR, project_path
 
 WINDOW = 31
 HIDDEN = 48
@@ -112,7 +113,7 @@ def train_run(
 ) -> None:
     torch.set_num_threads(threads)
     run_id = f"ablation_{variant}_w{WINDOW}_h{HIDDEN}_N{N_FILES}_seed{seed}"
-    checkpoint_dir = PROJECT_ROOT / "models/complex_mlp_ablation"
+    checkpoint_dir = E009_CHECKPOINTS
     last_path = checkpoint_dir / f"{run_id}_last.pt"
     best_path = checkpoint_dir / f"{run_id}_best.pt"
 
@@ -272,20 +273,20 @@ def main() -> None:
     parser.add_argument("--checkpoint-every", type=int, default=INTERVAL)
     parser.add_argument("--threads", type=int, default=6)
     parser.add_argument("--resume", action="store_true")
-    parser.add_argument("--config", type=Path, default=PROJECT_ROOT / "reports/results/learning_curve_config.json")
-    parser.add_argument("--metrics-csv", type=Path, default=PROJECT_ROOT / "reports/results/complex_mlp_ablation.csv")
+    parser.add_argument("--config", type=Path, default=E004_DIR / "config.json")
+    parser.add_argument("--metrics-csv", type=Path, default=E009_RESULTS / "complex_mlp_ablation.csv")
     parser.add_argument(
         "--diagnostics-csv",
         type=Path,
-        default=PROJECT_ROOT / "reports/results/complex_mlp_ablation_diagnostics.csv",
+        default=E009_RESULTS / "complex_mlp_ablation_diagnostics.csv",
     )
     args = parser.parse_args()
     torch.set_num_threads(args.threads)
     torch.set_num_interop_threads(1)
 
     config = json.loads(args.config.read_text(encoding="utf-8"))
-    pilot = json.loads((PROJECT_ROOT / "reports/results/large_scale_pilot_config.json").read_text(encoding="utf-8"))
-    candidates = get_unique_files(Path(pilot["dataset_root"]), PROJECT_ROOT / "reports/results/data_audit_all.csv")
+    pilot = json.loads((E003_DIR / "config.json").read_text(encoding="utf-8"))
+    candidates = get_unique_files(project_path(pilot["dataset_root"]), MANIFEST_DIR / "data_audit_all.csv")
     by_name = {path.name: path for path in candidates.path}
 
     train_data = collect([by_name[name] for name in config["train_pool_files"][:N_FILES]], WINDOW)

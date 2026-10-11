@@ -1,0 +1,9 @@
+fig_no,experiment_id,file,caption,source_csv
+1,E001,experiments/E001_pilot_models/figures/E001_model_tradeoff.png,Model comparison and inference tradeoff,experiments/E001_pilot_models/results/model_comparison_summary.csv; experiments/E001_pilot_models/results/inference_benchmark.csv
+2,E003,experiments/E003_large_scale_pilot/figures/E003_large_scale_pilot.png,Large-scale pilot,experiments/E003_large_scale_pilot/results/large_scale_pilot_summary.csv
+3,E004,experiments/E004_training_file_curve/figures/E004_learning_curve_seed17.png,Learning curve for seed 17,experiments/E004_training_file_curve/results/learning_curve_seed17.csv
+4,E005,experiments/E005_equal_steps/figures/E005_fixed_step_learning_curve.png,Learning curve with equal training steps,experiments/E005_equal_steps/results/fixed_step_learning_curve.csv
+5,E006,experiments/E006_plateau_seeds/figures/E006_plateau_seed_study.png,Plateau and seed study,experiments/E006_plateau_seeds/results/plateau_seed_study.csv
+6,E007,experiments/E007_window_width_sweep/figures/E007_complex_mlp_sweep.png,Complex MLP window and width sweep,experiments/E007_window_width_sweep/results/complex_mlp_sweep_summary.csv
+7,E008,experiments/E008_cosine_lr_coefficients/figures/E008_complex_mlp_lr_c_vs_steps.png,Coefficient c across training steps,experiments/E008_cosine_lr_coefficients/results/complex_mlp_lr_diagnostics.csv
+8,E009,experiments/E009_kerr_ablation/figures/E009_complex_mlp_ablation_tradeoff.png,Kerr activation ablation,experiments/E009_kerr_ablation/results/complex_mlp_ablation_summary.csv
