@@ -95,6 +95,7 @@ def make_task(exp: str, stage: str, directory: Path, options: Options, *, spec: 
         "eval_every": eval_every, "test_every": test_every or eval_every, "select_every": select_every,
         "out_json": str(root / "runs" / f"{run_id}.json"), "out_curve": str(root / "curves" / f"{run_id}.csv"),
         "ckpt_dir": str(ckpt_dir), "smoke": options.smoke, "synthetic": options.synthetic, "budget": total,
+        "n_train_nominal": n_train,
     }
     task.update(extra)
     return task
@@ -226,9 +227,79 @@ def e010_select(options: Options) -> int:
     return 0
 
 
+# --------------------------------------------------------------------------- best_e010 branch (E011, E012)
+
+def best_e010_lr(smoke: bool) -> dict[str, dict] | None:
+    """Best stage1 lr config per E010 architecture ('both', 'a'), or None if E010 select has not run."""
+    from .runner import exp_dir
+
+    path = e010_selection_path(exp_dir("E010"), smoke)
+    if not path.is_file():
+        return None
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    return {arch: item["lr_config"] for arch, item in payload.get("best", {}).items()}
+
+
+def lr_branches(config: dict, arch: str | None, smoke: bool) -> list[tuple[str, dict]]:
+    """[('const_1e-3', lr), ('best_e010-<tag>', lr)]; the second only if E010 selected one for ``arch``."""
+    branches = [("const_1e-3", lr_from(config["base_lr"]))]
+    best = best_e010_lr(smoke) if arch else None
+    if best and arch in best:
+        lr = lr_from(best[arch], horizon=None)
+        branches.append((f"best_e010-{lr_tag(lr)}", lr))
+    return branches
+
+
+def control_tasks(exp: str, directory: Path, config: dict, options: Options) -> list[dict]:
+    """20k-step controls reproducing E007/E009 numbers (eval every 1000 as in E007-E009)."""
+    tasks = []
+    for key, item in config["control"]["runs"].items():
+        rule = config["control"]["targets"][key]
+        for seed in ([rule["seeds"][0]] if options.smoke else rule["seeds"]):
+            tasks.append(make_task(
+                exp, "control", directory, options, spec=dict(item["spec"]), seed=seed,
+                n_train=item["n_train_files"], phases=[{"steps": item["steps"]}], lr=lr_from(config["base_lr"]),
+                lr_name="const_1e-3", eval_every=1000, select_every=1000, control_key=key,
+                variant=item["spec"].get("name"), run_id=f"control_{spec_tag(item['spec'])}_N{item['n_train_files']}"
+                f"_{item['steps'] // 1000}k_seed{seed}",
+            ))
+    return tasks
+
+
+# --------------------------------------------------------------------------- E011
+
+def e011_tasks(stage: str, options: Options) -> list[dict]:
+    exp = "E011"
+    directory, config = load_config(exp)
+    if stage == "control":
+        return control_tasks(exp, directory, config, options)
+    if stage not in ("const", "best"):
+        raise SystemExit(f"E011: неизвестная стадия {stage!r}")
+    steps = options.max_steps or config["max_steps"]
+    every = config["eval_every"]
+    tasks = []
+    for name, model in config["models"].items():
+        spec = dict(model["spec"], name=name)
+        for lr_name, lr in lr_branches(config, model.get("e010_arch"), options.smoke):
+            if (stage == "const") != (lr_name == "const_1e-3"):
+                continue
+            for n_train in config["n_train_files"]:
+                for seed in seeds_for(config, options):
+                    tasks.append(make_task(
+                        exp, stage, directory, options, spec=spec, seed=seed, n_train=n_train,
+                        phases=[{"steps": steps}], lr=lr, lr_name=lr_name, eval_every=every,
+                        select_every=every, variant=name, ckpt_every=config["ckpt_every"],
+                    ))
+    if stage == "best" and not tasks:
+        from .runner import log
+
+        log("E011 best: нет experiments/E010_lr_schedule_study/results/stage1_selection.json — ветка пропущена")
+    return tasks
+
+
 # --------------------------------------------------------------------------- registry
 
-BUILDERS = {"E010": e010_tasks}
+BUILDERS = {"E010": e010_tasks, "E011": e011_tasks}
 SPECIAL_STAGES = {("E010", "select"): e010_select}
 POST_HOOKS: dict = {}
 

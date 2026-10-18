@@ -386,6 +386,7 @@ def run_task(task: dict, threads: int, device_name: str) -> dict:
         "experiment": task["experiment"], "run_id": task["run_id"], "stage": task["stage"],
         "model": spec["model"], "variant": task.get("variant", spec["model"]), "window": window,
         "hidden": spec.get("hidden"), "spec": spec, "n_train_files": len(task["files"]["train"]),
+        "n_train_nominal": task.get("n_train_nominal", len(task["files"]["train"])),
         "seed": seed, "steps": step, "planned_steps": total_steps, "budget": task.get("budget", total_steps), "phases": phases,
         "lr_config": task["lr"], "lr_name": task.get("lr_name"),
         "val_reduction": final.get("val_reduction"), "test_reduction": final.get("test_reduction"),
