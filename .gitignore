@@ -15,3 +15,7 @@ __pycache__/
 *.npz
 *.pid
 tree.txt
+
+# E010-E014 local artifacts
+resources.json
+results_smoke/

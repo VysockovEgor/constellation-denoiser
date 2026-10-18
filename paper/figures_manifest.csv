@@ -7,3 +7,5 @@ fig_no,experiment_id,file,caption,source_csv
 6,E007,experiments/E007_window_width_sweep/figures/E007_complex_mlp_sweep.png,Complex MLP window and width sweep,experiments/E007_window_width_sweep/results/complex_mlp_sweep_summary.csv
 7,E008,experiments/E008_cosine_lr_coefficients/figures/E008_complex_mlp_lr_c_vs_steps.png,Coefficient c across training steps,experiments/E008_cosine_lr_coefficients/results/complex_mlp_lr_diagnostics.csv
 8,E009,experiments/E009_kerr_ablation/figures/E009_complex_mlp_ablation_tradeoff.png,Kerr activation ablation,experiments/E009_kerr_ablation/results/complex_mlp_ablation_summary.csv
+9,E010,experiments/E010_lr_schedule_study/figures/E010_val_curves.png,Validation BER reduction vs steps: control and best lr schedules (not run),experiments/E010_lr_schedule_study/results/lr_sweep.csv
+10,E010,experiments/E010_lr_schedule_study/figures/E010_t95_vs_peak_lr.png,Steps to 95% of control vs peak lr (not run),experiments/E010_lr_schedule_study/results/lr_sweep_summary.csv
