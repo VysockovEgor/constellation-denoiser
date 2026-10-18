@@ -1,0 +1,55 @@
+{
+  "experiment_id": "E010",
+  "title": "lr schedules: peak lr, warmup, separate lr for Kerr c, decay from a large lr",
+  "date": "not run",
+  "base_git_commit": "51c2ac1b4fe3c4bbf8f36ce8203474811e4044ec",
+  "git_commit": "recorded per run in results/runs/*.json (field git_commit)",
+  "data_manifest_sha256": "cb5f2de47145c02d6485969ce116df2253a271c979a927452ea454551a48c0a8",
+  "data_audit_sha256": "a9c35fb7839e85c39f7131373418a6f3a04c731e9c4e55385347a1eabbdedbe4",
+  "split_source": "experiments/E004_training_file_curve/config.json (train_pool_files[:30], validation_files 45, test_files 45), as E007-E009",
+  "split_source_sha256": "04c0b2a5775d8fae1acdc348967c6fb976ef5d90e76a8334484242cc9707025a",
+  "dataset_root": "data/raw/archive",
+  "n_train_files": 30,
+  "models": {
+    "both": {"model": "complex_both", "window": 31, "hidden": 48},
+    "a": {"model": "complex_a", "window": 31, "hidden": 48}
+  },
+  "initialization": "complex Glorot normal, c = 0 (unchanged classes PaperComplexMLP / AblationComplexMLP)",
+  "optimizer": "Adam, batch 1024, complex MSE loss",
+  "seeds": [17, 29, 43],
+  "steps": 20000,
+  "eval_every": 250,
+  "test_every": 250,
+  "select_every": 1000,
+  "base_lr": {"peak_lr": 0.001, "schedule": "const", "warmup": 0, "c_mult": 1.0, "floor_frac": 0.1, "optimizer": "adam", "weight_decay": 0.0},
+  "stages": {
+    "baseline-check": {"description": "const 1e-3 for both architectures, plus E008 check: cosine_to_zero 1e-3 for 'both'", "steps": 20000},
+    "stage1": {"peak_lr": [0.001, 0.003, 0.01], "schedule": ["const", "cosine_to_zero", "cosine_to_floor"], "warmup": 0, "c_mult": 1},
+    "select": {"top_k": 2, "criterion": "mean over seeds of final validation BER reduction; configurations with a diverged seed excluded; test is not used"},
+    "stage2": {"warmup": [0, 1000], "c_mult": [1, 10, 30]},
+    "stage3": {"budgets": [5000, 10000, 20000], "description": "best config of stage1+stage2 by validation and the const 1e-3 control; decay horizon = budget"}
+  },
+  "metrics": {
+    "val_reduction": "100*(BER_raw - BER_model)/BER_raw on the 45 validation files; selection only",
+    "test_reduction": "same on the 45 test files at the final step; report only",
+    "test_reduction_valbest_select": "test reduction at the validation-best evaluation among steps divisible by 1000 (protocol of E007-E009); used for the control tolerance",
+    "T90_T95": "first step after which validation reduction stays >= 0.90 / 0.95 of the control's final validation reduction (const 1e-3, 20k, mean over seeds) for 3 consecutive evaluations (every 250 steps)"
+  },
+  "control": {
+    "targets": {
+      "both_const_1e-3_20k": {"target": 61.727, "tol": 0.7, "seeds": [17, 29], "metric": "test_reduction_valbest_select", "source": "experiments/E007_window_width_sweep/results/complex_mlp_sweep_summary.csv (window 31, hidden 48)"},
+      "a_const_1e-3_20k": {"target": 62.191, "tol": 0.7, "seeds": [17, 29], "metric": "test_reduction_valbest_select", "source": "experiments/E009_kerr_ablation/results/complex_mlp_ablation_summary.csv (variant a)"},
+      "both_cosine_to_zero_1e-3_20k": {"target": 58.763, "tol": 0.7, "seeds": [17, 29], "metric": "test_reduction_valbest_select", "source": "experiments/E008_cosine_lr_coefficients/results/complex_mlp_lr_summary.csv (31,48 cosine)"}
+    }
+  },
+  "rule_draft": {
+    "status": "DRAFT: to be confirmed by the user before the first run; must not change after results are seen",
+    "better_than_control_if_all": [
+      "mean T95 <= 0.7 * control mean T95",
+      "final test reduction >= control final test reduction - 0.5 p.p. (means over seeds)",
+      "no seed diverged: no NaN and final validation reduction >= control mean - 2 p.p."
+    ],
+    "otherwise": "not proven",
+    "always_report": "spread over seeds (min, max, std)"
+  }
+}
