@@ -1,0 +1,55 @@
+{
+  "experiment_id": "E011",
+  "title": "Long runs (up to 200k steps): plateau, accuracy limit, convergence",
+  "date": "not run",
+  "base_git_commit": "63d8c416aba5ff55c2bfd3e0145daa6848b85b0a",
+  "git_commit": "recorded per run in results/runs/*.json (field git_commit)",
+  "data_manifest_sha256": "cb5f2de47145c02d6485969ce116df2253a271c979a927452ea454551a48c0a8",
+  "data_audit_sha256": "a9c35fb7839e85c39f7131373418a6f3a04c731e9c4e55385347a1eabbdedbe4",
+  "split_source": "experiments/E004_training_file_curve/config.json: N=30 -> train_pool_files[:30] (split E007-E009); N=210 -> all 210 train_pool_files (same set as E003 train_files); validation 45, test 45 (identical in E003/E004)",
+  "split_source_sha256": "04c0b2a5775d8fae1acdc348967c6fb976ef5d90e76a8334484242cc9707025a",
+  "dataset_root": "data/raw/archive",
+  "models": {
+    "complex_both": {"spec": {"model": "complex_both", "window": 31, "hidden": 48}, "e010_arch": "both", "macs": 16032},
+    "complex_a": {"spec": {"model": "complex_a", "window": 31, "hidden": 48}, "e010_arch": "a", "macs": 15696, "macs_merged": 6480},
+    "complex_one_hidden": {"spec": {"model": "complex_one_hidden", "window": 31, "hidden": 48}, "e010_arch": "a", "macs": 6480,
+                            "note": "best_e010 uses the lr chosen for architecture 'a' (equivalent to one hidden layer after merging)"},
+    "real_tanh": {"spec": {"model": "real_tanh", "window": 31, "hidden": 96}, "e010_arch": null, "macs": 15360,
+                  "note": "WindowMLP tanh, Xavier normal, MSE loss (as E002/E005 real baseline); hidden 96 = 2x48 so that 2W*h + h^2 + 2h equals the dense part of complex_both; E010 has no real model, so best_e010 is skipped for it"}
+  },
+  "n_train_files": [30, 210],
+  "seeds": [17, 29, 43],
+  "max_steps": 200000,
+  "eval_every": 5000,
+  "ckpt_every": 10000,
+  "base_lr": {"peak_lr": 0.001, "schedule": "const", "warmup": 0, "c_mult": 1.0, "floor_frac": 0.1, "optimizer": "adam", "weight_decay": 0.0},
+  "lr_branches": {
+    "const_1e-3": "control branch, Adam constant 1e-3",
+    "best_e010": "best stage1 config per architecture from experiments/E010_lr_schedule_study/results/stage1_selection.json; decay horizon = MAX_STEPS; skipped without error if the file is missing"
+  },
+  "optimizer": "Adam, batch 1024; complex MSE for complex models, MSE for real_tanh",
+  "control": {
+    "runs": {
+      "both_const_1e-3_20k": {"spec": {"model": "complex_both", "window": 31, "hidden": 48, "name": "complex_both"}, "n_train_files": 30, "steps": 20000},
+      "a_const_1e-3_20k": {"spec": {"model": "complex_a", "window": 31, "hidden": 48, "name": "complex_a"}, "n_train_files": 30, "steps": 20000}
+    },
+    "targets": {
+      "both_const_1e-3_20k": {"target": 61.727, "tol": 0.7, "seeds": [17, 29], "metric": "test_reduction_valbest_select", "source": "experiments/E007_window_width_sweep/results/complex_mlp_sweep_summary.csv"},
+      "a_const_1e-3_20k": {"target": 62.191, "tol": 0.7, "seeds": [17, 29], "metric": "test_reduction_valbest_select", "source": "experiments/E009_kerr_ablation/results/complex_mlp_ablation_summary.csv"}
+    }
+  },
+  "metrics": {
+    "curves": "validation and test BER reduction every 5000 steps (test for report only)",
+    "final": "val/test reduction at the last step",
+    "best_by_val": "test reduction at the validation-best evaluation",
+    "t98": "first step whose validation reduction reaches 98% of the final value",
+    "y_inf": "fit y = y_inf - a*steps^(-b) to the validation curve (steps >= 10000) with scipy.optimize.curve_fit; NaN if the fit fails",
+    "smoothed": "rolling mean of the validation curve over a 10k window (3 points at 5k spacing, centred)"
+  },
+  "rule_draft": {
+    "status": "DRAFT: to be confirmed by the user before the first run; must not change after results are seen",
+    "plateau": "improvement of the smoothed validation reduction over the last 50k steps < 0.2 p.p.",
+    "no_plateau": "report 'plateau not reached within N steps'; y_inf only as a rough estimate",
+    "overfitting": "a gap between N=30 and N=210 is interpreted as overfitting only if the N=30 validation curve falls (smoothed maximum - smoothed final > 0.2 p.p.) while the N=210 curve does not"
+  }
+}
