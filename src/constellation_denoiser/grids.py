@@ -388,11 +388,65 @@ def e013_tasks(stage: str, options: Options) -> list[dict]:
     return tasks
 
 
+# --------------------------------------------------------------------------- E014
+
+def e014_phases(kind: str, steps: int) -> list[dict]:
+    half = steps // 2
+    if kind == "single":
+        return [{"steps": steps}]
+    if kind == "continued":   # same Kerr MLP, fresh Adam for the second half (equal-steps control of k3/k4)
+        return [{"steps": half}, {"steps": steps - half, "trainable": "all", "reset_optimizer": True}]
+    if kind == "staged":      # Kerr alone, then Kerr frozen and only the KAN trained on the residual
+        return [{"steps": half, "trainable": ["kerr."]},
+                {"steps": steps - half, "trainable": ["kan."], "reset_optimizer": True}]
+    raise ValueError(kind)
+
+
+def e014_tasks(stage: str, options: Options) -> list[dict]:
+    exp = "E014"
+    directory, config = load_config(exp)
+    if stage == "control":
+        return control_tasks(exp, directory, config, options)
+    if stage != "main":
+        raise SystemExit(f"E014: неизвестная стадия {stage!r}")
+    steps = min(options.steps or config["steps"], config["max_steps"])
+    lr = lr_from(config["base_lr"])
+    tasks = []
+    for name, model in config["models"].items():
+        grids_ = config["grids"] if model.get("uses_grid") else [None]
+        for grid in grids_:
+            spec = dict(model["spec"], window=config["window"], name=name)
+            if grid is not None:
+                spec["grid"] = grid
+            for seed in seeds_for(config, options):
+                tasks.append(make_task(
+                    exp, stage, directory, options, spec=spec, seed=seed, n_train=config["n_train_files"],
+                    phases=e014_phases(model["phases"], steps), lr=lr, lr_name="const_1e-3",
+                    eval_every=config["eval_every"], select_every=config["eval_every"], variant=name,
+                    post_hook="kan_costs", force_checkpoints=True, ckpt_every=config["ckpt_every"],
+                ))
+    return tasks
+
+
+def kan_costs_hook(model, task, train, val, test) -> dict:
+    from .kan import kan_cost_details
+
+    spec = task["spec"]
+    if spec["model"] in ("kan", "kerr_kan"):
+        return kan_cost_details(spec)
+    from .model_zoo import cost
+
+    macs = cost(spec).macs
+    return {"kan_widths": [], "kan_params": 0, "kan_macs_dense": 0, "kan_macs_sparse": 0, "kerr_macs": macs,
+            "macs_dense_total": macs, "macs_sparse_total": macs}
+
+
 # --------------------------------------------------------------------------- registry
 
-BUILDERS = {"E010": e010_tasks, "E011": e011_tasks, "E012": e012_tasks, "E013": e013_tasks}
+BUILDERS = {"E010": e010_tasks, "E011": e011_tasks, "E012": e012_tasks, "E013": e013_tasks,
+            "E014": e014_tasks}
 SPECIAL_STAGES = {("E010", "select"): e010_select}
-POST_HOOKS: dict = {"merge_check": merge_check_hook}
+POST_HOOKS: dict = {"merge_check": merge_check_hook, "kan_costs": kan_costs_hook}
 
 
 def build_tasks(exp: str, stage: str, options: Options) -> list[dict]:

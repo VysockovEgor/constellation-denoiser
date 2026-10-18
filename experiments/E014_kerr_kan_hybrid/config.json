@@ -1,0 +1,68 @@
+{
+  "experiment_id": "E014",
+  "title": "KAN and the hybrid 'Kerr layer (channel physics) + light KAN (residual clean-up)'",
+  "date": "not run",
+  "base_git_commit": "a815e77 (branch exp/E010-E014)",
+  "git_commit": "recorded per run in results/runs/*.json (field git_commit)",
+  "data_manifest_sha256": "cb5f2de47145c02d6485969ce116df2253a271c979a927452ea454551a48c0a8",
+  "data_audit_sha256": "a9c35fb7839e85c39f7131373418a6f3a04c731e9c4e55385347a1eabbdedbe4",
+  "split_source": "experiments/E004_training_file_curve/config.json (train_pool_files[:30], validation 45, test 45), as E007-E009",
+  "split_source_sha256": "04c0b2a5775d8fae1acdc348967c6fb976ef5d90e76a8334484242cc9707025a",
+  "dataset_root": "data/raw/archive",
+  "window": 31,
+  "n_train_files": 30,
+  "kerr_base": "v3_one_hidden of E012: one hidden complex layer of 48 neurons with Kerr activation (AblationComplexMLP variant d), 6480 multiplies per symbol",
+  "kan": {
+    "implementation": "src/constellation_denoiser/kan.py, own efficient-KAN style layer: SiLU base path + B-spline path with learnable coefficients, spline order k = 3, grid G over [-2, 2] extended by k knots per side; no pykan / efficient-kan",
+    "init": "base weights Kaiming uniform, spline coefficients N(0, 0.1/sqrt(n*(G+k))); last KAN layer of hybrids initialized to zero so the hybrid starts equal to the Kerr MLP",
+    "local_features": "centre symbol and 3 neighbours on each side: 7 symbols, 14 real numbers [Re, Im]",
+    "cost_convention": "real multiplies: SiLU 1 per input; Cox-de Boor 4 per basis function and level; base linear m*n; spline linear m*n*(G+k) dense (as implemented) or m*n*(k+1) sparse (k+1 nonzero bases). Both written to runs: kan_macs_dense, kan_macs_sparse; macs_per_symbol = dense total, macs_per_symbol_merged = sparse total"
+  },
+  "models": {
+    "k0_kerr": {"spec": {"model": "complex_one_hidden", "hidden": 48}, "phases": "single", "uses_grid": false,
+                "description": "control: Kerr MLP alone, 40k steps from scratch"},
+    "k0b_kerr_continued": {"spec": {"model": "complex_one_hidden", "hidden": 48}, "phases": "continued", "uses_grid": false,
+                           "description": "Kerr MLP 20k steps, then 20k more with a fresh Adam: equal-steps control of the two-stage hybrids k3/k4 (with constant lr and no optimizer reset it would be identical to k0)"},
+    "k1_kan_only": {"spec": {"model": "kan", "kan_hidden": 16}, "phases": "single", "uses_grid": true,
+                    "description": "KAN [2W=62 -> 16 -> 2] on [Re, Im] of the whole window, 40k steps, MSE"},
+    "k2_parallel_joint": {"spec": {"model": "kerr_kan", "hidden": 48, "kan_hidden": 8, "local_half": 3, "mode": "parallel"}, "phases": "single", "uses_grid": true,
+                          "description": "out = Kerr(x) + KAN_res(local), KAN [14 -> 8 -> 2], joint training 40k steps"},
+    "k3_parallel_staged": {"spec": {"model": "kerr_kan", "hidden": 48, "kan_hidden": 8, "local_half": 3, "mode": "parallel"}, "phases": "staged", "uses_grid": true,
+                           "description": "Kerr trained 20k steps then frozen; KAN_res [14 -> 8 -> 2] trained 20k steps on the residual (fresh Adam)"},
+    "k4_cascade_staged": {"spec": {"model": "kerr_kan", "hidden": 48, "kan_hidden": 8, "local_half": 3, "mode": "cascade"}, "phases": "staged", "uses_grid": true,
+                          "description": "Kerr frozen after 20k steps; KAN input = [Kerr output (2), local (14)], KAN [16 -> 8 -> 2] predicts a correction, 20k steps"}
+  },
+  "grids": [5, 8],
+  "macs_per_symbol": {
+    "k0, k0b": {"dense": 6480, "sparse": 6480},
+    "k1 G5": {"kan_params": 9216, "dense": 17718, "sparse": 8006},
+    "k1 G8": {"kan_params": 12288, "dense": 23598, "sparse": 8006},
+    "k2/k3 G5": {"kan_params": 1152, "kan_dense": 3550, "kan_sparse": 1454, "total_dense": 10030, "total_sparse": 7934},
+    "k2/k3 G8": {"kan_params": 1536, "kan_dense": 4726, "kan_sparse": 1454, "total_dense": 11206, "total_sparse": 7934},
+    "k4 G5": {"kan_params": 1296, "kan_dense": 3912, "kan_sparse": 1608, "total_dense": 10392, "total_sparse": 8088},
+    "k4 G8": {"kan_params": 1728, "kan_dense": 5208, "kan_sparse": 1608, "total_dense": 11688, "total_sparse": 8088}
+  },
+  "seeds": [17, 29, 43],
+  "steps": 40000,
+  "max_steps": 40000,
+  "eval_every": 1000,
+  "ckpt_every": 10000,
+  "base_lr": {"peak_lr": 0.001, "schedule": "const", "warmup": 0, "c_mult": 1.0, "floor_frac": 0.1, "optimizer": "adam", "weight_decay": 0.0},
+  "optimizer": "Adam 1e-3 constant, batch 1024; complex MSE for Kerr-based models, MSE for k1",
+  "control": {
+    "runs": {
+      "one_hidden_const_1e-3_20k": {"spec": {"model": "complex_one_hidden", "window": 31, "hidden": 48, "name": "k0_kerr"}, "n_train_files": 30, "steps": 20000}
+    },
+    "targets": {
+      "one_hidden_const_1e-3_20k": {"target": 59.437, "tol": 0.7, "seeds": [17, 29], "metric": "test_reduction_valbest_select", "source": "experiments/E009_kerr_ablation/results/complex_mlp_ablation_summary.csv (variant d; seed range 58.27-60.61)"}
+    }
+  },
+  "rule_draft": {
+    "status": "DRAFT: to be confirmed by the user before the first run; must not change after results are seen",
+    "improves": "a hybrid improves the Kerr base if its mean test reduction exceeds k0_kerr (for k2) or k0b_kerr_continued (for k3, k4) at the same total number of steps by more than the seed spread (range) and by at least 0.5 p.p.",
+    "cost": "the added multiplies (dense and sparse, absolute and relative to k0_kerr) are reported next to the gain; 'worth it' is only concluded together with them",
+    "kerr_needed": "comparison with k1_kan_only answers whether the Kerr base is needed at all",
+    "metric": "test_reduction_valbest_select (test at the validation-best evaluation, every 1000 steps)"
+  },
+  "optional_residual_analysis": "stage 'residual': error of the best k0_kerr (by validation) on the validation files versus the constellation point and the received-symbol amplitude"
+}
