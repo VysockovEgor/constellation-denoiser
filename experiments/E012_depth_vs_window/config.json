@@ -1,0 +1,60 @@
+{
+  "experiment_id": "E012",
+  "title": "Does the second hidden layer regain an advantage at large windows (65, 127) and with long training?",
+  "date": "not run",
+  "base_git_commit": "ef246aa (branch exp/E010-E014)",
+  "git_commit": "recorded per run in results/runs/*.json (field git_commit)",
+  "data_manifest_sha256": "cb5f2de47145c02d6485969ce116df2253a271c979a927452ea454551a48c0a8",
+  "data_audit_sha256": "a9c35fb7839e85c39f7131373418a6f3a04c731e9c4e55385347a1eabbdedbe4",
+  "split_source": "experiments/E004_training_file_curve/config.json (train_pool_files[:30], validation 45, test 45), as E007-E009",
+  "split_source_sha256": "04c0b2a5775d8fae1acdc348967c6fb976ef5d90e76a8334484242cc9707025a",
+  "dataset_root": "data/raw/archive",
+  "n_train_files": 30,
+  "variants": {
+    "v1_two_kerr_both": {"model": "complex_both", "hidden": 48, "e010_arch": "both"},
+    "v2_two_kerr_last": {"model": "complex_a", "hidden": 48, "e010_arch": "a", "merge_check": true},
+    "v3_one_hidden": {"model": "complex_one_hidden", "hidden": 48, "e010_arch": "a"},
+    "v4_one_hidden_wide": {"model": "complex_one_hidden", "match_macs_of_two_hidden_kerr_both": true, "e010_arch": "a"}
+  },
+  "v4_widths": {"31": 119, "65": 83, "127": 66},
+  "macs_per_symbol": {
+    "formula_v1": "4h(W+h+1) + 14h", "formula_one_hidden": "h(4W+11)",
+    "31": {"v1": 16032, "v2_trained": 15696, "v2_merged": 6480, "v3": 6480, "v4": 16065},
+    "65": {"v1": 22560, "v2_trained": 22224, "v2_merged": 13008, "v3": 13008, "v4": 22493},
+    "127": {"v1": 34464, "v2_trained": 34128, "v2_merged": 24912, "v3": 24912, "v4": 34254}
+  },
+  "windows": [31, 65, 127],
+  "steps": [20000, 100000],
+  "eval_every": [1000, 5000],
+  "ckpt_every": 10000,
+  "seeds": [17, 29, 43],
+  "base_lr": {"peak_lr": 0.001, "schedule": "const", "warmup": 0, "c_mult": 1.0, "floor_frac": 0.1, "optimizer": "adam", "weight_decay": 0.0},
+  "lr_branches": {
+    "const_1e-3": "Adam constant 1e-3",
+    "best_e010": "best stage1 config from experiments/E010_lr_schedule_study/results/stage1_selection.json: v1 <- 'both'; v2, v3, v4 <- 'a'; horizon = run steps; optional, skipped if the file is missing"
+  },
+  "optimizer": "Adam, batch 1024, complex MSE; complex Glorot normal, c = 0",
+  "merge_check": {"variant": "v2_two_kerr_last", "windows": 1000, "max_abs_diff": 1e-4, "dtype": "float32", "output": "results/merge_check.csv", "model": "weights at the final step"},
+  "control": {
+    "targets": {
+      "v1_w31_20k": {"variant": "v1_two_kerr_both", "window": 31, "steps": 20000, "target": 61.727, "tol": 0.7, "seeds": [17, 29], "metric": "test_reduction_valbest_select", "source": "experiments/E007_window_width_sweep/results/complex_mlp_sweep_summary.csv"},
+      "v2_w31_20k": {"variant": "v2_two_kerr_last", "window": 31, "steps": 20000, "target": 62.191, "tol": 0.7, "seeds": [17, 29], "metric": "test_reduction_valbest_select", "source": "experiments/E009_kerr_ablation/results/complex_mlp_ablation_summary.csv (variant a)"},
+      "v3_w31_20k": {"variant": "v3_one_hidden", "window": 31, "steps": 20000, "target": 59.437, "tol": 0.7, "seeds": [17, 29], "metric": "test_reduction_valbest_select", "source": "experiments/E009_kerr_ablation/results/complex_mlp_ablation_summary.csv (variant d)"}
+    },
+    "reference_only": {
+      "v1_w65_20k": {"value": 58.378, "source": "experiments/E007_window_width_sweep/results/complex_mlp_sweep_summary.csv"},
+      "v1_w127_20k": {"value": 52.672, "source": "experiments/E007_window_width_sweep/results/complex_mlp_sweep_summary.csv", "note": "seed range 49.6-55.8, too wide for a tolerance check"}
+    }
+  },
+  "metrics": {
+    "test_reduction_valbest_select": "test reduction at the validation-best evaluation (every 1000 steps for 20k runs, 5000 for 100k runs); main comparison metric",
+    "test_reduction": "test reduction at the final step (also reported)",
+    "seed_spread": "range (max - min) over seeds; the larger range of the two compared groups is used"
+  },
+  "rule_draft": {
+    "status": "DRAFT: to be confirmed by the user before the first run; must not change after results are seen",
+    "advantage": "for window W and equal step budget, the second layer 'regains the advantage' if v1 or v2 beats both v3 and v4 in mean test reduction by more than the seed spread and by at least 0.5 p.p.",
+    "optimization_effect": "if the v2 - v3 gap at 20k exceeds the seed spread but at 100k falls below the seed spread, interpret as an optimization effect, not expressiveness",
+    "otherwise": "not proven"
+  }
+}
