@@ -114,7 +114,7 @@ def env_flag(name: str) -> bool:
 
 
 def exp_dir(exp: str) -> Path:
-    matches = sorted(EXPERIMENTS_DIR.glob(f"{exp}_*"))
+    matches = sorted(p for p in EXPERIMENTS_DIR.glob(f"{exp}_*") if p.is_dir())
     if len(matches) != 1:
         raise FileNotFoundError(f"expected exactly one experiments/{exp}_* folder, found {matches}")
     return matches[0]
