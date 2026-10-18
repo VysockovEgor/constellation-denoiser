@@ -361,9 +361,36 @@ def merge_check_hook(model, task, train, val, test) -> dict:
     return {"merge_max_abs_diff": diff, "merge_windows_checked": n, "merge_ok": bool(diff < 1e-4)}
 
 
+# --------------------------------------------------------------------------- E013
+
+def e013_tasks(stage: str, options: Options) -> list[dict]:
+    exp = "E013"
+    directory, config = load_config(exp)
+    if stage == "control":
+        return control_tasks(exp, directory, config, options)
+    if stage not in config["stages"]:
+        raise SystemExit(f"E013: неизвестная стадия {stage!r}")
+    grid = config["stages"][stage]
+    lr = lr_from(config["transformer_lr"])
+    tasks = []
+    for window in grid["windows"]:
+        for d_model, layers in grid["d_model_layers"]:
+            spec = {"model": "transformer", "window": window, "d_model": d_model, "layers": layers,
+                    "heads": config["heads"], "ffn_mult": config["ffn_mult"], "name": "transformer"}
+            for n_train in grid["n_train_files"]:
+                for seed in seeds_for(config, options):
+                    tasks.append(make_task(
+                        exp, stage, directory, options, spec=spec, seed=seed, n_train=n_train,
+                        phases=[{"steps": grid["steps"]}], lr=lr, lr_name="adamw_wu1000_cosine",
+                        eval_every=grid["eval_every"], select_every=grid["eval_every"],
+                        variant=f"transformer_d{d_model}_L{layers}", ckpt_every=config["ckpt_every"],
+                    ))
+    return tasks
+
+
 # --------------------------------------------------------------------------- registry
 
-BUILDERS = {"E010": e010_tasks, "E011": e011_tasks, "E012": e012_tasks}
+BUILDERS = {"E010": e010_tasks, "E011": e011_tasks, "E012": e012_tasks, "E013": e013_tasks}
 SPECIAL_STAGES = {("E010", "select"): e010_select}
 POST_HOOKS: dict = {"merge_check": merge_check_hook}
 
