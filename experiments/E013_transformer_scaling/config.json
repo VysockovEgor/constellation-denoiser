@@ -1,0 +1,48 @@
+{
+  "experiment_id": "E013",
+  "title": "Transformer with more training files and a step budget comparable to the complex MLP",
+  "date": "not run",
+  "base_git_commit": "82983cf (branch exp/E010-E014)",
+  "git_commit": "recorded per run in results/runs/*.json (field git_commit)",
+  "data_manifest_sha256": "cb5f2de47145c02d6485969ce116df2253a271c979a927452ea454551a48c0a8",
+  "data_audit_sha256": "a9c35fb7839e85c39f7131373418a6f3a04c731e9c4e55385347a1eabbdedbe4",
+  "split_source": "experiments/E004_training_file_curve/config.json: N=30 -> train_pool_files[:30]; N=210 -> all 210 train_pool_files; validation 45, test 45 (as E003-E012)",
+  "split_source_sha256": "04c0b2a5775d8fae1acdc348967c6fb976ef5d90e76a8334484242cc9707025a",
+  "dataset_root": "data/raw/archive",
+  "model": "models.TransformerEqualizer (E001 class, unchanged): token = [Re, Im] of one received symbol, Linear(2, d) + learned positional embedding, pre-norm TransformerEncoderLayer (GELU, dropout 0, dim_feedforward = 2d), head LayerNorm -> Linear(d, d) -> GELU -> Linear(d, 2) on the centre token; MSE loss on [Re, Im]",
+  "heads": 4,
+  "ffn_mult": 2,
+  "macs_per_symbol": {
+    "formula": "W*2d + L*(W*(3d^2 + d^2 + 2*d*ffn_mult*d) + 2*W^2*d) + d^2 + 2d; softmax, LayerNorm, GELU, additions and positional embedding not counted; full window cost per predicted symbol (no sliding reuse)",
+    "w7_d32_L1": 62016, "w7_d64_L2": 476416, "w31_d32_L1": 318528, "w31_d64_L2": 2285824
+  },
+  "transformer_lr": {"peak_lr": 0.001, "schedule": "cosine_to_zero", "warmup": 1000, "c_mult": 1.0, "floor_frac": 0.1, "optimizer": "adamw", "weight_decay": 1e-05},
+  "transformer_lr_note": "separate lr policy for the transformer (AdamW, 1e-3, warmup 1000, cosine to zero over the run, weight decay 1e-5 as in E001); best_e010 is NOT applied to it",
+  "seeds": [17, 29, 43],
+  "ckpt_every": 10000,
+  "stages": {
+    "stageA": {"windows": [7, 31], "d_model_layers": [[32, 1], [64, 2]], "n_train_files": [30, 210], "steps": 20000, "eval_every": 2000},
+    "stageB": {"windows": [7, 31], "d_model_layers": [[32, 1], [64, 2]], "n_train_files": [210], "steps": 100000, "eval_every": 5000}
+  },
+  "base_lr": {"peak_lr": 0.001, "schedule": "const", "warmup": 0, "c_mult": 1.0, "floor_frac": 0.1, "optimizer": "adam", "weight_decay": 0.0},
+  "control": {
+    "runs": {
+      "both_const_1e-3_20k": {"spec": {"model": "complex_both", "window": 31, "hidden": 48, "name": "complex_both"}, "n_train_files": 30, "steps": 20000}
+    },
+    "targets": {
+      "both_const_1e-3_20k": {"target": 61.727, "tol": 0.7, "seeds": [17, 29], "metric": "test_reduction_valbest_select", "source": "experiments/E007_window_width_sweep/results/complex_mlp_sweep_summary.csv"}
+    },
+    "note": "no reproducible transformer number exists (E001: window 7, 7 files, epochs, other split); the control checks the shared data/eval pipeline through the complex MLP"
+  },
+  "comparison_sources": {
+    "complex_N210": "experiments/E011_long_runs_convergence/results/long_runs_curves.csv (const branch, test at steps 20000 and 100000; with constant lr the state at step s equals an s-step run)",
+    "complex_N30_20k": ["experiments/E009_kerr_ablation/results/complex_mlp_ablation_summary.csv", "experiments/E007_window_width_sweep/results/complex_mlp_sweep_summary.csv", "experiments/E012_depth_vs_window/results/depth_window_summary.csv", "this experiment's control runs"],
+    "reference_only": ["experiments/E003_large_scale_pilot/results/large_scale_pilot_summary.csv (N=210, same test files, 40 epochs ~ 134k steps, metric mean over files)", "experiments/E001_pilot_models/results/model_comparison_summary.csv (window 7, PR1-10 split)"]
+  },
+  "rule_draft": {
+    "status": "DRAFT: to be confirmed by the user before the first run; must not change after results are seen",
+    "outperforms": "at window 31, N=210 and the same number of steps, the transformer's mean test reduction exceeds that of the best complex MLP with no more multiplies per symbol by more than the seed spread and by at least 0.5 p.p.",
+    "comparability": "only matching windows and step counts are compared; if the transformer diverged or the step counts differ, the comparison is marked unequal",
+    "metric": "test reduction at the final step for the transformer (cosine ends at lr 0) and at the same step of the const-lr E011 curve for the complex MLP; seed spread = range"
+  }
+}

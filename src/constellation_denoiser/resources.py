@@ -25,6 +25,7 @@ REFERENCE_SPECS = {
     "kan": {"model": "kan", "window": 31, "kan_hidden": 16, "grid": 5},
 }
 BENCH_STEPS = 200
+COST_EXPONENT = 0.7
 WARMUP_STEPS = 20
 
 
@@ -347,8 +348,9 @@ def scaled_rates(spec: dict, resources: dict) -> dict:
         if not info or "error" in info:
             info = models["complex"]
         ratio = model_zoo.cost(spec).macs / max(1, info["macs"])
-        seconds_step += (0.3 + 0.7 * ratio) / info["steps_per_s"]
-        seconds_window += (0.1 + 0.9 * ratio) / info["eval_windows_per_s"]
+        # time ~ ratio^0.7: fitted to transformer timings (W=7/31, d=32/64), small models are overhead-bound
+        seconds_step += ratio ** COST_EXPONENT / info["steps_per_s"]
+        seconds_window += ratio ** COST_EXPONENT / info["eval_windows_per_s"]
     return {"steps_per_s": 1.0 / seconds_step, "eval_windows_per_s": 1.0 / seconds_window}
 
 
