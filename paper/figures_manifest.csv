@@ -10,3 +10,4 @@ fig_no,experiment_id,file,caption,source_csv
 9,E010,experiments/E010_lr_schedule_study/figures/E010_val_curves.png,Validation BER reduction vs steps: control and best lr schedules (not run),experiments/E010_lr_schedule_study/results/lr_sweep.csv
 10,E010,experiments/E010_lr_schedule_study/figures/E010_t95_vs_peak_lr.png,Steps to 95% of control vs peak lr (not run),experiments/E010_lr_schedule_study/results/lr_sweep_summary.csv
 11,E011,experiments/E011_long_runs_convergence/figures/E011_long_runs.png,Validation and test BER reduction vs steps up to 200k for four models and N=30/210 (not run),experiments/E011_long_runs_convergence/results/long_runs_curves.csv
+12,E012,experiments/E012_depth_vs_window/figures/E012_depth_window.png,BER reduction vs real multiplies per symbol for depth/width variants at windows 31/65/127 (20k and 100k steps; not run),experiments/E012_depth_vs_window/results/depth_window_summary.csv

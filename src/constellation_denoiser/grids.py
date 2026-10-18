@@ -297,11 +297,75 @@ def e011_tasks(stage: str, options: Options) -> list[dict]:
     return tasks
 
 
+# --------------------------------------------------------------------------- E012
+
+def e012_variant_spec(variant: dict, window: int) -> dict:
+    from .model_zoo import complex_two_hidden_macs, width_matching_macs
+
+    spec = {"model": variant["model"], "window": window, "hidden": variant.get("hidden", 48)}
+    if variant.get("match_macs_of_two_hidden_kerr_both"):
+        spec["hidden"] = width_matching_macs(window, complex_two_hidden_macs(window, 48))
+    return spec
+
+
+def e012_tasks(stage: str, options: Options) -> list[dict]:
+    exp = "E012"
+    directory, config = load_config(exp)
+    if stage not in ("control", "const", "best"):
+        raise SystemExit(f"E012: неизвестная стадия {stage!r}")
+    controls = config["control"]["targets"]
+    tasks = []
+    for name, variant in config["variants"].items():
+        for window in config["windows"]:
+            spec = dict(e012_variant_spec(variant, window), name=name)
+            for lr_name, lr in lr_branches(config, variant.get("e010_arch"), options.smoke):
+                branch = "const" if lr_name == "const_1e-3" else "best"
+                for budget, every in zip(config["steps"], config["eval_every"]):
+                    for seed in seeds_for(config, options):
+                        key = next((k for k, rule in controls.items() if rule["variant"] == name
+                                    and rule["window"] == window and rule["steps"] == budget
+                                    and branch == "const" and seed in rule["seeds"]), None)
+                        if stage == "control" and key is None:
+                            continue
+                        if stage in ("const", "best") and branch != stage:
+                            continue
+                        tasks.append(make_task(
+                            exp, stage, directory, options, spec=spec, seed=seed,
+                            n_train=config["n_train_files"], phases=[{"steps": budget}], lr=lr,
+                            lr_name=lr_name, eval_every=every, select_every=every, variant=name,
+                            control_key=key, ckpt_every=config["ckpt_every"],
+                            post_hook="merge_check" if variant.get("merge_check") else None,
+                        ))
+    if stage == "control" and options.smoke:
+        tasks = [t for t in tasks if t["seed"] == tasks[0]["seed"]]
+    if stage == "best" and not tasks:
+        from .runner import log
+
+        log("E012 best: нет experiments/E010_lr_schedule_study/results/stage1_selection.json — ветка пропущена")
+    return tasks
+
+
+def merge_check_hook(model, task, train, val, test) -> dict:
+    """Merged inference graph of variant a must match the trained model on 1000 windows (float32)."""
+    import torch
+
+    from .complex_mlp_ablation import MergedAblationMLP
+
+    window = int(task["spec"]["window"])
+    model = model.cpu().eval()
+    merged = MergedAblationMLP(model).eval()
+    n = min(1000, train.n_windows(window))
+    x, _ = train.gather(torch.arange(n), window)
+    with torch.inference_mode():
+        diff = float((model(x.cpu()) - merged(x.cpu())).abs().max().item())
+    return {"merge_max_abs_diff": diff, "merge_windows_checked": n, "merge_ok": bool(diff < 1e-4)}
+
+
 # --------------------------------------------------------------------------- registry
 
-BUILDERS = {"E010": e010_tasks, "E011": e011_tasks}
+BUILDERS = {"E010": e010_tasks, "E011": e011_tasks, "E012": e012_tasks}
 SPECIAL_STAGES = {("E010", "select"): e010_select}
-POST_HOOKS: dict = {}
+POST_HOOKS: dict = {"merge_check": merge_check_hook}
 
 
 def build_tasks(exp: str, stage: str, options: Options) -> list[dict]:
