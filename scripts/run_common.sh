@@ -19,6 +19,8 @@ rc_setup() {
   export JOBS="${JOBS:-auto}" THREADS="${THREADS:-auto}" DEVICE="${DEVICE:-auto}"
   export SEEDS="${SEEDS:-}" SMOKE="${SMOKE:-0}" FORCE="${FORCE:-0}" SYNTHETIC="${SYNTHETIC:-0}"
   export PYTHONUNBUFFERED=1
+  # deterministic cuBLAS for torch.use_deterministic_algorithms on CUDA; no effect on CPU
+  export CUBLAS_WORKSPACE_CONFIG="${CUBLAS_WORKSPACE_CONFIG:-:4096:8}"
   if [[ "$SMOKE" == "1" ]]; then
     LOG_DIR="$EXP_DIR/results_smoke/logs"
   else

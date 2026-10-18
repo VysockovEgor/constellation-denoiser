@@ -3,6 +3,8 @@
 Run on the server via ``PYTHONPATH=src python scripts/probe_resources.py``; it
 writes ``resources.json`` in the repository root (not tracked by Git).
 Overrides: SHARE (default 0.5), MAX_CORES, MAX_MEM_GB, MAX_JOBS, PROBE_SECONDS.
+PROBE_QUICK=1: ~30 s pipeline check (two short trials, all model families at once);
+its recommendation is rough and meant for local testing, not for the server.
 """
 
 from __future__ import annotations
@@ -120,7 +122,8 @@ def detect() -> dict:
 
 # --------------------------------------------------------------------------- benchmark worker
 
-def bench_worker(spec: dict, threads: int, device: str, steps: int, start_at: float, n_files: int) -> dict:
+def bench_worker(spec: dict, threads: int, device: str, steps: int, start_at: float, n_files: int,
+                 eval_length: int = 16_384) -> dict:
     """One benchmark process: real training steps on synthetic windows; returns rates and peak RSS."""
     import torch
 
@@ -149,7 +152,7 @@ def bench_worker(spec: dict, threads: int, device: str, steps: int, start_at: fl
         loss.backward()
         optimizer.step()
 
-    for _ in range(WARMUP_STEPS):
+    for _ in range(min(WARMUP_STEPS, max(2, steps // 4))):
         one_step()
     while time.time() < start_at:
         time.sleep(0.01)
@@ -161,7 +164,7 @@ def bench_worker(spec: dict, threads: int, device: str, steps: int, start_at: fl
     if dev.type == "cuda":
         torch.cuda.synchronize()
     train_seconds = time.perf_counter() - started
-    eval_set = synthetic_fileset(2, 8).to(dev)
+    eval_set = synthetic_fileset(1 if eval_length < 16_384 else 2, 8, length=eval_length).to(dev)
     started = time.perf_counter()
     model_ber(model, eval_set, window)
     eval_seconds = time.perf_counter() - started
@@ -170,20 +173,29 @@ def bench_worker(spec: dict, threads: int, device: str, steps: int, start_at: fl
             "n_files": n_files}
 
 
-def run_parallel(spec: dict, jobs: int, threads: int, device: str, steps: int = BENCH_STEPS,
-                 n_files: int = 30) -> dict:
-    start_at = time.time() + 8.0 + 0.5 * jobs
-    command = [sys.executable, "-m", "constellation_denoiser.resources", "--bench-worker", json.dumps(spec),
-               str(threads), device, str(steps), str(start_at), str(n_files)]
+def launch_workers(specs: list[dict], threads: int, device: str, steps: int, n_files: int, delay: float,
+                   eval_length: int) -> list[dict]:
+    """One benchmark process per spec, all timed loops starting at the same moment."""
+    start_at = time.time() + delay
     env = dict(os.environ, PYTHONPATH=str(PROJECT_ROOT / "src"), OMP_NUM_THREADS=str(threads))
-    processes = [subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, env=env)
-                 for _ in range(jobs)]
+    processes = [subprocess.Popen(
+        [sys.executable, "-m", "constellation_denoiser.resources", "--bench-worker", json.dumps(spec), str(threads),
+         device, str(steps), str(start_at), str(n_files), str(eval_length)],
+        stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, env=env) for spec in specs]
     results = []
     for process in processes:
         out, err = process.communicate(timeout=600)
         if process.returncode != 0:
             raise RuntimeError(f"benchmark worker failed: {err.strip()[-500:]}")
         results.append(json.loads(out.strip().splitlines()[-1]))
+    return results
+
+
+def run_parallel(spec: dict, jobs: int, threads: int, device: str, steps: int = BENCH_STEPS,
+                 n_files: int = 30, quick: bool = False) -> dict:
+    delay = (3.0 + 0.3 * jobs) if quick else (8.0 + 0.5 * jobs)
+    results = launch_workers([spec] * jobs, threads, device, steps, 4 if quick else n_files, delay,
+                             4096 if quick else 16_384)
     per_process = min(r["steps_per_s"] for r in results)
     return {"jobs": jobs, "threads": threads, "device": device,
             "steps_per_s_per_process": per_process, "steps_per_s_total": per_process * jobs,
@@ -241,7 +253,10 @@ def probe(verbose: bool = True) -> dict:
     if verbose:
         print(f"Бенчмарк: бюджет {budget} ядер (SHARE={share}), устройство {device} ...", flush=True)
     reference = REFERENCE_SPECS["complex"]
-    if device == "cuda":
+    quick = os.environ.get("PROBE_QUICK", "0") == "1"
+    if quick:
+        combos = [(1, 1)] + ([(2, 1)] if budget >= 2 else [])
+    elif device == "cuda":
         combos = [(j, 1) for j in (1, 2, 4) if j <= max(1, budget)]
     else:
         combos = candidate_combos(budget)
@@ -250,7 +265,7 @@ def probe(verbose: bool = True) -> dict:
         if time.time() > deadline:
             break
         try:
-            row = run_parallel(reference, jobs, threads, device)
+            row = run_parallel(reference, jobs, threads, device, steps=40 if quick else BENCH_STEPS, quick=quick)
         except Exception as exc:  # a failed combination is reported, not fatal
             row = {"jobs": jobs, "threads": threads, "device": device, "error": str(exc)[:300]}
         table.append(row)
@@ -270,7 +285,18 @@ def probe(verbose: bool = True) -> dict:
     contention = (best["steps_per_s_per_process"] / single["steps_per_s_per_process"]) if (best and single) else 1.0
 
     models = {}
-    for family, spec in REFERENCE_SPECS.items():
+    if quick:  # all families at once, 10 steps each: rough, but within the ~30 s budget
+        try:
+            rows = launch_workers(list(REFERENCE_SPECS.values()), threads, device, 10, 4, 3.0, 4096)
+        except Exception as exc:
+            rows = [{"error": str(exc)[:300]}] * len(REFERENCE_SPECS)
+        for (family, spec), row in zip(REFERENCE_SPECS.items(), rows):
+            models[family] = ({"spec": spec, "error": row["error"]} if "error" in row else
+                              {"spec": spec, "macs": model_zoo.cost(spec).macs,
+                               "steps_per_s": row["steps_per_s"] * contention,
+                               "eval_windows_per_s": row["eval_windows_per_s"] * contention,
+                               "single_steps_per_s": row["steps_per_s"], "peak_rss_gb": row["peak_rss_gb"]})
+    for family, spec in ({} if quick else REFERENCE_SPECS).items():
         if time.time() > deadline + 60:
             break
         try:
@@ -289,7 +315,7 @@ def probe(verbose: bool = True) -> dict:
         "steps_per_s_total": best["steps_per_s_total"] if best else None,
         "foreign_load_threshold": round(max(0.0, available - jobs * (threads if device == "cpu" else 1)), 2),
         "polite_max_wait_s": 7200,
-        "ok": bool(best) and free >= 1 and usable_mem >= 2.0,
+        "ok": bool(best) and free >= 1 and usable_mem >= 2.0, "quick": quick,
     }
     payload = {"created_at": time.strftime("%Y-%m-%dT%H:%M:%S%z"), "hostname": os.uname().nodename,
                "torch_version": torch.__version__, "found": found, "benchmark": table,
@@ -318,6 +344,9 @@ def human_summary(payload: dict) -> str:
             lines.append(f"  {family}: замер не удался ({info['error'][:80]})")
         else:
             lines.append(f"  {family}: ~{info['steps_per_s']:.1f} шагов/с на процесс при рекомендованных настройках")
+    if rec.get("quick"):
+        lines.append("Быстрый режим (PROBE_QUICK=1): замеры короткие, рекомендация грубая; на сервере "
+                     "запускайте probe без PROBE_QUICK.")
     if not rec["ok"]:
         lines.append("ВНИМАНИЕ: ресурсов мало (почти нет свободных ядер или памяти < 2 ГБ). Лучше запускать ночью "
                      "или уменьшить сетку (SEEDS=17,29), либо задать SHARE=0.25.")
@@ -365,8 +394,9 @@ def main(argv: list[str] | None = None) -> int:
     argv = sys.argv[1:] if argv is None else argv
     if argv and argv[0] == "--bench-worker":
         spec, threads, device, steps, start_at, n_files = argv[1:7]
+        eval_length = int(argv[7]) if len(argv) > 7 else 16_384
         print(json.dumps(bench_worker(json.loads(spec), int(threads), device, int(steps), float(start_at),
-                                      int(n_files))))
+                                      int(n_files), eval_length)))
         return 0
     payload = probe()
     out = PROJECT_ROOT / "resources.json"
