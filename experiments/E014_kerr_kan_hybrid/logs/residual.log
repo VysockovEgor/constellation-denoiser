@@ -1,0 +1,4 @@
+=== 2026-10-19T02:22:02+07:00 E014 residual: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/.venv/bin/python -m constellation_denoiser.residual_E014 ===
+JOBS=auto THREADS=auto DEVICE=auto SEEDS=default SMOKE=0 FORCE=0
+остаток k0_kerr_w31_h48_N30_const_1e-3_40k_seed43: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E014_kerr_kan_hybrid/results/residual_by_point.csv, /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E014_kerr_kan_hybrid/results/residual_by_amplitude.csv
+=== 2026-10-19T02:22:06+07:00 E014 residual exit=0 ===

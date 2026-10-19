@@ -1,0 +1,25 @@
+{
+  "experiment": "E014",
+  "passed": true,
+  "smoke": false,
+  "checked_at": "2026-10-18T18:34:39+00:00",
+  "targets": [
+    {
+      "key": "one_hidden_const_1e-3_20k",
+      "metric": "test_reduction_valbest_select",
+      "target": 59.437,
+      "tol": 0.7,
+      "seeds": [
+        17,
+        29
+      ],
+      "values": [
+        58.26516821964577,
+        60.608862650259624
+      ],
+      "mean": 59.4370154349527,
+      "ok": true,
+      "source": "experiments/E009_kerr_ablation/results/complex_mlp_ablation_summary.csv (variant d; seed range 58.27-60.61)"
+    }
+  ]
+}

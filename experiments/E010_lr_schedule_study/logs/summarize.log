@@ -1,0 +1,8 @@
+=== 2026-10-18T23:39:58+07:00 E010 summarize: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/.venv/bin/python -m constellation_denoiser.merge_runs --exp E010 --out lr_sweep.csv ===
+JOBS=auto THREADS=auto DEVICE=auto SEEDS=default SMOKE=0 FORCE=0
+138 прогонов -> /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E010_lr_schedule_study/results/lr_sweep.csv
+=== 2026-10-18T23:39:59+07:00 E010 summarize exit=0 ===
+=== 2026-10-18T23:39:59+07:00 E010 summarize: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/.venv/bin/python -m constellation_denoiser.summarize_E010 ===
+JOBS=auto THREADS=auto DEVICE=auto SEEDS=default SMOKE=0 FORCE=0
+сводка: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E010_lr_schedule_study/results/lr_sweep_summary.csv; рисунки: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E010_lr_schedule_study/figures
+=== 2026-10-18T23:40:03+07:00 E010 summarize exit=0 ===

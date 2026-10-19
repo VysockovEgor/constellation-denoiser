@@ -1,0 +1,34 @@
+{
+  "both": {
+    "lr_name": "cosine_to_zero_lr0.003_wu0_cm30",
+    "mean_val_reduction": 64.4290641147875,
+    "n": 3,
+    "diverged": false,
+    "lr_config": {
+      "peak_lr": 0.003,
+      "schedule": "cosine_to_zero",
+      "warmup": 0,
+      "c_mult": 30,
+      "floor_frac": 0.1,
+      "optimizer": "adam",
+      "weight_decay": 0.0,
+      "horizon": null
+    }
+  },
+  "a": {
+    "lr_name": "cosine_to_zero_lr0.003_wu0_cm30",
+    "mean_val_reduction": 63.8781972056452,
+    "n": 3,
+    "diverged": false,
+    "lr_config": {
+      "peak_lr": 0.003,
+      "schedule": "cosine_to_zero",
+      "warmup": 0,
+      "c_mult": 30,
+      "floor_frac": 0.1,
+      "optimizer": "adam",
+      "weight_decay": 0.0,
+      "horizon": null
+    }
+  }
+}

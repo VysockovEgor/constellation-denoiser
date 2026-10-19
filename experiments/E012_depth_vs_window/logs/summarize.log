@@ -1,0 +1,4 @@
+=== 2026-10-19T01:31:18+07:00 E012 summarize: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/.venv/bin/python -m constellation_denoiser.summarize_E012 ===
+JOBS=auto THREADS=auto DEVICE=auto SEEDS=default SMOKE=0 FORCE=0
+сводка: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E012_depth_vs_window/results/depth_window_summary.csv; рисунок: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E012_depth_vs_window/figures/E012_depth_window.png
+=== 2026-10-19T01:31:21+07:00 E012 summarize exit=0 ===

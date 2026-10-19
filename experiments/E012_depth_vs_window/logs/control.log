@@ -1,0 +1,11 @@
+=== 2026-10-18T23:40:03+07:00 E012 control: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/.venv/bin/python -u -m constellation_denoiser.runner --exp E012 --stage control --no-control-gate ===
+JOBS=auto THREADS=auto DEVICE=auto SEEDS=default SMOKE=0 FORCE=0
+[2026-10-18 23:40:04] running 6 tasks with JOBS=23, THREADS=1, DEVICE=cpu
+[2026-10-18 23:43:43] [ok 1/6] v3_one_hidden_w31_h48_N30_const_1e-3_20k_seed17: val=56.17% test=58.26% diverged=False time=217s; ETA ~18 min
+[2026-10-18 23:43:44] [ok 2/6] v3_one_hidden_w31_h48_N30_const_1e-3_20k_seed29: val=58.81% test=60.61% diverged=False time=218s; ETA ~7 min
+[2026-10-18 23:44:00] [ok 3/6] v2_two_kerr_last_w31_h48_N30_const_1e-3_20k_seed17: val=59.43% test=60.40% diverged=False time=235s; ETA ~4 min
+[2026-10-18 23:44:09] [ok 4/6] v2_two_kerr_last_w31_h48_N30_const_1e-3_20k_seed29: val=60.74% test=62.37% diverged=False time=243s; ETA ~2 min
+[2026-10-18 23:45:59] [ok 5/6] v1_two_kerr_both_w31_h48_N30_const_1e-3_20k_seed17: val=60.64% test=61.41% diverged=False time=353s; ETA ~1 min
+[2026-10-18 23:46:07] [ok 6/6] v1_two_kerr_both_w31_h48_N30_const_1e-3_20k_seed29: val=60.42% test=61.49% diverged=False time=361s; ETA ~0 min
+[2026-10-18 23:46:08] finished: 6 ok, 0 failed
+=== 2026-10-18T23:46:08+07:00 E012 control exit=0 ===

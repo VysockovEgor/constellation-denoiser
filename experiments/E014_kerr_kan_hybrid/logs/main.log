@@ -1,0 +1,35 @@
+=== 2026-10-19T01:34:39+07:00 E014 main: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/.venv/bin/python -u -m constellation_denoiser.runner --exp E014 --stage main ===
+JOBS=auto THREADS=auto DEVICE=auto SEEDS=default SMOKE=0 FORCE=0
+[2026-10-19 01:34:41] running 30 tasks with JOBS=23, THREADS=1, DEVICE=cpu
+[2026-10-19 01:43:56] [ok 1/30] k0_kerr_w31_h48_N30_const_1e-3_40k_seed17: val=61.38% test=62.49% diverged=False time=554s; ETA ~269 min
+[2026-10-19 01:43:59] [ok 2/30] k0b_kerr_continued_w31_h48_N30_const_1e-3_40k_seed43: val=61.11% test=62.59% diverged=False time=556s; ETA ~130 min
+[2026-10-19 01:44:01] [ok 3/30] k0b_kerr_continued_w31_h48_N30_const_1e-3_40k_seed17: val=61.35% test=62.50% diverged=False time=559s; ETA ~84 min
+[2026-10-19 01:44:04] [ok 4/30] k0_kerr_w31_h48_N30_const_1e-3_40k_seed43: val=61.15% test=62.54% diverged=False time=562s; ETA ~61 min
+[2026-10-19 01:44:07] [ok 5/30] k0b_kerr_continued_w31_h48_N30_const_1e-3_40k_seed29: val=60.09% test=61.38% diverged=False time=564s; ETA ~47 min
+[2026-10-19 01:44:08] [ok 6/30] k0_kerr_w31_h48_N30_const_1e-3_40k_seed29: val=60.10% test=61.41% diverged=False time=565s; ETA ~38 min
+[2026-10-19 01:54:36] [ok 7/30] k3_parallel_staged_w31_h48_g5_k8_N30_const_1e-3_40k_seed29: val=45.92% test=46.55% diverged=False time=1193s; ETA ~65 min
+[2026-10-19 01:54:44] [ok 8/30] k3_parallel_staged_w31_h48_g5_k8_N30_const_1e-3_40k_seed43: val=44.56% test=45.90% diverged=False time=1201s; ETA ~55 min
+[2026-10-19 01:54:49] [ok 9/30] k3_parallel_staged_w31_h48_g5_k8_N30_const_1e-3_40k_seed17: val=46.97% test=47.63% diverged=False time=1206s; ETA ~47 min
+[2026-10-19 01:56:38] [ok 10/30] k2_parallel_joint_w31_h48_g5_k8_N30_const_1e-3_40k_seed29: val=25.32% test=26.10% diverged=False time=1315s; ETA ~44 min
+[2026-10-19 01:56:49] [ok 11/30] k2_parallel_joint_w31_h48_g5_k8_N30_const_1e-3_40k_seed17: val=24.82% test=26.07% diverged=False time=1326s; ETA ~38 min
+[2026-10-19 01:56:57] [ok 12/30] k2_parallel_joint_w31_h48_g5_k8_N30_const_1e-3_40k_seed43: val=22.83% test=23.31% diverged=False time=1334s; ETA ~33 min
+[2026-10-19 01:57:23] [ok 13/30] k3_parallel_staged_w31_h48_g8_k8_N30_const_1e-3_40k_seed17: val=45.17% test=46.03% diverged=False time=1360s; ETA ~30 min
+[2026-10-19 01:57:28] [ok 14/30] k3_parallel_staged_w31_h48_g8_k8_N30_const_1e-3_40k_seed29: val=43.26% test=44.11% diverged=False time=1364s; ETA ~26 min
+[2026-10-19 01:59:04] [ok 15/30] k2_parallel_joint_w31_h48_g8_k8_N30_const_1e-3_40k_seed17: val=20.08% test=20.72% diverged=False time=1461s; ETA ~24 min
+[2026-10-19 01:59:33] [ok 16/30] k2_parallel_joint_w31_h48_g8_k8_N30_const_1e-3_40k_seed29: val=15.74% test=16.38% diverged=False time=1490s; ETA ~22 min
+[2026-10-19 01:59:40] [ok 17/30] k2_parallel_joint_w31_h48_g8_k8_N30_const_1e-3_40k_seed43: val=8.26% test=8.18% diverged=False time=1498s; ETA ~19 min
+[2026-10-19 02:05:29] [ok 18/30] k3_parallel_staged_w31_h48_g8_k8_N30_const_1e-3_40k_seed43: val=42.34% test=43.87% diverged=False time=1292s; ETA ~21 min
+[2026-10-19 02:05:58] [ok 19/30] k4_cascade_staged_w31_h48_g5_k8_N30_const_1e-3_40k_seed17: val=59.19% test=61.36% diverged=False time=1319s; ETA ~18 min
+[2026-10-19 02:06:07] [ok 20/30] k4_cascade_staged_w31_h48_g5_k8_N30_const_1e-3_40k_seed29: val=61.39% test=62.87% diverged=False time=1326s; ETA ~16 min
+[2026-10-19 02:06:27] [ok 21/30] k4_cascade_staged_w31_h48_g5_k8_N30_const_1e-3_40k_seed43: val=59.52% test=60.57% diverged=False time=1343s; ETA ~14 min
+[2026-10-19 02:08:57] [ok 22/30] k4_cascade_staged_w31_h48_g8_k8_N30_const_1e-3_40k_seed29: val=61.23% test=62.50% diverged=False time=1489s; ETA ~12 min
+[2026-10-19 02:09:01] [ok 23/30] k4_cascade_staged_w31_h48_g8_k8_N30_const_1e-3_40k_seed17: val=59.80% test=61.63% diverged=False time=1494s; ETA ~10 min
+[2026-10-19 02:11:51] [ok 24/30] k1_kan_only_w31_g5_k16_N30_const_1e-3_40k_seed17: val=7.69% test=7.41% diverged=False time=2229s; ETA ~9 min
+[2026-10-19 02:11:57] [ok 25/30] k1_kan_only_w31_g5_k16_N30_const_1e-3_40k_seed29: val=8.12% test=8.49% diverged=False time=2234s; ETA ~7 min
+[2026-10-19 02:12:11] [ok 26/30] k1_kan_only_w31_g5_k16_N30_const_1e-3_40k_seed43: val=7.97% test=8.33% diverged=False time=2248s; ETA ~6 min
+[2026-10-19 02:16:43] [ok 27/30] k4_cascade_staged_w31_h48_g8_k8_N30_const_1e-3_40k_seed43: val=59.61% test=61.00% diverged=False time=1327s; ETA ~5 min
+[2026-10-19 02:20:08] [ok 28/30] k1_kan_only_w31_g8_k16_N30_const_1e-3_40k_seed17: val=10.89% test=10.89% diverged=False time=2725s; ETA ~3 min
+[2026-10-19 02:20:09] [ok 29/30] k1_kan_only_w31_g8_k16_N30_const_1e-3_40k_seed43: val=11.89% test=12.09% diverged=False time=2726s; ETA ~2 min
+[2026-10-19 02:21:58] [ok 30/30] k1_kan_only_w31_g8_k16_N30_const_1e-3_40k_seed29: val=11.73% test=12.24% diverged=False time=2836s; ETA ~0 min
+[2026-10-19 02:22:00] finished: 30 ok, 0 failed
+=== 2026-10-19T02:22:00+07:00 E014 main exit=0 ===

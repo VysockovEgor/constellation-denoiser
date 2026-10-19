@@ -1,0 +1,4 @@
+=== 2026-10-19T01:34:37+07:00 E014 check-control: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/.venv/bin/python -m constellation_denoiser.runner --exp E014 --stage control --check-control ===
+JOBS=auto THREADS=auto DEVICE=auto SEEDS=default SMOKE=0 FORCE=0
+[2026-10-19 01:34:39] control one_hidden_const_1e-3_20k: mean test_reduction_valbest_select = 59.44% по 2 seed; цель 59.437±0.7 п.п. -> OK
+=== 2026-10-19T01:34:39+07:00 E014 check-control exit=0 ===

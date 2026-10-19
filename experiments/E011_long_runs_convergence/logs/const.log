@@ -1,0 +1,29 @@
+=== 2026-10-19T02:27:50+07:00 E011 const: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/.venv/bin/python -u -m constellation_denoiser.runner --exp E011 --stage const ===
+JOBS=auto THREADS=auto DEVICE=auto SEEDS=default SMOKE=0 FORCE=0
+[2026-10-19 02:27:52] running 24 tasks with JOBS=23, THREADS=1, DEVICE=cpu
+[2026-10-19 02:39:54] [ok 1/24] real_tanh_w31_h96_N30_const_1e-3_200k_seed17: val=29.84% test=29.73% diverged=False time=720s; ETA ~277 min
+[2026-10-19 02:39:54] [ok 2/24] real_tanh_w31_h96_N30_const_1e-3_200k_seed29: val=27.84% test=28.47% diverged=False time=720s; ETA ~132 min
+[2026-10-19 02:40:07] [ok 3/24] real_tanh_w31_h96_N30_const_1e-3_200k_seed43: val=27.25% test=28.00% diverged=False time=732s; ETA ~86 min
+[2026-10-19 02:40:12] [ok 4/24] real_tanh_w31_h96_N210_const_1e-3_200k_seed29: val=37.72% test=38.19% diverged=False time=737s; ETA ~62 min
+[2026-10-19 02:40:18] [ok 5/24] real_tanh_w31_h96_N210_const_1e-3_200k_seed17: val=38.24% test=39.50% diverged=False time=743s; ETA ~47 min
+[2026-10-19 02:52:26] [ok 6/24] real_tanh_w31_h96_N210_const_1e-3_200k_seed43: val=37.86% test=38.02% diverged=False time=752s; ETA ~74 min
+[2026-10-19 02:55:06] [ok 7/24] complex_one_hidden_w31_h48_N30_const_1e-3_200k_seed17: val=61.29% test=62.63% diverged=False time=1632s; ETA ~66 min
+[2026-10-19 02:55:16] [ok 8/24] complex_one_hidden_w31_h48_N210_const_1e-3_200k_seed17: val=62.80% test=63.78% diverged=False time=1642s; ETA ~55 min
+[2026-10-19 02:55:20] [ok 9/24] complex_one_hidden_w31_h48_N210_const_1e-3_200k_seed43: val=60.51% test=61.89% diverged=False time=1646s; ETA ~46 min
+[2026-10-19 02:55:52] [ok 10/24] complex_one_hidden_w31_h48_N30_const_1e-3_200k_seed43: val=62.14% test=63.13% diverged=False time=1678s; ETA ~39 min
+[2026-10-19 02:55:53] [ok 11/24] complex_one_hidden_w31_h48_N210_const_1e-3_200k_seed29: val=61.59% test=62.90% diverged=False time=1678s; ETA ~33 min
+[2026-10-19 02:56:14] [ok 12/24] complex_one_hidden_w31_h48_N30_const_1e-3_200k_seed29: val=60.87% test=61.58% diverged=False time=1700s; ETA ~28 min
+[2026-10-19 02:58:06] [ok 13/24] complex_a_w31_h48_N30_const_1e-3_200k_seed29: val=61.10% test=62.17% diverged=False time=1812s; ETA ~26 min
+[2026-10-19 02:58:16] [ok 14/24] complex_a_w31_h48_N30_const_1e-3_200k_seed43: val=62.16% test=63.93% diverged=False time=1822s; ETA ~22 min
+[2026-10-19 02:58:25] [ok 15/24] complex_a_w31_h48_N30_const_1e-3_200k_seed17: val=62.20% test=63.24% diverged=False time=1831s; ETA ~18 min
+[2026-10-19 02:58:26] [ok 16/24] complex_a_w31_h48_N210_const_1e-3_200k_seed29: val=62.55% test=63.80% diverged=False time=1832s; ETA ~15 min
+[2026-10-19 02:58:44] [ok 17/24] complex_a_w31_h48_N210_const_1e-3_200k_seed43: val=61.39% test=62.52% diverged=False time=1850s; ETA ~13 min
+[2026-10-19 02:59:02] [ok 18/24] complex_a_w31_h48_N210_const_1e-3_200k_seed17: val=62.24% test=63.70% diverged=False time=1868s; ETA ~10 min
+[2026-10-19 03:11:40] [ok 19/24] complex_both_w31_h48_N210_const_1e-3_200k_seed43: val=64.32% test=65.88% diverged=False time=2626s; ETA ~12 min
+[2026-10-19 03:11:48] [ok 20/24] complex_both_w31_h48_N210_const_1e-3_200k_seed29: val=67.51% test=68.65% diverged=False time=2634s; ETA ~9 min
+[2026-10-19 03:11:56] [ok 21/24] complex_both_w31_h48_N210_const_1e-3_200k_seed17: val=65.73% test=67.07% diverged=False time=2642s; ETA ~6 min
+[2026-10-19 03:12:15] [ok 22/24] complex_both_w31_h48_N30_const_1e-3_200k_seed17: val=65.29% test=66.74% diverged=False time=2661s; ETA ~4 min
+[2026-10-19 03:12:21] [ok 23/24] complex_both_w31_h48_N30_const_1e-3_200k_seed29: val=66.58% test=67.30% diverged=False time=2668s; ETA ~2 min
+[2026-10-19 03:12:52] [ok 24/24] complex_both_w31_h48_N30_const_1e-3_200k_seed43: val=65.15% test=66.32% diverged=False time=2698s; ETA ~0 min
+[2026-10-19 03:12:53] finished: 24 ok, 0 failed
+=== 2026-10-19T03:12:53+07:00 E011 const exit=0 ===

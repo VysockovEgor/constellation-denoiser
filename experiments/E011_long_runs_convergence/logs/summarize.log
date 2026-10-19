@@ -1,0 +1,4 @@
+=== 2026-10-19T03:57:43+07:00 E011 summarize: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/.venv/bin/python -m constellation_denoiser.summarize_E011 ===
+JOBS=auto THREADS=auto DEVICE=auto SEEDS=default SMOKE=0 FORCE=0
+сводка: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E011_long_runs_convergence/results/long_runs_summary.csv; рисунок: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E011_long_runs_convergence/figures/E011_long_runs.png
+=== 2026-10-19T03:57:48+07:00 E011 summarize exit=0 ===

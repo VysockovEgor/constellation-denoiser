@@ -1,0 +1,59 @@
+{
+  "experiment": "E010",
+  "passed": true,
+  "smoke": false,
+  "checked_at": "2026-10-18T15:24:50+00:00",
+  "targets": [
+    {
+      "key": "both_const_1e-3_20k",
+      "metric": "test_reduction_valbest_select",
+      "target": 61.727,
+      "tol": 0.7,
+      "seeds": [
+        17,
+        29
+      ],
+      "values": [
+        61.76114944163881,
+        61.49085994736468
+      ],
+      "mean": 61.626004694501745,
+      "ok": true,
+      "source": "experiments/E007_window_width_sweep/results/complex_mlp_sweep_summary.csv (window 31, hidden 48)"
+    },
+    {
+      "key": "a_const_1e-3_20k",
+      "metric": "test_reduction_valbest_select",
+      "target": 62.191,
+      "tol": 0.7,
+      "seeds": [
+        17,
+        29
+      ],
+      "values": [
+        62.01721317305641,
+        62.36574436304148
+      ],
+      "mean": 62.191478768048945,
+      "ok": true,
+      "source": "experiments/E009_kerr_ablation/results/complex_mlp_ablation_summary.csv (variant a)"
+    },
+    {
+      "key": "both_cosine_to_zero_1e-3_20k",
+      "metric": "test_reduction_valbest_select",
+      "target": 58.763,
+      "tol": 0.7,
+      "seeds": [
+        17,
+        29
+      ],
+      "values": [
+        59.268084501031375,
+        58.25449889750338
+      ],
+      "mean": 58.761291699267375,
+      "ok": true,
+      "source": "experiments/E008_cosine_lr_coefficients/results/complex_mlp_lr_summary.csv (31,48 cosine)"
+    }
+  ]
+}

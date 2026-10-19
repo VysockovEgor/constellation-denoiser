@@ -1,0 +1,108 @@
+{
+  "criterion": "mean over seeds of final validation BER reduction, diverged configs excluded",
+  "top": {
+    "both": [
+      {
+        "lr_name": "cosine_to_zero_lr0.003_wu0_cm1",
+        "mean_val_reduction": 63.36264227785821,
+        "n": 3,
+        "diverged": false,
+        "lr_config": {
+          "peak_lr": 0.003,
+          "schedule": "cosine_to_zero",
+          "warmup": 0,
+          "c_mult": 1.0,
+          "floor_frac": 0.1,
+          "optimizer": "adam",
+          "weight_decay": 0.0,
+          "horizon": null
+        }
+      },
+      {
+        "lr_name": "cosine_to_floor_lr0.003_wu0_cm1",
+        "mean_val_reduction": 62.53869604623515,
+        "n": 3,
+        "diverged": false,
+        "lr_config": {
+          "peak_lr": 0.003,
+          "schedule": "cosine_to_floor",
+          "warmup": 0,
+          "c_mult": 1.0,
+          "floor_frac": 0.1,
+          "optimizer": "adam",
+          "weight_decay": 0.0,
+          "horizon": null
+        }
+      }
+    ],
+    "a": [
+      {
+        "lr_name": "cosine_to_zero_lr0.003_wu0_cm1",
+        "mean_val_reduction": 62.557529102957965,
+        "n": 3,
+        "diverged": false,
+        "lr_config": {
+          "peak_lr": 0.003,
+          "schedule": "cosine_to_zero",
+          "warmup": 0,
+          "c_mult": 1.0,
+          "floor_frac": 0.1,
+          "optimizer": "adam",
+          "weight_decay": 0.0,
+          "horizon": null
+        }
+      },
+      {
+        "lr_name": "cosine_to_floor_lr0.003_wu0_cm1",
+        "mean_val_reduction": 61.82068575867792,
+        "n": 3,
+        "diverged": false,
+        "lr_config": {
+          "peak_lr": 0.003,
+          "schedule": "cosine_to_floor",
+          "warmup": 0,
+          "c_mult": 1.0,
+          "floor_frac": 0.1,
+          "optimizer": "adam",
+          "weight_decay": 0.0,
+          "horizon": null
+        }
+      }
+    ]
+  },
+  "best": {
+    "both": {
+      "lr_name": "cosine_to_zero_lr0.003_wu0_cm1",
+      "mean_val_reduction": 63.36264227785821,
+      "n": 3,
+      "diverged": false,
+      "lr_config": {
+        "peak_lr": 0.003,
+        "schedule": "cosine_to_zero",
+        "warmup": 0,
+        "c_mult": 1.0,
+        "floor_frac": 0.1,
+        "optimizer": "adam",
+        "weight_decay": 0.0,
+        "horizon": null
+      }
+    },
+    "a": {
+      "lr_name": "cosine_to_zero_lr0.003_wu0_cm1",
+      "mean_val_reduction": 62.557529102957965,
+      "n": 3,
+      "diverged": false,
+      "lr_config": {
+        "peak_lr": 0.003,
+        "schedule": "cosine_to_zero",
+        "warmup": 0,
+        "c_mult": 1.0,
+        "floor_frac": 0.1,
+        "optimizer": "adam",
+        "weight_decay": 0.0,
+        "horizon": null
+      }
+    }
+  },
+  "smoke": false
+}
