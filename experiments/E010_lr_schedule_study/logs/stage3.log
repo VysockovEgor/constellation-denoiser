@@ -1,0 +1,29 @@
+=== 2026-10-18T23:31:32+07:00 E010 stage3: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/.venv/bin/python -u -m constellation_denoiser.runner --exp E010 --stage stage3 ===
+JOBS=auto THREADS=auto DEVICE=auto SEEDS=default SMOKE=0 FORCE=0
+[2026-10-18 23:31:34] running 24 tasks with JOBS=23, THREADS=1, DEVICE=cpu
+[2026-10-18 23:34:19] [ok 1/24] a_w31_h48_N30_cosine_to_zero_lr0.003_wu0_cm30_5k_seed29: val=39.45% test=40.56% diverged=False time=163s; ETA ~63 min
+[2026-10-18 23:34:19] [ok 2/24] a_w31_h48_N30_const_lr0.001_wu0_cm1_5k_seed43: val=18.45% test=17.96% diverged=False time=163s; ETA ~30 min
+[2026-10-18 23:34:21] [ok 3/24] a_w31_h48_N30_cosine_to_zero_lr0.003_wu0_cm30_5k_seed17: val=42.08% test=42.80% diverged=False time=165s; ETA ~19 min
+[2026-10-18 23:34:22] [ok 4/24] a_w31_h48_N30_const_lr0.001_wu0_cm1_5k_seed29: val=4.96% test=5.56% diverged=False time=165s; ETA ~14 min
+[2026-10-18 23:34:23] [ok 5/24] a_w31_h48_N30_const_lr0.001_wu0_cm1_5k_seed17: val=2.58% test=2.99% diverged=False time=167s; ETA ~11 min
+[2026-10-18 23:34:28] [ok 6/24] a_w31_h48_N30_cosine_to_zero_lr0.003_wu0_cm30_5k_seed43: val=47.55% test=48.36% diverged=False time=172s; ETA ~9 min
+[2026-10-18 23:35:57] [ok 7/24] both_w31_h48_N30_cosine_to_zero_lr0.003_wu0_cm30_5k_seed17: val=40.77% test=41.09% diverged=False time=261s; ETA ~11 min
+[2026-10-18 23:36:01] [ok 8/24] both_w31_h48_N30_cosine_to_zero_lr0.003_wu0_cm30_5k_seed43: val=47.84% test=48.66% diverged=False time=265s; ETA ~9 min
+[2026-10-18 23:36:01] [ok 9/24] both_w31_h48_N30_const_lr0.001_wu0_cm1_5k_seed43: val=17.00% test=16.53% diverged=False time=265s; ETA ~7 min
+[2026-10-18 23:36:03] [ok 10/24] both_w31_h48_N30_cosine_to_zero_lr0.003_wu0_cm30_5k_seed29: val=38.96% test=39.89% diverged=False time=267s; ETA ~6 min
+[2026-10-18 23:36:04] [ok 11/24] both_w31_h48_N30_const_lr0.001_wu0_cm1_5k_seed29: val=3.60% test=4.30% diverged=False time=268s; ETA ~5 min
+[2026-10-18 23:36:04] [ok 12/24] both_w31_h48_N30_const_lr0.001_wu0_cm1_5k_seed17: val=1.19% test=1.84% diverged=False time=268s; ETA ~5 min
+[2026-10-18 23:36:46] [ok 13/24] a_w31_h48_N30_cosine_to_zero_lr0.003_wu0_cm30_10k_seed17: val=60.64% test=61.78% diverged=False time=310s; ETA ~4 min
+[2026-10-18 23:36:52] [ok 14/24] a_w31_h48_N30_cosine_to_zero_lr0.003_wu0_cm30_10k_seed29: val=58.47% test=58.93% diverged=False time=315s; ETA ~4 min
+[2026-10-18 23:36:53] [ok 15/24] a_w31_h48_N30_cosine_to_zero_lr0.003_wu0_cm30_10k_seed43: val=61.89% test=63.03% diverged=False time=316s; ETA ~3 min
+[2026-10-18 23:36:53] [ok 16/24] a_w31_h48_N30_const_lr0.001_wu0_cm1_10k_seed17: val=53.57% test=54.43% diverged=False time=316s; ETA ~3 min
+[2026-10-18 23:37:00] [ok 17/24] a_w31_h48_N30_const_lr0.001_wu0_cm1_10k_seed29: val=52.03% test=53.37% diverged=False time=324s; ETA ~2 min
+[2026-10-18 23:39:07] [ok 18/24] a_w31_h48_N30_const_lr0.001_wu0_cm1_10k_seed43: val=52.72% test=54.13% diverged=False time=288s; ETA ~3 min
+[2026-10-18 23:39:36] [ok 19/24] both_w31_h48_N30_cosine_to_zero_lr0.003_wu0_cm30_10k_seed29: val=60.00% test=61.52% diverged=False time=479s; ETA ~2 min
+[2026-10-18 23:39:43] [ok 20/24] both_w31_h48_N30_const_lr0.001_wu0_cm1_10k_seed29: val=51.70% test=52.98% diverged=False time=487s; ETA ~2 min
+[2026-10-18 23:39:43] [ok 21/24] both_w31_h48_N30_cosine_to_zero_lr0.003_wu0_cm30_10k_seed43: val=61.99% test=62.92% diverged=False time=487s; ETA ~1 min
+[2026-10-18 23:39:47] [ok 22/24] both_w31_h48_N30_cosine_to_zero_lr0.003_wu0_cm30_10k_seed17: val=59.87% test=61.38% diverged=False time=490s; ETA ~1 min
+[2026-10-18 23:39:52] [ok 23/24] both_w31_h48_N30_const_lr0.001_wu0_cm1_10k_seed43: val=52.22% test=53.33% diverged=False time=496s; ETA ~0 min
+[2026-10-18 23:39:56] [ok 24/24] both_w31_h48_N30_const_lr0.001_wu0_cm1_10k_seed17: val=52.81% test=53.68% diverged=False time=500s; ETA ~0 min
+[2026-10-18 23:39:57] finished: 24 ok, 0 failed
+=== 2026-10-18T23:39:58+07:00 E010 stage3 exit=0 ===

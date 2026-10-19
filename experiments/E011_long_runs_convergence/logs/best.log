@@ -1,0 +1,23 @@
+=== 2026-10-19T03:12:54+07:00 E011 best: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/.venv/bin/python -u -m constellation_denoiser.runner --exp E011 --stage best ===
+JOBS=auto THREADS=auto DEVICE=auto SEEDS=default SMOKE=0 FORCE=0
+[2026-10-19 03:12:55] running 18 tasks with JOBS=23, THREADS=1, DEVICE=cpu
+[2026-10-19 03:39:59] [ok 1/18] complex_one_hidden_w31_h48_N30_best_e010-cosine_to_zero_lr0.003_wu0_cm1_200k_seed29: val=63.72% test=64.62% diverged=False time=1622s; ETA ~460 min
+[2026-10-19 03:40:04] [ok 2/18] complex_one_hidden_w31_h48_N30_best_e010-cosine_to_zero_lr0.003_wu0_cm1_200k_seed17: val=63.42% test=64.18% diverged=False time=1627s; ETA ~217 min
+[2026-10-19 03:40:10] [ok 3/18] complex_one_hidden_w31_h48_N30_best_e010-cosine_to_zero_lr0.003_wu0_cm1_200k_seed43: val=63.09% test=63.96% diverged=False time=1633s; ETA ~136 min
+[2026-10-19 03:40:21] [ok 4/18] complex_one_hidden_w31_h48_N210_best_e010-cosine_to_zero_lr0.003_wu0_cm1_200k_seed29: val=64.30% test=65.50% diverged=False time=1644s; ETA ~96 min
+[2026-10-19 03:40:22] [ok 5/18] complex_one_hidden_w31_h48_N210_best_e010-cosine_to_zero_lr0.003_wu0_cm1_200k_seed43: val=63.53% test=64.67% diverged=False time=1645s; ETA ~71 min
+[2026-10-19 03:40:40] [ok 6/18] complex_one_hidden_w31_h48_N210_best_e010-cosine_to_zero_lr0.003_wu0_cm1_200k_seed17: val=63.80% test=64.62% diverged=False time=1663s; ETA ~55 min
+[2026-10-19 03:43:14] [ok 7/18] complex_a_w31_h48_N30_best_e010-cosine_to_zero_lr0.003_wu0_cm1_200k_seed43: val=63.75% test=64.98% diverged=False time=1817s; ETA ~48 min
+[2026-10-19 03:43:17] [ok 8/18] complex_a_w31_h48_N210_best_e010-cosine_to_zero_lr0.003_wu0_cm1_200k_seed29: val=64.29% test=65.34% diverged=False time=1819s; ETA ~38 min
+[2026-10-19 03:43:28] [ok 9/18] complex_a_w31_h48_N30_best_e010-cosine_to_zero_lr0.003_wu0_cm1_200k_seed17: val=64.30% test=65.46% diverged=False time=1831s; ETA ~31 min
+[2026-10-19 03:43:48] [ok 10/18] complex_a_w31_h48_N210_best_e010-cosine_to_zero_lr0.003_wu0_cm1_200k_seed43: val=64.05% test=64.99% diverged=False time=1851s; ETA ~25 min
+[2026-10-19 03:43:58] [ok 11/18] complex_a_w31_h48_N30_best_e010-cosine_to_zero_lr0.003_wu0_cm1_200k_seed29: val=64.78% test=65.89% diverged=False time=1861s; ETA ~20 min
+[2026-10-19 03:44:08] [ok 12/18] complex_a_w31_h48_N210_best_e010-cosine_to_zero_lr0.003_wu0_cm1_200k_seed17: val=64.27% test=65.84% diverged=False time=1871s; ETA ~16 min
+[2026-10-19 03:56:07] [ok 13/18] complex_both_w31_h48_N30_best_e010-cosine_to_zero_lr0.003_wu0_cm1_200k_seed29: val=65.47% test=66.92% diverged=False time=2590s; ETA ~17 min
+[2026-10-19 03:56:39] [ok 14/18] complex_both_w31_h48_N30_best_e010-cosine_to_zero_lr0.003_wu0_cm1_200k_seed43: val=64.09% test=65.37% diverged=False time=2622s; ETA ~12 min
+[2026-10-19 03:57:10] [ok 15/18] complex_both_w31_h48_N210_best_e010-cosine_to_zero_lr0.003_wu0_cm1_200k_seed43: val=64.31% test=65.73% diverged=False time=2653s; ETA ~9 min
+[2026-10-19 03:57:16] [ok 16/18] complex_both_w31_h48_N30_best_e010-cosine_to_zero_lr0.003_wu0_cm1_200k_seed17: val=64.39% test=66.10% diverged=False time=2659s; ETA ~6 min
+[2026-10-19 03:57:37] [ok 17/18] complex_both_w31_h48_N210_best_e010-cosine_to_zero_lr0.003_wu0_cm1_200k_seed29: val=65.03% test=66.21% diverged=False time=2680s; ETA ~3 min
+[2026-10-19 03:57:41] [ok 18/18] complex_both_w31_h48_N210_best_e010-cosine_to_zero_lr0.003_wu0_cm1_200k_seed17: val=64.79% test=66.31% diverged=False time=2684s; ETA ~0 min
+[2026-10-19 03:57:42] finished: 18 ok, 0 failed
+=== 2026-10-19T03:57:43+07:00 E011 best exit=0 ===

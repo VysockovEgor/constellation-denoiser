@@ -1,0 +1,7 @@
+=== 2026-10-18T22:53:11+07:00 E010 select: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/.venv/bin/python -m constellation_denoiser.runner --exp E010 --stage select ===
+JOBS=auto THREADS=auto DEVICE=auto SEEDS=default SMOKE=0 FORCE=0
+[2026-10-18 22:53:12] select both: cosine_to_zero_lr0.003_wu0_cm1 mean val reduction 63.36%
+[2026-10-18 22:53:12] select both: cosine_to_floor_lr0.003_wu0_cm1 mean val reduction 62.54%
+[2026-10-18 22:53:12] select a: cosine_to_zero_lr0.003_wu0_cm1 mean val reduction 62.56%
+[2026-10-18 22:53:12] select a: cosine_to_floor_lr0.003_wu0_cm1 mean val reduction 61.82%
+=== 2026-10-18T22:53:12+07:00 E010 select exit=0 ===

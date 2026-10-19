@@ -1,0 +1,65 @@
+=== 2026-10-18T22:53:12+07:00 E010 stage2: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/.venv/bin/python -u -m constellation_denoiser.runner --exp E010 --stage stage2 ===
+JOBS=auto THREADS=auto DEVICE=auto SEEDS=default SMOKE=0 FORCE=0
+[2026-10-18 22:53:14] running 60 tasks with JOBS=23, THREADS=1, DEVICE=cpu
+[2026-10-18 23:10:14] [ok 1/60] both_w31_h48_N30_cosine_to_floor_lr0.003_wu0_cm10_20k_seed17: val=63.13% test=64.59% diverged=False time=1018s; ETA ~1004 min
+[2026-10-18 23:10:16] [ok 2/60] both_w31_h48_N30_cosine_to_zero_lr0.003_wu1000_cm30_20k_seed29: val=63.95% test=64.82% diverged=False time=1020s; ETA ~494 min
+[2026-10-18 23:10:17] [ok 3/60] both_w31_h48_N30_cosine_to_zero_lr0.003_wu0_cm30_20k_seed29: val=64.12% test=65.57% diverged=False time=1021s; ETA ~324 min
+[2026-10-18 23:10:18] [ok 4/60] both_w31_h48_N30_cosine_to_zero_lr0.003_wu1000_cm10_20k_seed29: val=63.94% test=64.97% diverged=False time=1022s; ETA ~239 min
+[2026-10-18 23:10:19] [ok 5/60] both_w31_h48_N30_cosine_to_zero_lr0.003_wu1000_cm1_20k_seed29: val=63.34% test=64.33% diverged=False time=1023s; ETA ~188 min
+[2026-10-18 23:10:19] [ok 6/60] both_w31_h48_N30_cosine_to_zero_lr0.003_wu1000_cm10_20k_seed43: val=64.65% test=66.07% diverged=False time=1023s; ETA ~154 min
+[2026-10-18 23:10:19] [ok 7/60] both_w31_h48_N30_cosine_to_zero_lr0.003_wu1000_cm1_20k_seed17: val=63.97% test=64.87% diverged=False time=1023s; ETA ~129 min
+[2026-10-18 23:10:22] [ok 8/60] both_w31_h48_N30_cosine_to_floor_lr0.003_wu0_cm30_20k_seed43: val=63.25% test=64.24% diverged=False time=1026s; ETA ~111 min
+[2026-10-18 23:10:22] [ok 9/60] both_w31_h48_N30_cosine_to_floor_lr0.003_wu0_cm30_20k_seed17: val=62.47% test=63.55% diverged=False time=1026s; ETA ~97 min
+[2026-10-18 23:10:23] [ok 10/60] both_w31_h48_N30_cosine_to_zero_lr0.003_wu0_cm30_20k_seed43: val=64.42% test=65.68% diverged=False time=1027s; ETA ~86 min
+[2026-10-18 23:10:24] [ok 11/60] both_w31_h48_N30_cosine_to_floor_lr0.003_wu1000_cm1_20k_seed29: val=62.73% test=63.80% diverged=False time=1027s; ETA ~76 min
+[2026-10-18 23:10:24] [ok 12/60] both_w31_h48_N30_cosine_to_zero_lr0.003_wu0_cm10_20k_seed29: val=63.69% test=65.11% diverged=False time=1029s; ETA ~69 min
+[2026-10-18 23:10:27] [ok 13/60] both_w31_h48_N30_cosine_to_floor_lr0.003_wu0_cm10_20k_seed29: val=63.04% test=64.33% diverged=False time=1031s; ETA ~62 min
+[2026-10-18 23:10:30] [ok 14/60] both_w31_h48_N30_cosine_to_floor_lr0.003_wu0_cm30_20k_seed29: val=63.64% test=65.26% diverged=False time=1034s; ETA ~57 min
+[2026-10-18 23:10:31] [ok 15/60] both_w31_h48_N30_cosine_to_zero_lr0.003_wu1000_cm30_20k_seed17: val=64.08% test=65.16% diverged=False time=1034s; ETA ~52 min
+[2026-10-18 23:10:31] [ok 16/60] both_w31_h48_N30_cosine_to_floor_lr0.003_wu1000_cm1_20k_seed17: val=63.10% test=63.93% diverged=False time=1034s; ETA ~48 min
+[2026-10-18 23:10:31] [ok 17/60] both_w31_h48_N30_cosine_to_zero_lr0.003_wu1000_cm30_20k_seed43: val=64.17% test=65.48% diverged=False time=1035s; ETA ~44 min
+[2026-10-18 23:10:31] [ok 18/60] both_w31_h48_N30_cosine_to_zero_lr0.003_wu0_cm30_20k_seed17: val=64.75% test=65.75% diverged=False time=1036s; ETA ~40 min
+[2026-10-18 23:10:31] [ok 19/60] both_w31_h48_N30_cosine_to_floor_lr0.003_wu0_cm10_20k_seed43: val=63.53% test=64.76% diverged=False time=1035s; ETA ~37 min
+[2026-10-18 23:10:36] [ok 20/60] both_w31_h48_N30_cosine_to_zero_lr0.003_wu0_cm10_20k_seed43: val=64.23% test=65.61% diverged=False time=1041s; ETA ~35 min
+[2026-10-18 23:10:40] [ok 21/60] both_w31_h48_N30_cosine_to_zero_lr0.003_wu0_cm10_20k_seed17: val=63.89% test=65.41% diverged=False time=1044s; ETA ~32 min
+[2026-10-18 23:10:41] [ok 22/60] both_w31_h48_N30_cosine_to_zero_lr0.003_wu1000_cm10_20k_seed17: val=63.96% test=65.13% diverged=False time=1045s; ETA ~30 min
+[2026-10-18 23:10:57] [ok 23/60] both_w31_h48_N30_cosine_to_zero_lr0.003_wu1000_cm1_20k_seed43: val=63.82% test=65.04% diverged=False time=1061s; ETA ~29 min
+[2026-10-18 23:20:53] [ok 24/60] a_w31_h48_N30_cosine_to_zero_lr0.003_wu0_cm30_20k_seed17: val=64.18% test=65.45% diverged=False time=629s; ETA ~41 min
+[2026-10-18 23:20:53] [ok 25/60] a_w31_h48_N30_cosine_to_zero_lr0.003_wu0_cm10_20k_seed17: val=63.87% test=65.56% diverged=False time=631s; ETA ~39 min
+[2026-10-18 23:20:56] [ok 26/60] a_w31_h48_N30_cosine_to_zero_lr0.003_wu0_cm10_20k_seed29: val=63.53% test=64.41% diverged=False time=634s; ETA ~36 min
+[2026-10-18 23:20:58] [ok 27/60] a_w31_h48_N30_cosine_to_zero_lr0.003_wu0_cm30_20k_seed29: val=63.36% test=64.37% diverged=False time=634s; ETA ~34 min
+[2026-10-18 23:20:58] [ok 28/60] a_w31_h48_N30_cosine_to_zero_lr0.003_wu0_cm10_20k_seed43: val=63.43% test=64.77% diverged=False time=635s; ETA ~32 min
+[2026-10-18 23:21:02] [ok 29/60] a_w31_h48_N30_cosine_to_zero_lr0.003_wu1000_cm1_20k_seed29: val=63.11% test=64.68% diverged=False time=631s; ETA ~30 min
+[2026-10-18 23:21:02] [ok 30/60] a_w31_h48_N30_cosine_to_zero_lr0.003_wu0_cm30_20k_seed43: val=64.09% test=65.51% diverged=False time=634s; ETA ~28 min
+[2026-10-18 23:21:03] [ok 31/60] a_w31_h48_N30_cosine_to_zero_lr0.003_wu1000_cm10_20k_seed17: val=63.36% test=64.84% diverged=False time=632s; ETA ~26 min
+[2026-10-18 23:21:05] [ok 32/60] a_w31_h48_N30_cosine_to_zero_lr0.003_wu1000_cm10_20k_seed29: val=63.09% test=64.15% diverged=False time=634s; ETA ~24 min
+[2026-10-18 23:21:07] [ok 33/60] a_w31_h48_N30_cosine_to_zero_lr0.003_wu1000_cm1_20k_seed43: val=63.59% test=64.88% diverged=False time=636s; ETA ~23 min
+[2026-10-18 23:21:08] [ok 34/60] a_w31_h48_N30_cosine_to_zero_lr0.003_wu1000_cm1_20k_seed17: val=62.68% test=63.80% diverged=False time=638s; ETA ~21 min
+[2026-10-18 23:21:09] [ok 35/60] a_w31_h48_N30_cosine_to_zero_lr0.003_wu1000_cm10_20k_seed43: val=63.98% test=65.20% diverged=False time=637s; ETA ~20 min
+[2026-10-18 23:21:12] [ok 36/60] a_w31_h48_N30_cosine_to_zero_lr0.003_wu1000_cm30_20k_seed29: val=63.61% test=64.95% diverged=False time=632s; ETA ~19 min
+[2026-10-18 23:21:15] [ok 37/60] a_w31_h48_N30_cosine_to_zero_lr0.003_wu1000_cm30_20k_seed17: val=63.95% test=64.92% diverged=False time=639s; ETA ~17 min
+[2026-10-18 23:21:16] [ok 38/60] a_w31_h48_N30_cosine_to_zero_lr0.003_wu1000_cm30_20k_seed43: val=63.53% test=64.50% diverged=False time=635s; ETA ~16 min
+[2026-10-18 23:21:52] [ok 39/60] a_w31_h48_N30_cosine_to_floor_lr0.003_wu0_cm10_20k_seed17: val=62.91% test=64.13% diverged=False time=656s; ETA ~15 min
+[2026-10-18 23:27:05] [ok 40/60] both_w31_h48_N30_cosine_to_floor_lr0.003_wu1000_cm10_20k_seed17: val=63.20% test=64.35% diverged=False time=1010s; ETA ~17 min
+[2026-10-18 23:27:08] [ok 41/60] both_w31_h48_N30_cosine_to_floor_lr0.003_wu1000_cm30_20k_seed17: val=61.99% test=63.32% diverged=False time=1009s; ETA ~16 min
+[2026-10-18 23:27:09] [ok 42/60] both_w31_h48_N30_cosine_to_floor_lr0.003_wu1000_cm1_20k_seed43: val=62.81% test=63.90% diverged=False time=1014s; ETA ~15 min
+[2026-10-18 23:27:13] [ok 43/60] both_w31_h48_N30_cosine_to_floor_lr0.003_wu1000_cm10_20k_seed29: val=63.77% test=64.69% diverged=False time=1016s; ETA ~13 min
+[2026-10-18 23:27:16] [ok 44/60] both_w31_h48_N30_cosine_to_floor_lr0.003_wu1000_cm30_20k_seed43: val=63.39% test=64.35% diverged=False time=1017s; ETA ~12 min
+[2026-10-18 23:27:26] [ok 45/60] both_w31_h48_N30_cosine_to_floor_lr0.003_wu1000_cm10_20k_seed43: val=63.86% test=65.04% diverged=False time=1028s; ETA ~11 min
+[2026-10-18 23:27:28] [ok 46/60] both_w31_h48_N30_cosine_to_floor_lr0.003_wu1000_cm30_20k_seed29: val=64.05% test=64.86% diverged=False time=1029s; ETA ~10 min
+[2026-10-18 23:31:09] [ok 47/60] a_w31_h48_N30_cosine_to_floor_lr0.003_wu0_cm10_20k_seed43: val=62.84% test=63.96% diverged=False time=615s; ETA ~10 min
+[2026-10-18 23:31:10] [ok 48/60] a_w31_h48_N30_cosine_to_floor_lr0.003_wu0_cm10_20k_seed29: val=63.03% test=64.30% diverged=False time=617s; ETA ~9 min
+[2026-10-18 23:31:11] [ok 49/60] a_w31_h48_N30_cosine_to_floor_lr0.003_wu0_cm30_20k_seed29: val=63.02% test=64.10% diverged=False time=613s; ETA ~9 min
+[2026-10-18 23:31:13] [ok 50/60] a_w31_h48_N30_cosine_to_floor_lr0.003_wu1000_cm1_20k_seed17: val=62.18% test=63.18% diverged=False time=611s; ETA ~8 min
+[2026-10-18 23:31:18] [ok 51/60] a_w31_h48_N30_cosine_to_floor_lr0.003_wu0_cm30_20k_seed43: val=63.07% test=64.56% diverged=False time=620s; ETA ~7 min
+[2026-10-18 23:31:18] [ok 52/60] a_w31_h48_N30_cosine_to_floor_lr0.003_wu1000_cm1_20k_seed43: val=62.62% test=63.87% diverged=False time=615s; ETA ~6 min
+[2026-10-18 23:31:19] [ok 53/60] a_w31_h48_N30_cosine_to_floor_lr0.003_wu0_cm30_20k_seed17: val=63.21% test=64.34% diverged=False time=623s; ETA ~5 min
+[2026-10-18 23:31:20] [ok 54/60] a_w31_h48_N30_cosine_to_floor_lr0.003_wu1000_cm10_20k_seed17: val=62.36% test=63.99% diverged=False time=615s; ETA ~4 min
+[2026-10-18 23:31:22] [ok 55/60] a_w31_h48_N30_cosine_to_floor_lr0.003_wu1000_cm1_20k_seed29: val=62.76% test=64.36% diverged=False time=621s; ETA ~3 min
+[2026-10-18 23:31:26] [ok 56/60] a_w31_h48_N30_cosine_to_floor_lr0.003_wu1000_cm10_20k_seed43: val=62.94% test=64.07% diverged=False time=618s; ETA ~3 min
+[2026-10-18 23:31:26] [ok 57/60] a_w31_h48_N30_cosine_to_floor_lr0.003_wu1000_cm30_20k_seed43: val=62.47% test=63.23% diverged=False time=611s; ETA ~2 min
+[2026-10-18 23:31:28] [ok 58/60] a_w31_h48_N30_cosine_to_floor_lr0.003_wu1000_cm10_20k_seed29: val=62.94% test=64.23% diverged=False time=621s; ETA ~1 min
+[2026-10-18 23:31:29] [ok 59/60] a_w31_h48_N30_cosine_to_floor_lr0.003_wu1000_cm30_20k_seed29: val=63.18% test=64.10% diverged=False time=617s; ETA ~1 min
+[2026-10-18 23:31:31] [ok 60/60] a_w31_h48_N30_cosine_to_floor_lr0.003_wu1000_cm30_20k_seed17: val=62.83% test=63.96% diverged=False time=622s; ETA ~0 min
+[2026-10-18 23:31:32] finished: 60 ok, 0 failed
+=== 2026-10-18T23:31:32+07:00 E010 stage2 exit=0 ===

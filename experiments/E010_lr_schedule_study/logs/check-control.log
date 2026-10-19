@@ -1,0 +1,6 @@
+=== 2026-10-18T22:24:49+07:00 E010 check-control: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/.venv/bin/python -m constellation_denoiser.runner --exp E010 --stage control --check-control ===
+JOBS=auto THREADS=auto DEVICE=auto SEEDS=default SMOKE=0 FORCE=0
+[2026-10-18 22:24:50] control both_const_1e-3_20k: mean test_reduction_valbest_select = 61.63% по 2 seed; цель 61.727±0.7 п.п. -> OK
+[2026-10-18 22:24:50] control a_const_1e-3_20k: mean test_reduction_valbest_select = 62.19% по 2 seed; цель 62.191±0.7 п.п. -> OK
+[2026-10-18 22:24:50] control both_cosine_to_zero_1e-3_20k: mean test_reduction_valbest_select = 58.76% по 2 seed; цель 58.763±0.7 п.п. -> OK
+=== 2026-10-18T22:24:50+07:00 E010 check-control exit=0 ===

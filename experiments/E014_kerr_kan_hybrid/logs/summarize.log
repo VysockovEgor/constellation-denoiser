@@ -1,0 +1,4 @@
+=== 2026-10-19T02:22:00+07:00 E014 summarize: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/.venv/bin/python -m constellation_denoiser.summarize_E014 ===
+JOBS=auto THREADS=auto DEVICE=auto SEEDS=default SMOKE=0 FORCE=0
+сводка: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E014_kerr_kan_hybrid/results/kan_hybrid_summary.csv; рисунок: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E014_kerr_kan_hybrid/figures/E014_kan_tradeoff.png
+=== 2026-10-19T02:22:02+07:00 E014 summarize exit=0 ===
