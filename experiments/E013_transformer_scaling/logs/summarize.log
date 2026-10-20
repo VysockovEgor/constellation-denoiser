@@ -1,0 +1,4 @@
+=== 2026-10-20T09:06:14+07:00 E013 summarize: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/.venv/bin/python -m constellation_denoiser.summarize_E013 ===
+JOBS=auto THREADS=auto DEVICE=auto SEEDS=default SMOKE=0 FORCE=0
+сравнение: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E013_transformer_scaling/results/comparison_points.csv; рисунок: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E013_transformer_scaling/figures/E013_transformer_vs_macs.png
+=== 2026-10-20T09:06:17+07:00 E013 summarize exit=0 ===

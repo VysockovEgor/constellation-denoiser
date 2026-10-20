@@ -1,0 +1,29 @@
+=== 2026-10-19T10:43:11+07:00 E013 stageA: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/.venv/bin/python -u -m constellation_denoiser.runner --exp E013 --stage stageA ===
+JOBS=11 THREADS=auto DEVICE=auto SEEDS=default SMOKE=0 FORCE=0
+[2026-10-19 10:43:13] running 24 tasks with JOBS=11, THREADS=1, DEVICE=cpu
+[2026-10-19 11:01:15] [ok 1/24] transformer_w7_d32_l1_N210_adamw_wu1000_cosine_20k_seed29: val=5.08% test=5.06% diverged=False time=1080s; ETA ~415 min
+[2026-10-19 11:01:23] [ok 2/24] transformer_w7_d32_l1_N30_adamw_wu1000_cosine_20k_seed17: val=6.08% test=6.43% diverged=False time=1088s; ETA ~200 min
+[2026-10-19 11:01:35] [ok 3/24] transformer_w7_d32_l1_N30_adamw_wu1000_cosine_20k_seed43: val=6.67% test=6.76% diverged=False time=1100s; ETA ~129 min
+[2026-10-19 11:01:52] [ok 4/24] transformer_w7_d32_l1_N30_adamw_wu1000_cosine_20k_seed29: val=4.92% test=4.82% diverged=False time=1117s; ETA ~93 min
+[2026-10-19 11:01:59] [ok 5/24] transformer_w7_d32_l1_N210_adamw_wu1000_cosine_20k_seed17: val=6.22% test=6.70% diverged=False time=1124s; ETA ~71 min
+[2026-10-19 11:02:03] [ok 6/24] transformer_w7_d32_l1_N210_adamw_wu1000_cosine_20k_seed43: val=7.03% test=7.24% diverged=False time=1128s; ETA ~57 min
+[2026-10-19 11:41:57] [ok 7/24] transformer_w7_d64_l2_N210_adamw_wu1000_cosine_20k_seed17: val=31.76% test=32.57% diverged=False time=3521s; ETA ~143 min
+[2026-10-19 11:42:55] [ok 8/24] transformer_w7_d64_l2_N30_adamw_wu1000_cosine_20k_seed29: val=29.89% test=30.13% diverged=False time=3580s; ETA ~119 min
+[2026-10-19 11:43:00] [ok 9/24] transformer_w7_d64_l2_N30_adamw_wu1000_cosine_20k_seed43: val=29.22% test=30.10% diverged=False time=3584s; ETA ~100 min
+[2026-10-19 11:44:20] [ok 10/24] transformer_w7_d64_l2_N210_adamw_wu1000_cosine_20k_seed29: val=31.87% test=32.51% diverged=False time=3664s; ETA ~86 min
+[2026-10-19 11:45:17] [ok 11/24] transformer_w7_d64_l2_N30_adamw_wu1000_cosine_20k_seed17: val=28.32% test=28.80% diverged=False time=3722s; ETA ~73 min
+[2026-10-19 11:59:24] [ok 12/24] transformer_w7_d64_l2_N210_adamw_wu1000_cosine_20k_seed43: val=30.25% test=31.37% diverged=False time=3489s; ETA ~76 min
+[2026-10-19 12:23:05] [ok 13/24] transformer_w31_d32_l1_N30_adamw_wu1000_cosine_20k_seed43: val=16.32% test=16.34% diverged=False time=4873s; ETA ~84 min
+[2026-10-19 12:24:46] [ok 14/24] transformer_w31_d32_l1_N30_adamw_wu1000_cosine_20k_seed29: val=13.83% test=13.64% diverged=False time=4990s; ETA ~73 min
+[2026-10-19 12:27:34] [ok 15/24] transformer_w31_d32_l1_N30_adamw_wu1000_cosine_20k_seed17: val=13.23% test=13.54% diverged=False time=5171s; ETA ~63 min
+[2026-10-19 12:28:13] [ok 16/24] transformer_w31_d32_l1_N210_adamw_wu1000_cosine_20k_seed17: val=14.73% test=15.35% diverged=False time=5173s; ETA ~52 min
+[2026-10-19 12:28:44] [ok 17/24] transformer_w31_d32_l1_N210_adamw_wu1000_cosine_20k_seed29: val=14.75% test=14.62% diverged=False time=5201s; ETA ~43 min
+[2026-10-19 13:04:25] [ok 18/24] transformer_w31_d32_l1_N210_adamw_wu1000_cosine_20k_seed43: val=18.87% test=18.86% diverged=False time=4948s; ETA ~47 min
+[2026-10-19 16:02:10] [ok 19/24] transformer_w31_d64_l2_N30_adamw_wu1000_cosine_20k_seed29: val=33.31% test=33.46% diverged=False time=15550s; ETA ~84 min
+[2026-10-19 16:09:58] [ok 20/24] transformer_w31_d64_l2_N30_adamw_wu1000_cosine_20k_seed43: val=34.52% test=34.55% diverged=False time=15938s; ETA ~65 min
+[2026-10-19 16:10:51] [ok 21/24] transformer_w31_d64_l2_N30_adamw_wu1000_cosine_20k_seed17: val=33.79% test=33.73% diverged=False time=16076s; ETA ~47 min
+[2026-10-19 16:11:24] [ok 22/24] transformer_w31_d64_l2_N210_adamw_wu1000_cosine_20k_seed17: val=36.69% test=36.90% diverged=False time=15966s; ETA ~30 min
+[2026-10-19 16:22:46] [ok 23/24] transformer_w31_d64_l2_N210_adamw_wu1000_cosine_20k_seed29: val=37.56% test=37.96% diverged=False time=15802s; ETA ~15 min
+[2026-10-19 16:43:51] [ok 24/24] transformer_w31_d64_l2_N210_adamw_wu1000_cosine_20k_seed43: val=37.05% test=37.20% diverged=False time=15646s; ETA ~0 min
+[2026-10-19 16:43:52] finished: 24 ok, 0 failed
+=== 2026-10-19T16:43:52+07:00 E013 stageA exit=0 ===

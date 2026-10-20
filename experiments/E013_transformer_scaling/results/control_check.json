@@ -1,0 +1,25 @@
+{
+  "experiment": "E013",
+  "passed": true,
+  "smoke": false,
+  "checked_at": "2026-10-19T03:30:51+00:00",
+  "targets": [
+    {
+      "key": "both_const_1e-3_20k",
+      "metric": "test_reduction_valbest_select",
+      "target": 61.727,
+      "tol": 0.7,
+      "seeds": [
+        17,
+        29
+      ],
+      "values": [
+        61.76114944163881,
+        61.49085994736468
+      ],
+      "mean": 61.626004694501745,
+      "ok": true,
+      "source": "experiments/E007_window_width_sweep/results/complex_mlp_sweep_summary.csv"
+    }
+  ]
+}

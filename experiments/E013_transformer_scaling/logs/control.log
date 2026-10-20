@@ -1,0 +1,7 @@
+=== 2026-10-19T10:25:21+07:00 E013 control: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/.venv/bin/python -u -m constellation_denoiser.runner --exp E013 --stage control --no-control-gate ===
+JOBS=auto THREADS=auto DEVICE=auto SEEDS=default SMOKE=0 FORCE=0
+[2026-10-19 10:25:23] running 2 tasks with JOBS=23, THREADS=1, DEVICE=cpu
+[2026-10-19 10:30:45] [ok 1/2] control_complex_both_w31_h48_N30_20k_seed17: val=60.64% test=61.41% diverged=False time=321s; ETA ~5 min
+[2026-10-19 10:30:48] [ok 2/2] control_complex_both_w31_h48_N30_20k_seed29: val=60.42% test=61.49% diverged=False time=324s; ETA ~0 min
+[2026-10-19 10:30:49] finished: 2 ok, 0 failed
+=== 2026-10-19T10:30:49+07:00 E013 control exit=0 ===
