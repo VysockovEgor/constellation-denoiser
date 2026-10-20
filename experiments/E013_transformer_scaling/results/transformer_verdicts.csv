@@ -1,0 +1,5 @@
+model,window,n_train,steps,macs_per_symbol,rival,rival_macs,diff_pp,seed_spread_pp,verdict,rule_status
+transformer_d32_L1,31,210,20000.0,318528.0,complex_both,16032.0,-45.82233333333333,4.2392,не доказано,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+transformer_d32_L1,31,210,100000.0,318528.0,complex_both,16032.0,-41.96713333333334,3.7485,не доказано,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+transformer_d64_L2,31,210,20000.0,2285824.0,complex_both,16032.0,-24.744533333333337,1.0597999999999956,не доказано,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+transformer_d64_L2,31,210,100000.0,2285824.0,complex_both,16032.0,-10.650333333333336,8.460799999999999,не доказано,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
