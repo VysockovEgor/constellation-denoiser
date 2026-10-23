@@ -586,10 +586,51 @@ def e017_tasks(stage: str, options: Options) -> list[dict]:
     return tasks
 
 
+# --------------------------------------------------------------------------- E018
+
+def e018_phases(mode: str, n_steps: int, per_step: int, finetune: int, base_lr: dict, finetune_div: float) -> list[dict]:
+    if mode == "layerwise":
+        phases = [{"steps": per_step, "trainable": [f"steps.{k}."], "reset_optimizer": True} for k in range(n_steps)]
+        lr = lr_from(base_lr, peak_lr=base_lr["peak_lr"] / finetune_div)
+        return phases + [{"steps": finetune, "trainable": "all", "reset_optimizer": True, "lr": lr}]
+    if mode == "joint_from_scratch":
+        return [{"steps": n_steps * per_step + finetune}]
+    raise ValueError(mode)
+
+
+def e018_tasks(stage: str, options: Options) -> list[dict]:
+    exp = "E018"
+    directory, config = load_config(exp)
+    if stage == "control":
+        return control_tasks(exp, directory, config, options)
+    if stage != "main":
+        raise SystemExit(f"E018: неизвестная стадия {stage!r}")
+    grid = config["grid"]
+    lr = lr_from(config["base_lr"])
+    tasks = []
+    for n_steps in grid["n_steps"]:
+        for fir_len in grid["fir_len"]:
+            for n_alpha in grid["n_alpha"]:
+                for mode in config["modes"]:
+                    spec = phys_spec(config["window"], fir_len, n_alpha, True, model="phys_dbp", n_steps=n_steps,
+                                     name=f"dbp_Ns{n_steps}_L{fir_len}_R{n_alpha}_{mode}")
+                    phases = e018_phases(mode, n_steps, config["steps_per_layer"], config["finetune_steps"],
+                                         config["base_lr"], config["finetune_lr_divisor"])
+                    for seed in seeds_for(config, options):
+                        tasks.append(make_task(
+                            exp, stage, directory, options, spec=spec, seed=seed, n_train=config["n_train_files"],
+                            phases=phases, lr=lr, lr_name="const_1e-3", eval_every=config["eval_every"],
+                            select_every=config["eval_every"], variant=spec["name"],
+                            force_checkpoints=True, ckpt_every=config["ckpt_every"],
+                        ))
+    return tasks
+
+
 # --------------------------------------------------------------------------- registry
 
 BUILDERS = {"E010": e010_tasks, "E011": e011_tasks, "E012": e012_tasks, "E013": e013_tasks,
-            "E014": e014_tasks, "E016": e016_tasks, "E017": e017_tasks}
+            "E014": e014_tasks, "E016": e016_tasks, "E017": e017_tasks,
+            "E018": e018_tasks}
 SPECIAL_STAGES = {("E010", "select"): e010_select}
 POST_HOOKS: dict = {"merge_check": merge_check_hook, "kan_costs": kan_costs_hook}
 
