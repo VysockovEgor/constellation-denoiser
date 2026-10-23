@@ -70,10 +70,14 @@ def lr_factor(step: int, total: int, config: LRConfig) -> float:
 
 
 def is_kerr_coefficient(name: str, module_types: dict[str, type]) -> bool:
+    """Kerr ``c`` of NonlinearPhase (E005+) or nonlinear-phase ``alpha`` of PhysStep (E016+)."""
     owner = name.rsplit(".", 1)[0] if "." in name else ""
     from .paper_complex_mlp import NonlinearPhase
+    from .phys_models import PhysStep
 
-    return name.endswith(".c") and issubclass(module_types.get(owner, object), NonlinearPhase)
+    owner_type = module_types.get(owner, object)
+    return ((name.endswith(".c") and issubclass(owner_type, NonlinearPhase))
+            or (name.endswith("alpha") and issubclass(owner_type, PhysStep)))
 
 
 def build_optimizer(model: nn.Module, config: LRConfig) -> tuple[torch.optim.Optimizer, list[float]]:

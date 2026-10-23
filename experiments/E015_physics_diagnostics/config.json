@@ -1,0 +1,34 @@
+{
+  "experiment_id": "E015",
+  "title": "Physics diagnostics without training: does the phase error depend on neighbour power?",
+  "date": "not run",
+  "base_git_commit": "a29b51d (branch exp/E010-E014; new branch exp/E015-E018)",
+  "git_commit": "recorded in logs (git log -1 at run time)",
+  "data_manifest_sha256": "cb5f2de47145c02d6485969ce116df2253a271c979a927452ea454551a48c0a8",
+  "data_audit_sha256": "a9c35fb7839e85c39f7131373418a6f3a04c731e9c4e55385347a1eabbdedbe4",
+  "split_source": "experiments/E004_training_file_curve/config.json: train_pool_files[:30] (alpha fit), validation 45 (decisions), test 45 (report), as E007-E014",
+  "split_source_sha256": "04c0b2a5775d8fae1acdc348967c6fb976ef5d90e76a8334484242cc9707025a",
+  "dataset_root": "data/raw/archive",
+  "n_train_files": 30,
+  "signal": "received symbols after phase recovery as stored in the CSV (rx_I, rx_Q), one sample per symbol, one polarization; 16-QAM levels +-1/sqrt(10), +-3/sqrt(10): rings |a| = 0.447, 1.000, 1.342",
+  "symbols": "centre symbols of window 31 (15 trimmed at each file edge), the same symbols as the BER metric of E010-E014",
+  "neighbour_radii": [1, 3, 7, 15],
+  "fit_n_alpha": [1, 3, 7, 15, 31],
+  "fit": "minimize mean |z_k exp(-i sum_j alpha_j |z_{k+j}|^2) - a_k|^2 over alpha (scipy.optimize L-BFGS-B, torch float64 gradient), alpha = 0 start, train files only",
+  "fit_maxiter": 500,
+  "bootstrap_reps": 200,
+  "bootstrap": "resampling whole files with replacement (seed 20261023); no training seeds exist in E015",
+  "control": "no network is trained, so the complex_a control does not apply; instead the raw test BER must equal 0.009551859551859552 (experiments/E004_training_file_curve/config.json, test_mean_raw_ber) to 1e-12, otherwise ОШИБКА and the rest is skipped",
+  "rule_draft": {
+    "status": "DRAFT: to be confirmed by the user before the first run; must not change after results are seen",
+    "memory_present_if_all": [
+      "(a) on validation |rho(dphi, P_nb(R))| >= |rho(dphi, |z|^2)| for at least one R in {1, 3, 7, 15} (Spearman, all rings)",
+      "(b) on validation the fit with R = 7 reduces BER by at least fit_gap_pp more than the fit with R = 1",
+      "(c) on test the sign is the same and |test / validation| is within test_ratio_range, for rho of the R with the largest validation |rho| and for the R7 - R1 gap"
+    ],
+    "fit_gap_pp": 2.0,
+    "test_ratio_range": [0.1, 10.0],
+    "otherwise": "не доказано",
+    "uncertainty": "95% file-bootstrap intervals are reported for every number"
+  }
+}
