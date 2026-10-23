@@ -508,10 +508,88 @@ def e016_tasks(stage: str, options: Options) -> list[dict]:
     return tasks
 
 
+# --------------------------------------------------------------------------- E017
+
+def e016_results_csv(smoke: bool) -> Path | None:
+    from .runner import exp_dir
+
+    directory = exp_dir("E016")
+    for path in ([directory / "results_smoke" / "phys_kerr.csv"] if smoke else []) + [directory / "results" /
+                                                                                      "phys_kerr.csv"]:
+        if path.is_file():
+            return path
+    return None
+
+
+def e016_choice(config: dict, smoke: bool) -> dict:
+    """PhysKerr configuration (and its lr branch) with the best mean validation reduction in E016."""
+    import pandas as pd
+
+    path = e016_results_csv(smoke)
+    if path is not None:
+        runs = pd.read_csv(path)
+        runs = runs[(runs.model == "phys_kerr") & (runs.spec_n_alpha > 0) & (~runs.diverged.astype(bool))]
+        if not runs.empty:
+            mean = runs.groupby(["variant", "lr_name"]).agg(
+                val=("best_val_reduction", "mean"), n_alpha=("spec_n_alpha", "first"),
+                fir_len=("spec_fir_len", "first"), sym=("spec_sym", "first")).reset_index()
+            best = mean.loc[mean.val.idxmax()]
+            return {"n_alpha": int(best.n_alpha), "fir_len": int(best.fir_len), "sym": bool(best.sym),
+                    "lr_name": str(best.lr_name), "mean_best_val_reduction": float(best.val), "source": str(path)}
+    fallback = config["phys_fallback"]
+    return {**fallback, "lr_name": None, "source": "fallback (E016 results not found)"}
+
+
+def e017_lr(config: dict, choice: dict, smoke: bool) -> tuple[str, dict]:
+    branches = dict(phys_lr_branches(config, smoke))
+    if choice.get("lr_name") in branches:          # the branch under which the chosen PhysKerr was best
+        return choice["lr_name"], branches[choice["lr_name"]]
+    best = e010_stage3_lr(smoke)
+    if best is not None:                           # plan default: best_e010 as chosen by E010 stage3
+        lr = lr_from(best, horizon=None)
+        return f"best_e010_cm{lr['c_mult']:g}", lr
+    return "const_1e-3", lr_from(config["base_lr"])
+
+
+def e017_tasks(stage: str, options: Options) -> list[dict]:
+    exp = "E017"
+    directory, config = load_config(exp)
+    if stage == "control":
+        return control_tasks(exp, directory, config, options)
+    if stage != "main":
+        raise SystemExit(f"E017: неизвестная стадия {stage!r}")
+    choice = e016_choice(config, options.smoke)
+    lr_name, lr = e017_lr(config, choice, options.smoke)
+    from .runner import atomic_write_json
+
+    atomic_write_json(directory / ("results_smoke" if options.smoke else "results") / "e016_choice.json",
+                      {**choice, "lr_name_used": lr_name, "lr_config_used": lr})
+    tag = f"R{choice['n_alpha']}_L{choice['fir_len']}_{'sym' if choice['sym'] else 'nosym'}"
+    steps = config["steps_per_stage"]
+    tasks = []
+    for hidden in config["mlp_hidden"]:
+        for mode in config["modes"]:
+            spec = phys_spec(config["window"], choice["fir_len"], choice["n_alpha"], choice["sym"],
+                             model="phys_plus_mlp", mlp_hidden=hidden, name=f"hyb_{tag}_h{hidden}_{mode}")
+            if mode == "frozen":
+                phases = [{"steps": steps, "trainable": ["phys."]},
+                          {"steps": steps, "trainable": ["mlp."], "reset_optimizer": True}]
+            else:
+                phases = [{"steps": 2 * steps}]
+            for seed in seeds_for(config, options):
+                tasks.append(make_task(
+                    exp, stage, directory, options, spec=spec, seed=seed, n_train=config["n_train_files"],
+                    phases=phases, lr=lr, lr_name=lr_name, eval_every=config["eval_every"],
+                    select_every=config["eval_every"], variant=f"h{hidden}_{mode}", mode=mode,
+                    force_checkpoints=True, ckpt_every=config["ckpt_every"],
+                ))
+    return tasks
+
+
 # --------------------------------------------------------------------------- registry
 
 BUILDERS = {"E010": e010_tasks, "E011": e011_tasks, "E012": e012_tasks, "E013": e013_tasks,
-            "E014": e014_tasks, "E016": e016_tasks}
+            "E014": e014_tasks, "E016": e016_tasks, "E017": e017_tasks}
 SPECIAL_STAGES = {("E010", "select"): e010_select}
 POST_HOOKS: dict = {"merge_check": merge_check_hook, "kan_costs": kan_costs_hook}
 

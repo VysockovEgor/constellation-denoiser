@@ -1,0 +1,46 @@
+{
+  "experiment_id": "E017",
+  "title": "PhysKerr + small complex MLP on the residual",
+  "date": "not run",
+  "base_git_commit": "eda258e (branch exp/E015-E018)",
+  "git_commit": "recorded per run in results/runs/*.json (field git_commit)",
+  "data_manifest_sha256": "cb5f2de47145c02d6485969ce116df2253a271c979a927452ea454551a48c0a8",
+  "data_audit_sha256": "a9c35fb7839e85c39f7131373418a6f3a04c731e9c4e55385347a1eabbdedbe4",
+  "split_source": "experiments/E004_training_file_curve/config.json (train_pool_files[:30], validation 45, test 45), as E007-E016",
+  "split_source_sha256": "04c0b2a5775d8fae1acdc348967c6fb976ef5d90e76a8334484242cc9707025a",
+  "dataset_root": "data/raw/archive",
+  "window": 31,
+  "n_train_files": 30,
+  "model": "y = PhysKerr(z) + MLP_res(z) (phys_models.PhysPlusMLP); MLP_res = one hidden complex layer with Kerr activation (AblationComplexMLP d), output layer initialized to zero so the hybrid starts equal to PhysKerr; complex MSE loss",
+  "phys_choice": "configuration (R, L, sym) and lr branch with the best mean validation reduction in experiments/E016_phys_kerr_only/results/phys_kerr.csv, written to results/e016_choice.json when the stage is built; run ids contain R, L, sym",
+  "phys_fallback": {"n_alpha": 7, "fir_len": 31, "sym": true},
+  "mlp_hidden": [4, 8, 16, 48],
+  "modes": ["frozen", "joint"],
+  "modes_note": "frozen: PhysKerr trained steps_per_stage steps (MLP_res frozen at zero), then frozen while MLP_res is trained steps_per_stage steps with a fresh optimizer; joint: both from scratch, 2 x steps_per_stage steps (equal budget)",
+  "steps_per_stage": 20000,
+  "eval_every": 1000,
+  "ckpt_every": 10000,
+  "seeds": [17, 29, 43, 57, 71],
+  "base_lr": {"peak_lr": 0.001, "schedule": "const", "warmup": 0, "c_mult": 1.0, "floor_frac": 0.1, "optimizer": "adam", "weight_decay": 0.0},
+  "best_e010_c_mult": [1, 30],
+  "lr_policy": "the lr branch under which the chosen PhysKerr configuration was best in E016 (const_1e-3, best_e010_cm1 or best_e010_cm30); if E016 results are missing: best_e010 = experiments/E010_lr_schedule_study/results/stage3_choice.json['a'] as is (c_mult 30); if that is missing too: const_1e-3. Deviation from the plan (always best_e010): the E016 smoke showed c_mult 30 collapsing some PhysKerr runs, so the validation-chosen branch is used when it exists",
+  "macs": "PhysKerr macs_phys + MLP_res h(4W + 11) = h*135 (one hidden layer, nothing to merge)",
+  "control": {
+    "runs": {
+      "a_const_1e-3_20k": {"spec": {"model": "complex_a", "window": 31, "hidden": 48, "name": "complex_a"}, "n_train_files": 30, "steps": 20000, "seeds": [17, 29, 43, 57, 71]},
+      "one_hidden_const_1e-3_20k": {"spec": {"model": "complex_one_hidden", "window": 31, "hidden": 48, "name": "one_hidden"}, "n_train_files": 30, "steps": 20000, "seeds": [17, 29, 43, 57, 71]}
+    },
+    "targets": {
+      "a_const_1e-3_20k": {"target": 62.191, "tol": 0.7, "seeds": [17, 29], "metric": "test_reduction_valbest_select", "source": "experiments/E009_kerr_ablation/results/complex_mlp_ablation_summary.csv (variant a)"},
+      "one_hidden_const_1e-3_20k": {"target": 59.437, "tol": 0.7, "seeds": [17, 29], "metric": "test_reduction_valbest_select", "source": "experiments/E009_kerr_ablation/results/complex_mlp_ablation_summary.csv (variant d)"}
+    }
+  },
+  "metrics": {"main": "test_reduction_valbest_select and its Q2 gain", "selection": "mean best_val_reduction over seeds", "seed_spread": "range; the larger of the two compared groups"},
+  "rule_draft": {
+    "status": "DRAFT: to be confirmed by the user before the first run; must not change after results are seen",
+    "better_at_equal_cost": "the hybrid (any h, any mode) with multiplies <= 6480 and the best mean validation reduction beats on test both complex_a (this experiment, 5 seeds) and the E016 configuration chosen by validation (5 seeds) by >= 1 p.p. and by more than the seed spread",
+    "residual_net_not_needed": "for h = 4, both frozen and joint differ on test from the chosen E016 configuration by less than the seed spread",
+    "frozen_vs_joint": "reported as an observation only, no verdict",
+    "otherwise": "не доказано"
+  }
+}
