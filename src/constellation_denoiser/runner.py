@@ -38,6 +38,7 @@ import torch
 from . import model_zoo
 from .lr_schedules import LRConfig, apply_lr, build_optimizer
 from .paths import CHECKPOINTS_DIR, EXPERIMENTS_DIR, PROJECT_ROOT
+from .q2 import q2_fields
 from .window_data import FileSet, load_fileset, model_ber, resolve_paths, split_files, synthetic_fileset
 
 BATCH_SIZE = 1024
@@ -396,6 +397,9 @@ def run_task(task: dict, threads: int, device_name: str) -> dict:
         "test_reduction_at_best_val": None if best["all"][2] is None else reduction(raw_test, best["all"][2]),
         "select_every": select_every, "best_val_step_select": best["select"][1],
         "test_reduction_valbest_select": None if best["select"][2] is None else reduction(raw_test, best["select"][2]),
+        **q2_fields(raw_test, final.get("test_ber")),
+        **q2_fields(raw_test, best["select"][2], prefix="valbest_select_"),
+        **q2_fields(raw_val, final.get("val_ber"), prefix="val_"),
         "macs_per_symbol": cost.macs, "macs_per_symbol_merged": cost.macs_merged,
         "n_params": model_zoo.n_params(model),
         "steps_to_target": None if target is None else {

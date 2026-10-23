@@ -59,6 +59,25 @@ def transformer_macs(window: int, width: int, layers: int, ffn_mult: int = 2) ->
     return w * 2 * d + layers * per_layer + d * d + 2 * d
 
 
+def macs_phys(R: int, L: int, sym: bool) -> int | float:
+    """Real multiplies per symbol of one [FIR(L) + nonlinear phase with R coefficients] step.
+
+    Streaming implementation (each received symbol is filtered once and reused by
+    neighbouring outputs): FIR 4L complex taps, or 2(L + 1) when symmetric
+    (pairs z_{k+m} + z_{k-m} share one complex product); L = 1 means no FIR (0).
+    Nonlinearity (R > 0): |u|^2 2, power convolution R (symmetric: (R + 1)/2),
+    exp(-i*phi) from a lookup table 0, rotation (complex product) 4.
+    The paper (Sidelnikov et al., JLT 2021) quotes 0.25(R + 1) + 6 for symmetric
+    alpha; see experiments/E016_phys_kerr_only/README.md for the comparison.
+    """
+    fir = 0 if L <= 1 else (2 * (L + 1) if sym else 4 * L)
+    if R <= 0:
+        return fir
+    conv = (R + 1) / 2 if sym else R
+    conv = int(conv) if float(conv).is_integer() else conv
+    return fir + 2 + conv + 4
+
+
 def build(spec: dict, seed: int | None = None) -> nn.Module:
     """Construct a model from a spec dict; ``set_seed`` first so init matches E005-E009."""
     if seed is not None:
@@ -93,6 +112,10 @@ def build(spec: dict, seed: int | None = None) -> nn.Module:
         from .kan import build_kan_model
 
         return build_kan_model(spec)
+    if kind in ("phys_kerr", "phys_dbp", "phys_plus_mlp"):
+        from .phys_models import build_phys_model
+
+        return build_phys_model(spec)
     raise ValueError(f"unknown model kind {kind!r}")
 
 
@@ -117,6 +140,12 @@ def cost(spec: dict) -> Cost:
         from .kan import kan_model_cost
 
         return kan_model_cost(spec)
+    if kind in ("phys_kerr", "phys_dbp", "phys_plus_mlp"):
+        step = macs_phys(int(spec["n_alpha"]), int(spec["fir_len"]), bool(spec["sym"]))
+        total = step * int(spec.get("n_steps", 1))
+        if kind == "phys_plus_mlp":
+            total += complex_one_hidden_macs(window, int(spec["mlp_hidden"]))
+        return Cost(total, total)
     raise ValueError(f"unknown model kind {kind!r}")
 
 
@@ -125,4 +154,4 @@ def n_params(model: nn.Module) -> int:
 
 
 def outputs_complex(spec: dict) -> bool:
-    return spec["model"].startswith("complex") or spec["model"] == "kerr_kan"
+    return spec["model"].startswith(("complex", "phys")) or spec["model"] == "kerr_kan"
