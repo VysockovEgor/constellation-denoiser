@@ -36,7 +36,8 @@ def group_summary(runs: pd.DataFrame, keys: list[str]) -> pd.DataFrame:
     runs["q2_gain_valbest"] = [q2_from_reduction(r, v) for r, v in zip(runs.raw_ber, runs[METRIC])]
     out = runs.groupby(keys, dropna=False).agg(
         n_seeds=("seed", "count"), seeds=("seed", lambda s: " ".join(str(v) for v in sorted(s))),
-        macs_per_symbol=("macs_per_symbol", "first"), n_params=("n_params", "first"),
+        macs_per_symbol=("macs_per_symbol", "first"), macs_merged=("macs_per_symbol_merged", "first"),
+        n_params=("n_params", "first"),
         val_select_mean=(SELECT, "mean"), test_mean=(METRIC, "mean"), test_min=(METRIC, "min"),
         test_max=(METRIC, "max"), test_final_mean=("test_reduction", "mean"),
         q2_gain_mean=("q2_gain_valbest", "mean"), q2_gain_min=("q2_gain_valbest", "min"),
@@ -148,7 +149,7 @@ def plot_vs_macs(summary: pd.DataFrame, control: pd.DataFrame, e012: pd.DataFram
         offset = len(branches)
         if not control.empty:
             for _, row in control.iterrows():
-                ax.errorbar(6480, row[column], yerr=[[max(row[column] - row[low], 0)], [max(row[high] - row[column], 0)]],
+                ax.errorbar(row.macs_merged, row[column], yerr=[[max(row[column] - row[low], 0)], [max(row[high] - row[column], 0)]],
                             fmt="s", color=plot_style.color(offset), markersize=7, capsize=2)
         if not e012.empty and column == "test_mean":
             for _, row in e012[e012.budget == 20000].iterrows():
