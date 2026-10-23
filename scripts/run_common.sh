@@ -5,7 +5,7 @@
 #   rc_run NAME CMD...  run CMD under nice, tee to the stage log, keep the exit code
 #   rc_lock NAME        PID file for one stage; stale files are replaced, live ones refuse
 #   rc_runner STAGE     train one stage through constellation_denoiser.runner
-#   rc_is_common STAGE  true for probe / plan / list / check-control
+#   rc_is_common STAGE  true for probe / plan / list / check-control / estimate
 #   rc_common STAGE     handle one of those stages (call outside `if` so `set -e` applies)
 
 rc_setup() {
@@ -102,6 +102,16 @@ rc_common() {
     list)
       "$PYTHON" -m constellation_denoiser.runner --exp "$EXP" --stage "${2:?стадия}" --list
       ;;
+    estimate)
+      local target="${2:-all}" s
+      if [[ "$target" == "all" ]]; then
+        for s in "${TRAIN_STAGES[@]}"; do
+          rc_run estimate "$PYTHON" -m constellation_denoiser.runner --exp "$EXP" --stage "$s" --estimate || true
+        done
+      else
+        rc_run estimate "$PYTHON" -m constellation_denoiser.runner --exp "$EXP" --stage "$target" --estimate
+      fi
+      ;;
     check-control)
       rc_run check-control "$PYTHON" -m constellation_denoiser.runner --exp "$EXP" --stage control --check-control
       ;;
@@ -110,7 +120,7 @@ rc_common() {
 
 rc_is_common() {
   case "$1" in
-    probe|plan|list|check-control) return 0 ;;
+    probe|plan|list|check-control|estimate) return 0 ;;
     *) return 1 ;;
   esac
 }

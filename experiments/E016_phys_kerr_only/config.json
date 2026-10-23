@@ -1,0 +1,45 @@
+{
+  "experiment_id": "E016",
+  "title": "Pure physics model PhysKerr: FIR + nonlinear phase with memory (tens of multiplies instead of thousands)",
+  "date": "not run",
+  "base_git_commit": "2adb360 (branch exp/E015-E018)",
+  "git_commit": "recorded per run in results/runs/*.json (field git_commit)",
+  "data_manifest_sha256": "cb5f2de47145c02d6485969ce116df2253a271c979a927452ea454551a48c0a8",
+  "data_audit_sha256": "a9c35fb7839e85c39f7131373418a6f3a04c731e9c4e55385347a1eabbdedbe4",
+  "split_source": "experiments/E004_training_file_curve/config.json (train_pool_files[:30], validation 45, test 45), as E007-E014",
+  "split_source_sha256": "04c0b2a5775d8fae1acdc348967c6fb976ef5d90e76a8334484242cc9707025a",
+  "dataset_root": "data/raw/archive",
+  "window": 31,
+  "n_train_files": 30,
+  "model": "PhysKerr (src/constellation_denoiser/phys_models.py): u = F(z) complex FIR of length L inside the window (zero padding, unit-impulse init; L = 1: no FIR), y = u_c * exp(-i * sum_{j=-r..r} alpha_j |u_{c+j}|^2), r = (R-1)/2, alpha = 0 at start (identity model); sym: alpha_j = alpha_-j and h_j = h_-j (complex taps); complex MSE loss as complex_a",
+  "grid": {"n_alpha": [1, 3, 7, 11, 21, 31], "fir_len": [1, 7, 31], "sym": [false, true]},
+  "grid_note": "(R = 1, L = 1) is identical for sym true/false and is trained once: 35 configurations",
+  "fir_only": [{"fir_len": 31, "sym": false}, {"fir_len": 31, "sym": true}],
+  "fir_only_note": "linear FIR without nonlinearity (R = 0): lower bound",
+  "seeds": [17, 29, 43, 57, 71],
+  "steps": 20000,
+  "eval_every": 1000,
+  "base_lr": {"peak_lr": 0.001, "schedule": "const", "warmup": 0, "c_mult": 1.0, "floor_frac": 0.1, "optimizer": "adam", "weight_decay": 0.0},
+  "best_e010_c_mult": [1, 30],
+  "lr_branches": "const_1e-3; best_e010_cm1 and best_e010_cm30 = experiments/E010_lr_schedule_study/results/stage3_choice.json['a'] (cosine_to_zero, peak 3e-3, warmup 0) with c_mult 1 or 30 for alpha; skipped without error if the file is missing",
+  "macs_phys": "streaming count per symbol: FIR 4L (sym 2(L+1)), L = 1 -> 0; nonlinearity (R > 0): |u|^2 2 + power convolution R (sym (R+1)/2) + exp table 0 + rotation 4; see README for the comparison with the paper's 0.25(R+1)+6",
+  "control": {
+    "runs": {
+      "a_const_1e-3_20k": {"spec": {"model": "complex_a", "window": 31, "hidden": 48, "name": "complex_a"}, "n_train_files": 30, "steps": 20000, "seeds": [17, 29, 43, 57, 71]}
+    },
+    "targets": {
+      "a_const_1e-3_20k": {"target": 62.191, "tol": 0.7, "seeds": [17, 29], "metric": "test_reduction_valbest_select", "source": "experiments/E009_kerr_ablation/results/complex_mlp_ablation_summary.csv (variant a); reproduced in E010-E012 (62.19)"}
+    }
+  },
+  "metrics": {
+    "main": "test_reduction_valbest_select (test at the validation-best evaluation, every 1000 steps) and valbest_select_q2_gain_db",
+    "selection": "mean over seeds of best_val_reduction (validation only)",
+    "seed_spread": "range (max - min) over seeds; the larger range of the two compared groups"
+  },
+  "rule_draft": {
+    "status": "DRAFT: to be confirmed by the user before the first run; must not change after results are seen",
+    "physics_sufficient": "the PhysKerr configuration (any lr branch) with the best mean validation reduction among those with multiplies <= 10% of 6480 (648) has a mean test reduction over the 5 seeds no worse than complex_a (const 1e-3, 20k, same 5 seeds) by more than 2 p.p.",
+    "physics_useful": "reference = linear FIR + one Kerr coefficient (R = 1, L = 31, same sym, same lr branch); among configurations with R > 1 and multiplies <= the reference, the one with the best mean validation reduction beats the reference on test by >= 1 p.p. and by more than the seed spread",
+    "otherwise": "не доказано"
+  }
+}

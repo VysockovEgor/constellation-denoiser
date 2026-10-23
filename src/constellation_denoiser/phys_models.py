@@ -48,7 +48,29 @@ class PhysStep(nn.Module):
     def alphas(self) -> torch.Tensor:
         return _symmetric(self.alpha) if self.sym else self.alpha
 
-    def filter(self, z: torch.Tensor) -> torch.Tensor:
+    @staticmethod
+    def _band(taps: torch.Tensor, window: int) -> torch.Tensor:
+        """(W, W) matrix T with (x @ T)_k = sum_t taps_t x_{k + t - len//2}, zero padding."""
+        length = taps.shape[0]
+        rows = torch.arange(window, device=taps.device)
+        offset = rows[:, None] - rows[None, :] + length // 2
+        valid = (offset >= 0) & (offset < length)
+        return torch.where(valid, taps[offset.clamp(0, length - 1)], torch.zeros((), dtype=taps.dtype,
+                                                                                  device=taps.device))
+
+    def toeplitz(self, window: int) -> torch.Tensor:
+        h_re, h_im = self.taps()
+        return torch.complex(self._band(h_re, window), self._band(h_im, window))
+
+    def filter(self, z: torch.Tensor, columns: slice | None = None) -> torch.Tensor:
+        """FIR inside the window; ``columns`` restricts the output positions (cheaper for the last step)."""
+        if self.fir_len == 1:
+            return z if columns is None else z[:, columns]
+        matrix = self.toeplitz(z.shape[1])
+        return z @ (matrix if columns is None else matrix[:, columns])
+
+    def filter_conv(self, z: torch.Tensor) -> torch.Tensor:
+        """Reference implementation with conv1d (used by tests)."""
         if self.fir_len == 1:
             return z
         h_re, h_im = self.taps()
@@ -59,26 +81,23 @@ class PhysStep(nn.Module):
         out_im = F.conv1d(x_re, k_im, padding=pad) + F.conv1d(x_im, k_re, padding=pad)
         return torch.complex(out_re.squeeze(1), out_im.squeeze(1))
 
-    def phase(self, u: torch.Tensor, centre_only: bool) -> torch.Tensor:
-        power = u.real.square() + u.imag.square()
-        alpha = self.alphas()
+    def forward(self, z: torch.Tensor, centre_only: bool = False) -> torch.Tensor:
+        alpha = self.alphas() if self.n_alpha else None
         r = self.n_alpha // 2
         if centre_only:
-            c = u.shape[1] // 2
-            return (power[:, c - r: c + r + 1] * alpha).sum(dim=1, keepdim=True)
-        return F.conv1d(power.unsqueeze(1), alpha.view(1, 1, -1), padding=r).squeeze(1)
-
-    def forward(self, z: torch.Tensor, centre_only: bool = False) -> torch.Tensor:
-        u = self.filter(z)
-        if centre_only:
-            c = u.shape[1] // 2
-            centre = u[:, c: c + 1]
-            if not self.n_alpha:
+            c = z.shape[1] // 2
+            u = self.filter(z, slice(c - r, c + r + 1))          # only the positions the phase needs
+            centre = u[:, r: r + 1]
+            if alpha is None:
                 return centre
-            return centre * torch.exp(-1j * self.phase(u, True))
-        if not self.n_alpha:
+            power = u.real.square() + u.imag.square()
+            return centre * torch.exp(-1j * (power * alpha).sum(dim=1, keepdim=True))
+        u = self.filter(z)
+        if alpha is None:
             return u
-        return u * torch.exp(-1j * self.phase(u, False))
+        power = u.real.square() + u.imag.square()
+        phase = power @ self._band(alpha, power.shape[1])     # same as conv1d(power, alpha, padding=r)
+        return u * torch.exp(-1j * phase)
 
 
 class PhysDBP(nn.Module):
