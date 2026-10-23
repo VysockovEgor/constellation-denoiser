@@ -255,7 +255,8 @@ def control_tasks(exp: str, directory: Path, config: dict, options: Options) -> 
     tasks = []
     for key, item in config["control"]["runs"].items():
         rule = config["control"]["targets"][key]
-        for seed in ([rule["seeds"][0]] if options.smoke else rule["seeds"]):
+        seeds = item.get("seeds", rule["seeds"])      # control runs may cover more seeds than the tolerance
+        for seed in ([seeds[0]] if options.smoke else seeds):
             tasks.append(make_task(
                 exp, "control", directory, options, spec=dict(item["spec"]), seed=seed,
                 n_train=item["n_train_files"], phases=[{"steps": item["steps"]}], lr=lr_from(config["base_lr"]),
@@ -441,10 +442,76 @@ def kan_costs_hook(model, task, train, val, test) -> dict:
             "macs_dense_total": macs, "macs_sparse_total": macs}
 
 
+# --------------------------------------------------------------------------- E016-E019 helpers
+
+def e010_stage3_lr(smoke: bool, arch: str = "a") -> dict | None:
+    """lr config chosen by E010 stage3 (validation) for ``arch``; smoke prefers results_smoke if present."""
+    from .runner import exp_dir
+
+    directory = exp_dir("E010")
+    candidates = [directory / "results_smoke" / "stage3_choice.json"] if smoke else []
+    candidates.append(directory / "results" / "stage3_choice.json")
+    for path in candidates:
+        if path.is_file():
+            return json.loads(path.read_text(encoding="utf-8"))[arch]["lr_config"]
+    return None
+
+
+def phys_lr_branches(config: dict, smoke: bool) -> list[tuple[str, dict]]:
+    """const_1e-3 plus best_e010 with c_mult 1 and 30 (the latter scales the lr of alpha / Kerr c)."""
+    branches = [("const_1e-3", lr_from(config["base_lr"]))]
+    best = e010_stage3_lr(smoke)
+    if best is not None:
+        for c_mult in config.get("best_e010_c_mult", [1, 30]):
+            branches.append((f"best_e010_cm{c_mult}", lr_from(best, c_mult=c_mult, horizon=None)))
+    return branches
+
+
+def phys_spec(window: int, fir_len: int, n_alpha: int, sym: bool, **extra) -> dict:
+    kind = extra.pop("model", "phys_kerr")
+    name = extra.pop("name", None) or (f"fir_L{fir_len}_{'sym' if sym else 'nosym'}" if n_alpha == 0 else
+                                       f"phys_R{n_alpha}_L{fir_len}_{'sym' if sym else 'nosym'}")
+    return {"model": kind, "window": window, "fir_len": fir_len, "n_alpha": n_alpha, "sym": sym, "name": name,
+            **extra}
+
+
+# --------------------------------------------------------------------------- E016
+
+def e016_tasks(stage: str, options: Options) -> list[dict]:
+    exp = "E016"
+    directory, config = load_config(exp)
+    if stage == "control":
+        return control_tasks(exp, directory, config, options)
+    if stage != "main":
+        raise SystemExit(f"E016: неизвестная стадия {stage!r}")
+    grid = config["grid"]
+    specs, seen = [], set()
+    for n_alpha in grid["n_alpha"]:
+        for fir_len in grid["fir_len"]:
+            for sym in grid["sym"]:
+                # with one alpha and no FIR the symmetric and general models are identical: train once
+                key = (n_alpha, fir_len, sym if (n_alpha > 1 or fir_len > 1) else False)
+                if key not in seen:
+                    seen.add(key)
+                    specs.append(phys_spec(config["window"], fir_len=key[1], n_alpha=key[0], sym=key[2]))
+    for fir in config["fir_only"]:
+        specs.append(phys_spec(config["window"], fir["fir_len"], 0, fir["sym"]))
+    tasks = []
+    for spec in specs:
+        for lr_name, lr in phys_lr_branches(config, options.smoke):
+            for seed in seeds_for(config, options):
+                tasks.append(make_task(
+                    exp, stage, directory, options, spec=spec, seed=seed, n_train=config["n_train_files"],
+                    phases=[{"steps": config["steps"]}], lr=lr, lr_name=lr_name, eval_every=config["eval_every"],
+                    select_every=config["eval_every"], variant=spec["name"],
+                ))
+    return tasks
+
+
 # --------------------------------------------------------------------------- registry
 
 BUILDERS = {"E010": e010_tasks, "E011": e011_tasks, "E012": e012_tasks, "E013": e013_tasks,
-            "E014": e014_tasks}
+            "E014": e014_tasks, "E016": e016_tasks}
 SPECIAL_STAGES = {("E010", "select"): e010_select}
 POST_HOOKS: dict = {"merge_check": merge_check_hook, "kan_costs": kan_costs_hook}
 

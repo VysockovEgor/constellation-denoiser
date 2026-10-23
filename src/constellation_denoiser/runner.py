@@ -567,6 +567,88 @@ def plan(tasks_all: list[dict], tasks_todo: list[dict], resources: dict | None, 
     print("Оценка грубая: скорость измерена probe на эталонной модели и масштабирована по числу умножений.")
 
 
+def measure_spec(spec: dict, device: torch.device, budget_s: float, data: tuple) -> dict:
+    """Real training steps and one evaluation of ``spec`` on loaded data: steps/s and eval windows/s."""
+    train, val = data
+    window = int(spec["window"])
+    model = model_zoo.build(spec, seed=17).to(device)
+    optimizer = torch.optim.Adam([p for p in model.parameters() if p.requires_grad] or model.parameters(), lr=1e-3)
+    generator = torch.Generator().manual_seed(17)
+    n = train.n_windows(window)
+
+    def step():
+        xb, yb = train.gather(torch.randint(0, n, (BATCH_SIZE,), generator=generator), window)
+        optimizer.zero_grad(set_to_none=True)
+        prediction = model(xb)
+        if torch.is_complex(prediction):
+            loss = (prediction - torch.complex(yb[:, 0], yb[:, 1])).abs().square().mean()
+        else:
+            loss = torch.nn.functional.mse_loss(prediction, yb)
+        loss.backward()
+        optimizer.step()
+
+    for _ in range(3):
+        step()
+    started, steps = time.perf_counter(), 0
+    while steps < 5 or (time.perf_counter() - started < budget_s and steps < 2000):
+        step()
+        steps += 1
+    steps_per_s = steps / (time.perf_counter() - started)
+    started = time.perf_counter()
+    model_ber(model, val, window)
+    eval_rate = val.n_windows(window) / (time.perf_counter() - started)
+    return {"steps_per_s": steps_per_s, "eval_windows_per_s": eval_rate}
+
+
+def estimate(tasks_all: list[dict], tasks_todo: list[dict], resources: dict | None, stage: str,
+             total_budget_s: float = 90.0) -> dict:
+    """Short real measurement on this machine -> hours for the remaining tasks of ``stage``."""
+    jobs, threads, device_name = resolve_parallelism(resources)
+    torch.set_num_threads(threads)
+    device = torch.device(device_name)
+    contention = float((resources or {}).get("recommendation", {}).get("contention_factor", 1.0))
+    print(f"Стадия {stage}: всего прогонов {len(tasks_all)}, осталось {len(tasks_todo)}.")
+    if not tasks_todo:
+        return {}
+    unique = {json.dumps(t["spec"], sort_keys=True): t["spec"] for t in tasks_todo}
+    per_spec = max(0.5, total_budget_s / max(1, len(unique)))
+    sample = tasks_todo[0]
+    synthetic = sample.get("synthetic") or not data_available(sample["files"])
+    if synthetic:
+        data = (synthetic_fileset(2, 1).to(device), synthetic_fileset(1, 2).to(device))
+        print("  (данных split нет: замер на синтетических данных той же формы)")
+    else:
+        data = (get_fileset(tuple(sample["files"]["train"][:2]), None, device),
+                get_fileset(tuple(sample["files"]["validation"][:1]), None, device))
+    rates = {}
+    started = time.perf_counter()
+    for key, spec in unique.items():
+        rates[key] = measure_spec(spec, device, per_spec, data)
+    seconds = []
+    for task in tasks_todo:
+        rate = rates[json.dumps(task["spec"], sort_keys=True)]
+        steps = sum(int(p["steps"]) for p in task["phases"])
+        window = int(task["spec"]["window"])
+        windows_val = len(task["files"]["validation"]) * (16_384 - window + 1)
+        windows_test = len(task["files"]["test"]) * (16_384 - window + 1)
+        n_val = steps // int(task["eval_every"]) + 1
+        n_test = steps // int(task.get("test_every") or task["eval_every"]) + 1
+        seconds.append((steps / rate["steps_per_s"] + (n_val * windows_val + n_test * windows_test)
+                        / rate["eval_windows_per_s"]) / contention)
+    serial, longest = sum(seconds), max(seconds)
+    half = max(1, jobs // 2)
+    hours = max(serial / jobs, longest) / 3600
+    hours_half = max(serial / half, longest) / 3600
+    print(f"  замер {len(unique)} моделей за {time.perf_counter() - started:.0f} с на {device_name}, THREADS={threads}, "
+          f"коэффициент конкуренции процессов {contention:.2f} (из resources.json)")
+    print(f"  оценка: ~{hours:.1f} ч при JOBS={jobs}; ~{hours_half:.1f} ч при JOBS={half}; "
+          f"самый длинный прогон ~{longest / 3600:.1f} ч")
+    return {"stage": stage, "runs_total": len(tasks_all), "runs_todo": len(tasks_todo), "jobs": jobs,
+            "threads": threads, "device": device_name, "hours": hours, "hours_half_jobs": hours_half,
+            "longest_run_hours": longest / 3600, "unique_models": len(unique), "contention": contention,
+            "synthetic_data": bool(synthetic)}
+
+
 def _disk_mb(task: dict) -> float:
     try:
         n = model_zoo.n_params(model_zoo.build(task["spec"]))
@@ -636,6 +718,8 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--exp", required=True, help="E010 ... E014")
     parser.add_argument("--stage", required=True)
     parser.add_argument("--plan", action="store_true", help="print run count and time estimate; no training")
+    parser.add_argument("--estimate", action="store_true",
+                        help="short real speed measurement (about 1-2 min) and hours for the stage")
     parser.add_argument("--list", action="store_true", help="print run ids")
     parser.add_argument("--check-control", action="store_true", help="evaluate the control tolerance only")
     parser.add_argument("--no-control-gate", action="store_true", help="stage does not need a passed control")
@@ -647,14 +731,14 @@ def main(argv: list[str] | None = None) -> int:
     options = grids.Options.from_env()
     special = grids.SPECIAL_STAGES.get((args.exp, args.stage))
     if special is not None:
-        if args.plan or args.list:
+        if args.plan or args.list or args.estimate:
             print(f"Стадия {args.stage}: без обучения (обработка готовых результатов).")
             return 0
         return special(options)
     try:
         tasks = grids.build_tasks(args.exp, args.stage, options)
     except SystemExit as exc:
-        if args.plan and not isinstance(exc.code, int):
+        if (args.plan or args.estimate) and not isinstance(exc.code, int):
             print(f"Стадия {args.stage}: список прогонов пока не определён. {exc.code}")
             return 0
         raise
@@ -670,6 +754,13 @@ def main(argv: list[str] | None = None) -> int:
         return 0
     if args.plan:
         plan(tasks, todo, resources, args.stage)
+        return 0
+    if args.estimate:
+        result = estimate(tasks, todo, resources, args.stage)
+        if result:
+            out = results_root(args.exp, smoke) / f"estimate_{args.stage}.json"
+            atomic_write_json(out, {**result, "measured_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+                                    "hostname": os.uname().nodename})
         return 0
     if not args.no_control_gate and not require_control(args.exp, smoke):
         return 3
