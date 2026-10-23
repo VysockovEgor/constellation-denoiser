@@ -1,0 +1,43 @@
+{
+  "experiment_id": "E018",
+  "title": "Depth as back-propagation steps: Ns x [FIR + nonlinear phase with memory], layer-wise initialization",
+  "date": "not run",
+  "base_git_commit": "a4317a1 (branch exp/E015-E018)",
+  "git_commit": "recorded per run in results/runs/*.json (field git_commit)",
+  "data_manifest_sha256": "cb5f2de47145c02d6485969ce116df2253a271c979a927452ea454551a48c0a8",
+  "data_audit_sha256": "a9c35fb7839e85c39f7131373418a6f3a04c731e9c4e55385347a1eabbdedbe4",
+  "split_source": "experiments/E004_training_file_curve/config.json (train_pool_files[:30], validation 45, test 45), as E007-E017",
+  "split_source_sha256": "04c0b2a5775d8fae1acdc348967c6fb976ef5d90e76a8334484242cc9707025a",
+  "dataset_root": "data/raw/archive",
+  "window": 31,
+  "n_train_files": 30,
+  "model": "phys_models.PhysDBP: Ns steps, each a symmetric complex FIR of length L (unit-impulse init) followed by the nonlinear phase with R symmetric coefficients (alpha = 0 init); every step is the identity at start; inside the window of 31 symbols with zero padding; output = centre symbol of the last step",
+  "grid": {"n_steps": [1, 2, 4, 8], "fir_len": [7, 31], "n_alpha": [3, 7]},
+  "grid_note": "R kept at {3, 7} as in the plan; the plan allows replacing R by the best E016 value after E015 - not done, so the grid does not depend on results that do not exist yet",
+  "modes": ["layerwise", "joint_from_scratch"],
+  "modes_note": "layerwise (paper): train step 1, then add step k (identity) and train it with steps 1..k-1 frozen, k = 2..Ns, steps_per_layer each, fresh Adam per phase; then joint fine-tuning of all steps for finetune_steps at lr / finetune_lr_divisor. joint_from_scratch: all steps trainable from the start for the same total Ns*steps_per_layer + finetune_steps",
+  "steps_per_layer": 20000,
+  "finetune_steps": 10000,
+  "finetune_lr_divisor": 3,
+  "eval_every": 1000,
+  "ckpt_every": 10000,
+  "seeds": [17, 29, 43, 57, 71],
+  "base_lr": {"peak_lr": 0.001, "schedule": "const", "warmup": 0, "c_mult": 1.0, "floor_frac": 0.1, "optimizer": "adam", "weight_decay": 0.0},
+  "lr_note": "the plan does not fix the lr for E018: Adam constant 1e-3 per phase, fine-tuning 1e-3 / 3",
+  "macs": "Ns * macs_phys(R, L, sym = True); e.g. Ns = 8, L = 31, R = 7: 8 * 74 = 592",
+  "control": {
+    "runs": {
+      "a_const_1e-3_20k": {"spec": {"model": "complex_a", "window": 31, "hidden": 48, "name": "complex_a"}, "n_train_files": 30, "steps": 20000}
+    },
+    "targets": {
+      "a_const_1e-3_20k": {"target": 62.191, "tol": 0.7, "seeds": [17, 29], "metric": "test_reduction_valbest_select", "source": "experiments/E009_kerr_ablation/results/complex_mlp_ablation_summary.csv (variant a)"}
+    }
+  },
+  "metrics": {"main": "test_reduction_valbest_select and its Q2 gain", "selection": "mean best_val_reduction over seeds", "seed_spread": "range; the larger of the two compared groups"},
+  "rule_draft": {
+    "status": "DRAFT: to be confirmed by the user before the first run; must not change after results are seen",
+    "depth_helps": "among layerwise configurations with Ns in {4, 8} and multiplies <= 16032 (complex_both), the one with the best mean validation reduction beats Ns = 1 with the same L, R and mode on test by >= 1 p.p. and by more than the seed spread",
+    "layerwise_needed": "among layerwise configurations with Ns > 1, the one with the best mean validation reduction beats joint_from_scratch with the same Ns, L, R on test by >= 1 p.p. and by more than the seed spread",
+    "otherwise": "не доказано"
+  }
+}
