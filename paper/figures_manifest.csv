@@ -23,3 +23,5 @@ fig_no,experiment_id,file,caption,source_csv
 22,E017,experiments/E017_phys_plus_mlp/figures/E017_quality_vs_macs.png,PhysKerr + residual MLP vs complex MLPs and PhysKerr: BER reduction and Q2 gain vs multiplies (not run),experiments/E017_phys_plus_mlp/results/phys_plus_mlp_summary.csv
 23,E018,experiments/E018_dbp_depth/figures/E018_quality_vs_ns.png,DBP depth: test BER reduction vs number of steps Ns (layerwise and joint from scratch; not run),experiments/E018_dbp_depth/results/dbp_depth_summary.csv
 24,E018,experiments/E018_dbp_depth/figures/E018_quality_vs_macs.png,DBP depth: BER reduction and Q2 gain vs multiplies with complex_a and E012 (not run),experiments/E018_dbp_depth/results/dbp_depth_summary.csv
+25,E019,experiments/E019_confirm_long_runs/figures/E019_long_curves.png,Long confirmation runs: validation BER reduction vs steps up to 200k for the best E016-E018 configurations and controls (not run),experiments/E019_confirm_long_runs/results/confirm_summary.csv
+26,E015-E019,results/E015_E018_quality_vs_macs.png,All families E011-E019: BER reduction and Q2 gain vs multiplies per symbol (not run),results/E015_E018_quality_points.csv
