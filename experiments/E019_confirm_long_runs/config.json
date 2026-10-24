@@ -1,0 +1,46 @@
+{
+  "experiment_id": "E019",
+  "title": "Long confirmation runs (100k and 200k steps) of the validation-best E016, E017, E018 configurations and the complex_a / complex_both controls",
+  "note": "the 'confirm' stage of the E015-E018 plan (part 6); a separate experiment folder because README.md requires a new E-number and output path for every new run",
+  "date": "not run",
+  "base_git_commit": "50f87f1 (branch exp/E015-E018)",
+  "git_commit": "recorded per run in results/runs/*.json (field git_commit)",
+  "data_manifest_sha256": "cb5f2de47145c02d6485969ce116df2253a271c979a927452ea454551a48c0a8",
+  "data_audit_sha256": "a9c35fb7839e85c39f7131373418a6f3a04c731e9c4e55385347a1eabbdedbe4",
+  "split_source": "experiments/E004_training_file_curve/config.json (train_pool_files[:30], validation 45, test 45), as E007-E018",
+  "split_source_sha256": "04c0b2a5775d8fae1acdc348967c6fb976ef5d90e76a8334484242cc9707025a",
+  "dataset_root": "data/raw/archive",
+  "n_train_files": 30,
+  "families": [
+    ["E016", "phys_kerr.csv", "phys_kerr"],
+    ["E017", "phys_plus_mlp.csv", "phys_plus_mlp"],
+    ["E018", "dbp_depth.csv", "phys_dbp"]
+  ],
+  "family_selection": "for each family the (configuration, lr branch) with the best mean best_val_reduction over seeds in its results/*.csv; written to results/confirm_choice.json when the stage is built; a family without results is skipped with a message",
+  "controls": {
+    "complex_a": {"model": "complex_a", "window": 31, "hidden": 48},
+    "complex_both": {"model": "complex_both", "window": 31, "hidden": 48}
+  },
+  "const_steps": [200000],
+  "best_steps": [100000, 200000],
+  "length_note": "const_1e-3: only the 200k run; the 100k point is read from its curve (with a constant lr the first 100k steps are identical to a 100k run, checked bit-for-bit in E010 resume tests). best_e010 decays over the run, so 100k and 200k are separate runs",
+  "phases_note": "multi-phase schemes keep their structure with lengths scaled to the total (E017 frozen: half / half; E018 layerwise: Ns layer phases + fine-tuning at lr / 3, proportional)",
+  "base_lr": {"peak_lr": 0.001, "schedule": "const", "warmup": 0, "c_mult": 1.0, "floor_frac": 0.1, "optimizer": "adam", "weight_decay": 0.0},
+  "best_e010": "experiments/E010_lr_schedule_study/results/stage3_choice.json: 'a' for complex_a and the physics families, 'both' for complex_both; for the physics families c_mult 30 only if best_e010_cm30 beat best_e010_cm1 on validation for that configuration in its experiment, otherwise c_mult 1",
+  "seeds": [17, 29, 43, 57, 71],
+  "eval_every": 5000,
+  "ckpt_every": 10000,
+  "control": {
+    "runs": {
+      "a_const_1e-3_20k": {"spec": {"model": "complex_a", "window": 31, "hidden": 48, "name": "complex_a"}, "n_train_files": 30, "steps": 20000}
+    },
+    "targets": {
+      "a_const_1e-3_20k": {"target": 62.191, "tol": 0.7, "seeds": [17, 29], "metric": "test_reduction_valbest_select", "source": "experiments/E009_kerr_ablation/results/complex_mlp_ablation_summary.csv (variant a)"}
+    }
+  },
+  "rule_draft": {
+    "status": "DRAFT: to be confirmed by the user before the first run; must not change after results are seen",
+    "plateau": "as E011: improvement of the smoothed (10k window) validation reduction over the last 50k steps < 0.2 p.p.; otherwise 'plateau not reached within N steps' and y_inf only as a rough estimate",
+    "long_vs_short": "the 200k result is reported next to the 20k/40k result of the same configuration in its experiment; no verdict beyond the plateau"
+  }
+}

@@ -626,11 +626,138 @@ def e018_tasks(stage: str, options: Options) -> list[dict]:
     return tasks
 
 
+# --------------------------------------------------------------------------- E019 (confirm)
+
+def results_csv(exp: str, name: str, smoke: bool) -> Path | None:
+    from .runner import exp_dir
+
+    directory = exp_dir(exp)
+    for path in ([directory / "results_smoke" / name] if smoke else []) + [directory / "results" / name]:
+        if path.is_file():
+            return path
+    return None
+
+
+def spec_from_row(row) -> dict:
+    spec = {}
+    for key, value in row.items():
+        if key.startswith("spec_") and value == value and value is not None:   # skip NaN
+            name = key[5:]
+            if hasattr(value, "item"):              # numpy scalar -> Python (JSON-serializable)
+                value = value.item()
+            if isinstance(value, float) and value.is_integer() and name not in ("sym",):
+                value = int(value)
+            if name == "sym":
+                value = bool(value) if not isinstance(value, str) else value == "True"
+            spec[name] = value
+    return spec
+
+
+def family_best(exp: str, csv_name: str, model: str, smoke: bool) -> dict | None:
+    """Validation-best configuration (mean best_val_reduction over seeds) of one family, with its lr branch."""
+    import pandas as pd
+
+    path = results_csv(exp, csv_name, smoke)
+    if path is None:
+        return None
+    runs = pd.read_csv(path)
+    runs = runs[(runs.model == model) & (~runs.diverged.astype(bool))]
+    if model == "phys_kerr":
+        runs = runs[runs.spec_n_alpha > 0]
+    if runs.empty:
+        return None
+    means = runs.groupby(["variant", "lr_name"]).best_val_reduction.mean()
+    variant, lr_name = means.idxmax()
+    row = runs[(runs.variant == variant) & (runs.lr_name == lr_name)].iloc[0]
+    branch_vals = runs[runs.variant == variant].groupby("lr_name").best_val_reduction.mean().to_dict()
+    return {"experiment": exp, "variant": variant, "lr_name": lr_name, "spec": spec_from_row(row),
+            "mean_best_val_reduction": float(means.max()), "branch_validation": branch_vals, "source": str(path)}
+
+
+def scale_phases(phases: list[dict], total: int) -> list[dict]:
+    """Same phase structure, lengths scaled to ``total`` steps (the last phase takes the remainder)."""
+    original = sum(int(p["steps"]) for p in phases)
+    scaled, used = [], 0
+    for index, phase in enumerate(phases):
+        steps = total - used if index == len(phases) - 1 else int(round(int(phase["steps"]) * total / original))
+        scaled.append(dict(phase, steps=steps))
+        used += steps
+    return scaled
+
+
+def family_phases(item: dict, config_by_exp: dict) -> list[dict]:
+    spec, variant = item["spec"], item["variant"]
+    if item["experiment"] == "E017" and variant.endswith("frozen"):
+        return [{"steps": 1, "trainable": ["phys."]}, {"steps": 1, "trainable": ["mlp."], "reset_optimizer": True}]
+    if item["experiment"] == "E018" and variant.endswith("layerwise"):
+        e018 = config_by_exp["E018"]
+        return e018_phases("layerwise", int(spec["n_steps"]), e018["steps_per_layer"], e018["finetune_steps"],
+                           e018["base_lr"], e018["finetune_lr_divisor"])
+    return [{"steps": 1}]
+
+
+def e019_tasks(stage: str, options: Options) -> list[dict]:
+    exp = "E019"
+    directory, config = load_config(exp)
+    if stage == "control":
+        return control_tasks(exp, directory, config, options)
+    if stage != "main":
+        raise SystemExit(f"E019: неизвестная стадия {stage!r}")
+    from .runner import atomic_write_json, log
+
+    configs = {e: load_config(e)[1] for e in ("E016", "E017", "E018")}
+    # estimate only: pick members from smoke results while keeping full lengths (no effect on real runs)
+    from_smoke = options.smoke or os.environ.get("CONFIRM_ESTIMATE_FROM_SMOKE") == "1"
+    members = []
+    for exp_name, csv_name, model in config["families"]:
+        item = family_best(exp_name, csv_name, model, from_smoke)
+        if item is None:
+            log(f"E019: нет результатов {exp_name} ({csv_name}) — семейство пропущено")
+            continue
+        members.append({**item, "kind": "phys"})
+    for name, spec in config["controls"].items():
+        members.append({"experiment": "control", "variant": name, "spec": dict(spec, name=name), "kind": spec["model"]})
+    if not (from_smoke and not options.smoke):
+        atomic_write_json(directory / ("results_smoke" if options.smoke else "results") / "confirm_choice.json",
+                          members)
+
+    stage3 = {arch: e010_stage3_lr(options.smoke, arch) for arch in ("a", "both")}
+    tasks = []
+    for item in members:
+        spec = dict(item["spec"], name=f"{item['experiment']}_{item['spec'].get('name', item['variant'])}")
+        phase_template = family_phases(item, configs) if item["kind"] == "phys" else [{"steps": 1}]
+        if item["kind"] == "phys":
+            vals = item.get("branch_validation", {})
+            c_mult = 30 if vals.get("best_e010_cm30", float("-inf")) > vals.get("best_e010_cm1", float("-inf")) else 1
+            best = stage3["a"]
+            best_lr = None if best is None else lr_from(best, c_mult=c_mult, horizon=None)
+        else:
+            arch = "both" if item["kind"] == "complex_both" else "a"
+            best_lr = None if stage3[arch] is None else lr_from(stage3[arch], horizon=None)
+        branches = [("const_1e-3", lr_from(config["base_lr"]), config["const_steps"])]
+        if best_lr is not None:
+            branches += [(f"best_e010_cm{best_lr['c_mult']:g}", best_lr, config["best_steps"])]
+        for lr_name, lr, lengths in branches:
+            for total in lengths:
+                phases = scale_phases(phase_template, total)
+                if lr_name != "const_1e-3":
+                    phases = [dict(p, lr=lr_from(lr, peak_lr=lr["peak_lr"] / configs["E018"]["finetune_lr_divisor"]))
+                              if "lr" in p else p for p in phases]
+                for seed in seeds_for(config, options):
+                    tasks.append(make_task(
+                        exp, stage, directory, options, spec=spec, seed=seed, n_train=config["n_train_files"],
+                        phases=phases, lr=lr, lr_name=lr_name, eval_every=config["eval_every"],
+                        select_every=config["eval_every"], variant=spec["name"], family=item["experiment"],
+                        force_checkpoints=True, ckpt_every=config["ckpt_every"],
+                    ))
+    return tasks
+
+
 # --------------------------------------------------------------------------- registry
 
 BUILDERS = {"E010": e010_tasks, "E011": e011_tasks, "E012": e012_tasks, "E013": e013_tasks,
             "E014": e014_tasks, "E016": e016_tasks, "E017": e017_tasks,
-            "E018": e018_tasks}
+            "E018": e018_tasks, "E019": e019_tasks}
 SPECIAL_STAGES = {("E010", "select"): e010_select}
 POST_HOOKS: dict = {"merge_check": merge_check_hook, "kan_costs": kan_costs_hook}
 
