@@ -23,6 +23,7 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
+import numpy as np
 import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -50,6 +51,36 @@ VERDICTS = {
     "E017": "results/phys_plus_mlp_verdicts.csv", "E018": "results/dbp_depth_verdicts.csv",
 }
 TEST, VAL = "test_reduction_valbest_select", "best_val_reduction"
+# the control is a different model (complex_a vs physics models): "worse than control" is not an anomaly there
+CONTROL_IS_OTHER_MODEL = {"E016", "E017", "E018"}
+COLUMN_RU = {
+    "hypothesis": "гипотеза", "candidate": "кандидат", "candidate_macs": "умножений (кандидат)",
+    "reference": "эталон", "reference_macs": "умножений (эталон)", "diff_pp": "разница, п.п.",
+    "seed_spread_pp": "разброс seeds, п.п.", "n_seeds": "запусков (seeds)", "threshold": "порог", "verdict": "вердикт",
+    "lr_branch": "ветка lr", "window": "окно", "budget": "шагов", "deep": "двухслойный вариант",
+    "diff_vs_v3": "разница с v3", "spread_vs_v3": "разброс (v3)", "diff_vs_v4": "разница с v4",
+    "spread_vs_v4": "разброс (v4)", "beats_v3_and_v4": "лучше v3 и v4", "window_verdict": "вердикт для окна",
+    "v2_minus_v3_short": "v2 − v3 (20k)", "v2_minus_v3_long": "v2 − v3 (100k)",
+    "optimization_effect": "эффект оптимизации", "model": "модель", "n_train": "N (файлов)", "steps": "шагов",
+    "macs_per_symbol": "умножений", "rival": "соперник", "rival_macs": "умножений (соперник)", "variant": "вариант",
+    "grid": "сетка G", "baseline": "база", "added_macs_dense": "добавка умножений (плотно)",
+    "added_macs_sparse": "добавка умножений (разреженно)", "macs_increase_dense_vs_k0_pct": "рост к k0, % (плотно)",
+    "macs_increase_sparse_vs_k0_pct": "рост к k0, % (разреженно)", "diff_vs_complex_a_pp": "разница с complex_a, п.п.",
+    "spread_vs_complex_a_pp": "разброс (complex_a), п.п.", "diff_vs_e016_pp": "разница с E016, п.п.",
+    "spread_vs_e016_pp": "разброс (E016), п.п.",
+}
+VALUE_RU = {
+    "better than control": "лучше контроля", "not proven": "не доказано", "control": "контроль",
+    "no control": "нет контроля", "True": "да", "False": "нет", "diff >= -2 p.p.": "разница ≥ −2 п.п.",
+    ">= 1 p.p. and > seed spread": "≥ 1 п.п. и больше разброса seeds",
+}
+VERDICT_KEYS_RU = {
+    "condition_a_by_R": "условие (а) по R", "condition_a": "условие (а)", "rho_own_validation": "ρ с собственной мощностью (валидация)",
+    "rho_nb_validation": "ρ с мощностью соседей (валидация)", "rho_nb_test": "ρ с мощностью соседей (тест)",
+    "fit_gap_R7_minus_R1_validation_pp": "подгонка R7 − R1, валидация, п.п.",
+    "fit_gap_R7_minus_R1_test_pp": "подгонка R7 − R1, тест, п.п.", "condition_b": "условие (б)",
+    "test_agrees": "тест согласуется (в)",
+}
 
 
 # --------------------------------------------------------------------------- helpers
@@ -62,8 +93,10 @@ def folder(exp: str) -> Path | None:
 def fmt(value, digits: int = 2) -> str:
     if value is None or (isinstance(value, float) and math.isnan(value)):
         return "—"
-    if isinstance(value, bool):
+    if isinstance(value, (bool, np.bool_)):
         return "да" if value else "нет"
+    if isinstance(value, str) and value in VALUE_RU:
+        return VALUE_RU[value]
     if isinstance(value, (int,)) or (isinstance(value, float) and float(value).is_integer() and abs(value) >= 100):
         return f"{int(value):d}"
     if isinstance(value, float):
@@ -73,7 +106,8 @@ def fmt(value, digits: int = 2) -> str:
 
 def table(frame: pd.DataFrame, columns: dict[str, str]) -> str:
     cols = [c for c in columns if c in frame.columns]
-    lines = ["| " + " | ".join(columns[c] for c in cols) + " |", "|" + "|".join("---" for _ in cols) + "|"]
+    heads = [COLUMN_RU.get(c, columns[c]) if columns[c] == c else columns[c] for c in cols]
+    lines = ["| " + " | ".join(heads) + " |", "|" + "|".join("---" for _ in cols) + "|"]
     for _, row in frame.iterrows():
         lines.append("| " + " | ".join(fmt(row[c]) for c in cols) + " |")
     return "\n".join(lines) + "\n"
@@ -101,6 +135,21 @@ def figure_link(path: Path, depth: int) -> str:
     """Path of a repository file as seen from a page ``depth`` levels below journal/ (through journal/figs)."""
     relative = path.resolve().relative_to(ROOT)
     return "../" * depth + "figs/" + relative.as_posix()
+
+
+def github_blob(path: str) -> str | None:
+    """https://github.com/<owner>/<repo>/blob/<current branch>/<path> from the origin remote, or None."""
+    def git(*args):
+        return subprocess.run(["git", *args], cwd=ROOT, capture_output=True, text=True).stdout.strip()
+
+    match = re.search(r"[:/]([^/:]+)/([^/]+?)(?:\.git)?$", git("remote", "get-url", "origin"))
+    branch = git("rev-parse", "--abbrev-ref", "HEAD")
+    return f"https://github.com/{match.group(1)}/{match.group(2)}/blob/{branch}/{path}" if match and branch else None
+
+
+def log_link() -> str:
+    url = github_blob("LOG.md")
+    return f"[LOG.md на GitHub]({url})" if url else "`LOG.md` (в корне репозитория)"
 
 
 def write(name: str, text: str) -> None:
@@ -163,16 +212,18 @@ def results_table(agg: pd.DataFrame) -> str:
                          role=["контроль" if c else "" for c in shown.is_control])
     note = (f"Показано {len(shown)} из {len(agg)} конфигураций: лучшие по валидации и контроли. "
             "Тест — в точке лучшей валидации, %; Q² — прирост в той же точке, дБ.\n\n")
-    return note + table(shown, {"config": "конфигурация", "role": "", "n_seeds": "seeds", "val_mean": "валидация",
+    return note + table(shown, {"config": "конфигурация", "role": "", "n_seeds": "запусков (seeds)", "val_mean": "валидация",
                                 "test_mean": "тест, среднее", "range": "тест, min … max", "q2": "Q², дБ",
                                 "macs": "умножений"})
 
 
-def anomalies(runs: pd.DataFrame, agg: pd.DataFrame, control_mean: float | None) -> str:
+def anomalies(runs: pd.DataFrame, agg: pd.DataFrame, control_mean: float | None, other_model: bool = False) -> str:
     out = []
     diverged = runs[runs.diverged.astype(bool)] if "diverged" in runs else runs.iloc[0:0]
     out.append(("diverged = true", [str(r) for r in diverged.run_id]))
-    if control_mean is not None:
+    if other_model:
+        out.append(("«тест хуже контроля более чем на 5 п.п.» не применяется: контроль — другая модель (complex_a)", []))
+    elif control_mean is not None:
         worse = agg[(~agg.is_control) & (agg.test_mean < control_mean - ANOMALY["worse_than_control_pp"])]
         out.append((f"тест хуже контроля ({fmt(control_mean)} %) более чем на {ANOMALY['worse_than_control_pp']:g} п.п.",
                     [f"{c}: {fmt(t)} %" for c, t in zip(worse.config, worse.test_mean)]))
@@ -184,7 +235,7 @@ def anomalies(runs: pd.DataFrame, agg: pd.DataFrame, control_mean: float | None)
                 [f"{c}: валидация {fmt(v)}, тест {fmt(t)}" for c, v, t in zip(gap.config, gap.val_mean, gap.test_mean)]))
     lines = []
     for name, items in out:
-        lines.append(f"- **{name}**: {len(items)}" + (":" if items else ""))
+        lines.append(f"- **{name}**" + ("" if name.startswith("«") else f": {len(items)}") + (":" if items else ""))
         lines += [f"  - {item}" for item in items[:10]]
         if len(items) > 10:
             lines.append(f"  - … ещё {len(items) - 10}")
@@ -232,55 +283,99 @@ def verdict_block(exp: str) -> str:
         text = "Вердикты (`results/lr_sweep_summary.csv`, `verdict_draft_rule`): " + \
                ", ".join(f"{k}: {v}" for k, v in counts.items()) + ".\n\n"
         if len(better):
-            text += table(better.head(MAX_ROWS), {"variant": "арх.", "lr_name": "lr", "budget": "шагов",
-                                                  "T95_mean": "T95", "test_reduction_mean": "тест, %"})
+            text += table(better.head(MAX_ROWS), {"variant": "архитектура", "lr_name": "ветка lr", "budget": "шагов",
+                                                  "T95_mean": "T95, шагов", "test_reduction_mean": "тест, %"})
         return text
     if exp == "E011" and (d / "results/long_runs_summary.csv").is_file():
         s = pd.read_csv(d / "results/long_runs_summary.csv")
         return "Плато и переобучение (`results/long_runs_summary.csv`):\n\n" + table(s, {
-            "variant": "модель", "lr_branch": "lr", "n_train_nominal": "N", "final_test_mean": "тест, финал, %",
-            "y_inf_mean_curve": "y_inf", "plateau_text": "плато", "overfitting_verdict_draft": "переобучение"})
+            "variant": "модель", "lr_branch": "ветка lr", "n_train_nominal": "N (файлов)", "final_test_mean": "тест, финал, %",
+            "y_inf_mean_curve": "предел y_inf", "plateau_text": "плато", "overfitting_verdict_draft": "переобучение"})
     if exp == "E019" and (d / "results/confirm_summary.csv").is_file():
         s = pd.read_csv(d / "results/confirm_summary.csv")
         return "Длинные прогоны (`results/confirm_summary.csv`):\n\n" + table(s, {
-            "member": "участник", "lr_branch": "lr", "horizon": "шагов", "n_seeds": "seeds",
-            "test_valbest_mean": "тест, %", "test_valbest_min": "min", "test_valbest_max": "max",
+            "member": "участник", "lr_branch": "ветка lr", "horizon": "шагов", "n_seeds": "запусков (seeds)",
+            "test_valbest_mean": "тест, %", "test_valbest_min": "тест, мин", "test_valbest_max": "тест, макс",
             "valbest_q2_gain_db_mean": "Q², дБ", "macs_per_symbol_merged": "умножений", "plateau_text": "плато"})
     if exp == "E015" and (d / "results/verdict.json").is_file():
         v = json.loads((d / "results/verdict.json").read_text(encoding="utf-8"))
         return ("Вердикт (`results/verdict.json`): **" + v["verdict"] + "**.\n\n" +
-                "\n".join(f"- `{k}`: {json.dumps(val, ensure_ascii=False)}" for k, val in v.items()
-                          if k not in ("verdict", "rule_status")) + "\n")
+                "\n".join(f"- {VERDICT_KEYS_RU.get(k, k)}: {fmt(val) if not isinstance(val, dict) else ', '.join(f'{a}: {fmt(b, 3)}' for a, b in val.items())}"
+                          for k, val in v.items() if k not in ("verdict", "rule_status")) + "\n")
     return "Вердиктов нет (эксперимент не запускался).\n"
 
 
-def short_verdict(exp: str) -> str:
+CONFIRMED = ("подтверждено", "лучше контроля", "гибрид улучшает", "трансформер превосходит", "память есть",
+             "второй слой возвращает", "эффект оптимизации", "плато (", "KAN без Керр-основы лучше",
+             "трактуется как переобучение")
+
+
+def normalize(verdict: str) -> str:
+    text = VALUE_RU.get(str(verdict), str(verdict))
+    if text.startswith("не доказано") or text.startswith("переобучение не показано") or "не лучше" in text:
+        return "не доказано"
+    return "подтверждено" if any(text.startswith(c) or c in text for c in CONFIRMED) else "не доказано"
+
+
+def verdict_items(exp: str) -> list[tuple[str, str]] | None:
+    """(hypothesis label, normalized verdict) pairs from the experiment's verdict files; None if not run."""
     d = folder(exp)
     if exp in VERDICTS and (d / VERDICTS[exp]).is_file():
         frame = pd.read_csv(d / VERDICTS[exp])
         if exp == "E012":
             part = frame.drop_duplicates(["lr_branch", "window"])
-            return "; ".join(f"{b} W={int(w)}: {v}" for b, w, v in zip(part.lr_branch, part.window, part.window_verdict))
-        if exp == "E013":
-            labels = [f"{m} {int(st) // 1000}k" for m, st in zip(frame.model, frame.steps)]
+            items = [(f"{b}, окно {int(w)}: второй слой", v) for b, w, v in
+                     zip(part.lr_branch, part.window, part.window_verdict)]
+            items += [(f"{b}, окно {int(w)}: эффект оптимизации", v) for b, w, v in
+                      zip(part.lr_branch, part.window, part.optimization_effect) if isinstance(v, str)]
+        elif exp == "E013":
+            items = [(f"{m}, {int(st) // 1000}k", v) for m, st, v in zip(frame.model, frame.steps, frame.verdict)]
         elif exp == "E014":
-            labels = [f"{v} G{int(g)}" for v, g in zip(frame.variant, frame.grid)]
+            items = [(f"{v}, G={int(g)}", r) for v, g, r in zip(frame.variant, frame.grid, frame.verdict)]
         else:
-            labels = list(frame.hypothesis)
-        return "; ".join(f"{h}: {v}" for h, v in zip(labels, frame.verdict))
+            items = list(zip(frame.hypothesis, frame.verdict))
+        return [(label, normalize(v)) for label, v in items]
     if exp == "E010" and (d / "results/lr_sweep_summary.csv").is_file():
         s = pd.read_csv(d / "results/lr_sweep_summary.csv")
-        return f"лучше контроля: {int((s.verdict_draft_rule == 'better than control').sum())} конфигураций"
+        s = s[s.verdict_draft_rule != "control"]
+        return [(f"{a} · {lr} · {b}", normalize(v)) for a, lr, b, v in
+                zip(s.variant, s.lr_name, s.budget, s.verdict_draft_rule)]
     if exp == "E011" and (d / "results/long_runs_summary.csv").is_file():
         s = pd.read_csv(d / "results/long_runs_summary.csv")
-        return f"плато: {int(s.plateau_text.str.startswith('плато (').sum())} из {len(s)} групп"
+        items = [(f"плато: {m} · {b} · N={n}", normalize(t)) for m, b, n, t in
+                 zip(s.variant, s.lr_branch, s.n_train_nominal, s.plateau_text)]
+        pairs = s.drop_duplicates(["variant", "lr_branch"])
+        items += [(f"переобучение: {m} · {b}", normalize(v)) for m, b, v in
+                  zip(pairs.variant, pairs.lr_branch, pairs.overfitting_verdict_draft)]
+        return items
     if exp == "E019" and (d / "results/confirm_summary.csv").is_file():
         s = pd.read_csv(d / "results/confirm_summary.csv")
         s = s[s.horizon == s.horizon.max()]
-        return f"плато за 200k: {int(s.plateau_text.str.startswith('плато (').sum())} из {len(s)}"
+        return [(f"плато за {int(h) // 1000}k: {m} · {b}", normalize(t)) for m, b, h, t in
+                zip(s.member, s.lr_branch, s.horizon, s.plateau_text)]
     if exp == "E015" and (d / "results/verdict.json").is_file():
-        return "память есть: " + json.loads((d / "results/verdict.json").read_text())["verdict"]
-    return "не запущено"
+        v = json.loads((d / "results/verdict.json").read_text(encoding="utf-8"))["verdict"]
+        return [("память есть (фаза зависит от мощности соседей)", normalize(v))]
+    return None
+
+
+def short_verdict(exp: str) -> str:
+    items = verdict_items(exp)
+    if items is None:
+        return "не запущено"
+    confirmed = sum(1 for _, v in items if v == "подтверждено")
+    return f"подтверждено: {confirmed}, не доказано: {len(items) - confirmed}"
+
+
+def verdict_summary_block(exp: str) -> str:
+    items = verdict_items(exp)
+    if items is None:
+        return "**Вердикт:** не запущено.\n"
+    lines = [f"**Вердикт** (по правилу до запуска): {short_verdict(exp)}.", ""]
+    lines += [f"- {label}: **{verdict}**" for label, verdict in items[:MAX_ROWS]]
+    if len(items) > MAX_ROWS:
+        lines.append(f"- … ещё {len(items) - MAX_ROWS} (полностью — в таблице ниже)")
+    return "\n".join(lines) + "\n"
 
 
 # --------------------------------------------------------------------------- pages
@@ -289,18 +384,20 @@ def build_experiment(exp: str) -> None:
     d = folder(exp)
     config = json.loads((d / "config.json").read_text(encoding="utf-8"))
     rule = config.get("rule_draft") or {"interpretation_rule": config.get("interpretation_rule", "unknown")}
+    write(f"{exp}_header.md", f"Журнал запусков: {log_link()} (только дописывается). "
+                              f"Папка эксперимента: `{d.relative_to(ROOT).as_posix()}`.\n")
     write(f"{exp}_rule.md", f"**Вопрос.** {question(exp)}\n\n**Правило до запуска** "
                             f"(`{d.relative_to(ROOT)}/config.json` → `rule_draft`, дословно):\n\n"
                             + "\n".join(render_value(rule)) + "\n")
 
-    parts = []
+    parts = [verdict_summary_block(exp)]
     if exp == "E015":
         fits = d / "results/alpha_fit_summary.csv"
         if fits.is_file():
             f = pd.read_csv(fits)
             f["ci"] = [f"{fmt(a)} … {fmt(b)}" for a, b in zip(f.reduction_ci_low, f.reduction_ci_high)]
             parts.append("Прямая подгонка фазы (`results/alpha_fit_summary.csv`):\n\n" + table(f, {
-                "n_alpha": "R", "split": "выборка", "reduction": "снижение BER, %", "ci": "95 % бутстрап",
+                "n_alpha": "R (коэффициентов)", "split": "выборка", "reduction": "снижение BER, %", "ci": "95 % бутстрап",
                 "q2_gain_db": "Q², дБ"}))
         diag = d / "results/diagnostics_summary.csv"
         if diag.is_file():
@@ -324,7 +421,7 @@ def build_experiment(exp: str) -> None:
     if exp in RUNS and grouped(exp):
         runs, agg = grouped(exp)
         checks.append("**Аномалии** (пороги: хуже контроля > 5 п.п., разброс seeds > 3 п.п., "
-                      "|валидация − тест| > 5 п.п.):\n\n" + anomalies(runs, agg, control_mean))
+                      "|валидация − тест| > 5 п.п.):\n\n" + anomalies(runs, agg, control_mean, exp in CONTROL_IS_OTHER_MODEL))
     elif exp == "E015":
         checks.append("Аномалии по прогонам неприменимы: обучения нет.\n")
     elif exp == "E019" and (d / "results/confirm.csv").is_file():
@@ -356,7 +453,8 @@ def build_index(experiments: list[str]) -> None:
                      "verdict": short_verdict(exp), "control": control})
     text = table(pd.DataFrame(rows), {"exp": "эксп.", "question": "вопрос", "verdict": "вердикт (по правилу)",
                                       "control": "контроль"})
-    write("index_status.md", text + "\nE001–E009 — [одной страницей](experiments/legacy.qmd).\n")
+    write("index_status.md", text + "\nE001–E009 — [одной страницей](experiments/legacy.qmd). "
+                                    f"История запусков — {log_link()}.\n")
 
 
 def build_legacy() -> None:
@@ -368,7 +466,7 @@ def build_legacy() -> None:
         v = re.search(r"^Вывод:\s*(.*)$", body, flags=re.M)
         rows.append({"exp": match.group(1), "title": match.group(2).strip(), "question": q.group(1).strip() if q else "—",
                      "conclusion": (v.group(1).strip() if v else "") or "—"})
-    write("legacy.md", "Строки «Вопрос» и «Вывод» из `LOG.md` дословно ([LOG.md](../../../LOG.md)).\n\n" +
+    write("legacy.md", f"Строки «Вопрос» и «Вывод» из `LOG.md` дословно ({log_link()}).\n\n" +
           table(pd.DataFrame(rows), {"exp": "эксп.", "title": "название", "question": "вопрос", "conclusion": "вывод"}))
 
 

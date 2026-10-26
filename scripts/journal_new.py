@@ -17,7 +17,7 @@ TEMPLATE = """---
 title: "{title}"
 ---
 
-Журнал запусков: [LOG.md](../../../LOG.md) (только дописывается). Папка эксперимента: `{folder}`.
+{{{{< include ../_auto/{exp}_header.md >}}}}
 
 ## Вопрос и правило до запуска
 
@@ -57,6 +57,12 @@ def main(argv: list[str]) -> int:
     PAGES.mkdir(parents=True, exist_ok=True)
     page.write_text(TEMPLATE.format(title=title.replace('"', "'"), exp=exp,
                                     folder=folders[0].relative_to(ROOT).as_posix()), encoding="utf-8")
+    config = ROOT / "journal" / "_quarto.yml"
+    marker = "      # journal_new.py appends new experiment pages above this line"
+    text = config.read_text(encoding="utf-8")
+    entry = f"      - experiments/{exp}.qmd\n"
+    if entry not in text and marker in text:   # flat sidebar: add the page to the menu
+        config.write_text(text.replace(marker, entry + marker), encoding="utf-8")
     print(f"создана {page.relative_to(ROOT)}")
     return 0
 

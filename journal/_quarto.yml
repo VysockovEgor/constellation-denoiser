@@ -17,12 +17,24 @@ website:
     contents:
       - index.qmd
       - gallery.qmd
-      - section: "Эксперименты"
-        contents:
-          - experiments/legacy.qmd
-          - auto: "experiments/E*.qmd"
+      - experiments/legacy.qmd
+      - experiments/E010.qmd
+      - experiments/E011.qmd
+      - experiments/E012.qmd
+      - experiments/E013.qmd
+      - experiments/E014.qmd
+      - experiments/E015.qmd
+      - experiments/E016.qmd
+      - experiments/E017.qmd
+      - experiments/E018.qmd
+      - experiments/E019.qmd
+      # journal_new.py appends new experiment pages above this line
 
 lightbox: auto
+lang: ru
+language:
+  title-block-author-single: "Автор"
+  title-block-published: "Дата сборки"
 execute:
   freeze: auto
 

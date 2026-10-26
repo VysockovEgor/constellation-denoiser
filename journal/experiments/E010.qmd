@@ -2,7 +2,7 @@
 title: "E010 — Расписания learning rate"
 ---
 
-Журнал запусков: [LOG.md](../../../LOG.md) (только дописывается). Папка эксперимента: `experiments/E010_lr_schedule_study`.
+{{< include ../_auto/E010_header.md >}}
 
 ## Вопрос и правило до запуска
 

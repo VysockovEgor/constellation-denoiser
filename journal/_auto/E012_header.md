@@ -1,0 +1,3 @@
+<!-- Сгенерировано scripts/journal_build_auto.py из файлов результатов. Не править вручную. -->
+
+Журнал запусков: [LOG.md на GitHub](https://github.com/VysockovEgor/constellation-denoiser/blob/chore/journal/LOG.md) (только дописывается). Папка эксперимента: `experiments/E012_depth_vs_window`.
