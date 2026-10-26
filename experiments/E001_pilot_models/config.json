@@ -33,5 +33,6 @@
     "Symbols_1m_1ch_PR_10"
   ],
   "selection": "lowest validation BER, then lowest validation MSE",
-  "training_target": "complex transmitted symbol represented as two real-valued outputs; MSE loss"
+  "training_target": "complex transmitted symbol represented as two real-valued outputs; MSE loss",
+  "interpretation_rule": "unknown: no pre-run interpretation rule in the preserved files (reconstructed experiment)"
 }

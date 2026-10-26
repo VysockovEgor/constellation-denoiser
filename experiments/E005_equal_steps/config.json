@@ -13,5 +13,6 @@
   "seed": null,
   "seed_note": "Historical command did not record the seed; current code default is 17.",
   "data_config": "../../data/manifest/split_E004_learning_curve.json",
-  "historical_command": "unknown"
+  "historical_command": "unknown",
+  "interpretation_rule": "unknown: no pre-run interpretation rule in the preserved files (reconstructed experiment)"
 }

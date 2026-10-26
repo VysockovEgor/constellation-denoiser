@@ -12,5 +12,6 @@
   "initial_learning_rate": 0.001,
   "learning_rate_schedule": "cosine",
   "diagnostic_steps": [0, 1000, 5000, 20000],
-  "historical_command": "bash experiments/E008_cosine_lr_coefficients/scripts/run_complex_mlp_lr_sweep.sh"
+  "historical_command": "bash experiments/E008_cosine_lr_coefficients/scripts/run_complex_mlp_lr_sweep.sh",
+  "interpretation_rule": "unknown: no pre-run interpretation rule in the preserved files (reconstructed experiment)"
 }

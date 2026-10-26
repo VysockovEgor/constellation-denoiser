@@ -36,5 +36,6 @@
   ],
   "activation": "tanh",
   "target": "I/Q of the central transmitted symbol",
-  "loss": "MSE"
+  "loss": "MSE",
+  "interpretation_rule": "unknown: no pre-run interpretation rule in the preserved files (reconstructed experiment)"
 }

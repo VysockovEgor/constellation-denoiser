@@ -12,5 +12,6 @@
   "steps": 20000,
   "learning_rate": 0.001,
   "diagnostic_steps": [0, 5000, 20000],
-  "historical_command": "bash experiments/E009_kerr_ablation/scripts/launch_ablation_max.sh"
+  "historical_command": "bash experiments/E009_kerr_ablation/scripts/launch_ablation_max.sh",
+  "interpretation_rule": "unknown: no pre-run interpretation rule in the preserved files (reconstructed experiment)"
 }

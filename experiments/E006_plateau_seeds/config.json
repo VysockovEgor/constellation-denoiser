@@ -9,5 +9,6 @@
   "requested_max_steps": 100000,
   "data_config": "../../data/manifest/split_E004_learning_curve.json",
   "historical_command": "unknown",
-  "coverage_note": "The CSV and logs show unequal coverage; see README.md. Do not infer missing runs."
+  "coverage_note": "The CSV and logs show unequal coverage; see README.md. Do not infer missing runs.",
+  "interpretation_rule": "unknown: no pre-run interpretation rule in the preserved files (reconstructed experiment)"
 }

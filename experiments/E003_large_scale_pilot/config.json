@@ -333,5 +333,6 @@
     "optimizer": "Adam"
   },
   "epochs": 40,
-  "patience": 10
+  "patience": 10,
+  "interpretation_rule": "unknown: no pre-run interpretation rule in the preserved files (reconstructed experiment)"
 }

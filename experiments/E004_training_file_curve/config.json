@@ -337,5 +337,6 @@
     "optimizer": "Adam",
     "loss": "complex MSE"
   },
-  "test_mean_raw_ber": 0.009551859551859552
+  "test_mean_raw_ber": 0.009551859551859552,
+  "interpretation_rule": "unknown: no pre-run interpretation rule in the preserved files (reconstructed experiment)"
 }

@@ -67,8 +67,11 @@ def macs_phys(R: int, L: int, sym: bool) -> int | float:
     (pairs z_{k+m} + z_{k-m} share one complex product); L = 1 means no FIR (0).
     Nonlinearity (R > 0): |u|^2 2, power convolution R (symmetric: (R + 1)/2),
     exp(-i*phi) from a lookup table 0, rotation (complex product) 4.
-    The paper (Sidelnikov et al., JLT 2021) quotes 0.25(R + 1) + 6 for symmetric
-    alpha; see experiments/E016_phys_kerr_only/README.md for the comparison.
+    With symmetric alpha the nonlinear step costs 0.5(R + 1) + 6 here, while the paper
+    (Sidelnikov et al., JLT 2021) quotes 0.25(R + 1) + 6. Likely reason (the PDF was not
+    available to check): the paper treats a dual-polarization signal, where one convolution of
+    the total power |x|^2 + |y|^2 is shared by both polarizations (0.25(R + 1) per polarization),
+    and 6 = 2 (own |z|^2) + 4 (rotation). Our data are single-polarization, so nothing is shared.
     """
     fir = 0 if L <= 1 else (2 * (L + 1) if sym else 4 * L)
     if R <= 0:

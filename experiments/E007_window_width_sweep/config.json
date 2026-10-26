@@ -10,5 +10,6 @@
   "steps": 20000,
   "checkpoint_every": 1000,
   "learning_rate": 0.001,
-  "historical_command": "bash experiments/E007_window_width_sweep/scripts/run_complex_mlp_sweep.sh"
+  "historical_command": "bash experiments/E007_window_width_sweep/scripts/run_complex_mlp_sweep.sh",
+  "interpretation_rule": "unknown: no pre-run interpretation rule in the preserved files (reconstructed experiment)"
 }
