@@ -1,0 +1,8 @@
+=== 2026-10-24T20:50:33+07:00 E018 summarize: .venv/bin/python -m constellation_denoiser.summarize_E018 ===
+JOBS=auto THREADS=auto DEVICE=auto SEEDS=default SMOKE=0 FORCE=0
+сводка: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E018_dbp_depth/results/dbp_depth_summary.csv; вердикты: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E018_dbp_depth/results/dbp_depth_verdicts.csv
+=== 2026-10-24T20:50:37+07:00 E018 summarize exit=0 ===
+=== 2026-10-26T15:10:36+07:00 E018 summarize: .venv/bin/python -m constellation_denoiser.summarize_E018 ===
+JOBS=auto THREADS=auto DEVICE=auto SEEDS=default SMOKE=0 FORCE=0
+сводка: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E018_dbp_depth/results/dbp_depth_summary.csv; вердикты: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E018_dbp_depth/results/dbp_depth_verdicts.csv
+=== 2026-10-26T15:10:39+07:00 E018 summarize exit=0 ===

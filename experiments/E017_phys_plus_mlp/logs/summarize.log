@@ -1,0 +1,4 @@
+=== 2026-10-26T14:45:09+07:00 E017 summarize: .venv/bin/python -m constellation_denoiser.summarize_E017 ===
+JOBS=auto THREADS=auto DEVICE=auto SEEDS=default SMOKE=0 FORCE=0
+сводка: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E017_phys_plus_mlp/results/phys_plus_mlp_summary.csv; вердикты: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E017_phys_plus_mlp/results/phys_plus_mlp_verdicts.csv
+=== 2026-10-26T14:45:12+07:00 E017 summarize exit=0 ===

@@ -1,0 +1,3 @@
+hypothesis,candidate,candidate_macs,reference,reference_macs,diff_pp,seed_spread_pp,n_seeds,threshold,verdict,rule_status
+физика достаточна,phys_R31_L7_sym / const_1e-3,38,complex_a const 1e-3 20k,6480,-52.45821182160894,1.5932854399317122,5,diff >= -2 p.p.,не доказано,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+физика полезна,phys_R31_L7_sym / const_1e-3,38,phys_R1_L31_sym / const_1e-3,71,14.24283377196102,0.9424567892453153,5,>= 1 p.p. and > seed spread,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen

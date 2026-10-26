@@ -1,0 +1,5 @@
+mlp_hidden,joint_minus_frozen_pp,seed_spread_pp,note
+4.0,1.4638309979372686,5.274201579059673,observation only (different optimization paths)
+8.0,0.6209545486876706,5.014581406927949,observation only (different optimization paths)
+16.0,3.0741873532968143,1.440358489223982,observation only (different optimization paths)
+48.0,8.817839106622088,11.778931645209468,observation only (different optimization paths)

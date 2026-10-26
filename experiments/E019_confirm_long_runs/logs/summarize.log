@@ -1,0 +1,8 @@
+=== 2026-10-24T23:10:48+07:00 E019 summarize: .venv/bin/python -m constellation_denoiser.summarize_E019 ===
+JOBS=auto THREADS=auto DEVICE=auto SEEDS=default SMOKE=0 FORCE=0
+сводка: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E019_confirm_long_runs/results/confirm_summary.csv
+=== 2026-10-24T23:10:53+07:00 E019 summarize exit=0 ===
+=== 2026-10-26T15:54:18+07:00 E019 summarize: .venv/bin/python -m constellation_denoiser.summarize_E019 ===
+JOBS=auto THREADS=auto DEVICE=auto SEEDS=default SMOKE=0 FORCE=0
+сводка: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E019_confirm_long_runs/results/confirm_summary.csv
+=== 2026-10-26T15:54:25+07:00 E019 summarize exit=0 ===

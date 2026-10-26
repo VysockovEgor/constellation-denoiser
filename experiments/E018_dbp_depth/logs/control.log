@@ -1,0 +1,11 @@
+=== 2026-10-24T14:34:09+07:00 E018 control: .venv/bin/python -u -m constellation_denoiser.runner --exp E018 --stage control --no-control-gate ===
+JOBS=auto THREADS=auto DEVICE=auto SEEDS=default SMOKE=0 FORCE=0
+[2026-10-24 14:34:11] running 2 tasks with JOBS=23, THREADS=1, DEVICE=cpu
+[2026-10-24 14:38:00] [ok 1/2] control_complex_a_w31_h48_N30_20k_seed29: val=60.74% test=62.37% diverged=False time=227s; ETA ~4 min
+[2026-10-24 14:38:07] [ok 2/2] control_complex_a_w31_h48_N30_20k_seed17: val=59.43% test=60.40% diverged=False time=234s; ETA ~0 min
+[2026-10-24 14:38:08] finished: 2 ok, 0 failed
+=== 2026-10-24T14:38:08+07:00 E018 control exit=0 ===
+=== 2026-10-26T15:10:30+07:00 E018 control: .venv/bin/python -u -m constellation_denoiser.runner --exp E018 --stage control --no-control-gate ===
+JOBS=auto THREADS=auto DEVICE=auto SEEDS=default SMOKE=0 FORCE=0
+[2026-10-26 15:10:32] nothing to run: all results exist (use FORCE=1 to recompute)
+=== 2026-10-26T15:10:32+07:00 E018 control exit=0 ===

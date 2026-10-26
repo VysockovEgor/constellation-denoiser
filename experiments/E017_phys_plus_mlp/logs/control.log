@@ -1,0 +1,15 @@
+=== 2026-10-26T14:25:19+07:00 E017 control: .venv/bin/python -u -m constellation_denoiser.runner --exp E017 --stage control --no-control-gate ===
+JOBS=auto THREADS=auto DEVICE=auto SEEDS=default SMOKE=0 FORCE=0
+[2026-10-26 14:25:21] running 10 tasks with JOBS=23, THREADS=1, DEVICE=cpu
+[2026-10-26 14:29:18] [ok 1/10] control_one_hidden_w31_h48_N30_20k_seed57: val=57.57% test=58.47% diverged=False time=235s; ETA ~36 min
+[2026-10-26 14:29:19] [ok 2/10] control_one_hidden_w31_h48_N30_20k_seed29: val=58.81% test=60.61% diverged=False time=236s; ETA ~16 min
+[2026-10-26 14:29:19] [ok 3/10] control_one_hidden_w31_h48_N30_20k_seed71: val=56.09% test=57.32% diverged=False time=237s; ETA ~9 min
+[2026-10-26 14:29:20] [ok 4/10] control_one_hidden_w31_h48_N30_20k_seed17: val=56.17% test=58.26% diverged=False time=237s; ETA ~6 min
+[2026-10-26 14:29:24] [ok 5/10] control_one_hidden_w31_h48_N30_20k_seed43: val=56.21% test=57.30% diverged=False time=241s; ETA ~4 min
+[2026-10-26 14:29:39] [ok 6/10] control_complex_a_w31_h48_N30_20k_seed57: val=57.95% test=59.38% diverged=False time=256s; ETA ~3 min
+[2026-10-26 14:29:41] [ok 7/10] control_complex_a_w31_h48_N30_20k_seed43: val=61.44% test=62.38% diverged=False time=258s; ETA ~2 min
+[2026-10-26 14:29:41] [ok 8/10] control_complex_a_w31_h48_N30_20k_seed29: val=60.74% test=62.37% diverged=False time=258s; ETA ~1 min
+[2026-10-26 14:29:41] [ok 9/10] control_complex_a_w31_h48_N30_20k_seed71: val=59.59% test=61.11% diverged=False time=258s; ETA ~0 min
+[2026-10-26 14:29:48] [ok 10/10] control_complex_a_w31_h48_N30_20k_seed17: val=59.43% test=60.40% diverged=False time=266s; ETA ~0 min
+[2026-10-26 14:29:49] finished: 10 ok, 0 failed
+=== 2026-10-26T14:29:49+07:00 E017 control exit=0 ===

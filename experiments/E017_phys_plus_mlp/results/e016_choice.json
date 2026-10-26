@@ -1,0 +1,19 @@
+{
+  "n_alpha": 31,
+  "fir_len": 7,
+  "sym": true,
+  "lr_name": "const_1e-3",
+  "mean_best_val_reduction": 8.334333839471736,
+  "source": "/home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E016_phys_kerr_only/results/phys_kerr.csv",
+  "lr_name_used": "const_1e-3",
+  "lr_config_used": {
+    "peak_lr": 0.001,
+    "schedule": "const",
+    "warmup": 0,
+    "c_mult": 1.0,
+    "floor_frac": 0.1,
+    "optimizer": "adam",
+    "weight_decay": 0.0,
+    "horizon": null
+  }
+}

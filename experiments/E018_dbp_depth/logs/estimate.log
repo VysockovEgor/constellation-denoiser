@@ -1,0 +1,12 @@
+=== 2026-10-24T14:07:05+07:00 E018 estimate: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/.venv/bin/python -m constellation_denoiser.runner --exp E018 --stage control --estimate ===
+JOBS=auto THREADS=auto DEVICE=auto SEEDS=default SMOKE=0 FORCE=0
+Стадия control: всего прогонов 2, осталось 2.
+  замер 1 моделей за 13 с на cpu, THREADS=1, коэффициент конкуренции процессов 0.67 (из resources.json)
+  оценка: ~0.1 ч при JOBS=23; ~0.1 ч при JOBS=11; самый длинный прогон ~0.1 ч
+=== 2026-10-24T14:07:20+07:00 E018 estimate exit=0 ===
+=== 2026-10-24T14:07:20+07:00 E018 estimate: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/.venv/bin/python -m constellation_denoiser.runner --exp E018 --stage main --estimate ===
+JOBS=auto THREADS=auto DEVICE=auto SEEDS=default SMOKE=0 FORCE=0
+Стадия main: всего прогонов 160, осталось 160.
+  замер 32 моделей за 94 с на cpu, THREADS=1, коэффициент конкуренции процессов 0.67 (из resources.json)
+  оценка: ~6.0 ч при JOBS=23; ~12.6 ч при JOBS=11; самый длинный прогон ~2.6 ч
+=== 2026-10-24T14:08:57+07:00 E018 estimate exit=0 ===

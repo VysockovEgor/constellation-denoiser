@@ -1,0 +1,85 @@
+[
+  {
+    "experiment": "E016",
+    "variant": "phys_R31_L7_sym",
+    "lr_name": "const_1e-3",
+    "spec": {
+      "model": "phys_kerr",
+      "window": 31,
+      "name": "phys_R31_L7_sym",
+      "fir_len": 7,
+      "n_alpha": 31,
+      "sym": true
+    },
+    "mean_best_val_reduction": 8.334333839471736,
+    "branch_validation": {
+      "best_e010_cm1": 8.121755711712987,
+      "best_e010_cm30": 7.950845721953461,
+      "const_1e-3": 8.334333839471736
+    },
+    "source": "/home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E016_phys_kerr_only/results/phys_kerr.csv",
+    "kind": "phys"
+  },
+  {
+    "experiment": "E017",
+    "variant": "h48_joint",
+    "lr_name": "const_1e-3",
+    "spec": {
+      "model": "phys_plus_mlp",
+      "window": 31,
+      "name": "hyb_R31_L7_sym_h48_joint",
+      "fir_len": 7,
+      "n_alpha": 31,
+      "sym": true,
+      "mlp_hidden": 48
+    },
+    "mean_best_val_reduction": 60.90681168120344,
+    "branch_validation": {
+      "const_1e-3": 60.90681168120344
+    },
+    "source": "/home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E017_phys_plus_mlp/results/phys_plus_mlp.csv",
+    "kind": "phys"
+  },
+  {
+    "experiment": "E018",
+    "variant": "dbp_Ns8_L31_R7_joint_from_scratch",
+    "lr_name": "const_1e-3",
+    "spec": {
+      "model": "phys_dbp",
+      "window": 31,
+      "name": "dbp_Ns8_L31_R7_joint_from_scratch",
+      "fir_len": 31,
+      "n_alpha": 7,
+      "sym": true,
+      "n_steps": 8
+    },
+    "mean_best_val_reduction": 47.40421625057382,
+    "branch_validation": {
+      "const_1e-3": 47.40421625057382
+    },
+    "source": "/home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E018_dbp_depth/results/dbp_depth.csv",
+    "kind": "phys"
+  },
+  {
+    "experiment": "control",
+    "variant": "complex_a",
+    "spec": {
+      "model": "complex_a",
+      "window": 31,
+      "hidden": 48,
+      "name": "complex_a"
+    },
+    "kind": "complex_a"
+  },
+  {
+    "experiment": "control",
+    "variant": "complex_both",
+    "spec": {
+      "model": "complex_both",
+      "window": 31,
+      "hidden": 48,
+      "name": "complex_both"
+    },
+    "kind": "complex_both"
+  }
+]

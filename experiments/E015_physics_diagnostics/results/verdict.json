@@ -1,0 +1,28 @@
+{
+  "rule_status": "DRAFT: to be confirmed by the user before the first run; must not change after results are seen",
+  "condition_a_by_R": {
+    "P_nb_R1": true,
+    "P_nb_R3": true,
+    "P_nb_R7": true,
+    "P_nb_R15": true
+  },
+  "condition_a": true,
+  "rho_own_validation": 0.06220118687169737,
+  "rho_nb_validation": {
+    "P_nb_R1": 0.10501116310423834,
+    "P_nb_R3": 0.15146576337228318,
+    "P_nb_R7": 0.19251645428787592,
+    "P_nb_R15": 0.22973989688453042
+  },
+  "rho_nb_test": {
+    "P_nb_R1": 0.10779719225033893,
+    "P_nb_R3": 0.15329486107182888,
+    "P_nb_R7": 0.19641555457792018,
+    "P_nb_R15": 0.23544732017550882
+  },
+  "fit_gap_R7_minus_R1_validation_pp": 0.5826476923620085,
+  "fit_gap_R7_minus_R1_test_pp": 0.2951845792730551,
+  "condition_b": false,
+  "test_agrees": true,
+  "verdict": "не доказано"
+}

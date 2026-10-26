@@ -1,0 +1,10 @@
+=== 2026-10-26T13:46:02+07:00 E016 control: .venv/bin/python -u -m constellation_denoiser.runner --exp E016 --stage control --no-control-gate ===
+JOBS=auto THREADS=auto DEVICE=auto SEEDS=default SMOKE=0 FORCE=0
+[2026-10-26 13:46:04] running 5 tasks with JOBS=23, THREADS=1, DEVICE=cpu
+[2026-10-26 13:49:50] [ok 1/5] control_complex_a_w31_h48_N30_20k_seed57: val=57.95% test=59.38% diverged=False time=224s; ETA ~15 min
+[2026-10-26 13:49:55] [ok 2/5] control_complex_a_w31_h48_N30_20k_seed43: val=61.44% test=62.38% diverged=False time=229s; ETA ~6 min
+[2026-10-26 13:50:04] [ok 3/5] control_complex_a_w31_h48_N30_20k_seed17: val=59.43% test=60.40% diverged=False time=239s; ETA ~3 min
+[2026-10-26 13:50:07] [ok 4/5] control_complex_a_w31_h48_N30_20k_seed29: val=60.74% test=62.37% diverged=False time=241s; ETA ~1 min
+[2026-10-26 13:50:19] [ok 5/5] control_complex_a_w31_h48_N30_20k_seed71: val=59.59% test=61.11% diverged=False time=253s; ETA ~0 min
+[2026-10-26 13:50:20] finished: 5 ok, 0 failed
+=== 2026-10-26T13:50:20+07:00 E016 control exit=0 ===

@@ -1,0 +1,5 @@
+=== 2026-10-26T14:29:49+07:00 E017 check-control: .venv/bin/python -m constellation_denoiser.runner --exp E017 --stage control --check-control ===
+JOBS=auto THREADS=auto DEVICE=auto SEEDS=default SMOKE=0 FORCE=0
+[2026-10-26 14:29:51] control a_const_1e-3_20k: mean test_reduction_valbest_select = 62.19% по 2 seed; цель 62.191±0.7 п.п. -> OK
+[2026-10-26 14:29:51] control one_hidden_const_1e-3_20k: mean test_reduction_valbest_select = 59.44% по 2 seed; цель 59.437±0.7 п.п. -> OK
+=== 2026-10-26T14:29:51+07:00 E017 check-control exit=0 ===

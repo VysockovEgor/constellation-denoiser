@@ -1,0 +1,45 @@
+=== 2026-10-26T14:29:51+07:00 E017 main: .venv/bin/python -u -m constellation_denoiser.runner --exp E017 --stage main ===
+JOBS=auto THREADS=auto DEVICE=auto SEEDS=default SMOKE=0 FORCE=0
+[2026-10-26 14:29:53] running 40 tasks with JOBS=23, THREADS=1, DEVICE=cpu
+[2026-10-26 14:34:10] [ok 1/40] hyb_R31_L7_sym_h4_frozen_w31_N30_const_1e-3_40k_seed57: val=15.20% test=17.02% diverged=False time=255s; ETA ~167 min
+[2026-10-26 14:34:13] [ok 2/40] hyb_R31_L7_sym_h4_frozen_w31_N30_const_1e-3_40k_seed29: val=11.01% test=12.13% diverged=False time=258s; ETA ~82 min
+[2026-10-26 14:34:14] [ok 3/40] hyb_R31_L7_sym_h4_frozen_w31_N30_const_1e-3_40k_seed17: val=12.14% test=12.72% diverged=False time=259s; ETA ~54 min
+[2026-10-26 14:34:15] [ok 4/40] hyb_R31_L7_sym_h4_frozen_w31_N30_const_1e-3_40k_seed43: val=10.77% test=11.12% diverged=False time=260s; ETA ~39 min
+[2026-10-26 14:34:20] [ok 5/40] hyb_R31_L7_sym_h4_frozen_w31_N30_const_1e-3_40k_seed71: val=11.02% test=12.65% diverged=False time=264s; ETA ~31 min
+[2026-10-26 14:34:33] [ok 6/40] hyb_R31_L7_sym_h8_frozen_w31_N30_const_1e-3_40k_seed71: val=21.13% test=22.37% diverged=False time=276s; ETA ~26 min
+[2026-10-26 14:34:34] [ok 7/40] hyb_R31_L7_sym_h8_frozen_w31_N30_const_1e-3_40k_seed57: val=21.74% test=23.52% diverged=False time=277s; ETA ~22 min
+[2026-10-26 14:34:36] [ok 8/40] hyb_R31_L7_sym_h8_frozen_w31_N30_const_1e-3_40k_seed17: val=21.61% test=22.11% diverged=False time=281s; ETA ~19 min
+[2026-10-26 14:34:37] [ok 9/40] hyb_R31_L7_sym_h8_frozen_w31_N30_const_1e-3_40k_seed29: val=25.51% test=27.03% diverged=False time=281s; ETA ~16 min
+[2026-10-26 14:34:40] [ok 10/40] hyb_R31_L7_sym_h8_frozen_w31_N30_const_1e-3_40k_seed43: val=20.48% test=21.57% diverged=False time=283s; ETA ~14 min
+[2026-10-26 14:35:07] [ok 11/40] hyb_R31_L7_sym_h4_joint_w31_N30_const_1e-3_40k_seed57: val=13.69% test=14.40% diverged=False time=311s; ETA ~14 min
+[2026-10-26 14:35:07] [ok 12/40] hyb_R31_L7_sym_h4_joint_w31_N30_const_1e-3_40k_seed43: val=13.72% test=14.33% diverged=False time=312s; ETA ~12 min
+[2026-10-26 14:35:10] [ok 13/40] hyb_R31_L7_sym_h4_joint_w31_N30_const_1e-3_40k_seed17: val=14.22% test=15.14% diverged=False time=314s; ETA ~11 min
+[2026-10-26 14:35:11] [ok 14/40] hyb_R31_L7_sym_h4_joint_w31_N30_const_1e-3_40k_seed29: val=12.31% test=14.09% diverged=False time=315s; ETA ~10 min
+[2026-10-26 14:35:12] [ok 15/40] hyb_R31_L7_sym_h4_joint_w31_N30_const_1e-3_40k_seed71: val=14.40% test=15.10% diverged=False time=316s; ETA ~9 min
+[2026-10-26 14:35:25] [ok 16/40] hyb_R31_L7_sym_h16_frozen_w31_N30_const_1e-3_40k_seed29: val=37.15% test=38.13% diverged=False time=329s; ETA ~8 min
+[2026-10-26 14:35:26] [ok 17/40] hyb_R31_L7_sym_h16_frozen_w31_N30_const_1e-3_40k_seed17: val=39.16% test=39.90% diverged=False time=330s; ETA ~8 min
+[2026-10-26 14:35:28] [ok 18/40] hyb_R31_L7_sym_h16_frozen_w31_N30_const_1e-3_40k_seed43: val=37.66% test=38.51% diverged=False time=331s; ETA ~7 min
+[2026-10-26 14:35:30] [ok 19/40] hyb_R31_L7_sym_h8_joint_w31_N30_const_1e-3_40k_seed17: val=24.32% test=25.44% diverged=False time=334s; ETA ~6 min
+[2026-10-26 14:35:33] [ok 20/40] hyb_R31_L7_sym_h8_joint_w31_N30_const_1e-3_40k_seed29: val=21.24% test=22.20% diverged=False time=337s; ETA ~6 min
+[2026-10-26 14:35:35] [ok 21/40] hyb_R31_L7_sym_h8_joint_w31_N30_const_1e-3_40k_seed57: val=24.40% test=25.55% diverged=False time=339s; ETA ~5 min
+[2026-10-26 14:35:37] [ok 22/40] hyb_R31_L7_sym_h8_joint_w31_N30_const_1e-3_40k_seed43: val=23.19% test=24.09% diverged=False time=341s; ETA ~5 min
+[2026-10-26 14:36:07] [ok 23/40] hyb_R31_L7_sym_h8_joint_w31_N30_const_1e-3_40k_seed71: val=24.54% test=25.95% diverged=False time=370s; ETA ~5 min
+[2026-10-26 14:39:34] [ok 24/40] hyb_R31_L7_sym_h16_frozen_w31_N30_const_1e-3_40k_seed57: val=38.91% test=40.42% diverged=False time=323s; ETA ~6 min
+[2026-10-26 14:39:50] [ok 25/40] hyb_R31_L7_sym_h16_frozen_w31_N30_const_1e-3_40k_seed71: val=37.97% test=39.02% diverged=False time=337s; ETA ~6 min
+[2026-10-26 14:40:33] [ok 26/40] hyb_R31_L7_sym_h16_joint_w31_N30_const_1e-3_40k_seed17: val=41.83% test=43.21% diverged=False time=379s; ETA ~6 min
+[2026-10-26 14:40:35] [ok 27/40] hyb_R31_L7_sym_h16_joint_w31_N30_const_1e-3_40k_seed29: val=40.89% test=42.54% diverged=False time=380s; ETA ~5 min
+[2026-10-26 14:40:38] [ok 28/40] hyb_R31_L7_sym_h16_joint_w31_N30_const_1e-3_40k_seed57: val=41.37% test=42.82% diverged=False time=366s; ETA ~5 min
+[2026-10-26 14:40:48] [ok 29/40] hyb_R31_L7_sym_h16_joint_w31_N30_const_1e-3_40k_seed43: val=40.58% test=42.08% diverged=False time=388s; ETA ~4 min
+[2026-10-26 14:40:51] [ok 30/40] hyb_R31_L7_sym_h16_joint_w31_N30_const_1e-3_40k_seed71: val=39.97% test=41.45% diverged=False time=378s; ETA ~4 min
+[2026-10-26 14:43:02] [ok 31/40] hyb_R31_L7_sym_h48_frozen_w31_N30_const_1e-3_40k_seed17: val=47.17% test=48.37% diverged=False time=505s; ETA ~4 min
+[2026-10-26 14:43:04] [ok 32/40] hyb_R31_L7_sym_h48_frozen_w31_N30_const_1e-3_40k_seed29: val=58.07% test=59.88% diverged=False time=507s; ETA ~3 min
+[2026-10-26 14:43:16] [ok 33/40] hyb_R31_L7_sym_h48_frozen_w31_N30_const_1e-3_40k_seed43: val=51.92% test=53.10% diverged=False time=517s; ETA ~3 min
+[2026-10-26 14:43:29] [ok 34/40] hyb_R31_L7_sym_h48_frozen_w31_N30_const_1e-3_40k_seed71: val=51.05% test=52.19% diverged=False time=502s; ETA ~2 min
+[2026-10-26 14:43:43] [ok 35/40] hyb_R31_L7_sym_h48_frozen_w31_N30_const_1e-3_40k_seed57: val=50.58% test=51.46% diverged=False time=517s; ETA ~2 min
+[2026-10-26 14:44:50] [ok 36/40] hyb_R31_L7_sym_h48_joint_w31_N30_const_1e-3_40k_seed17: val=59.64% test=60.96% diverged=False time=581s; ETA ~2 min
+[2026-10-26 14:44:55] [ok 37/40] hyb_R31_L7_sym_h48_joint_w31_N30_const_1e-3_40k_seed43: val=59.29% test=60.66% diverged=False time=583s; ETA ~1 min
+[2026-10-26 14:44:56] [ok 38/40] hyb_R31_L7_sym_h48_joint_w31_N30_const_1e-3_40k_seed71: val=60.90% test=62.34% diverged=False time=570s; ETA ~1 min
+[2026-10-26 14:44:58] [ok 39/40] hyb_R31_L7_sym_h48_joint_w31_N30_const_1e-3_40k_seed57: val=60.26% test=61.76% diverged=False time=573s; ETA ~0 min
+[2026-10-26 14:45:07] [ok 40/40] hyb_R31_L7_sym_h48_joint_w31_N30_const_1e-3_40k_seed29: val=62.05% test=63.41% diverged=False time=597s; ETA ~0 min
+[2026-10-26 14:45:08] finished: 40 ok, 0 failed
+=== 2026-10-26T14:45:09+07:00 E017 main exit=0 ===
