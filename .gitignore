@@ -19,3 +19,9 @@ tree.txt
 # E010-E014 local artifacts
 resources.json
 results_smoke/
+
+# remote.sh / make_deck.py local files
+scripts/remote.env
+.remote_fetch/
+slides/*.pptx
+.remote_sessions
