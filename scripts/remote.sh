@@ -4,7 +4,7 @@
 #   bash scripts/remote.sh go part1 | part2 | all | <E0NN> <stage>   push, update the server, start in tmux
 #   bash scripts/remote.sh estimate part1 | part2 | <E0NN> [stage]     hours from the server-side estimate stages
 #   bash scripts/remote.sh status                                      sessions, processes, load, runs, logs, ОШИБКА
-#   bash scripts/remote.sh fetch [--to <folder>]                       bring results back, commit "results: <date>", push
+#   bash scripts/remote.sh fetch [--to <folder>] [--journal]           bring results back (+ make journal), commit, push
 #   bash scripts/remote.sh stop <session>                              stop a session started by `go` (only those)
 #   add --dry-run anywhere to print the commands instead of running them
 #
@@ -181,12 +181,14 @@ echo '== ОШИБКА'; grep -rn 'ОШИБКА' logs experiments/*/logs 2>/dev/n
 }
 
 cmd_fetch() {
-  local to=""
-  if [[ "${1:-}" == "--to" ]]; then
-    to="${2:?--to <папка>}"
-  elif [[ -n "${1:-}" ]]; then
-    die "использование: fetch [--to <папка>]"
-  fi
+  local to="" journal=0
+  while [[ $# -gt 0 ]]; do
+    case "$1" in
+      --to) to="${2:?--to <папка>}"; shift 2 ;;
+      --journal) journal=1; shift ;;
+      *) die "использование: fetch [--to <папка>] [--journal]" ;;
+    esac
+  done
   local stamp archive local_dir
   stamp="$(date +%Y%m%d_%H%M%S)"
   archive="cdn_results_$stamp.tgz"
@@ -209,6 +211,9 @@ cmd_fetch() {
     ssh "${SSH_OPTS[@]}" "$SERVER" "rm -f ~/$archive"      # only our own archive
   fi
   local_do tar xzf "$local_dir/$archive" -C "$ROOT_DIR"
+  if [[ "$journal" == "1" ]]; then          # numbers of the journal pages come from the fetched files
+    local_do make journal
+  fi
   if [[ "$DRY_RUN" == "1" ]]; then
     echo "[dry-run] git status; git add <файлы из архива ≤ 5 МБ, кроме игнорируемых>; git commit -m 'results: $(date +%F)'; git push"
   else
@@ -219,7 +224,7 @@ cmd_fetch() {
       [[ "$(stat -c%s "$path")" -le 5000000 ]] || { echo "пропускаю > 5 МБ: $path"; continue; }
       git check-ignore -q "$path" && continue
       files+=("$path")
-    done < <(tar tzf "$local_dir/$archive" | grep -v '/$')
+    done < <(tar tzf "$local_dir/$archive" | grep -v '/$'; [[ "$journal" == "1" ]] && ls journal/_auto/*.md)
     if [[ ${#files[@]} -gt 0 ]]; then
       git add -- "${files[@]}"
     fi
