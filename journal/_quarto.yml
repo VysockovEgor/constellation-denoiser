@@ -1,0 +1,32 @@
+project:
+  type: website
+  output-dir: _site
+  # explicit list: journal/figs links to experiments/ (READMEs there must not become pages); slides.qmd is
+  # rendered separately (make journal-pptx)
+  render:
+    - index.qmd
+    - gallery.qmd
+    - experiments/legacy.qmd
+    - experiments/E*.qmd
+
+website:
+  title: "Журнал constellation-denoiser"
+  search: true
+  sidebar:
+    style: docked
+    contents:
+      - index.qmd
+      - gallery.qmd
+      - section: "Эксперименты"
+        contents:
+          - experiments/legacy.qmd
+          - auto: "experiments/E*.qmd"
+
+lightbox: auto
+execute:
+  freeze: auto
+
+format:
+  html:
+    toc: true
+    lang: ru

@@ -1,0 +1,8 @@
+---
+title: "Галерея рисунков"
+---
+
+Все рисунки из `paper/figures_manifest.csv` и `experiments/*/figures/`, по экспериментам. Клик открывает
+рисунок крупно, стрелки листают.
+
+{{< include _auto/gallery.md >}}

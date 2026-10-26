@@ -25,3 +25,7 @@ scripts/remote.env
 .remote_fetch/
 slides/*.pptx
 .remote_sessions
+
+# Quarto journal build output
+journal/_site/
+journal/.quarto/

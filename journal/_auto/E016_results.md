@@ -1,0 +1,34 @@
+<!-- Сгенерировано scripts/journal_build_auto.py из файлов результатов. Не править вручную. -->
+
+Показано 15 из 112 конфигураций: лучшие по валидации и контроли. Тест — в точке лучшей валидации, %; Q² — прирост в той же точке, дБ.
+
+| конфигурация |  | seeds | валидация | тест, среднее | тест, min … max | Q², дБ | умножений |
+|---|---|---|---|---|---|---|---|
+| phys_R31_L7_sym · const_1e-3 |  | 5 | 8.33 | 9.28 | 8.92 … 9.65 | 0.14 | 38 |
+| phys_R31_L7_nosym · const_1e-3 |  | 5 | 8.18 | 9.10 | 8.72 … 9.40 | 0.14 | 65 |
+| phys_R31_L7_sym · best_e010_cm1 |  | 5 | 8.12 | 9.02 | 8.72 … 9.35 | 0.14 | 38 |
+| phys_R31_L7_nosym · best_e010_cm1 |  | 5 | 8.05 | 9.10 | 8.97 … 9.36 | 0.14 | 65 |
+| phys_R31_L31_sym · best_e010_cm1 |  | 5 | 8.00 | 8.78 | 8.67 … 9.04 | 0.14 | 86 |
+| phys_R31_L31_sym · best_e010_cm30 |  | 5 | 7.99 | 8.90 | 8.71 … 9.25 | 0.14 | 86 |
+| phys_R31_L7_sym · best_e010_cm30 |  | 5 | 7.95 | 8.95 | 8.77 … 9.22 | 0.14 | 38 |
+| phys_R31_L31_nosym · best_e010_cm1 |  | 5 | 7.93 | 8.81 | 8.66 … 9.04 | 0.14 | 161 |
+| phys_R31_L7_nosym · best_e010_cm30 |  | 5 | 7.88 | 8.84 | 8.73 … 9.05 | 0.14 | 65 |
+| phys_R31_L31_nosym · best_e010_cm30 |  | 5 | 7.87 | 8.85 | 8.80 … 8.94 | 0.14 | 161 |
+| phys_R31_L31_sym · const_1e-3 |  | 5 | 7.86 | 8.63 | 8.50 … 8.85 | 0.13 | 86 |
+| phys_R31_L31_nosym · const_1e-3 |  | 5 | 7.63 | 8.62 | 8.36 … 8.98 | 0.13 | 161 |
+| phys_R21_L7_sym · const_1e-3 |  | 5 | 6.27 | 6.84 | 6.52 … 7.18 | 0.11 | 33 |
+| phys_R21_L7_sym · best_e010_cm1 |  | 5 | 6.20 | 6.84 | 6.73 … 6.95 | 0.11 | 33 |
+| complex_a · const_1e-3 | контроль | 5 | 60.50 | 61.74 | 60.79 … 62.38 | 1.27 | 6480 |
+
+Вердикты по правилу до запуска (`results/phys_kerr_verdicts.csv`):
+
+| hypothesis | candidate | candidate_macs | reference | reference_macs | diff_pp | seed_spread_pp | n_seeds | threshold | verdict |
+|---|---|---|---|---|---|---|---|---|---|
+| физика достаточна | phys_R31_L7_sym / const_1e-3 | 38 | complex_a const 1e-3 20k | 6480 | -52.46 | 1.59 | 5 | diff >= -2 p.p. | не доказано |
+| физика полезна | phys_R31_L7_sym / const_1e-3 | 38 | phys_R1_L31_sym / const_1e-3 | 71 | 14.24 | 0.94 | 5 | >= 1 p.p. and > seed spread | подтверждено |
+
+Рисунки (клик — крупно, листание стрелками):
+
+![E016_quality_vs_R.png](../figs/experiments/E016_phys_kerr_only/figures/E016_quality_vs_R.png){group="E016"}
+
+![E016_quality_vs_macs.png](../figs/experiments/E016_phys_kerr_only/figures/E016_quality_vs_macs.png){group="E016"}

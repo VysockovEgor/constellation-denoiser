@@ -1,0 +1,9 @@
+---
+# no title: no title slide; one figure per slide, order of paper/figures_manifest.csv
+# (JOURNAL_TITLES=1 make journal-pptx adds slide titles from the manifest column 'title' or the file name)
+format:
+  pptx:
+    slide-level: 2
+---
+
+{{< include _auto/slides.md >}}
