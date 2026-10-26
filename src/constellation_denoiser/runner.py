@@ -765,7 +765,7 @@ def main(argv: list[str] | None = None) -> int:
     if not args.no_control_gate and not require_control(args.exp, smoke):
         return 3
     if not smoke and not options.synthetic and todo and not data_available(todo[0]["files"]):
-        log("данные split не найдены в data/raw/archive: см. RUNBOOK, раздел B")
+        log("данные split не найдены в data/raw/archive: проверьте PYTHONPATH=src python scripts/check_data.py")
         return 4
     if options.synthetic and not smoke:
         log("SYNTHETIC разрешён только вместе с SMOKE=1")

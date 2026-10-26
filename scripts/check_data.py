@@ -53,7 +53,7 @@ def main() -> int:
     for name in (missing + bad)[:10]:
         print(f"  {name}")
     if missing or bad:
-        print("Скопируйте недостающее по списку experiments/E010_E014_required_files.txt (см. RUNBOOK, раздел B).")
+        print("Скопируйте недостающее по списку experiments/E010_E014_required_files.txt (rsync --files-from=<список> ./ user@server:<папка>/, см. README.md).")
         return 1
     print("Данные на месте.")
     return 0
