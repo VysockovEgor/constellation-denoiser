@@ -52,6 +52,9 @@ def load(exp: str, relative: str) -> tuple[pd.DataFrame, str]:
 
 def add_q2(frame: pd.DataFrame) -> pd.DataFrame:
     frame = frame.copy()
+    if "lr_branch" not in frame and "lr_name" in frame:
+        # summarize_E012 adds lr_branch; tables built from runs/*.json (on the server) only carry lr_name
+        frame["lr_branch"] = frame.lr_name.map(lambda n: "best_e010" if str(n).startswith("best_e010") else str(n))
     frame["q2_db_raw"] = frame.raw_ber.map(q2_db)
     frame["q2_db_model"] = frame.test_ber.map(q2_db)
     frame["q2_gain_db"] = frame.q2_db_model - frame.q2_db_raw
