@@ -17,5 +17,8 @@ dependencies = [
   "jupyterlab>=4.0",
 ]
 
+[project.optional-dependencies]
+dev = ["python-pptx>=1.0"]
+
 [tool.setuptools.packages.find]
 where = ["src"]
