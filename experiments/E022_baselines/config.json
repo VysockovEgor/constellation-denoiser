@@ -1,0 +1,328 @@
+{
+  "experiment_id": "E022",
+  "title": "Classical baselines at equal complexity: linear FIR, DBP with fixed nonlinearity, simplified CNN",
+  "date": "not run",
+  "base_git_commit": "8a0bb70 (branch exp/E020-E023)",
+  "git_commit": "recorded per run in results/runs/*.json (field git_commit)",
+  "data_manifest_sha256": "cb5f2de47145c02d6485969ce116df2253a271c979a927452ea454551a48c0a8",
+  "data_audit_sha256": "a9c35fb7839e85c39f7131373418a6f3a04c731e9c4e55385347a1eabbdedbe4",
+  "split_source": "experiments/E004_training_file_curve/config.json (train_pool_files[:30], validation 45, test 45), as E007-E019",
+  "split_source_sha256": "04c0b2a5775d8fae1acdc348967c6fb976ef5d90e76a8334484242cc9707025a",
+  "dataset_root": "data/raw/archive",
+  "n_train_files": 30,
+  "base_lr": {
+    "peak_lr": 0.001,
+    "schedule": "const",
+    "warmup": 0,
+    "c_mult": 1.0,
+    "floor_frac": 0.1,
+    "optimizer": "adam",
+    "weight_decay": 0.0
+  },
+  "seeds": [
+    17,
+    29,
+    43,
+    57,
+    71
+  ],
+  "eval_every": 5000,
+  "ckpt_every": 10000,
+  "lr_policies": {
+    "const_1e-3": {},
+    "const_3e-3_cm1": {
+      "peak_lr": 0.003
+    },
+    "cos_1e-3_cm1": {
+      "schedule": "cosine_to_zero"
+    },
+    "cos_3e-3_cm1": {
+      "from_e010_stage3": true,
+      "c_mult": 1
+    },
+    "cos_3e-3_cm30": {
+      "from_e010_stage3": true,
+      "c_mult": 30
+    },
+    "transformer": {
+      "peak_lr": 0.001,
+      "schedule": "cosine_to_zero",
+      "warmup": 1000,
+      "optimizer": "adamw",
+      "weight_decay": 1e-05
+    }
+  },
+  "regime": "200k steps, the best long regime of E019 (cos_3e-3 schedule; c_mult only matters for models with Kerr/alpha parameters)",
+  "fir": [
+    {
+      "name": "fir_L31_nosym",
+      "family": "линейный FIR",
+      "spec": {
+        "model": "phys_kerr",
+        "window": 31,
+        "fir_len": 31,
+        "n_alpha": 0,
+        "sym": false
+      },
+      "lr": "cos_3e-3_cm1",
+      "steps": [
+        200000
+      ]
+    },
+    {
+      "name": "fir_L31_sym",
+      "family": "линейный FIR",
+      "spec": {
+        "model": "phys_kerr",
+        "window": 31,
+        "fir_len": 31,
+        "n_alpha": 0,
+        "sym": true
+      },
+      "lr": "cos_3e-3_cm1",
+      "steps": [
+        200000
+      ]
+    },
+    {
+      "name": "fir_L127_nosym",
+      "family": "линейный FIR",
+      "spec": {
+        "model": "phys_kerr",
+        "window": 127,
+        "fir_len": 127,
+        "n_alpha": 0,
+        "sym": false
+      },
+      "lr": "cos_3e-3_cm1",
+      "steps": [
+        200000
+      ]
+    },
+    {
+      "name": "fir_L127_sym",
+      "family": "линейный FIR",
+      "spec": {
+        "model": "phys_kerr",
+        "window": 127,
+        "fir_len": 127,
+        "n_alpha": 0,
+        "sym": true
+      },
+      "lr": "cos_3e-3_cm1",
+      "steps": [
+        200000
+      ]
+    },
+    {
+      "name": "fir_L255_nosym",
+      "family": "линейный FIR",
+      "spec": {
+        "model": "phys_kerr",
+        "window": 255,
+        "fir_len": 255,
+        "n_alpha": 0,
+        "sym": false
+      },
+      "lr": "cos_3e-3_cm1",
+      "steps": [
+        200000
+      ]
+    },
+    {
+      "name": "fir_L255_sym",
+      "family": "линейный FIR",
+      "spec": {
+        "model": "phys_kerr",
+        "window": 255,
+        "fir_len": 255,
+        "n_alpha": 0,
+        "sym": true
+      },
+      "lr": "cos_3e-3_cm1",
+      "steps": [
+        200000
+      ]
+    },
+    {
+      "name": "fir_L501_nosym",
+      "family": "линейный FIR",
+      "spec": {
+        "model": "phys_kerr",
+        "window": 501,
+        "fir_len": 501,
+        "n_alpha": 0,
+        "sym": false
+      },
+      "lr": "cos_3e-3_cm1",
+      "steps": [
+        200000
+      ]
+    },
+    {
+      "name": "fir_L501_sym",
+      "family": "линейный FIR",
+      "spec": {
+        "model": "phys_kerr",
+        "window": 501,
+        "fir_len": 501,
+        "n_alpha": 0,
+        "sym": true
+      },
+      "lr": "cos_3e-3_cm1",
+      "steps": [
+        200000
+      ]
+    }
+  ],
+  "fir_note": "window = FIR length; the longest FIR (501 taps, 2004 / 1004 MACs) is the 2k level: longer filters would remove >3 % of symbols at the file edges and the channel memory after CD compensation is short",
+  "cnn": [
+    {
+      "name": "cnn_C13_k9",
+      "family": "CNN (приближение)",
+      "spec": {
+        "model": "cnn",
+        "window": 31,
+        "channels": 13,
+        "kernel": 9
+      },
+      "lr": "cos_3e-3_cm1",
+      "steps": [
+        200000
+      ]
+    },
+    {
+      "name": "cnn_C22_k11",
+      "family": "CNN (приближение)",
+      "spec": {
+        "model": "cnn",
+        "window": 31,
+        "channels": 22,
+        "kernel": 11
+      },
+      "lr": "cos_3e-3_cm1",
+      "steps": [
+        200000
+      ]
+    },
+    {
+      "name": "cnn_C36_k11",
+      "family": "CNN (приближение)",
+      "spec": {
+        "model": "cnn",
+        "window": 31,
+        "channels": 36,
+        "kernel": 11
+      },
+      "lr": "cos_3e-3_cm1",
+      "steps": [
+        200000
+      ]
+    }
+  ],
+  "cnn_note": "simplified real-valued CNN (Re/Im channels, three 1D convolutions, tanh): an approximation, not a reproduction of a published network; 1989 / 6292 / 15840 MACs",
+  "dbp_fixed": {
+    "spec": {
+      "model": "phys_dbp",
+      "window": 31,
+      "fir_len": 31,
+      "n_alpha": 1,
+      "sym": false
+    },
+    "n_steps": [
+      1,
+      4,
+      8
+    ],
+    "alpha_source": "alpha_fit_R1.csv",
+    "alpha_fallback": -0.001889754933160358,
+    "alpha_note": "classical DBP nonlinear step (own power only, R = 1); alpha from the direct fit of E015 (no network, train files), split equally over Ns steps and frozen; only the FIR taps are trained",
+    "lr": "cos_3e-3_cm1",
+    "steps": [
+      200000
+    ]
+  },
+  "dbp_trained_twin": "same structure with trainable alpha (members dbp_train_Ns*) for the effect of training the nonlinearity",
+  "control": {
+    "runs": {
+      "a_const_1e-3_20k": {
+        "spec": {
+          "model": "complex_a",
+          "window": 31,
+          "hidden": 48,
+          "name": "complex_a"
+        },
+        "n_train_files": 30,
+        "steps": 20000
+      }
+    },
+    "targets": {
+      "a_const_1e-3_20k": {
+        "target": 62.191,
+        "tol": 0.7,
+        "seeds": [
+          17,
+          29
+        ],
+        "metric": "test_reduction_valbest_select",
+        "source": "experiments/E009_kerr_ablation/results/complex_mlp_ablation_summary.csv (variant a); reproduced in E010-E019 (62.19)"
+      }
+    }
+  },
+  "rule_draft": {
+    "status": "DRAFT: to be confirmed by the user before the first run; must not change after results are seen",
+    "better_if": "our approach (best complex Kerr MLP or Phys + MLP point of E021 at the same level) beats a baseline if its mean Q2 gain is higher by > 0.1 dB and the min-max intervals over seeds do not overlap",
+    "dbp": "training the nonlinearity matters if dbp_train_NsX beats dbp_fixed_NsX by > 0.1 dB Q2 with non-overlapping seed intervals",
+    "otherwise": "не доказано"
+  },
+  "trained_twins": [
+    {
+      "name": "dbp_train_Ns1",
+      "family": "DBP",
+      "spec": {
+        "model": "phys_dbp",
+        "window": 31,
+        "fir_len": 31,
+        "n_alpha": 1,
+        "sym": false,
+        "n_steps": 1
+      },
+      "lr": "cos_3e-3_cm1",
+      "steps": [
+        200000
+      ]
+    },
+    {
+      "name": "dbp_train_Ns4",
+      "family": "DBP",
+      "spec": {
+        "model": "phys_dbp",
+        "window": 31,
+        "fir_len": 31,
+        "n_alpha": 1,
+        "sym": false,
+        "n_steps": 4
+      },
+      "lr": "cos_3e-3_cm1",
+      "steps": [
+        200000
+      ]
+    },
+    {
+      "name": "dbp_train_Ns8",
+      "family": "DBP",
+      "spec": {
+        "model": "phys_dbp",
+        "window": 31,
+        "fir_len": 31,
+        "n_alpha": 1,
+        "sym": false,
+        "n_steps": 8
+      },
+      "lr": "cos_3e-3_cm1",
+      "steps": [
+        200000
+      ]
+    }
+  ]
+}

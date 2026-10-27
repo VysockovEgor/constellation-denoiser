@@ -140,7 +140,15 @@ def build_phys_model(spec: dict) -> nn.Module:
     if spec["model"] == "phys_kerr":
         return PhysDBP(window, fir_len, n_alpha, sym, 1)
     if spec["model"] == "phys_dbp":
-        return PhysDBP(window, fir_len, n_alpha, sym, int(spec["n_steps"]))
+        model = PhysDBP(window, fir_len, n_alpha, sym, int(spec["n_steps"]))
+        if spec.get("alpha_init") is not None:   # E022: nonlinear phase set from outside (kept frozen by phases)
+            values = torch.tensor([float(v) for v in spec["alpha_init"]])
+            for step in model.steps:
+                if step.alpha.shape != values.shape:
+                    raise ValueError("alpha_init length must match the stored alpha (use sym=False for full R)")
+                with torch.no_grad():
+                    step.alpha.copy_(values)
+        return model
     if spec["model"] == "phys_plus_mlp":
         return PhysPlusMLP(window, fir_len, n_alpha, sym, int(spec["mlp_hidden"]))
     raise ValueError(spec["model"])

@@ -119,6 +119,10 @@ def build(spec: dict, seed: int | None = None) -> nn.Module:
         from .phys_models import build_phys_model
 
         return build_phys_model(spec)
+    if kind == "cnn":
+        from .baselines_e022 import WindowCNN
+
+        return WindowCNN(window, int(spec["channels"]), int(spec["kernel"]))
     raise ValueError(f"unknown model kind {kind!r}")
 
 
@@ -149,6 +153,11 @@ def cost(spec: dict) -> Cost:
         if kind == "phys_plus_mlp":
             total += complex_one_hidden_macs(window, int(spec["mlp_hidden"]))
         return Cost(total, total)
+    if kind == "cnn":
+        from .baselines_e022 import cnn_macs
+
+        m = cnn_macs(int(spec["channels"]), int(spec["kernel"]))
+        return Cost(m, m)
     raise ValueError(f"unknown model kind {kind!r}")
 
 
