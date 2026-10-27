@@ -1,0 +1,194 @@
+{
+  "experiment_id": "E020",
+  "title": "Diagnosis of the E017 hybrid anomaly in E019 (best_e010 branch)",
+  "date": "not run",
+  "base_git_commit": "8a0bb70 (branch exp/E020-E023)",
+  "git_commit": "recorded per run in results/runs/*.json (field git_commit)",
+  "data_manifest_sha256": "cb5f2de47145c02d6485969ce116df2253a271c979a927452ea454551a48c0a8",
+  "data_audit_sha256": "a9c35fb7839e85c39f7131373418a6f3a04c731e9c4e55385347a1eabbdedbe4",
+  "split_source": "experiments/E004_training_file_curve/config.json (train_pool_files[:30], validation 45, test 45), as E007-E019",
+  "split_source_sha256": "04c0b2a5775d8fae1acdc348967c6fb976ef5d90e76a8334484242cc9707025a",
+  "dataset_root": "data/raw/archive",
+  "n_train_files": 30,
+  "base_lr": {
+    "peak_lr": 0.001,
+    "schedule": "const",
+    "warmup": 0,
+    "c_mult": 1.0,
+    "floor_frac": 0.1,
+    "optimizer": "adam",
+    "weight_decay": 0.0
+  },
+  "anomaly": {
+    "member": "E017_hyb_R31_L7_sym_h48_joint",
+    "anomalous_branch": "best_e010_cm1 (cosine_to_zero, peak 3e-3, warmup 0, c_mult 1)",
+    "normal_branch": "const_1e-3",
+    "source": "experiments/E019_confirm_long_runs/results/confirm.csv",
+    "anomalous_test_valbest_200k": {
+      "min": 48.691,
+      "mean": 51.514,
+      "max": 52.842
+    },
+    "normal_test_valbest_200k": {
+      "min": 61.039,
+      "mean": 62.837,
+      "max": 64.268
+    }
+  },
+  "spec": {
+    "model": "phys_plus_mlp",
+    "window": 31,
+    "fir_len": 7,
+    "n_alpha": 31,
+    "sym": true,
+    "mlp_hidden": 48
+  },
+  "seeds": [
+    17,
+    29,
+    43
+  ],
+  "eval_every": 2500,
+  "ckpt_every": 10000,
+  "lr_policies": {
+    "const_1e-3": {},
+    "const_3e-3_cm1": {
+      "peak_lr": 0.003
+    },
+    "cos_1e-3_cm1": {
+      "schedule": "cosine_to_zero"
+    },
+    "cos_3e-3_cm1": {
+      "from_e010_stage3": true,
+      "c_mult": 1
+    },
+    "cos_3e-3_cm30": {
+      "from_e010_stage3": true,
+      "c_mult": 30
+    },
+    "transformer": {
+      "peak_lr": 0.001,
+      "schedule": "cosine_to_zero",
+      "warmup": 1000,
+      "optimizer": "adamw",
+      "weight_decay": 1e-05
+    }
+  },
+  "arms": [
+    {
+      "name": "hyb_h48_joint_A0",
+      "family": "Phys + MLP",
+      "spec": {
+        "model": "phys_plus_mlp",
+        "window": 31,
+        "fir_len": 7,
+        "n_alpha": 31,
+        "sym": true,
+        "mlp_hidden": 48
+      },
+      "lr": "cos_3e-3_cm1",
+      "steps": [
+        40000
+      ],
+      "note": "anomalous setting reproduced at 40k"
+    },
+    {
+      "name": "hyb_h48_joint_A1",
+      "family": "Phys + MLP",
+      "spec": {
+        "model": "phys_plus_mlp",
+        "window": 31,
+        "fir_len": 7,
+        "n_alpha": 31,
+        "sym": true,
+        "mlp_hidden": 48
+      },
+      "lr": "cos_3e-3_cm30",
+      "steps": [
+        40000,
+        200000
+      ],
+      "note": "hypothesis (a): c_mult"
+    },
+    {
+      "name": "hyb_h48_joint_A2",
+      "family": "Phys + MLP",
+      "spec": {
+        "model": "phys_plus_mlp",
+        "window": 31,
+        "fir_len": 7,
+        "n_alpha": 31,
+        "sym": true,
+        "mlp_hidden": 48
+      },
+      "lr": "const_3e-3_cm1",
+      "steps": [
+        200000
+      ],
+      "note": "hypothesis (b): schedule; 40k point read from the 200k curve (constant lr)"
+    },
+    {
+      "name": "hyb_h48_joint_A3",
+      "family": "Phys + MLP",
+      "spec": {
+        "model": "phys_plus_mlp",
+        "window": 31,
+        "fir_len": 7,
+        "n_alpha": 31,
+        "sym": true,
+        "mlp_hidden": 48
+      },
+      "lr": "cos_1e-3_cm1",
+      "steps": [
+        40000,
+        200000
+      ],
+      "note": "peak lr 3e-3 vs 1e-3 with the same cosine schedule"
+    }
+  ],
+  "hypotheses": {
+    "a": "c_mult = 1 (Kerr coefficients learn slowly) breaks the hybrid on long runs",
+    "b": "the cosine_to_zero schedule from E010 does not suit the hybrid",
+    "c": "overfitting at 200k",
+    "d": "code / checkpoint-selection error",
+    "e": "the peak lr 3e-3 (not the schedule) puts the hybrid into a worse region early"
+  },
+  "control": {
+    "runs": {
+      "a_const_1e-3_20k": {
+        "spec": {
+          "model": "complex_a",
+          "window": 31,
+          "hidden": 48,
+          "name": "complex_a"
+        },
+        "n_train_files": 30,
+        "steps": 20000
+      }
+    },
+    "targets": {
+      "a_const_1e-3_20k": {
+        "target": 62.191,
+        "tol": 0.7,
+        "seeds": [
+          17,
+          29
+        ],
+        "metric": "test_reduction_valbest_select",
+        "source": "experiments/E009_kerr_ablation/results/complex_mlp_ablation_summary.csv (variant a); reproduced in E010-E019 (62.19)"
+      }
+    }
+  },
+  "rule_draft": {
+    "status": "DRAFT: to be confirmed by the user before the first run; must not change after results are seen",
+    "restored_threshold": "61.039 % = min over seeds of test_reduction_valbest of E019 'E017_hyb_R31_L7_sym_h48_joint' const_1e-3 at 200k (experiments/E019_confirm_long_runs/results/confirm.csv)",
+    "restored_if": "mean test_reduction_valbest over the 3 seeds >= 61.039 % at the same number of steps",
+    "interpretation": [
+      "A1 (c_mult 30) or A2 (const schedule) restored -> the cause is the combination c_mult 1 + schedule, not the hybrid idea",
+      "A3 (cosine, peak 1e-3) restored while A2 (const, peak 3e-3) is not -> the cause is the peak lr 3e-3",
+      "none restored -> check code and checkpoint selection (hypothesis d)",
+      "hypothesis c (overfitting) is judged on existing data: rejected if the 100k and 200k anomalous results differ by less than 1 p.p. and the training loss of the anomalous runs is not lower than that of the normal runs"
+    ],
+    "otherwise": "не доказано"
+  }
+}

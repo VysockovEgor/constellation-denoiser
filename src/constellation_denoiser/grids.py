@@ -753,11 +753,156 @@ def e019_tasks(stage: str, options: Options) -> list[dict]:
     return tasks
 
 
+# --------------------------------------------------------------------------- E020-E023 helpers
+
+def lr_named(config: dict, name: str, smoke: bool) -> dict:
+    """Named lr policy from config['lr_policies']; 'best_e010' entries take E010 stage3 'a' with overrides."""
+    item = dict(config["lr_policies"][name])
+    if item.pop("from_e010_stage3", False):
+        best = e010_stage3_lr(smoke)
+        if best is None:
+            raise SystemExit("нет experiments/E010_lr_schedule_study/results/stage3_choice.json")
+        return lr_from(best, horizon=None, **item)
+    return lr_from(config["base_lr"], **item)
+
+
+def spec_of(item: dict) -> dict:
+    spec = dict(item["spec"])
+    spec.setdefault("window", 31)
+    return spec
+
+
+def runs_for(exp: str, stage: str, directory: Path, config: dict, options: Options, members: list[dict],
+             seeds: list[int] | None = None, files: dict | None = None, tag: str = "",
+             meta: dict | None = None) -> list[dict]:
+    tasks = []
+    for item in members:
+        spec = spec_of(item)
+        lr = lr_from(item["lr_config"], horizon=None) if item.get("lr_config") else lr_named(config, item["lr"], options.smoke)
+        for total in item["steps"]:
+            phases = scale_phases(item.get("phases", [{"steps": 1}]), total)
+            for seed in (seeds or seeds_for(config, options))[: 1 if options.smoke else None]:
+                extra = {} if files is None else {"files": files}
+                run_id = f"{item['name']}{tag}_{item['lr']}_{total // 1000}k_seed{seed}"
+                tasks.append(make_task(
+                    exp, stage, directory, options, spec=spec, seed=seed, n_train=config["n_train_files"],
+                    phases=phases, lr=lr, lr_name=item["lr"], eval_every=config["eval_every"],
+                    select_every=config["eval_every"], variant=item["name"], run_id=run_id,
+                    meta={"family": item.get("family"), **(meta or {})},
+                    force_checkpoints=True, ckpt_every=config["ckpt_every"], **extra))
+    return tasks
+
+
+# --------------------------------------------------------------------------- E020 (anomaly of E017 in E019)
+
+def e020_tasks(stage: str, options: Options) -> list[dict]:
+    exp = "E020"
+    directory, config = load_config(exp)
+    if stage == "control":
+        return control_tasks(exp, directory, config, options)
+    if stage != "main":
+        raise SystemExit(f"E020: неизвестная стадия {stage!r}")
+    return runs_for(exp, stage, directory, config, options, config["arms"], seeds=config["seeds"])
+
+
+# --------------------------------------------------------------------------- E021 (Pareto: fill missing levels)
+
+def e021_tasks(stage: str, options: Options) -> list[dict]:
+    exp = "E021"
+    directory, config = load_config(exp)
+    if stage == "control":
+        return control_tasks(exp, directory, config, options)
+    if stage != "main":
+        raise SystemExit(f"E021: неизвестная стадия {stage!r}")
+    return runs_for(exp, stage, directory, config, options, config["new_points"])
+
+
+# --------------------------------------------------------------------------- E022 (baselines at equal complexity)
+
+def e022_members(config: dict) -> list[dict]:
+    import pandas as pd
+    from .runner import exp_dir
+
+    members = list(config["fir"]) + list(config["cnn"])
+    fit = exp_dir("E015") / "results" / config["dbp_fixed"]["alpha_source"]
+    alpha = float(pd.read_csv(fit).alpha.iloc[0]) if fit.is_file() else float(config["dbp_fixed"]["alpha_fallback"])
+    for n_steps in config["dbp_fixed"]["n_steps"]:
+        spec = dict(config["dbp_fixed"]["spec"], n_steps=n_steps, alpha_init=[alpha / n_steps])
+        members.append({"name": f"dbp_fixed_Ns{n_steps}", "family": "DBP (заданная нелинейность)", "spec": spec,
+                        "lr": config["dbp_fixed"]["lr"], "steps": config["dbp_fixed"]["steps"],
+                        "phases": [{"steps": 1, "trainable": [f"steps.{k}.fir_" for k in range(n_steps)]}]})
+    return members + list(config.get("trained_twins", []))
+
+
+def e022_tasks(stage: str, options: Options) -> list[dict]:
+    exp = "E022"
+    directory, config = load_config(exp)
+    if stage == "control":
+        return control_tasks(exp, directory, config, options)
+    if stage != "main":
+        raise SystemExit(f"E022: неизвестная стадия {stage!r}")
+    return runs_for(exp, stage, directory, config, options, e022_members(config))
+
+
+# --------------------------------------------------------------------------- E023 (robustness to the split)
+
+def e023_split(seed: int, smoke: bool) -> dict:
+    """Disjoint file-level split of the same 300 files (E004 pool + validation + test), permuted by ``seed``."""
+    import random
+
+    pool = split_files_all()
+    rng = random.Random(seed)
+    order = list(pool)
+    rng.shuffle(order)
+    files = {"test": order[:45], "validation": order[45:90], "train": order[90:120]}
+    if smoke:
+        files = {"train": files["train"][:2], "validation": files["validation"][:1], "test": files["test"][:1]}
+    return files
+
+
+def split_files_all() -> list[str]:
+    from .window_data import split_files
+
+    split = split_files()
+    return split["train_pool"] + split["validation"] + split["test"]
+
+
+def e023_members(config: dict, smoke: bool) -> list[dict]:
+    path = results_csv("E021", "pareto_members.json", smoke)
+    if path is not None:
+        chosen = json.loads(path.read_text(encoding="utf-8"))
+        members = [m for m in chosen if m.get("macs", 0) <= config["max_macs"]]
+        if members:
+            return members
+    return list(config["fallback_members"])
+
+
+def e023_tasks(stage: str, options: Options) -> list[dict]:
+    exp = "E023"
+    directory, config = load_config(exp)
+    if stage == "control":
+        return control_tasks(exp, directory, config, options)
+    if stage != "main":
+        raise SystemExit(f"E023: неизвестная стадия {stage!r}")
+    members = e023_members(config, options.smoke)
+    from .runner import atomic_write_json
+
+    atomic_write_json(directory / ("results_smoke" if options.smoke else "results") / "members.json", members)
+    tasks = []
+    for split_seed in config["split_seeds"]:
+        files = e023_split(split_seed, options.smoke)
+        items = [dict(item, steps=[config["steps"]]) for item in members]
+        tasks += runs_for(exp, stage, directory, config, options, items, files=files, tag=f"_split{split_seed}",
+                          meta={"split_seed": split_seed})
+    return tasks
+
+
 # --------------------------------------------------------------------------- registry
 
 BUILDERS = {"E010": e010_tasks, "E011": e011_tasks, "E012": e012_tasks, "E013": e013_tasks,
             "E014": e014_tasks, "E016": e016_tasks, "E017": e017_tasks,
-            "E018": e018_tasks, "E019": e019_tasks}
+            "E018": e018_tasks, "E019": e019_tasks, "E020": e020_tasks, "E021": e021_tasks,
+            "E022": e022_tasks, "E023": e023_tasks}
 SPECIAL_STAGES = {("E010", "select"): e010_select}
 POST_HOOKS: dict = {"merge_check": merge_check_hook, "kan_costs": kan_costs_hook}
 

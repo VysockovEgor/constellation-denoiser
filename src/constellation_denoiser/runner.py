@@ -411,7 +411,7 @@ def run_task(task: dict, threads: int, device_name: str) -> dict:
         "timestamp": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "diverged": diverged, "smoke": task.get("smoke", False), "synthetic": task.get("synthetic", False),
         "control_key": task.get("control_key"), "n_val_files": len(task["files"]["validation"]),
-        "n_test_files": len(task["files"]["test"]), **extra,
+        "n_test_files": len(task["files"]["test"]), **task.get("meta", {}), **extra,
     }
     write_curve(out_curve, curve)
     atomic_write_json(out_json, payload)
