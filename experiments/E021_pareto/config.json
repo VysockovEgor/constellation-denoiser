@@ -1,0 +1,362 @@
+{
+  "experiment_id": "E021",
+  "title": "Pareto: BER reduction / Q2 gain vs multiplies per symbol for all model families",
+  "date": "not run",
+  "base_git_commit": "8a0bb70 (branch exp/E020-E023)",
+  "git_commit": "recorded per run in results/runs/*.json (field git_commit)",
+  "data_manifest_sha256": "cb5f2de47145c02d6485969ce116df2253a271c979a927452ea454551a48c0a8",
+  "data_audit_sha256": "a9c35fb7839e85c39f7131373418a6f3a04c731e9c4e55385347a1eabbdedbe4",
+  "split_source": "experiments/E004_training_file_curve/config.json (train_pool_files[:30], validation 45, test 45), as E007-E019",
+  "split_source_sha256": "04c0b2a5775d8fae1acdc348967c6fb976ef5d90e76a8334484242cc9707025a",
+  "dataset_root": "data/raw/archive",
+  "n_train_files": 30,
+  "base_lr": {
+    "peak_lr": 0.001,
+    "schedule": "const",
+    "warmup": 0,
+    "c_mult": 1.0,
+    "floor_frac": 0.1,
+    "optimizer": "adam",
+    "weight_decay": 0.0
+  },
+  "levels": [
+    2000,
+    6500,
+    16000,
+    40000
+  ],
+  "level_window_factor": 1.5,
+  "level_window_note": "a point belongs to level K if K/1.5 <= MACs <= 1.5*K (MACs after merging; KAN: sparse convention)",
+  "families": {
+    "complex Kerr MLP": [
+      "complex_both",
+      "complex_a",
+      "complex_one_hidden"
+    ],
+    "PhysKerr": [
+      "phys_kerr"
+    ],
+    "Phys + MLP": [
+      "phys_plus_mlp"
+    ],
+    "DBP": [
+      "phys_dbp"
+    ],
+    "real tanh MLP": [
+      "real_tanh"
+    ],
+    "transformer": [
+      "transformer"
+    ],
+    "KAN": [
+      "kan",
+      "kerr_kan"
+    ]
+  },
+  "sources": "per-run tables of E010-E020 and E022 (+ this experiment's runs); one point = configuration (+ lr branch, steps), mean and min-max over seeds",
+  "seeds": [
+    17,
+    29,
+    43,
+    57,
+    71
+  ],
+  "eval_every": 5000,
+  "ckpt_every": 10000,
+  "lr_policies": {
+    "const_1e-3": {},
+    "const_3e-3_cm1": {
+      "peak_lr": 0.003
+    },
+    "cos_1e-3_cm1": {
+      "schedule": "cosine_to_zero"
+    },
+    "cos_3e-3_cm1": {
+      "from_e010_stage3": true,
+      "c_mult": 1
+    },
+    "cos_3e-3_cm30": {
+      "from_e010_stage3": true,
+      "c_mult": 30
+    },
+    "transformer": {
+      "peak_lr": 0.001,
+      "schedule": "cosine_to_zero",
+      "warmup": 1000,
+      "optimizer": "adamw",
+      "weight_decay": 1e-05
+    }
+  },
+  "new_points_note": "only levels where a family has no point: 200k steps (the long regime of E019); Kerr MLPs with the best E010 schedule (cos_3e-3_cm30), hybrids, real MLP and KAN with const 1e-3 (their validation-chosen branch), transformers with their own policy (E013)",
+  "new_points": [
+    {
+      "name": "kerr_both_h11",
+      "family": "complex Kerr MLP",
+      "spec": {
+        "model": "complex_both",
+        "hidden": 11
+      },
+      "lr": "cos_3e-3_cm30",
+      "steps": [
+        200000
+      ]
+    },
+    {
+      "name": "kerr_oh_h15",
+      "family": "complex Kerr MLP",
+      "spec": {
+        "model": "complex_one_hidden",
+        "hidden": 15
+      },
+      "lr": "cos_3e-3_cm30",
+      "steps": [
+        200000
+      ]
+    },
+    {
+      "name": "kerr_both_h84",
+      "family": "complex Kerr MLP",
+      "spec": {
+        "model": "complex_both",
+        "hidden": 84
+      },
+      "lr": "cos_3e-3_cm30",
+      "steps": [
+        200000
+      ]
+    },
+    {
+      "name": "kerr_oh_h296",
+      "family": "complex Kerr MLP",
+      "spec": {
+        "model": "complex_one_hidden",
+        "hidden": 296
+      },
+      "lr": "cos_3e-3_cm30",
+      "steps": [
+        200000
+      ]
+    },
+    {
+      "name": "hyb_h15",
+      "family": "Phys + MLP",
+      "spec": {
+        "model": "phys_plus_mlp",
+        "window": 31,
+        "fir_len": 7,
+        "n_alpha": 31,
+        "sym": true,
+        "mlp_hidden": 15
+      },
+      "lr": "const_1e-3",
+      "steps": [
+        200000
+      ]
+    },
+    {
+      "name": "hyb_h118",
+      "family": "Phys + MLP",
+      "spec": {
+        "model": "phys_plus_mlp",
+        "window": 31,
+        "fir_len": 7,
+        "n_alpha": 31,
+        "sym": true,
+        "mlp_hidden": 118
+      },
+      "lr": "const_1e-3",
+      "steps": [
+        200000
+      ]
+    },
+    {
+      "name": "hyb_h296",
+      "family": "Phys + MLP",
+      "spec": {
+        "model": "phys_plus_mlp",
+        "window": 31,
+        "fir_len": 7,
+        "n_alpha": 31,
+        "sym": true,
+        "mlp_hidden": 296
+      },
+      "lr": "const_1e-3",
+      "steps": [
+        200000
+      ]
+    },
+    {
+      "name": "real_h23",
+      "family": "real tanh MLP",
+      "spec": {
+        "model": "real_tanh",
+        "hidden": 23
+      },
+      "lr": "const_1e-3",
+      "steps": [
+        200000
+      ]
+    },
+    {
+      "name": "real_h55",
+      "family": "real tanh MLP",
+      "spec": {
+        "model": "real_tanh",
+        "hidden": 55
+      },
+      "lr": "const_1e-3",
+      "steps": [
+        200000
+      ]
+    },
+    {
+      "name": "real_h171",
+      "family": "real tanh MLP",
+      "spec": {
+        "model": "real_tanh",
+        "hidden": 171
+      },
+      "lr": "const_1e-3",
+      "steps": [
+        200000
+      ]
+    },
+    {
+      "name": "tr_w7_d4_L2",
+      "family": "transformer",
+      "spec": {
+        "model": "transformer",
+        "window": 7,
+        "d_model": 4,
+        "layers": 2,
+        "heads": 2,
+        "ffn_mult": 2
+      },
+      "lr": "transformer",
+      "steps": [
+        200000
+      ]
+    },
+    {
+      "name": "tr_w7_d8_L2",
+      "family": "transformer",
+      "spec": {
+        "model": "transformer",
+        "window": 7,
+        "d_model": 8,
+        "layers": 2,
+        "heads": 2,
+        "ffn_mult": 2
+      },
+      "lr": "transformer",
+      "steps": [
+        200000
+      ]
+    },
+    {
+      "name": "tr_w7_d16_L1",
+      "family": "transformer",
+      "spec": {
+        "model": "transformer",
+        "window": 7,
+        "d_model": 16,
+        "layers": 1,
+        "heads": 4,
+        "ffn_mult": 2
+      },
+      "lr": "transformer",
+      "steps": [
+        200000
+      ]
+    },
+    {
+      "name": "tr_w15_d16_L1",
+      "family": "transformer",
+      "spec": {
+        "model": "transformer",
+        "window": 15,
+        "d_model": 16,
+        "layers": 1,
+        "heads": 4,
+        "ffn_mult": 2
+      },
+      "lr": "transformer",
+      "steps": [
+        200000
+      ]
+    },
+    {
+      "name": "kan_h2",
+      "family": "KAN",
+      "spec": {
+        "model": "kan",
+        "kan_hidden": 2,
+        "grid": 5
+      },
+      "lr": "const_1e-3",
+      "steps": [
+        200000
+      ]
+    },
+    {
+      "name": "kan_h32",
+      "family": "KAN",
+      "spec": {
+        "model": "kan",
+        "kan_hidden": 32,
+        "grid": 5
+      },
+      "lr": "const_1e-3",
+      "steps": [
+        200000
+      ]
+    },
+    {
+      "name": "kan_h110",
+      "family": "KAN",
+      "spec": {
+        "model": "kan",
+        "kan_hidden": 110,
+        "grid": 5
+      },
+      "lr": "const_1e-3",
+      "steps": [
+        200000
+      ]
+    }
+  ],
+  "not_covered": "PhysKerr (<= 161 MACs) and DBP (<= 592 MACs) cannot reach 2k+ inside the 31-symbol window without changing the architecture; they are plotted at their own scale and do not take part in the level comparisons",
+  "control": {
+    "runs": {
+      "a_const_1e-3_20k": {
+        "spec": {
+          "model": "complex_a",
+          "window": 31,
+          "hidden": 48,
+          "name": "complex_a"
+        },
+        "n_train_files": 30,
+        "steps": 20000
+      }
+    },
+    "targets": {
+      "a_const_1e-3_20k": {
+        "target": 62.191,
+        "tol": 0.7,
+        "seeds": [
+          17,
+          29
+        ],
+        "metric": "test_reduction_valbest_select",
+        "source": "experiments/E009_kerr_ablation/results/complex_mlp_ablation_summary.csv (variant a); reproduced in E010-E019 (62.19)"
+      }
+    }
+  },
+  "rule_draft": {
+    "status": "DRAFT: to be confirmed by the user before the first run; must not change after results are seen",
+    "selection": "for each family and level the configuration with the best mean validation reduction among its points in the level window",
+    "better_if": "family X is better than family Y at level K if the difference of mean test reductions is > 1 p.p. and the min-max intervals over seeds do not overlap",
+    "otherwise": "не различимы",
+    "budget_note": "points come from different step budgets (20k-200k); the budget is shown on the plot and in the table, the comparison is not adjusted for it"
+  }
+}

@@ -1,0 +1,5 @@
+level,hypothesis,diff_pp,intervals_overlap,verdict,rule_status
+6500,6500: complex Kerr MLP лучше Phys + MLP,3.1759015577210405,False,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+6500,6500: complex Kerr MLP лучше KAN,4.238921687175484,False,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+6500,6500: Phys + MLP лучше KAN,1.0630201294544435,True,не различимы,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+16000,16000: complex Kerr MLP лучше real tanh MLP,35.019086231832524,False,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
