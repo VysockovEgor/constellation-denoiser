@@ -1,5 +1,5 @@
 ---
-title: "E021"
+title: "E021 — Pareto «качество против сложности»"
 ---
 
 {{< include ../_auto/E021_header.md >}}

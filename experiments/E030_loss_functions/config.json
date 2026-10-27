@@ -1,0 +1,128 @@
+{
+ "experiment_id": "E030",
+ "title": "Loss function on the same output",
+ "question": "Does training with a BER-like loss give a gain over MSE?",
+ "date": "not run",
+ "base_git_commit": "19d601a (branch exp/E024-E033, from exp/E020-E023)",
+ "git_commit": "recorded per run in results/runs/*.json (field git_commit); rule commit: see LOG.md",
+ "data_manifest_sha256": "cb5f2de47145c02d6485969ce116df2253a271c979a927452ea454551a48c0a8",
+ "data_audit_sha256": "a9c35fb7839e85c39f7131373418a6f3a04c731e9c4e55385347a1eabbdedbe4",
+ "split_source": "experiments/E004_training_file_curve/config.json (train_pool_files[:30], validation 45, test 45), as E007-E019",
+ "split_source_sha256": "04c0b2a5775d8fae1acdc348967c6fb976ef5d90e76a8334484242cc9707025a",
+ "dataset_root": "data/raw/archive",
+ "n_train_files": 30,
+ "base_lr": {
+  "peak_lr": 0.001,
+  "schedule": "const",
+  "warmup": 0,
+  "c_mult": 1.0,
+  "floor_frac": 0.1,
+  "optimizer": "adam",
+  "weight_decay": 0.0
+ },
+ "seeds": [
+  17,
+  29,
+  43,
+  57,
+  71
+ ],
+ "ckpt_every": 10000,
+ "eval_rule": "validation and (report-only) test every max(500, steps/40) steps; selection only by validation",
+ "control": {
+  "runs": {
+   "a_const_1e-3_20k": {
+    "spec": {
+     "model": "complex_a",
+     "window": 31,
+     "hidden": 48,
+     "name": "complex_a"
+    },
+    "n_train_files": 30,
+    "steps": 20000
+   }
+  },
+  "targets": {
+   "a_const_1e-3_20k": {
+    "target": 62.191,
+    "tol": 0.7,
+    "seeds": [
+     17,
+     29
+    ],
+    "metric": "test_reduction_valbest_select",
+    "source": "experiments/E009_kerr_ablation/results/complex_mlp_ablation_summary.csv (variant a); reproduced in E010-E019 (62.19)"
+   }
+  }
+ },
+ "current_loss": "runner.run_task (E010-E029): MSE of the complex symbol |y - s|^2 (complex outputs) or MSE of [I, Q] (real)",
+ "losses": [
+  "mse",
+  "ce_dist",
+  "bit_bce",
+  "mse+ce"
+ ],
+ "loss_notes": "logits -beta |y - s_k|^2 over the 16 points, beta = exp(log_beta) trained, initial 1 / mean|rx - tx|^2 of the train files; bit_bce: Gray bits of core.BIT_TABLE; mse+ce = mse + 0.1 ce; decision stays the nearest point",
+ "models": {
+  "oh48": {
+   "spec": {
+    "model": "complex_one_hidden",
+    "window": 31,
+    "hidden": 48
+   },
+   "recipe": "F2"
+  },
+  "v4_h119": {
+   "spec": {
+    "model": "complex_one_hidden",
+    "window": 31,
+    "hidden": 119
+   },
+   "recipe": "F3"
+  },
+  "dbp8": {
+   "spec": {
+    "model": "phys_dbp",
+    "window": 31,
+    "fir_len": 31,
+    "n_alpha": 7,
+    "sym": true,
+    "n_steps": 8
+   },
+   "recipe": "F6"
+  },
+  "hyb48": {
+   "spec": {
+    "model": "phys_plus_mlp",
+    "window": 31,
+    "fir_len": 7,
+    "n_alpha": 31,
+    "sym": true,
+    "mlp_hidden": 48
+   },
+   "recipe": "F9"
+  }
+ },
+ "stages": {
+  "s1": {
+   "lr_scales": [
+    0.5,
+    1.0,
+    2.0
+   ],
+   "seeds": 3,
+   "steps": 60000
+  },
+  "s2": {
+   "seeds": 5,
+   "steps": 200000
+  }
+ },
+ "rule_draft": {
+  "status": "DRAFT: to be confirmed by the user before the first run; must not change after results are seen",
+  "better": "loss L is better than MSE if the difference is >= 0.7 p.p. (5 seeds, intervals do not overlap) on at least two of the four models (S2)",
+  "note": "E016: linear FIR + own power gave -5 % (worse than raw), a hint that MSE and BER disagree",
+  "noise": "thresholds in p.p. are compared with results/noise_floor.json (E024): MDD(5 seeds) = t_{0.975,8} * s_pooled * sqrt(2/5); 0.1 dB of Q2 = 6 p.p. at 10 %, 4.1 at 48 %, 3.0 at 66 %, 2.7 at 70 % (anchors); every table prints both",
+  "otherwise": "не доказано"
+ }
+}

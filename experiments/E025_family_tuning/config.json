@@ -1,0 +1,596 @@
+{
+ "experiment_id": "E025",
+ "title": "Equal tuning budget per family (Sobol search, 3 stages) -> recipes.json",
+ "question": "Do the ranking of the families and their absolute numbers change when every family gets the same tuning budget?",
+ "date": "not run",
+ "base_git_commit": "19d601a (branch exp/E024-E033, from exp/E020-E023)",
+ "git_commit": "recorded per run in results/runs/*.json (field git_commit); rule commit: see LOG.md",
+ "data_manifest_sha256": "cb5f2de47145c02d6485969ce116df2253a271c979a927452ea454551a48c0a8",
+ "data_audit_sha256": "a9c35fb7839e85c39f7131373418a6f3a04c731e9c4e55385347a1eabbdedbe4",
+ "split_source": "experiments/E004_training_file_curve/config.json (train_pool_files[:30], validation 45, test 45), as E007-E019",
+ "split_source_sha256": "04c0b2a5775d8fae1acdc348967c6fb976ef5d90e76a8334484242cc9707025a",
+ "dataset_root": "data/raw/archive",
+ "n_train_files": 30,
+ "base_lr": {
+  "peak_lr": 0.001,
+  "schedule": "const",
+  "warmup": 0,
+  "c_mult": 1.0,
+  "floor_frac": 0.1,
+  "optimizer": "adam",
+  "weight_decay": 0.0
+ },
+ "seeds": [
+  17,
+  29,
+  43,
+  57,
+  71
+ ],
+ "ckpt_every": 10000,
+ "eval_rule": "validation and (report-only) test every max(500, steps/40) steps; selection only by validation",
+ "control": {
+  "runs": {
+   "a_const_1e-3_20k": {
+    "spec": {
+     "model": "complex_a",
+     "window": 31,
+     "hidden": 48,
+     "name": "complex_a"
+    },
+    "n_train_files": 30,
+    "steps": 20000
+   }
+  },
+  "targets": {
+   "a_const_1e-3_20k": {
+    "target": 62.191,
+    "tol": 0.7,
+    "seeds": [
+     17,
+     29
+    ],
+    "metric": "test_reduction_valbest_select",
+    "source": "experiments/E009_kerr_ablation/results/complex_mlp_ablation_summary.csv (variant a); reproduced in E010-E019 (62.19)"
+   }
+  }
+ },
+ "pairs": {
+  "F1": {
+   "family": "Kerr MLP",
+   "level_rm": 2160,
+   "spec": {
+    "model": "complex_one_hidden",
+    "window": 31,
+    "hidden": 16
+   },
+   "space": "kerr",
+   "ref_current": {
+    "peak_lr": 0.003,
+    "schedule": "cosine_to_zero",
+    "warmup": 0,
+    "c_mult": 1.0,
+    "floor_frac": 0.1,
+    "optimizer": "adam",
+    "weight_decay": 0.0
+   }
+  },
+  "F2": {
+   "family": "Kerr MLP",
+   "level_rm": 6480,
+   "spec": {
+    "model": "complex_one_hidden",
+    "window": 31,
+    "hidden": 48
+   },
+   "space": "kerr",
+   "ref_current": {
+    "peak_lr": 0.003,
+    "schedule": "cosine_to_zero",
+    "warmup": 0,
+    "c_mult": 1.0,
+    "floor_frac": 0.1,
+    "optimizer": "adam",
+    "weight_decay": 0.0
+   }
+  },
+  "F3": {
+   "family": "Kerr MLP",
+   "level_rm": 16065,
+   "spec": {
+    "model": "complex_one_hidden",
+    "window": 31,
+    "hidden": 119
+   },
+   "space": "kerr",
+   "ref_current": {
+    "peak_lr": 0.003,
+    "schedule": "cosine_to_zero",
+    "warmup": 0,
+    "c_mult": 1.0,
+    "floor_frac": 0.1,
+    "optimizer": "adam",
+    "weight_decay": 0.0
+   }
+  },
+  "F4": {
+   "family": "Kerr MLP",
+   "level_rm": 16032,
+   "spec": {
+    "model": "complex_both",
+    "window": 31,
+    "hidden": 48
+   },
+   "space": "kerr",
+   "ref_current": {
+    "peak_lr": 0.001,
+    "schedule": "const",
+    "warmup": 0,
+    "c_mult": 1.0,
+    "floor_frac": 0.1,
+    "optimizer": "adam",
+    "weight_decay": 0.0
+   }
+  },
+  "F5": {
+   "family": "PhysKerr",
+   "level_rm": 38,
+   "space": "phys",
+   "ref_current": {
+    "peak_lr": 0.001,
+    "schedule": "const",
+    "warmup": 0,
+    "c_mult": 1.0,
+    "floor_frac": 0.1,
+    "optimizer": "adam",
+    "weight_decay": 0.0
+   },
+   "spec": {
+    "model": "phys_kerr",
+    "window": 31,
+    "fir_len": 7,
+    "n_alpha": 31,
+    "sym": true
+   }
+  },
+  "F6": {
+   "family": "DBP",
+   "level_rm": 592,
+   "space": "phys",
+   "ref_current": {
+    "peak_lr": 0.001,
+    "schedule": "const",
+    "warmup": 0,
+    "c_mult": 1.0,
+    "floor_frac": 0.1,
+    "optimizer": "adam",
+    "weight_decay": 0.0
+   },
+   "spec": {
+    "model": "phys_dbp",
+    "window": 31,
+    "fir_len": 31,
+    "n_alpha": 7,
+    "sym": true,
+    "n_steps": 8
+   }
+  },
+  "F7": {
+   "family": "DBP",
+   "level_rm": 1184,
+   "space": "phys",
+   "ref_current": {
+    "peak_lr": 0.001,
+    "schedule": "const",
+    "warmup": 0,
+    "c_mult": 1.0,
+    "floor_frac": 0.1,
+    "optimizer": "adam",
+    "weight_decay": 0.0
+   },
+   "spec": {
+    "model": "phys_dbp",
+    "window": 31,
+    "fir_len": 31,
+    "n_alpha": 7,
+    "sym": true,
+    "n_steps": 16
+   }
+  },
+  "F8": {
+   "family": "Phys + MLP",
+   "level_rm": 2198,
+   "space": "kerr",
+   "ref_current": {
+    "peak_lr": 0.001,
+    "schedule": "const",
+    "warmup": 0,
+    "c_mult": 1.0,
+    "floor_frac": 0.1,
+    "optimizer": "adam",
+    "weight_decay": 0.0
+   },
+   "spec": {
+    "model": "phys_plus_mlp",
+    "window": 31,
+    "fir_len": 7,
+    "n_alpha": 31,
+    "sym": true,
+    "mlp_hidden": 16
+   }
+  },
+  "F9": {
+   "family": "Phys + MLP",
+   "level_rm": 6518,
+   "space": "kerr",
+   "ref_current": {
+    "peak_lr": 0.001,
+    "schedule": "const",
+    "warmup": 0,
+    "c_mult": 1.0,
+    "floor_frac": 0.1,
+    "optimizer": "adam",
+    "weight_decay": 0.0
+   },
+   "spec": {
+    "model": "phys_plus_mlp",
+    "window": 31,
+    "fir_len": 7,
+    "n_alpha": 31,
+    "sym": true,
+    "mlp_hidden": 48
+   }
+  },
+  "F10": {
+   "family": "real MLP",
+   "level_rm": 6400,
+   "space": "real",
+   "ref_current": {
+    "peak_lr": 0.001,
+    "schedule": "const",
+    "warmup": 0,
+    "c_mult": 1.0,
+    "floor_frac": 0.1,
+    "optimizer": "adam",
+    "weight_decay": 0.0
+   },
+   "ref_spec_overrides": {
+    "activation": "tanh",
+    "init_scale": 1.0
+   },
+   "spec": {
+    "model": "real_mlp",
+    "window": 31,
+    "hidden": 100,
+    "layers": 1,
+    "activation": "tanh",
+    "init_scale": 1.0
+   }
+  },
+  "F11": {
+   "family": "real MLP",
+   "level_rm": 15360,
+   "space": "real",
+   "ref_current": {
+    "peak_lr": 0.001,
+    "schedule": "const",
+    "warmup": 0,
+    "c_mult": 1.0,
+    "floor_frac": 0.1,
+    "optimizer": "adam",
+    "weight_decay": 0.0
+   },
+   "ref_spec_overrides": {
+    "activation": "tanh",
+    "init_scale": 1.0
+   },
+   "spec": {
+    "model": "real_mlp",
+    "window": 31,
+    "hidden": 96,
+    "layers": 2,
+    "activation": "tanh",
+    "init_scale": 1.0
+   }
+  },
+  "F12": {
+   "family": "KAN",
+   "level_rm": 8088,
+   "space": "small",
+   "ref_current": {
+    "peak_lr": 0.001,
+    "schedule": "const",
+    "warmup": 0,
+    "c_mult": 1.0,
+    "floor_frac": 0.1,
+    "optimizer": "adam",
+    "weight_decay": 0.0
+   },
+   "n_sobol": 14,
+   "phases": [
+    {
+     "steps": 1,
+     "trainable": [
+      "kerr."
+     ]
+    },
+    {
+     "steps": 1,
+     "trainable": [
+      "kan."
+     ],
+     "reset_optimizer": true
+    }
+   ],
+   "s3": {
+    "top": 1,
+    "seeds": 3,
+    "steps": 100000,
+    "add_ref": false
+   },
+   "spec": {
+    "model": "kerr_kan",
+    "window": 31,
+    "hidden": 48,
+    "kan_hidden": 8,
+    "local_half": 3,
+    "mode": "cascade",
+    "grid": 8
+   }
+  },
+  "F13": {
+   "family": "transformer",
+   "level_rm": 2285824,
+   "space": "transformer",
+   "ref_current": {
+    "peak_lr": 0.001,
+    "schedule": "cosine_to_zero",
+    "warmup": 1000,
+    "c_mult": 1.0,
+    "floor_frac": 0.1,
+    "optimizer": "adamw",
+    "weight_decay": 1e-05
+   },
+   "n_sobol": 10,
+   "s3": {
+    "top": 1,
+    "seeds": 3,
+    "steps": 60000,
+    "add_ref": false
+   },
+   "spec": {
+    "model": "transformer",
+    "window": 31,
+    "d_model": 64,
+    "layers": 2,
+    "heads": 4,
+    "ffn_mult": 2
+   }
+  }
+ },
+ "spaces": {
+  "kerr": {
+   "dims": [
+    "peak_lr",
+    "schedule",
+    "warmup",
+    "c_mult",
+    "weight_decay"
+   ],
+   "peak_lr": [
+    0.0003,
+    0.01
+   ],
+   "schedule": [
+    "const",
+    "cosine_to_zero",
+    "cosine_to_floor"
+   ],
+   "floor_frac": 0.05,
+   "warmup": [
+    0,
+    1000
+   ],
+   "c_mult": [
+    1,
+    10,
+    30,
+    100
+   ],
+   "weight_decay": [
+    0,
+    0.0001,
+    0.001
+   ]
+  },
+  "phys": {
+   "dims": [
+    "peak_lr",
+    "schedule",
+    "warmup",
+    "c_mult",
+    "weight_decay"
+   ],
+   "peak_lr": [
+    0.0003,
+    0.01
+   ],
+   "schedule": [
+    "const",
+    "cosine_to_zero",
+    "cosine_to_floor"
+   ],
+   "floor_frac": 0.05,
+   "warmup": [
+    0,
+    1000
+   ],
+   "c_mult": [
+    1,
+    10,
+    30,
+    100,
+    300
+   ],
+   "weight_decay": [
+    0,
+    0.0001,
+    0.001
+   ]
+  },
+  "real": {
+   "dims": [
+    "peak_lr",
+    "schedule",
+    "weight_decay",
+    "activation",
+    "init_scale"
+   ],
+   "peak_lr": [
+    0.0003,
+    0.01
+   ],
+   "schedule": [
+    "const",
+    "cosine_to_zero",
+    "cosine_to_floor"
+   ],
+   "floor_frac": 0.05,
+   "weight_decay": [
+    0,
+    0.0001,
+    0.001
+   ],
+   "activation": [
+    "tanh",
+    "relu",
+    "gelu",
+    "silu"
+   ],
+   "init_scale": [
+    0.5,
+    1.0,
+    2.0
+   ]
+  },
+  "small": {
+   "dims": [
+    "peak_lr",
+    "schedule",
+    "weight_decay"
+   ],
+   "peak_lr": [
+    0.0003,
+    0.01
+   ],
+   "schedule": [
+    "const",
+    "cosine_to_zero",
+    "cosine_to_floor"
+   ],
+   "floor_frac": 0.05,
+   "weight_decay": [
+    0,
+    0.0001,
+    0.001
+   ]
+  },
+  "transformer": {
+   "dims": [
+    "peak_lr",
+    "schedule",
+    "weight_decay"
+   ],
+   "peak_lr": [
+    0.0003,
+    0.01
+   ],
+   "schedule": [
+    "const",
+    "cosine_to_zero",
+    "cosine_to_floor"
+   ],
+   "floor_frac": 0.05,
+   "weight_decay": [
+    0,
+    0.0001,
+    0.001
+   ],
+   "base_lr": {
+    "warmup": 1000,
+    "optimizer": "adamw"
+   }
+  }
+ },
+ "space_notes": {
+  "batch_size": "not tunable: runner.BATCH_SIZE = 1024 is a constant of the runner (skipped)",
+  "weight_decay": "wd > 0 uses AdamW (Adam in lr_schedules ignores weight_decay)",
+  "phys_lr_multiplier": "for PhysKerr/DBP c_mult is the lr multiplier of alpha (lr_schedules: PhysStep.alpha is in the same group as the Kerr c)",
+  "transformer": "AdamW, warmup 1000 kept as in E013; searched: peak lr, schedule, weight decay",
+  "kan": "F12 = E014 k4_cascade_staged, grid 8 (higher validation than grid 5 in E014), staged phases"
+ },
+ "n_sobol": 32,
+ "sobol_seed": 2025,
+ "refs": {
+  "ref_e010best": {
+   "peak_lr": 0.003,
+   "schedule": "cosine_to_zero",
+   "warmup": 0,
+   "c_mult": 30.0,
+   "floor_frac": 0.1,
+   "optimizer": "adam",
+   "weight_decay": 0.0
+  }
+ },
+ "stages": {
+  "s1": {
+   "seeds": 2,
+   "steps": 20000
+  },
+  "s2": {
+   "top": 4,
+   "seeds": 3,
+   "steps": 60000
+  },
+  "s3": {
+   "top": 2,
+   "seeds": 5,
+   "steps": 200000
+  }
+ },
+ "code_check": {
+  "name": "code_check_complex_a_w31_h48",
+  "spec": {
+   "model": "complex_a",
+   "window": 31,
+   "hidden": 48
+  },
+  "lr": {
+   "peak_lr": 0.003,
+   "schedule": "cosine_to_zero",
+   "warmup": 0,
+   "c_mult": 30.0,
+   "floor_frac": 0.1,
+   "optimizer": "adam",
+   "weight_decay": 0.0
+  },
+  "steps": 200000,
+  "seeds": [
+   17,
+   29
+  ],
+  "target": 66.253,
+  "tol": 0.7,
+  "source": "experiments/E019_confirm_long_runs/results/confirm.csv, control_complex_a best_e010_cm30 200k, mean of seeds 17, 29 (66.683, 65.823); the plan names F2, but the anchor 66.0 was measured on complex_a (class a, 6480 RM after merging), so the check uses that configuration"
+ },
+ "old_e021_levels": "experiments/E021_pareto/results/level_best.csv",
+ "rule_draft": {
+  "status": "DRAFT: to be confirmed by the user before the first run; must not change after results are seen",
+  "recipe": "a new recipe replaces the previous one (ref_current) if on S3 its mean validation is higher by >= 0.5 p.p. and the min-max intervals over seeds do not overlap; otherwise ref_current stays",
+  "ranking": "the family ranking changed if at one RM level two families swapped places with a difference >= 1 p.p. compared with E021 (results/level_best.csv)",
+  "physics": "pure physics (F5) was under-trained if its best recipe gives >= ref_current + 3 p.p. (validation)",
+  "control": "complex_a 20k const 62.191 +- 0.7 (gate before S1); code check complex_a cm30 200k 66.253 +- 0.7 (seeds 17, 29; after S1) - outside -> halt and check the code",
+  "noise": "thresholds in p.p. are compared with results/noise_floor.json (E024): MDD(5 seeds) = t_{0.975,8} * s_pooled * sqrt(2/5); 0.1 dB of Q2 = 6 p.p. at 10 %, 4.1 at 48 %, 3.0 at 66 %, 2.7 at 70 % (anchors); every table prints both",
+  "otherwise": "не доказано"
+ }
+}

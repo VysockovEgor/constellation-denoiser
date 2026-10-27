@@ -1,0 +1,87 @@
+{
+ "experiment_id": "E031",
+ "title": "Physical ladder: first-order perturbation triplets (closed form)",
+ "question": "What is missing in the phase model PhysKerr (9 %), and what does the classical perturbation method give at equal RM?",
+ "date": "not run",
+ "base_git_commit": "19d601a (branch exp/E024-E033, from exp/E020-E023)",
+ "git_commit": "recorded per run in results/runs/*.json (field git_commit); rule commit: see LOG.md",
+ "data_manifest_sha256": "cb5f2de47145c02d6485969ce116df2253a271c979a927452ea454551a48c0a8",
+ "data_audit_sha256": "a9c35fb7839e85c39f7131373418a6f3a04c731e9c4e55385347a1eabbdedbe4",
+ "split_source": "experiments/E004_training_file_curve/config.json (train_pool_files[:30], validation 45, test 45), as E007-E019",
+ "split_source_sha256": "04c0b2a5775d8fae1acdc348967c6fb976ef5d90e76a8334484242cc9707025a",
+ "dataset_root": "data/raw/archive",
+ "n_train_files": 30,
+ "base_lr": {
+  "peak_lr": 0.001,
+  "schedule": "const",
+  "warmup": 0,
+  "c_mult": 1.0,
+  "floor_frac": 0.1,
+  "optimizer": "adam",
+  "weight_decay": 0.0
+ },
+ "seeds": [
+  17,
+  29,
+  43,
+  57,
+  71
+ ],
+ "ckpt_every": 10000,
+ "eval_rule": "validation and (report-only) test every max(500, steps/40) steps; selection only by validation",
+ "model": "y_k = x_k + sum_{(m,n)} C_{m,n} x_{k+m} x*_{k+m+n} x_{k+n}, |m|, |n|, |m+n| <= M, complex C (Tao et al., JLT 2011 form; not checked against the PDF here); x = received symbols after CDC; optional linear FIR on L symbols",
+ "arms": {
+  "T1": "XPM type (m = 0 or n = 0), C purely imaginary",
+  "T2": "XPM type, complex C",
+  "T3": "all triplets",
+  "T3+FIR": "all triplets + linear FIR on L in {7, 15}"
+ },
+ "M": [
+  3,
+  5,
+  7,
+  11,
+  15,
+  21
+ ],
+ "fir_len": [
+  7,
+  15
+ ],
+ "fit": "least squares on the residual s - x with ridge lambda chosen by validation BER (grid lambda_grid, relative to the mean diagonal of the normal matrix); normal equations accumulated in blocks of 4096 symbols",
+ "lambda_grid": [
+  1e-08,
+  1e-06,
+  0.0001,
+  0.001,
+  0.01,
+  0.1
+ ],
+ "symmetry": "C_{m,n} = C_{n,m} is imposed (x_{k+m} x_{k+n} is symmetric in m, n), so pairs are merged before fitting",
+ "rm": {
+  "naive": "12 RM per triplet (two complex products 8 + coefficient 4) + FIR 4L",
+  "sym": "pairs (m, n), (n, m) share the coefficient: x_{k+m} x_{k+n} once (4), times x* (4), coefficient 4 per merged term -> 12 per merged term; reported as rm_sym; T1 (purely imaginary C): coefficient 2 instead of 4"
+ },
+ "bootstrap": {
+  "replicas": [
+   17,
+   29,
+   43,
+   57,
+   71
+  ],
+  "rule": "replica r resamples the 30 train files with replacement (numpy default_rng(r)); validation and test are fixed"
+ },
+ "max_block": 4096,
+ "smoke_M": [
+  3,
+  5
+ ],
+ "rule_draft": {
+  "status": "DRAFT: to be confirmed by the user before the first run; must not change after results are seen",
+  "xpm_insufficient": "diagonal (XPM-type) physics is insufficient if T3 - T2 >= 5 p.p. at equal M (test mean over 5 replicas, M chosen by validation)",
+  "t1_vs_physkerr": "T1 ~ PhysKerr if |T1 - 9.3| < 3 p.p.",
+  "ours_vs_pbnlc": "our approach is better than PB-NLC at equal RM if the Q2 gain difference >= 0.1 dB and the intervals do not overlap (E033 plot)",
+  "otherwise": "не доказано"
+ }
+}

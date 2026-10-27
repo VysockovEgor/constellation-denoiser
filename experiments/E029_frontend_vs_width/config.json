@@ -1,0 +1,107 @@
+{
+ "experiment_id": "E029",
+ "title": "Physics front-end vs plain Kerr MLP across widths",
+ "question": "Does the physical part pay off at every width or only at small ones (E020: hybrid h48 cm30 67.6 % vs class a 66.0 %, 3 vs 5 seeds)?",
+ "date": "not run",
+ "base_git_commit": "19d601a (branch exp/E024-E033, from exp/E020-E023)",
+ "git_commit": "recorded per run in results/runs/*.json (field git_commit); rule commit: see LOG.md",
+ "data_manifest_sha256": "cb5f2de47145c02d6485969ce116df2253a271c979a927452ea454551a48c0a8",
+ "data_audit_sha256": "a9c35fb7839e85c39f7131373418a6f3a04c731e9c4e55385347a1eabbdedbe4",
+ "split_source": "experiments/E004_training_file_curve/config.json (train_pool_files[:30], validation 45, test 45), as E007-E019",
+ "split_source_sha256": "04c0b2a5775d8fae1acdc348967c6fb976ef5d90e76a8334484242cc9707025a",
+ "dataset_root": "data/raw/archive",
+ "n_train_files": 30,
+ "base_lr": {
+  "peak_lr": 0.001,
+  "schedule": "const",
+  "warmup": 0,
+  "c_mult": 1.0,
+  "floor_frac": 0.1,
+  "optimizer": "adam",
+  "weight_decay": 0.0
+ },
+ "seeds": [
+  17,
+  29,
+  43,
+  57,
+  71
+ ],
+ "ckpt_every": 10000,
+ "eval_rule": "validation and (report-only) test every max(500, steps/40) steps; selection only by validation",
+ "control": {
+  "runs": {
+   "a_const_1e-3_20k": {
+    "spec": {
+     "model": "complex_a",
+     "window": 31,
+     "hidden": 48,
+     "name": "complex_a"
+    },
+    "n_train_files": 30,
+    "steps": 20000
+   }
+  },
+  "targets": {
+   "a_const_1e-3_20k": {
+    "target": 62.191,
+    "tol": 0.7,
+    "seeds": [
+     17,
+     29
+    ],
+    "metric": "test_reduction_valbest_select",
+    "source": "experiments/E009_kerr_ablation/results/complex_mlp_ablation_summary.csv (variant a); reproduced in E010-E019 (62.19)"
+   }
+  }
+ },
+ "hidden": [
+  8,
+  16,
+  32,
+  48,
+  96,
+  119,
+  192
+ ],
+ "front_end": {
+  "n_alpha": 31,
+  "fir_len": 7
+ },
+ "front_end_variants": [
+  {
+   "n_alpha": 7,
+   "fir_len": 7
+  },
+  {
+   "n_alpha": 31,
+   "fir_len": 7
+  },
+  {
+   "n_alpha": 31,
+   "fir_len": 15
+  }
+ ],
+ "variant_hidden": 48,
+ "pure_recipes": {
+  "F1": 16,
+  "F2": 48,
+  "F3": 119
+ },
+ "hybrid_recipes": {
+  "F8": 16,
+  "F9": 48
+ },
+ "recipe_rule": "recipe of the E025 pair with the nearest width on a log scale (F2/F9 at h48)",
+ "hybrid": "PhysPlusMLP: PhysKerr(R, L, sym) + one-hidden Kerr MLP in parallel, joint (E017/E020)",
+ "n_seeds": 5,
+ "steps": 200000,
+ "rule_draft": {
+  "status": "DRAFT: to be confirmed by the user before the first run; must not change after results are seen",
+  "pays_off": "the front-end pays off at width h if hybrid - pure >= 1 p.p. (5 seeds, intervals do not overlap)",
+  "decreasing": "the gain decreases with h if the difference at h = 16 exceeds that at h = 119 by >= 1 p.p.",
+  "thesis": "a gain only at small h is the thesis 'physics saves multiplies'",
+  "noise": "thresholds in p.p. are compared with results/noise_floor.json (E024): MDD(5 seeds) = t_{0.975,8} * s_pooled * sqrt(2/5); 0.1 dB of Q2 = 6 p.p. at 10 %, 4.1 at 48 %, 3.0 at 66 %, 2.7 at 70 % (anchors); every table prints both",
+  "otherwise": "не доказано"
+ }
+}

@@ -1,5 +1,5 @@
 ---
-title: "E020"
+title: "E020 — Аномалия гибрида E017 в E019"
 ---
 
 {{< include ../_auto/E020_header.md >}}

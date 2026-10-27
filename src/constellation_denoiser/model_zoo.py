@@ -22,6 +22,9 @@ from .complex_mlp_ablation import complexity
 from .experiment import set_seed
 
 
+NEW_KINDS = ("act_mlp", "real_mlp", "dbp_shared", "dbp_mlp", "dbp_noise")   # = models_e024.KINDS
+
+
 @dataclass(frozen=True)
 class Cost:
     macs: int            # as trained
@@ -86,6 +89,10 @@ def build(spec: dict, seed: int | None = None) -> nn.Module:
     if seed is not None:
         set_seed(seed)
     kind, window = spec["model"], int(spec["window"])
+    if kind in NEW_KINDS:                       # E024-E033 kinds live in models_e024
+        from . import models_e024
+
+        return models_e024.build(spec)
     if kind == "complex_both":
         from .paper_complex_mlp import PaperComplexMLP
 
@@ -128,6 +135,10 @@ def build(spec: dict, seed: int | None = None) -> nn.Module:
 
 def cost(spec: dict) -> Cost:
     kind, window = spec["model"], int(spec["window"])
+    if kind in NEW_KINDS:
+        from . import models_e024
+
+        return Cost(*models_e024.macs(spec))
     if kind == "complex_both":
         c = complexity(window, int(spec["hidden"]), "baseline")
         return Cost(c.train_total_real_multiplies, c.merged_total_real_multiplies)
@@ -166,4 +177,4 @@ def n_params(model: nn.Module) -> int:
 
 
 def outputs_complex(spec: dict) -> bool:
-    return spec["model"].startswith(("complex", "phys")) or spec["model"] == "kerr_kan"
+    return spec["model"].startswith(("complex", "phys")) or spec["model"] in ("kerr_kan", "act_mlp", "dbp_shared", "dbp_mlp", "dbp_noise")

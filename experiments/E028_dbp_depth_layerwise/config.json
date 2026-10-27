@@ -1,0 +1,164 @@
+{
+ "experiment_id": "E028",
+ "title": "DBP depth (joint) and diagnosis of layer-wise training",
+ "question": "A: does the gain of more DBP steps Ns saturate (joint from scratch) and which L, R are needed? B: why did layer-wise training in E018 give ~2 %?",
+ "date": "not run",
+ "base_git_commit": "19d601a (branch exp/E024-E033, from exp/E020-E023)",
+ "git_commit": "recorded per run in results/runs/*.json (field git_commit); rule commit: see LOG.md",
+ "data_manifest_sha256": "cb5f2de47145c02d6485969ce116df2253a271c979a927452ea454551a48c0a8",
+ "data_audit_sha256": "a9c35fb7839e85c39f7131373418a6f3a04c731e9c4e55385347a1eabbdedbe4",
+ "split_source": "experiments/E004_training_file_curve/config.json (train_pool_files[:30], validation 45, test 45), as E007-E019",
+ "split_source_sha256": "04c0b2a5775d8fae1acdc348967c6fb976ef5d90e76a8334484242cc9707025a",
+ "dataset_root": "data/raw/archive",
+ "n_train_files": 30,
+ "base_lr": {
+  "peak_lr": 0.001,
+  "schedule": "const",
+  "warmup": 0,
+  "c_mult": 1.0,
+  "floor_frac": 0.1,
+  "optimizer": "adam",
+  "weight_decay": 0.0
+ },
+ "seeds": [
+  17,
+  29,
+  43,
+  57,
+  71
+ ],
+ "ckpt_every": 10000,
+ "eval_rule": "validation and (report-only) test every max(500, steps/40) steps; selection only by validation",
+ "control": {
+  "runs": {
+   "a_const_1e-3_20k": {
+    "spec": {
+     "model": "complex_a",
+     "window": 31,
+     "hidden": 48,
+     "name": "complex_a"
+    },
+    "n_train_files": 30,
+    "steps": 20000
+   }
+  },
+  "targets": {
+   "a_const_1e-3_20k": {
+    "target": 62.191,
+    "tol": 0.7,
+    "seeds": [
+     17,
+     29
+    ],
+    "metric": "test_reduction_valbest_select",
+    "source": "experiments/E009_kerr_ablation/results/complex_mlp_ablation_summary.csv (variant a); reproduced in E010-E019 (62.19)"
+   }
+  }
+ },
+ "grid_a": {
+  "n_steps": [
+   8,
+   16,
+   32
+  ],
+  "fir_len": [
+   15,
+   31
+  ],
+  "n_alpha": [
+   7,
+   15
+  ],
+  "extra_n_steps": [
+   4,
+   12,
+   24
+  ],
+  "extra_fir_len": 31,
+  "extra_n_alpha": 7,
+  "seeds": 3,
+  "steps": 100000,
+  "recipe": "F6 (Ns <= 8), F7 (Ns > 8)"
+ },
+ "a_long": {
+  "top": 3,
+  "seeds": 5,
+  "steps": 400000
+ },
+ "shared": {
+  "n_steps": [
+   8,
+   16,
+   32
+  ],
+  "fir_len": 31,
+  "n_alpha": 7,
+  "seeds": 3,
+  "steps": 100000,
+  "note": "one PhysStep applied Ns times (same RM, Ns times fewer parameters) vs independent steps of grid A"
+ },
+ "hybrid": {
+  "n_steps": [
+   4,
+   8,
+   16
+  ],
+  "mlp_hidden": [
+   4,
+   8,
+   16
+  ],
+  "fir_len": 31,
+  "n_alpha": 7,
+  "seeds": 3,
+  "steps": 100000,
+  "recipe": "F8",
+  "note": "DBP(Ns) + one-hidden Kerr MLP on the residual in parallel (as the E017 hybrid), joint"
+ },
+ "e018_layerwise_reading": [
+  "grids.e018_phases('layerwise'): Ns phases of steps_per_layer = 20 000 updates; phase k trains ONLY steps.k (all other steps frozen), a fresh Adam per phase, constant lr 1e-3 (c_mult 1: alpha has the same lr as the taps)",
+  "steps not yet trained are the identity (FIR = unit impulse, alpha = 0), so the network output is unchanged when a step is added; nothing is re-initialized",
+  "then one joint fine-tuning phase of 10 000 updates of all steps at lr 1e-3 / 3, fresh Adam",
+  "joint_from_scratch: the same total 8 x 20 000 + 10 000 = 170 000 updates, all steps trained from the start"
+ ],
+ "e018_lr": {
+  "peak_lr": 0.001,
+  "schedule": "const",
+  "warmup": 0,
+  "c_mult": 1.0,
+  "floor_frac": 0.1,
+  "optimizer": "adam",
+  "weight_decay": 0.0
+ },
+ "b": {
+  "n_steps": 8,
+  "fir_len": 31,
+  "n_alpha": 7,
+  "steps_per_layer": 20000,
+  "finetune_steps": 10000,
+  "finetune_lr_divisor": 3,
+  "init_noise": 0.001,
+  "rewarm_warmup": 1000,
+  "seeds": 3,
+  "eval_every": 1000,
+  "variants": {
+   "a": "as E018 (only the new step trains)",
+   "b": "identity init of the new step, ALL added steps train",
+   "c": "as b with small random init (identity + N(0, 1e-3^2) on taps and alpha)",
+   "d": "as a with lr warm restart per stage (warmup 1000 + cosine_to_zero, peak 1e-3)",
+   "e": "layer-wise pretraining (8 x 10 625 updates) then joint training of all steps (85 000 updates, lr 1e-3)",
+   "f": "joint from scratch (control, = E018 joint)",
+   "g": "as b with the recipe F6 in every stage (fine-tuning at its peak / 3)"
+  },
+  "total_steps": 170000,
+  "note": "validation after each added step = the last evaluation of each phase (curves, column phase)"
+ },
+ "rule_draft": {
+  "status": "DRAFT: to be confirmed by the user before the first run; must not change after results are seen",
+  "saturation": "saturation in Ns: doubling Ns gives < 1 p.p. (mean validation at 100k, same L and R)",
+  "diagnosis": "the diagnosis is found if some variant of B brings layer-wise to >= 90 % of joint (f) at the same Ns (mean test, 3 seeds); if (b) works, the E018 page gets a note that its layer-wise was a weak control, not a reproduction of the paper recipe",
+  "shared": "shared is better than independent if the difference is >= 1 p.p.",
+  "noise": "thresholds in p.p. are compared with results/noise_floor.json (E024): MDD(5 seeds) = t_{0.975,8} * s_pooled * sqrt(2/5); 0.1 dB of Q2 = 6 p.p. at 10 %, 4.1 at 48 %, 3.0 at 66 %, 2.7 at 70 % (anchors); every table prints both",
+  "otherwise": "не доказано"
+ }
+}

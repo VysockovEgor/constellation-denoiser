@@ -1,0 +1,160 @@
+{
+ "experiment_id": "E027",
+ "title": "Activation ablation at equal width (one hidden layer, w31)",
+ "question": "Does the Kerr activation exp(i c |z|^2) z give an advantage over other complex activations at equal width?",
+ "date": "not run",
+ "base_git_commit": "19d601a (branch exp/E024-E033, from exp/E020-E023)",
+ "git_commit": "recorded per run in results/runs/*.json (field git_commit); rule commit: see LOG.md",
+ "data_manifest_sha256": "cb5f2de47145c02d6485969ce116df2253a271c979a927452ea454551a48c0a8",
+ "data_audit_sha256": "a9c35fb7839e85c39f7131373418a6f3a04c731e9c4e55385347a1eabbdedbe4",
+ "split_source": "experiments/E004_training_file_curve/config.json (train_pool_files[:30], validation 45, test 45), as E007-E019",
+ "split_source_sha256": "04c0b2a5775d8fae1acdc348967c6fb976ef5d90e76a8334484242cc9707025a",
+ "dataset_root": "data/raw/archive",
+ "n_train_files": 30,
+ "base_lr": {
+  "peak_lr": 0.001,
+  "schedule": "const",
+  "warmup": 0,
+  "c_mult": 1.0,
+  "floor_frac": 0.1,
+  "optimizer": "adam",
+  "weight_decay": 0.0
+ },
+ "seeds": [
+  17,
+  29,
+  43,
+  57,
+  71
+ ],
+ "ckpt_every": 10000,
+ "eval_rule": "validation and (report-only) test every max(500, steps/40) steps; selection only by validation",
+ "control": {
+  "runs": {
+   "a_const_1e-3_20k": {
+    "spec": {
+     "model": "complex_a",
+     "window": 31,
+     "hidden": 48,
+     "name": "complex_a"
+    },
+    "n_train_files": 30,
+    "steps": 20000
+   }
+  },
+  "targets": {
+   "a_const_1e-3_20k": {
+    "target": 62.191,
+    "tol": 0.7,
+    "seeds": [
+     17,
+     29
+    ],
+    "metric": "test_reduction_valbest_select",
+    "source": "experiments/E009_kerr_ablation/results/complex_mlp_ablation_summary.csv (variant a); reproduced in E010-E019 (62.19)"
+   }
+  }
+ },
+ "window": 31,
+ "activations": [
+  "kerr_c_train",
+  "kerr_c_fixed",
+  "kerr_taylor1",
+  "modrelu",
+  "crelu",
+  "split_tanh",
+  "cardioid",
+  "sigmoid_gate",
+  "identity"
+ ],
+ "activation_rm_per_neuron": {
+  "kerr_c_train": 7,
+  "kerr_c_fixed": 7,
+  "kerr_taylor1": 8,
+  "modrelu": 5,
+  "crelu": 0,
+  "split_tanh": 0,
+  "cardioid": 6,
+  "sigmoid_gate": 5,
+  "identity": 0
+ },
+ "activation_notes": {
+  "kerr_c_train": "the current activation: ONE trainable c per layer (NonlinearPhase), not per neuron",
+  "kerr_c_fixed": "c is a buffer (not trained) = median final c of kerr_c_train runs of the same width, steps (and lr in S1); the *_fixed stages run after the kerr_c_train ones",
+  "kerr_taylor1": "z + a |z|^2 z with complex a (2 parameters, c_mult applies)",
+  "sigmoid_gate": "z * sigmoid(a |z|^2 + b), a and b per neuron (b = 2 at start)"
+ },
+ "c_fixed_fallback": -0.1383,
+ "c_fixed_fallback_source": "median final c1 of E012 v3/v4 one_hidden w31 runs (smoke and estimate only)",
+ "lr_grid": [
+  {
+   "name": "cos5e-4",
+   "peak_lr": 0.0005,
+   "schedule": "cosine_to_zero"
+  },
+  {
+   "name": "cos1.5e-3",
+   "peak_lr": 0.0015,
+   "schedule": "cosine_to_zero"
+  },
+  {
+   "name": "cos3e-3",
+   "peak_lr": 0.003,
+   "schedule": "cosine_to_zero"
+  },
+  {
+   "name": "cos6e-3",
+   "peak_lr": 0.006,
+   "schedule": "cosine_to_zero"
+  },
+  {
+   "name": "const1e-3",
+   "peak_lr": 0.001,
+   "schedule": "const"
+  },
+  {
+   "name": "cos1e-2",
+   "peak_lr": 0.01,
+   "schedule": "cosine_to_zero"
+  }
+ ],
+ "c_mult_activations": [
+  "kerr_c_train",
+  "kerr_taylor1"
+ ],
+ "kerr_c_mult": [
+  1,
+  30
+ ],
+ "stages": {
+  "s1": {
+   "hidden": 48,
+   "seeds": 2,
+   "steps": 20000
+  },
+  "s2": {
+   "top": 2,
+   "hidden": [
+    16,
+    48,
+    119
+   ],
+   "seeds": 5,
+   "steps": 100000
+  },
+  "s3": {
+   "hidden": 48,
+   "seeds": 5,
+   "steps": 200000
+  }
+ },
+ "rule_draft": {
+  "status": "DRAFT: to be confirmed by the user before the first run; must not change after results are seen",
+  "kerr_vs_a": "Kerr (kerr_c_train) is better than activation A at equal h if the difference of mean test >= 1 p.p. (~0.035 dB) and the min-max intervals do not overlap; otherwise not distinguishable (S2 per width, S3 at h48)",
+  "trainable_c": "trainability of c is needed if kerr_c_train - kerr_c_fixed >= 0.5 p.p.",
+  "nonlinearity": "nonlinearity is needed if the best non-linear activation - identity >= 20 p.p.",
+  "rm": "RM_total printed: Kerr adds 7h RM (h = 48: 336 of 6 480, ~5 %)",
+  "noise": "thresholds in p.p. are compared with results/noise_floor.json (E024): MDD(5 seeds) = t_{0.975,8} * s_pooled * sqrt(2/5); 0.1 dB of Q2 = 6 p.p. at 10 %, 4.1 at 48 %, 3.0 at 66 %, 2.7 at 70 % (anchors); every table prints both",
+  "otherwise": "не доказано"
+ }
+}

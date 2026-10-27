@@ -103,3 +103,15 @@
 ---
 
 ![](figs/results/E015_E018_quality_vs_macs.png)
+
+---
+
+![](figs/experiments/E020_e017_anomaly/figures/E020_val_test_vs_steps.png)
+
+---
+
+![](figs/experiments/E021_pareto/figures/E021_pareto_ber.png)
+
+---
+
+![](figs/experiments/E021_pareto/figures/E021_pareto_q2.png)

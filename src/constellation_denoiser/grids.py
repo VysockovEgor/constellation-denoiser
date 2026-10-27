@@ -907,6 +907,9 @@ SPECIAL_STAGES = {("E010", "select"): e010_select}
 POST_HOOKS: dict = {"merge_check": merge_check_hook, "kan_costs": kan_costs_hook}
 
 
+from . import grids_e024  # noqa: E402,F401  E024-E033 builders; the module registers itself into the tables above
+
+
 def build_tasks(exp: str, stage: str, options: Options) -> list[dict]:
     if exp not in BUILDERS:
         raise SystemExit(f"неизвестный эксперимент {exp}")

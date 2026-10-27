@@ -265,7 +265,13 @@ def run_task(task: dict, threads: int, device_name: str) -> dict:
     raw_val, raw_test = val.raw_ber(window), test.raw_ber(window)
     n_train_windows = train.n_windows(window)
 
-    model = model_zoo.build(spec, seed=seed).to(device)
+    model = model_zoo.build(spec, seed=seed)
+    loss_name = task.get("loss", "mse")              # E030; other experiments keep the MSE below
+    if loss_name != "mse":
+        from .losses_new import attach_loss
+
+        model = attach_loss(model, loss_name, train)
+    model = model.to(device)
     sampler = torch.Generator(device="cpu").manual_seed(seed)
     permutation = torch.randperm(n_train_windows, generator=sampler)
     cursor, step, phase_index, phase_step = 0, 0, 0, 0
@@ -340,7 +346,9 @@ def run_task(task: dict, threads: int, device_name: str) -> dict:
         cursor = stop
         optimizer.zero_grad(set_to_none=True)
         prediction = model(xb)
-        if torch.is_complex(prediction):
+        if loss_name != "mse":
+            loss = model.training_loss(prediction, yb)
+        elif torch.is_complex(prediction):
             loss = (prediction - torch.complex(yb[:, 0], yb[:, 1])).abs().square().mean()
         else:
             loss = torch.nn.functional.mse_loss(prediction, yb)
@@ -411,7 +419,7 @@ def run_task(task: dict, threads: int, device_name: str) -> dict:
         "timestamp": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "diverged": diverged, "smoke": task.get("smoke", False), "synthetic": task.get("synthetic", False),
         "control_key": task.get("control_key"), "n_val_files": len(task["files"]["validation"]),
-        "n_test_files": len(task["files"]["test"]), **task.get("meta", {}), **extra,
+        "n_test_files": len(task["files"]["test"]), "loss": loss_name, **task.get("meta", {}), **extra,
     }
     write_curve(out_curve, curve)
     atomic_write_json(out_json, payload)

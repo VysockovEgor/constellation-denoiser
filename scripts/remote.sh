@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 # Two-command work cycle with the shared server (run from WSL, repository root).
 #
-#   bash scripts/remote.sh go part1 | part2 | all | e020 <part> | <E0NN> <stage>   push, update the server, start in tmux
-#                              (part1/part2/all: chain E015-E019; e020 part1|part2|part3|all: chain E020-E023)
-#   bash scripts/remote.sh estimate part1 | part2 | <E0NN> [stage]     hours from the server-side estimate stages
+#   bash scripts/remote.sh go part1 | part2 | all | e020 <part> | q <part> | <E0NN> <stage>   push, update, start in tmux
+#                              (part1/part2/all: chain E015-E019; e020 part1|part2|part3|all: chain E020-E023;
+#                               q p0|p1|p2|p3|p4|p5|conv|all: queue E024-E033, session q_<part>_MMDD_HHMM)
+#   bash scripts/remote.sh estimate part1 | part2 | e020 <part> | q <part> | <E0NN> [stage]   hours (server-side estimate)
 #   bash scripts/remote.sh sync                                        update the server checkout only (no job)
 #   bash scripts/remote.sh status                                      sessions, processes, load, runs, logs, ОШИБКА
 #   bash scripts/remote.sh fetch [--to <folder>] [--journal]           bring results back (+ make journal), commit, push
@@ -47,7 +48,7 @@ BRANCH="${BRANCH:-$(git rev-parse --abbrev-ref HEAD)}"
 REGISTRY=".remote_sessions"
 SSH_OPTS=(-o ControlMaster=auto -o "ControlPath=$HOME/.ssh/cm-%C" -o ControlPersist=10m -o BatchMode=yes
           -o ServerAliveInterval=30)
-SESSION_RE='^(part1|part2|all|e020_(part1|part2|part3|all)|E0[0-9][0-9])_[0-9]{4}_[0-9]{4}$'
+SESSION_RE='^(part1|part2|all|e020_(part1|part2|part3|all)|q_(p0|p1|p2|p3|p4|p5|conv|all)|E0[0-9][0-9])_[0-9]{4}_[0-9]{4}$'
 
 # Server update = fast-forward that never loses server data (expects $BRANCH set before it):
 #  stop if tracked files changed or the server branch has its own commits; untracked files the update
@@ -105,6 +106,11 @@ resolve_job() {
       JOB_STEM="e020_$2"
       JOB_CMD="bash scripts/overnight_e020_e023.sh $2"
       ;;
+    q)
+      [[ $# -eq 2 && "$2" =~ ^(p0|p1|p2|p3|p4|p5|conv|all)$ ]] || die "использование: go q p0|p1|p2|p3|p4|p5|conv|all"
+      JOB_STEM="q_$2"
+      JOB_CMD="bash scripts/overnight_e024_e033.sh $2"
+      ;;
     E0[0-9][0-9])
       [[ $# -eq 2 ]] || die "использование: go <E0NN> <стадия>"
       [[ "$2" =~ ^[a-z0-9-]+$ ]] || die "недопустимая стадия: $2"
@@ -113,7 +119,7 @@ resolve_job() {
       JOB_STEM="$1"
       JOB_CMD="bash ${matches[0]} $2"
       ;;
-    *) die "ожидается part1, part2, all или <E0NN> <стадия>" ;;
+    *) die "ожидается part1, part2, all, e020 <часть>, q <часть> или <E0NN> <стадия>" ;;
   esac
 }
 
@@ -169,6 +175,18 @@ cmd_estimate() {
         *) die "использование: estimate e020 part1|part2|part3|all" ;;
       esac
       ;;
+    q)
+      local p0=("E024_data_audit all" "E031_perturbation_triplets estimate") p1=("E025_family_tuning all")
+      local p2=("E026_kerr_complexity_map all" "E028_dbp_depth_layerwise all")
+      local p3=("E027_activation_ablation all" "E029_frontend_vs_width all") p4=("E030_loss_functions all")
+      local p5=("E033_pareto_final all") conv=("E032_convergence_1m all")
+      case "${2:-}" in
+        p0) targets=("${p0[@]}") ;; p1) targets=("${p1[@]}") ;; p2) targets=("${p2[@]}") ;; p3) targets=("${p3[@]}") ;;
+        p4) targets=("${p4[@]}") ;; p5) targets=("${p5[@]}") ;; conv) targets=("${conv[@]}") ;;
+        all) targets=("${p0[@]}" "${p1[@]}" "${p2[@]}" "${p3[@]}" "${p4[@]}" "${p5[@]}" "${conv[@]}") ;;
+        *) die "использование: estimate q p0|p1|p2|p3|p4|p5|conv|all" ;;
+      esac
+      ;;
     E0[0-9][0-9])
       local stage="${2:-all}"
       [[ "$stage" =~ ^[a-z0-9-]+$ ]] || die "недопустимая стадия: $stage"
@@ -176,7 +194,7 @@ cmd_estimate() {
       [[ -f "${matches[0]}" ]] || die "нет experiments/$1_*/run.sh"
       targets=("$(basename "$(dirname "${matches[0]}")") $stage")
       ;;
-    *) die "ожидается part1, part2, e020 <часть> или <E0NN> [стадия]" ;;
+    *) die "ожидается part1, part2, e020 <часть>, q <часть> или <E0NN> [стадия]" ;;
   esac
   local script="" target
   for target in "${targets[@]}"; do
@@ -206,7 +224,8 @@ for f in \$(find experiments -path '*/logs/*.log' -mmin -1440 2>/dev/null | sort
   ok=\$(grep -E '\\[ok [0-9]+/[0-9]+\\]' \"\$f\" | tail -1 | grep -oE '\\[ok [0-9]+/[0-9]+\\]|ETA ~[0-9]+ min'); \
   fin=\$(grep -E 'finished:|nothing to run' \"\$f\" | tail -1 | cut -c1-60); \
   [ -n \"\$run\$ok\" ] && echo \"\$f: \$run | \$(echo \$ok) | \$fin\"; done; \
-echo '== текущий шаг цепочки'; ls -t logs/remote/*.log 2>/dev/null | head -1 | xargs -r grep -E '^=== .*: (control|main|summarize|diagnostics)' | tail -2; \
+echo '== текущий шаг цепочки'; for f in \$(ls -t logs/remote/*.log 2>/dev/null | head -2); do echo \"-- \$f\"; grep -E '^=== .*: (control|main|summarize|diagnostics|stage )' \"\$f\" | tail -2; done; \
+echo '== останов очереди E024-E033'; cat results/gate_status.json 2>/dev/null | head -5 || echo 'нет (results/gate_status.json отсутствует)'; \
 echo '== ОШИБКА'; grep -rn 'ОШИБКА' logs experiments/*/logs 2>/dev/null | tail -20 || true"
 }
 

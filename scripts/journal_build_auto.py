@@ -48,6 +48,15 @@ RUNS = {
     "E021": ("results/runs_table.csv", ["variant"]),
     "E022": ("results/runs_table.csv", ["variant"]),
     "E023": ("results/runs_table.csv", ["variant", "split_seed"]),
+    "E025": ("results/runs_table.csv", ["e025_pair", "e025_config", "budget"]),
+    "E026": ("results/runs_table.csv", ["variant", "stage", "budget"]),
+    "E027": ("results/runs_table.csv", ["activation", "spec_hidden", "lr_id", "budget"]),
+    "E028": ("results/runs_table.csv", ["variant", "stage", "budget"]),
+    "E029": ("results/runs_table.csv", ["variant"]),
+    "E030": ("results/runs_table.csv", ["model_key", "loss_name", "lr_scale", "budget"]),
+    "E031": ("results/runs_table.csv", ["variant"]),
+    "E032": ("results/runs_table.csv", ["variant"]),
+    "E033": ("results/runs_table.csv", ["variant"]),
 }
 VERDICTS = {
     "E012": "results/depth_window_verdicts.csv", "E013": "results/transformer_verdicts.csv",
@@ -55,6 +64,10 @@ VERDICTS = {
     "E017": "results/phys_plus_mlp_verdicts.csv", "E018": "results/dbp_depth_verdicts.csv",
     "E020": "results/arms_verdicts.csv", "E021": "results/level_verdicts.csv",
     "E022": "results/baselines_verdicts.csv", "E023": "results/robustness_verdicts.csv",
+    "E024": "results/audit_verdicts.csv", "E025": "results/tuning_verdicts.csv", "E026": "results/map_verdicts.csv",
+    "E027": "results/activation_verdicts.csv", "E028": "results/dbp_verdicts.csv", "E029": "results/width_verdicts.csv",
+    "E030": "results/loss_verdicts.csv", "E031": "results/triplet_verdicts.csv", "E032": "results/convergence_verdicts.csv",
+    "E033": "results/pareto_verdicts.csv",
 }
 # extra tables shown on the experiment page: (file, {column: header}, title)
 EXTRA_TABLES = {
@@ -73,10 +86,32 @@ EXTRA_TABLES = {
               "Базовые методы")],
     "E023": [("results/split_summary.csv", {"member": "участник", "split_seed": "разбиение", "n_seeds": "запусков (seeds)",
               "test_mean": "тест, %", "test_min": "мин", "test_max": "макс", "macs": "умножений"}, "Результаты по разбиениям")],
+    "E024": [("results/e021_before_after.csv", {"level": "уровень RM", "old_best": "было (E021)", "old_test": "тест, %",
+              "new_best": "стало (агрегатор v2)", "new_family": "семейство", "new_rm": "RM", "new_test": "тест, %"},
+              "Было → стало: лучшая по валидации точка уровня"),
+             ("results/tuning_budget.csv", {"family": "семейство", "runs": "прогонов", "lr_recipes": "рецептов lr",
+              "c_mult_values": "c_mult", "step_budgets": "шагов", "max_seeds_per_config": "seeds (макс.)"},
+              "Бюджет настройки E010–E022")],
+    "E025": [("results/recipes_table.csv", {"pair": "пара", "family": "семейство", "rm": "RM", "recipe": "рецепт",
+              "replaced": "заменён", "val_gain_pp": "выигрыш валидации, п.п.", "val_mean": "валидация", "test_mean": "тест, %",
+              "test_min": "мин", "test_max": "макс", "ref_current_test_mean": "тест ref_current, %"}, "Рецепты после настройки")],
+    "E026": [("results/instability.csv", {"spec_window": "окно", "runs": "прогонов", "diverged_share": "доля разошедшихся"},
+              "Нестабильность по окнам")],
+    "E028": [("results/b_summary.csv", {"variant": "вариант", "n_seeds": "запусков (seeds)", "val_mean": "валидация",
+              "test_mean": "тест, %", "test_min": "мин", "test_max": "макс"}, "Диагноз послойного обучения (Б)")],
+    "E031": [("results/triplet_summary.csv", {"arm": "рука", "M": "M", "n_terms": "членов", "rm_naive": "RM naive",
+              "rm_sym": "RM sym", "val_mean": "валидация", "test_mean": "тест, %", "test_min": "мин", "test_max": "макс",
+              "q2_mean": "Q², дБ"}, "Триплеты по рукам и M")],
+    "E032": [("results/horizons.csv", {"variant": "модель", "horizon": "горизонт", "test_mean": "тест, %", "test_min": "мин",
+              "test_max": "макс"}, "Тест в точке лучшей валидации по горизонтам")],
+    "E033": [("results/level_best.csv", {"level": "уровень", "family": "семейство", "label": "точка", "rm": "RM",
+              "n_seeds": "запусков (seeds)", "val_mean": "валидация", "test_mean": "тест, %", "q2_mean": "Q², дБ",
+              "q2_min": "Q² мин", "q2_max": "Q² макс"}, "Лучшие по валидации на уровнях RM")],
 }
 TEST, VAL = "test_reduction_valbest_select", "best_val_reduction"
 # the control is a different model (complex_a vs physics models): "worse than control" is not an anomaly there
-CONTROL_IS_OTHER_MODEL = {"E016", "E017", "E018", "E020", "E021", "E022", "E023"}
+CONTROL_IS_OTHER_MODEL = {"E016", "E017", "E018", "E020", "E021", "E022", "E023", "E024", "E025", "E026", "E027",
+                          "E028", "E029", "E030", "E031", "E032", "E033"}
 COLUMN_RU = {
     "hypothesis": "гипотеза", "candidate": "кандидат", "candidate_macs": "умножений (кандидат)",
     "reference": "эталон", "reference_macs": "умножений (эталон)", "diff_pp": "разница, п.п.",

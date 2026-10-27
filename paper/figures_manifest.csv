@@ -30,3 +30,22 @@ fig_no,experiment_id,file,caption,source_csv
 29,E021,experiments/E021_pareto/figures/E021_pareto_q2.png,Pareto: Q2 gain vs multiplies per symbol for all model families,experiments/E021_pareto/results/pareto_points.csv
 30,E022,experiments/E022_baselines/figures/E022_baselines_vs_macs.png,Baselines (linear FIR / DBP with fixed nonlinearity / simplified CNN) vs our families: Q2 gain vs multiplies (not run),experiments/E022_baselines/results/baselines_summary.csv
 31,E023,experiments/E023_split_robustness/figures/E023_split_robustness.png,Family results for three file-level splits (not run),experiments/E023_split_robustness/results/split_summary.csv
+32,E024,experiments/E024_data_audit/figures/E024_window_overlap.png,Sequence overlap test/validation -> train against the random share (not run),experiments/E024_data_audit/results/leakage_windows.csv
+33,E024,experiments/E024_data_audit/figures/E024_raw_ber_per_file.png,Raw BER per file and split (not run),experiments/E024_data_audit/results/data_files.csv
+34,E024,experiments/E024_data_audit/figures/E024_tuning_budget.png,Tuning budget per family in E010-E022 (not run),experiments/E024_data_audit/results/tuning_budget.csv
+35,E024,experiments/E024_data_audit/figures/E024_pareto_v2.png,Preliminary Pareto with the new aggregator (not run),experiments/E024_data_audit/results/pareto_v2_points.csv
+36,E025,experiments/E025_family_tuning/figures/E025_before_after.png,Before / after equal tuning per family (not run),experiments/E025_family_tuning/results/recipes_table.csv
+37,E025,experiments/E025_family_tuning/figures/E025_search_response.png,Search response: validation vs peak lr per pair (not run),experiments/E025_family_tuning/results/configs_summary.csv
+38,E025,experiments/E025_family_tuning/figures/E025_hparam_importance.png,Hyper-parameter importance (not run),experiments/E025_family_tuning/results/configs_summary.csv
+39,E026,experiments/E026_kerr_complexity_map/figures/E026_heatmap_val.png,Window x width validation map with RM isolines (not run),experiments/E026_kerr_complexity_map/results/map_summary.csv
+40,E026,experiments/E026_kerr_complexity_map/figures/E026_pareto_by_window.png,Pareto by window (not run),experiments/E026_kerr_complexity_map/results/map_summary.csv
+41,E027,experiments/E027_activation_ablation/figures/E027_activations_by_width.png,Activations at equal width (not run),experiments/E027_activation_ablation/results/activation_summary.csv
+42,E028,experiments/E028_dbp_depth_layerwise/figures/E028_val_vs_ns.png,DBP depth: validation vs Ns (not run),experiments/E028_dbp_depth_layerwise/results/a_summary.csv
+43,E028,experiments/E028_dbp_depth_layerwise/figures/E028_layerwise_phases.png,Layer-wise variants: validation after each added step (not run),experiments/E028_dbp_depth_layerwise/results/b_per_phase.csv
+44,E029,experiments/E029_frontend_vs_width/figures/E029_hybrid_vs_width.png,Physics front-end vs plain MLP across widths (not run),experiments/E029_frontend_vs_width/results/width_summary.csv
+45,E030,experiments/E030_loss_functions/figures/E030_losses.png,Losses on the same output (not run),experiments/E030_loss_functions/results/loss_summary.csv
+46,E031,experiments/E031_perturbation_triplets/figures/E031_triplets_vs_rm.png,Perturbation triplets vs RM (not run),experiments/E031_perturbation_triplets/results/triplet_summary.csv
+47,E032,experiments/E032_convergence_1m/figures/E032_valbest_test_vs_steps.png,Convergence to 1M steps (not run),experiments/E032_convergence_1m/results/horizons.csv
+48,E033,experiments/E033_pareto_final/figures/E033_pareto_q2.png,Final Pareto frontier: Q2 gain vs RM (not run),experiments/E033_pareto_final/results/pareto_points.csv
+49,E033,experiments/E033_pareto_final/figures/E033_pareto_ber.png,Final Pareto frontier: BER reduction vs RM (not run),experiments/E033_pareto_final/results/pareto_points.csv
+50,E033,experiments/E033_pareto_final/figures/E033_physics_ladder.png,Physical ladder (not run),experiments/E033_pareto_final/results/level_best.csv

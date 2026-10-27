@@ -1,0 +1,94 @@
+{
+ "experiment_id": "E024",
+ "title": "Audit of data, complexity counting and aggregation (no training)",
+ "question": "Can the numbers of E010-E021 be trusted (data leakage, raw BER, RM counting, tuning budget, noise floor, aggregator)?",
+ "date": "not run",
+ "base_git_commit": "19d601a (branch exp/E024-E033, from exp/E020-E023)",
+ "git_commit": "recorded per run in results/runs/*.json (field git_commit); rule commit: see LOG.md",
+ "data_manifest_sha256": "cb5f2de47145c02d6485969ce116df2253a271c979a927452ea454551a48c0a8",
+ "data_audit_sha256": "a9c35fb7839e85c39f7131373418a6f3a04c731e9c4e55385347a1eabbdedbe4",
+ "split_source": "experiments/E004_training_file_curve/config.json (train_pool_files[:30], validation 45, test 45), as E007-E019",
+ "split_source_sha256": "04c0b2a5775d8fae1acdc348967c6fb976ef5d90e76a8334484242cc9707025a",
+ "dataset_root": "data/raw/archive",
+ "n_train_files": 30,
+ "base_lr": {
+  "peak_lr": 0.001,
+  "schedule": "const",
+  "warmup": 0,
+  "c_mult": 1.0,
+  "floor_frac": 0.1,
+  "optimizer": "adam",
+  "weight_decay": 0.0
+ },
+ "seeds": [
+  17,
+  29,
+  43,
+  57,
+  71
+ ],
+ "ckpt_every": 10000,
+ "eval_rule": "validation and (report-only) test every max(500, steps/40) steps; selection only by validation",
+ "control": {
+  "runs": {
+   "a_const_1e-3_20k": {
+    "spec": {
+     "model": "complex_a",
+     "window": 31,
+     "hidden": 48,
+     "name": "complex_a"
+    },
+    "n_train_files": 30,
+    "steps": 20000
+   }
+  },
+  "targets": {
+   "a_const_1e-3_20k": {
+    "target": 62.191,
+    "tol": 0.7,
+    "seeds": [
+     17,
+     29
+    ],
+    "metric": "test_reduction_valbest_select",
+    "source": "experiments/E009_kerr_ablation/results/complex_mlp_ablation_summary.csv (variant a); reproduced in E010-E019 (62.19)"
+   }
+  }
+ },
+ "recorded_raw_test_ber": 0.009551859551859552,
+ "metadata_note": "the CSV files have 4 columns (tx_I, tx_Q, rx_I, rx_Q) and no metadata on launch power, OSNR or channel; file names carry only the PR id (E023 config)",
+ "leakage": {
+  "k": [
+   6,
+   8,
+   12,
+   16,
+   31
+  ],
+  "rule_k": 12,
+  "max_ratio_to_random": 5,
+  "max_share": 0.01,
+  "xcorr_files": 8,
+  "rule_text": "no leakage if, for K = 12, the share of test windows whose exact label sequence occurs in train is <= 5 x the random share 1 - exp(-N_train_windows / 16^K) and < 1 %"
+ },
+ "dedup_retrain": {
+  "name": "dedup_v4_w31_h119",
+  "spec": {
+   "model": "complex_one_hidden",
+   "window": 31,
+   "hidden": 119
+  },
+  "steps": 60000,
+  "n_seeds": 1,
+  "note": "only if leakage: 1 seed, recipe F3 (fallback before E025)"
+ },
+ "rule_draft": {
+  "status": "DRAFT: to be confirmed by the user before the first run; must not change after results are seen",
+  "leakage": "no leakage if for K = 12 the share of matched test->train windows <= 5 x random and < 1 %; otherwise results/gate_status.json halt: true (queue stops), dedup test + v4 h119 1 seed 60k",
+  "raw_ber": "recomputed raw test BER (window-31 centres) must equal 0.009551859551859552 (E004-E023)",
+  "rm": "every stored macs_per_symbol(_merged) of E010-E023 must equal the independent formula; mismatches listed",
+  "noise_floor": "minimal detectable difference with 5 seeds = t_{0.975,8} s_pooled sqrt(2/5) (E019 configurations)",
+  "aggregator": "a point = one configuration with >= 3 seeds; family from results/family_map.csv; level window +-25 % on a log scale; best by validation",
+  "otherwise": "не доказано"
+ }
+}
