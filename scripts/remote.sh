@@ -55,9 +55,12 @@ SESSION_RE='^(part1|part2|all|e020_(part1|part2|part3|all)|q_(p0|p1|p2|p3|p4|p5|
 #  would overwrite must be byte-identical to origin (usually they are: `fetch` committed them from there).
 SERVER_UPDATE=$(cat <<'UPDATE'
 git fetch -q origin || exit 1
-if ! git diff --quiet HEAD; then
-  echo 'на сервере изменены отслеживаемые файлы (новые результаты?): сначала remote.sh fetch' >&2
-  git diff --stat HEAD | tail -5 >&2; exit 1
+changed=0
+for f in $(git diff --name-only HEAD); do      # a modified tracked file is fine if origin already has exactly it
+  if ! git show "origin/$BRANCH:$f" 2>/dev/null | cmp -s - "$f"; then echo "изменён и отличается от origin: $f" >&2; changed=1; fi
+done
+if [ "$changed" != 0 ]; then
+  echo 'на сервере изменены отслеживаемые файлы (новые результаты?): сначала remote.sh fetch' >&2; exit 1
 fi
 if git rev-parse -q --verify "$BRANCH" >/dev/null && [ "$(git rev-list --count "origin/$BRANCH..$BRANCH")" != 0 ]; then
   echo 'на сервере есть коммиты, которых нет в origin' >&2; exit 1
