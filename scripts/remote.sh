@@ -200,6 +200,13 @@ echo '== загрузка'; uptime; \
 echo '== готовые прогоны'; for d in experiments/E*/results/runs; do [ -d \"\$d\" ] && printf '%6s  %s\n' \"\$(ls \"\$d\" | grep -c '\\.json\$')\" \"\$d\"; done; \
 echo '== свежие логи (24 ч, последние 5 строк)'; \
 for f in \$(find logs experiments -name '*.log' -mmin -1440 2>/dev/null | xargs -r ls -t | head -12); do echo \"-- \$f\"; tail -5 \"\$f\"; done; \
+echo '== прогресс (последний итог по каждой стадии за 24 ч: готово / всего, ETA стадии)'; \
+for f in \$(find experiments -path '*/logs/*.log' -mmin -1440 2>/dev/null | sort); do \
+  run=\$(grep -E 'running [0-9]+ tasks' \"\$f\" | tail -1 | grep -oE 'running [0-9]+'); \
+  ok=\$(grep -E '\\[ok [0-9]+/[0-9]+\\]' \"\$f\" | tail -1 | grep -oE '\\[ok [0-9]+/[0-9]+\\]|ETA ~[0-9]+ min'); \
+  fin=\$(grep -E 'finished:|nothing to run' \"\$f\" | tail -1 | cut -c1-60); \
+  [ -n \"\$run\$ok\" ] && echo \"\$f: \$run | \$(echo \$ok) | \$fin\"; done; \
+echo '== текущий шаг цепочки'; ls -t logs/remote/*.log 2>/dev/null | head -1 | xargs -r grep -E '^=== .*: (control|main|summarize|diagnostics)' | tail -2; \
 echo '== ОШИБКА'; grep -rn 'ОШИБКА' logs experiments/*/logs 2>/dev/null | tail -20 || true"
 }
 
