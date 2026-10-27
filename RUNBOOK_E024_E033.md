@@ -4,14 +4,14 @@
 
 | часть | эксперименты | прогонов | оценка, ч | что смотреть |
 |---|---|---|---|---|
-| p0 | E024 аудит, E031 триплеты | 2 (+1 при утечке) + 150 подгонок | ESTIMATE_P0 | `E024…/results/leakage.json` (останов при утечке), `audit_verdicts.csv`, `../../results/noise_floor.json`; `E031…/results/triplet_summary.csv` |
-| p1 | E025 настройка | 2 + 806 + 195 + 171 | ESTIMATE_P1 | `code_check.json` (66.253 ± 0.7), `recipes_table.csv`, `../../results/recipes.json`, `../../results/gate_g1.json` |
-| p2 | E026 карта, E028 DBP | 278 + 119 | ESTIMATE_P2 | `map_verdicts.csv`, `instability.csv`; `dbp_verdicts.csv`, `b_per_phase.csv` |
-| p3 | E027 активации, E029 front-end | 449 + 82 | ESTIMATE_P3 | `activation_verdicts.csv`; `width_verdicts.csv` |
-| p4 | E030 потери | 226 | ESTIMATE_P4 | `loss_verdicts.csv` |
-| conv | E032 1M шагов (JOBS 16, параллельно p2–p4) | 20 | ESTIMATE_CONV | `horizons.csv`, `convergence_verdicts.csv` |
-| p5 | E033 Парето | 2 + ≤ 50 | ESTIMATE_P5 | `level_best.md`, `dominance.csv`, `pareto_verdicts.csv` |
-| всего | | | ESTIMATE_TOTAL | |
+| p0 | E024 аудит, E031 триплеты | 2 (+1 при утечке) + 150 подгонок | ~1.3 | `E024…/results/leakage.json` (останов при утечке), `audit_verdicts.csv`, `../../results/noise_floor.json`; `E031…/results/triplet_summary.csv` |
+| p1 | E025 настройка | 2 + 806 + 195 + 171 | ~62.7 | `code_check.json` (66.253 ± 0.7), `recipes_table.csv`, `../../results/recipes.json`, `../../results/gate_g1.json` |
+| p2 | E026 карта, E028 DBP | 278 + 119 | ~33.8 | `map_verdicts.csv`, `instability.csv`; `dbp_verdicts.csv`, `b_per_phase.csv` |
+| p3 | E027 активации, E029 front-end | 449 + 82 | ~7.1 | `activation_verdicts.csv`; `width_verdicts.csv` |
+| p4 | E030 потери | 226 | ~5.6 | `loss_verdicts.csv` |
+| conv | E032 1M шагов (JOBS 16, параллельно p2–p4) | 20 | ~14.2 (параллельно) | `horizons.csv`, `convergence_verdicts.csv` |
+| p5 | E033 Парето | 2 + ≤ 50 | ~3.5 | `level_best.md`, `dominance.csv`, `pareto_verdicts.csv` |
+| всего | | | ~114 по очереди (~4.8 сут) + 14 параллельно; замер 2026-10-27 при занятом сервере (цепочка E021–E023), JOBS 40 | |
 
 Числа прогонов зависимых стадий (S2, S3, confirm, a_long, *_fixed) — по отбору-заглушке; реальный отбор делается по валидации предыдущей стадии. Оценка часов — `bash scripts/remote.sh estimate q <часть>` (короткий замер скорости на сервере, коэффициент конкуренции из `resources.json`).
 
