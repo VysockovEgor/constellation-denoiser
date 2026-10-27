@@ -25,3 +25,8 @@ fig_no,experiment_id,file,caption,source_csv
 24,E018,experiments/E018_dbp_depth/figures/E018_quality_vs_macs.png,DBP depth: BER reduction and Q2 gain vs multiplies with complex_a and E012 (not run),experiments/E018_dbp_depth/results/dbp_depth_summary.csv
 25,E019,experiments/E019_confirm_long_runs/figures/E019_long_curves.png,Long confirmation runs: validation BER reduction vs steps up to 200k for the best E016-E018 configurations and controls (not run),experiments/E019_confirm_long_runs/results/confirm_summary.csv
 26,E015-E019,results/E015_E018_quality_vs_macs.png,All families E011-E019: BER reduction and Q2 gain vs multiplies per symbol (not run),results/E015_E018_quality_points.csv
+27,E020,experiments/E020_e017_anomaly/figures/E020_val_test_vs_steps.png,Hybrid h48 joint in E019: validation and test vs steps for the anomalous (best_e010 cm1) and normal (const) branches,experiments/E020_e017_anomaly/results/differences.csv
+28,E021,experiments/E021_pareto/figures/E021_pareto_ber.png,Pareto: test BER reduction vs multiplies per symbol for all model families,experiments/E021_pareto/results/pareto_points.csv
+29,E021,experiments/E021_pareto/figures/E021_pareto_q2.png,Pareto: Q2 gain vs multiplies per symbol for all model families,experiments/E021_pareto/results/pareto_points.csv
+30,E022,experiments/E022_baselines/figures/E022_baselines_vs_macs.png,Baselines (linear FIR / DBP with fixed nonlinearity / simplified CNN) vs our families: Q2 gain vs multiplies (not run),experiments/E022_baselines/results/baselines_summary.csv
+31,E023,experiments/E023_split_robustness/figures/E023_split_robustness.png,Family results for three file-level splits (not run),experiments/E023_split_robustness/results/split_summary.csv

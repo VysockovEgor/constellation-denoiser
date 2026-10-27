@@ -44,15 +44,39 @@ RUNS = {
     "E016": ("results/phys_kerr.csv", ["variant", "lr_name"]),
     "E017": ("results/phys_plus_mlp.csv", ["variant", "lr_name"]),
     "E018": ("results/dbp_depth.csv", ["variant"]),
+    "E020": ("results/runs_table.csv", ["variant", "lr_name", "budget"]),
+    "E021": ("results/runs_table.csv", ["variant"]),
+    "E022": ("results/runs_table.csv", ["variant"]),
+    "E023": ("results/runs_table.csv", ["variant", "split_seed"]),
 }
 VERDICTS = {
     "E012": "results/depth_window_verdicts.csv", "E013": "results/transformer_verdicts.csv",
     "E014": "results/kan_hybrid_verdicts.csv", "E016": "results/phys_kerr_verdicts.csv",
     "E017": "results/phys_plus_mlp_verdicts.csv", "E018": "results/dbp_depth_verdicts.csv",
+    "E020": "results/arms_verdicts.csv", "E021": "results/level_verdicts.csv",
+    "E022": "results/baselines_verdicts.csv", "E023": "results/robustness_verdicts.csv",
+}
+# extra tables shown on the experiment page: (file, {column: header}, title)
+EXTRA_TABLES = {
+    "E020": [("results/differences.csv", {"branch": "ветка E019", "lr": "lr", "val_5k": "валидация 5k", "val_40k": "валидация 40k",
+              "test_valbest_100k": "тест 100k", "test_valbest_200k": "тест 200k", "test_final_200k": "тест, посл. шаг",
+              "val_test_gap_200k": "тест − валидация", "train_loss_final": "train loss"}, "Различия аномального и нормального прогонов (E019)"),
+             ("results/hypotheses.csv", {"hypothesis": "гипотеза", "text": "формулировка", "status": "статус", "evidence": "данные"},
+              "Гипотезы и проверка на существующих данных"),
+             ("results/arms.csv", {"arm": "плечо", "lr": "ветка lr", "steps": "шагов", "n_seeds": "запусков (seeds)",
+              "test_mean": "тест, %", "test_min": "мин", "test_max": "макс", "derived": "из кривой 200k"}, "Перезапуски")],
+    "E021": [("results/level_best.csv", {"level": "уровень", "family": "семейство", "label": "точка", "macs": "умножений",
+              "n_seeds": "запусков (seeds)", "val_mean": "валидация", "test_mean": "тест, %", "test_min": "мин",
+              "test_max": "макс", "q2_mean": "Q², дБ"}, "Лучшее по валидации семейство на каждом уровне")],
+    "E022": [("results/baselines_summary.csv", {"family": "семейство", "variant": "вариант", "macs": "умножений",
+              "n_seeds": "запусков (seeds)", "test_mean": "тест, %", "q2_mean": "Q², дБ", "q2_min": "Q² мин", "q2_max": "Q² макс"},
+              "Базовые методы")],
+    "E023": [("results/split_summary.csv", {"member": "участник", "split_seed": "разбиение", "n_seeds": "запусков (seeds)",
+              "test_mean": "тест, %", "test_min": "мин", "test_max": "макс", "macs": "умножений"}, "Результаты по разбиениям")],
 }
 TEST, VAL = "test_reduction_valbest_select", "best_val_reduction"
 # the control is a different model (complex_a vs physics models): "worse than control" is not an anomaly there
-CONTROL_IS_OTHER_MODEL = {"E016", "E017", "E018"}
+CONTROL_IS_OTHER_MODEL = {"E016", "E017", "E018", "E020", "E021", "E022", "E023"}
 COLUMN_RU = {
     "hypothesis": "гипотеза", "candidate": "кандидат", "candidate_macs": "умножений (кандидат)",
     "reference": "эталон", "reference_macs": "умножений (эталон)", "diff_pp": "разница, п.п.",
@@ -334,7 +358,7 @@ def verdict_items(exp: str) -> list[tuple[str, str]] | None:
             items = [(f"{v}, G={int(g)}", r) for v, g, r in zip(frame.variant, frame.grid, frame.verdict)]
         else:
             items = list(zip(frame.hypothesis, frame.verdict))
-        return [(label, normalize(v)) for label, v in items]
+        return [(label, normalize(v)) for label, v in items] or None   # empty verdict file: not run yet
     if exp == "E010" and (d / "results/lr_sweep_summary.csv").is_file():
         s = pd.read_csv(d / "results/lr_sweep_summary.csv")
         s = s[s.verdict_draft_rule != "control"]
@@ -412,6 +436,11 @@ def build_experiment(exp: str) -> None:
     else:
         result = grouped(exp)
         parts.append(results_table(result[1]) if result else "Результатов нет (эксперимент не запускался).\n")
+    for rel, columns, caption in EXTRA_TABLES.get(exp, []):
+        if (d / rel).is_file():
+            frame = pd.read_csv(d / rel)
+            if len(frame):
+                parts.append(f"{caption} (`{rel}`):\n\n" + table(frame.head(40), columns))
     parts.append(verdict_block(exp))
     parts.append("Рисунки (клик — крупно, листание стрелками):\n\n" + figures(exp, depth=1))
     write(f"{exp}_results.md", "\n".join(parts))

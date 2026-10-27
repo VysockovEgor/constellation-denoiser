@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # Two-command work cycle with the shared server (run from WSL, repository root).
 #
-#   bash scripts/remote.sh go part1 | part2 | all | <E0NN> <stage>   push, update the server, start in tmux
+#   bash scripts/remote.sh go part1 | part2 | all | e020 <part> | <E0NN> <stage>   push, update the server, start in tmux
+#                              (part1/part2/all: chain E015-E019; e020 part1|part2|part3|all: chain E020-E023)
 #   bash scripts/remote.sh estimate part1 | part2 | <E0NN> [stage]     hours from the server-side estimate stages
 #   bash scripts/remote.sh sync                                        update the server checkout only (no job)
 #   bash scripts/remote.sh status                                      sessions, processes, load, runs, logs, ОШИБКА
@@ -46,7 +47,7 @@ BRANCH="${BRANCH:-$(git rev-parse --abbrev-ref HEAD)}"
 REGISTRY=".remote_sessions"
 SSH_OPTS=(-o ControlMaster=auto -o "ControlPath=$HOME/.ssh/cm-%C" -o ControlPersist=10m -o BatchMode=yes
           -o ServerAliveInterval=30)
-SESSION_RE='^(part1|part2|all|E0[0-9][0-9])_[0-9]{4}_[0-9]{4}$'
+SESSION_RE='^(part1|part2|all|e020_(part1|part2|part3|all)|E0[0-9][0-9])_[0-9]{4}_[0-9]{4}$'
 
 # Server update = fast-forward that never loses server data (expects $BRANCH set before it):
 #  stop if tracked files changed or the server branch has its own commits; untracked files the update
@@ -98,6 +99,11 @@ resolve_job() {
       [[ $# -eq 1 ]] || die "после $1 аргументы не нужны"
       JOB_STEM="$1"
       JOB_CMD="bash scripts/overnight_e015_e018.sh $1"
+      ;;
+    e020)
+      [[ $# -eq 2 && "$2" =~ ^(part1|part2|part3|all)$ ]] || die "использование: go e020 part1|part2|part3|all"
+      JOB_STEM="e020_$2"
+      JOB_CMD="bash scripts/overnight_e020_e023.sh $2"
       ;;
     E0[0-9][0-9])
       [[ $# -eq 2 ]] || die "использование: go <E0NN> <стадия>"
@@ -154,6 +160,15 @@ cmd_estimate() {
   case "${1:-}" in
     part1) targets=("E016_phys_kerr_only all" "E017_phys_plus_mlp all") ;;
     part2) targets=("E018_dbp_depth all" "E019_confirm_long_runs all") ;;
+    e020)
+      case "${2:-}" in
+        part1) targets=("E020_e017_anomaly all") ;;
+        part2) targets=("E021_pareto all" "E022_baselines all") ;;
+        part3) targets=("E023_split_robustness all") ;;
+        all) targets=("E020_e017_anomaly all" "E021_pareto all" "E022_baselines all" "E023_split_robustness all") ;;
+        *) die "использование: estimate e020 part1|part2|part3|all" ;;
+      esac
+      ;;
     E0[0-9][0-9])
       local stage="${2:-all}"
       [[ "$stage" =~ ^[a-z0-9-]+$ ]] || die "недопустимая стадия: $stage"
@@ -161,7 +176,7 @@ cmd_estimate() {
       [[ -f "${matches[0]}" ]] || die "нет experiments/$1_*/run.sh"
       targets=("$(basename "$(dirname "${matches[0]}")") $stage")
       ;;
-    *) die "ожидается part1, part2 или <E0NN> [стадия]" ;;
+    *) die "ожидается part1, part2, e020 <часть> или <E0NN> [стадия]" ;;
   esac
   local script="" target
   for target in "${targets[@]}"; do

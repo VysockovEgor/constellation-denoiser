@@ -165,3 +165,21 @@
 ![E015-E019 · E015_E018_quality_vs_macs.png · 2026-10-26](figs/results/E015_E018_quality_vs_macs.png){group="gallery"}
 
 :::
+
+## E020
+
+::: {layout-ncol=3}
+
+![E020 · E020_val_test_vs_steps.png · 2026-10-27](figs/experiments/E020_e017_anomaly/figures/E020_val_test_vs_steps.png){group="gallery"}
+
+:::
+
+## E021
+
+::: {layout-ncol=3}
+
+![E021 · E021_pareto_ber.png · 2026-10-27](figs/experiments/E021_pareto/figures/E021_pareto_ber.png){group="gallery"}
+
+![E021 · E021_pareto_q2.png · 2026-10-27](figs/experiments/E021_pareto/figures/E021_pareto_q2.png){group="gallery"}
+
+:::

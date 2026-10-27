@@ -28,6 +28,10 @@ website:
       - experiments/E017.qmd
       - experiments/E018.qmd
       - experiments/E019.qmd
+      - experiments/E020.qmd
+      - experiments/E021.qmd
+      - experiments/E022.qmd
+      - experiments/E023.qmd
       # journal_new.py appends new experiment pages above this line
 
 lightbox: auto

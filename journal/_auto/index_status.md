@@ -12,5 +12,9 @@
 | [E017](experiments/E017.qmd) | Сколько нейросети (h = 4–48) нужно на остаток после PhysKerr, frozen и joint? | подтверждено: 0, не доказано: 2 | в допуске: 62.19 %, 59.44 % |
 | [E018](experiments/E018.qmd) | Помогает ли глубина Ns шагов [КИХ + нелинейность с памятью] и нужна ли послойная инициализация? | подтверждено: 1, не доказано: 1 | в допуске: 62.19 % |
 | [E019](experiments/E019.qmd) | Выходят ли лучшие конфигурации E016–E018 и complex_a/complex_both на плато за 100k–200k шагов? | подтверждено: 4, не доказано: 6 | в допуске: 62.19 % |
+| [E020](experiments/E020.qmd) | Почему гибрид Phys + MLP (h48, joint) с веткой `best_e010` (cosine_to_zero, пик 3e-3, `c_mult` 1) даёт в E019 51.5 % вместо 62.8 % у const 1e-3? | не запущено | — |
+| [E021](experiments/E021.qmd) | Какое семейство моделей даёт лучшее снижение BER и Q² при заданном числе умножений на символ (уровни ≈2k, 6.5k, 16k, 40k)? | подтверждено: 3, не доказано: 1 | — |
+| [E022](experiments/E022.qmd) | Превосходит ли наш подход сильные классические базовые методы при равном числе умножений? | не запущено | — |
+| [E023](experiments/E023.qmd) | Не зависит ли вывод (порядок семейств и разницы) от одного разбиения train / validation / test? | не запущено | — |
 
-E001–E009 — [одной страницей](experiments/legacy.qmd). История запусков — [LOG.md на GitHub](https://github.com/VysockovEgor/constellation-denoiser/blob/chore/journal/LOG.md).
+E001–E009 — [одной страницей](experiments/legacy.qmd). История запусков — [LOG.md на GitHub](https://github.com/VysockovEgor/constellation-denoiser/blob/exp/E020-E023/LOG.md).
