@@ -1,0 +1,284 @@
+=== 2026-10-24T14:34:09+07:00 overnight part2: JOBS=auto THREADS=auto DEVICE=auto host=hocalhost commit=6acc1c9 ===
+=== 2026-10-24T14:34:09+07:00 E018_dbp_depth: control main summarize ===
+=== 2026-10-24T14:34:09+07:00 E018 control: .venv/bin/python -u -m constellation_denoiser.runner --exp E018 --stage control --no-control-gate ===
+JOBS=auto THREADS=auto DEVICE=auto SEEDS=default SMOKE=0 FORCE=0
+[2026-10-24 14:34:11] running 2 tasks with JOBS=23, THREADS=1, DEVICE=cpu
+[2026-10-24 14:38:00] [ok 1/2] control_complex_a_w31_h48_N30_20k_seed29: val=60.74% test=62.37% diverged=False time=227s; ETA ~4 min
+[2026-10-24 14:38:07] [ok 2/2] control_complex_a_w31_h48_N30_20k_seed17: val=59.43% test=60.40% diverged=False time=234s; ETA ~0 min
+[2026-10-24 14:38:08] finished: 2 ok, 0 failed
+=== 2026-10-24T14:38:08+07:00 E018 control exit=0 ===
+=== 2026-10-24T14:38:08+07:00 E018 check-control: .venv/bin/python -m constellation_denoiser.runner --exp E018 --stage control --check-control ===
+JOBS=auto THREADS=auto DEVICE=auto SEEDS=default SMOKE=0 FORCE=0
+[2026-10-24 14:38:10] control a_const_1e-3_20k: mean test_reduction_valbest_select = 62.19% по 2 seed; цель 62.191±0.7 п.п. -> OK
+=== 2026-10-24T14:38:10+07:00 E018 check-control exit=0 ===
+=== 2026-10-24T14:38:10+07:00 E018 main: .venv/bin/python -u -m constellation_denoiser.runner --exp E018 --stage main ===
+JOBS=auto THREADS=auto DEVICE=auto SEEDS=default SMOKE=0 FORCE=0
+[2026-10-24 14:38:12] running 160 tasks with JOBS=23, THREADS=1, DEVICE=cpu
+[2026-10-24 14:40:28] [ok 1/160] dbp_Ns1_L7_R3_layerwise_w31_N30_const_1e-3_30k_seed17: val=-3.06% test=-2.69% diverged=False time=134s; ETA ~360 min
+[2026-10-24 14:40:28] [ok 2/160] dbp_Ns1_L7_R3_joint_from_scratch_w31_N30_const_1e-3_30k_seed57: val=-3.55% test=-3.25% diverged=False time=134s; ETA ~179 min
+[2026-10-24 14:40:28] [ok 3/160] dbp_Ns1_L7_R3_layerwise_w31_N30_const_1e-3_30k_seed29: val=-2.36% test=-2.07% diverged=False time=134s; ETA ~119 min
+[2026-10-24 14:40:28] [ok 4/160] dbp_Ns1_L7_R3_layerwise_w31_N30_const_1e-3_30k_seed43: val=-2.50% test=-2.29% diverged=False time=134s; ETA ~89 min
+[2026-10-24 14:40:28] [ok 5/160] dbp_Ns1_L7_R3_joint_from_scratch_w31_N30_const_1e-3_30k_seed29: val=-2.32% test=-1.93% diverged=False time=134s; ETA ~71 min
+[2026-10-24 14:40:30] [ok 6/160] dbp_Ns1_L7_R3_joint_from_scratch_w31_N30_const_1e-3_30k_seed43: val=-1.97% test=-1.72% diverged=False time=136s; ETA ~59 min
+[2026-10-24 14:40:31] [ok 7/160] dbp_Ns1_L7_R3_joint_from_scratch_w31_N30_const_1e-3_30k_seed17: val=-2.84% test=-2.44% diverged=False time=136s; ETA ~51 min
+[2026-10-24 14:40:31] [ok 8/160] dbp_Ns1_L31_R3_layerwise_w31_N30_const_1e-3_30k_seed17: val=-3.14% test=-2.81% diverged=False time=135s; ETA ~44 min
+[2026-10-24 14:40:31] [ok 9/160] dbp_Ns1_L31_R3_layerwise_w31_N30_const_1e-3_30k_seed43: val=-2.58% test=-2.22% diverged=False time=136s; ETA ~39 min
+[2026-10-24 14:40:32] [ok 10/160] dbp_Ns1_L7_R3_layerwise_w31_N30_const_1e-3_30k_seed57: val=-2.58% test=-2.40% diverged=False time=137s; ETA ~35 min
+[2026-10-24 14:40:33] [ok 11/160] dbp_Ns1_L7_R3_layerwise_w31_N30_const_1e-3_30k_seed71: val=-2.39% test=-2.09% diverged=False time=138s; ETA ~32 min
+[2026-10-24 14:40:34] [ok 12/160] dbp_Ns1_L7_R7_joint_from_scratch_w31_N30_const_1e-3_30k_seed71: val=-0.60% test=-0.10% diverged=False time=138s; ETA ~29 min
+[2026-10-24 14:40:34] [ok 13/160] dbp_Ns1_L7_R7_layerwise_w31_N30_const_1e-3_30k_seed57: val=-0.12% test=0.48% diverged=False time=139s; ETA ~27 min
+[2026-10-24 14:40:34] [ok 14/160] dbp_Ns1_L7_R7_layerwise_w31_N30_const_1e-3_30k_seed29: val=0.35% test=0.70% diverged=False time=140s; ETA ~25 min
+[2026-10-24 14:40:35] [ok 15/160] dbp_Ns1_L7_R7_joint_from_scratch_w31_N30_const_1e-3_30k_seed17: val=-0.11% test=0.21% diverged=False time=140s; ETA ~23 min
+[2026-10-24 14:40:35] [ok 16/160] dbp_Ns1_L7_R3_joint_from_scratch_w31_N30_const_1e-3_30k_seed71: val=-2.62% test=-2.12% diverged=False time=140s; ETA ~21 min
+[2026-10-24 14:40:35] [ok 17/160] dbp_Ns1_L7_R7_joint_from_scratch_w31_N30_const_1e-3_30k_seed43: val=0.92% test=1.39% diverged=False time=140s; ETA ~20 min
+[2026-10-24 14:40:36] [ok 18/160] dbp_Ns1_L7_R7_layerwise_w31_N30_const_1e-3_30k_seed71: val=0.34% test=0.92% diverged=False time=141s; ETA ~19 min
+[2026-10-24 14:40:36] [ok 19/160] dbp_Ns1_L7_R7_joint_from_scratch_w31_N30_const_1e-3_30k_seed29: val=0.61% test=0.92% diverged=False time=141s; ETA ~18 min
+[2026-10-24 14:40:36] [ok 20/160] dbp_Ns1_L7_R7_layerwise_w31_N30_const_1e-3_30k_seed43: val=0.46% test=0.95% diverged=False time=142s; ETA ~17 min
+[2026-10-24 14:40:38] [ok 21/160] dbp_Ns1_L7_R7_layerwise_w31_N30_const_1e-3_30k_seed17: val=-0.00% test=0.45% diverged=False time=143s; ETA ~16 min
+[2026-10-24 14:40:39] [ok 22/160] dbp_Ns1_L7_R7_joint_from_scratch_w31_N30_const_1e-3_30k_seed57: val=-0.77% test=-0.43% diverged=False time=144s; ETA ~15 min
+[2026-10-24 14:40:45] [ok 23/160] dbp_Ns1_L31_R3_layerwise_w31_N30_const_1e-3_30k_seed29: val=-2.51% test=-2.22% diverged=False time=150s; ETA ~15 min
+[2026-10-24 14:42:42] [ok 24/160] dbp_Ns1_L31_R3_layerwise_w31_N30_const_1e-3_30k_seed57: val=-2.66% test=-2.56% diverged=False time=134s; ETA ~26 min
+[2026-10-24 14:42:43] [ok 25/160] dbp_Ns1_L31_R3_joint_from_scratch_w31_N30_const_1e-3_30k_seed17: val=-3.20% test=-2.82% diverged=False time=135s; ETA ~24 min
+[2026-10-24 14:42:46] [ok 26/160] dbp_Ns1_L31_R3_layerwise_w31_N30_const_1e-3_30k_seed71: val=-2.58% test=-2.27% diverged=False time=138s; ETA ~24 min
+[2026-10-24 14:42:46] [ok 27/160] dbp_Ns1_L31_R3_joint_from_scratch_w31_N30_const_1e-3_30k_seed29: val=-2.67% test=-2.39% diverged=False time=137s; ETA ~23 min
+[2026-10-24 14:42:47] [ok 28/160] dbp_Ns1_L31_R3_joint_from_scratch_w31_N30_const_1e-3_30k_seed71: val=-3.08% test=-2.58% diverged=False time=136s; ETA ~22 min
+[2026-10-24 14:42:48] [ok 29/160] dbp_Ns1_L31_R7_layerwise_w31_N30_const_1e-3_30k_seed17: val=-0.01% test=0.25% diverged=False time=137s; ETA ~21 min
+[2026-10-24 14:42:50] [ok 30/160] dbp_Ns1_L31_R7_layerwise_w31_N30_const_1e-3_30k_seed29: val=0.20% test=0.71% diverged=False time=139s; ETA ~20 min
+[2026-10-24 14:42:50] [ok 31/160] dbp_Ns1_L31_R7_layerwise_w31_N30_const_1e-3_30k_seed71: val=0.01% test=0.76% diverged=False time=137s; ETA ~19 min
+[2026-10-24 14:42:52] [ok 32/160] dbp_Ns1_L31_R7_joint_from_scratch_w31_N30_const_1e-3_30k_seed29: val=0.35% test=0.39% diverged=False time=137s; ETA ~19 min
+[2026-10-24 14:42:52] [ok 33/160] dbp_Ns1_L31_R7_joint_from_scratch_w31_N30_const_1e-3_30k_seed71: val=-1.14% test=-0.39% diverged=False time=137s; ETA ~18 min
+[2026-10-24 14:42:54] [ok 34/160] dbp_Ns1_L31_R7_joint_from_scratch_w31_N30_const_1e-3_30k_seed17: val=-0.97% test=-0.42% diverged=False time=140s; ETA ~17 min
+[2026-10-24 14:42:54] [ok 35/160] dbp_Ns1_L31_R7_joint_from_scratch_w31_N30_const_1e-3_30k_seed43: val=0.68% test=1.20% diverged=False time=140s; ETA ~17 min
+[2026-10-24 14:42:57] [ok 36/160] dbp_Ns1_L31_R7_layerwise_w31_N30_const_1e-3_30k_seed43: val=0.22% test=0.63% diverged=False time=145s; ETA ~16 min
+[2026-10-24 14:43:00] [ok 37/160] dbp_Ns1_L31_R7_joint_from_scratch_w31_N30_const_1e-3_30k_seed57: val=-1.23% test=-1.17% diverged=False time=145s; ETA ~16 min
+[2026-10-24 14:43:45] [ok 38/160] dbp_Ns1_L31_R3_joint_from_scratch_w31_N30_const_1e-3_30k_seed43: val=-2.36% test=-1.95% diverged=False time=196s; ETA ~18 min
+[2026-10-24 14:44:10] [ok 39/160] dbp_Ns1_L31_R3_joint_from_scratch_w31_N30_const_1e-3_30k_seed57: val=-3.82% test=-3.65% diverged=False time=220s; ETA ~18 min
+[2026-10-24 14:44:21] [ok 40/160] dbp_Ns1_L31_R7_layerwise_w31_N30_const_1e-3_30k_seed57: val=-0.10% test=0.13% diverged=False time=228s; ETA ~18 min
+[2026-10-24 14:48:58] [ok 41/160] dbp_Ns2_L7_R3_layerwise_w31_N30_const_1e-3_50k_seed43: val=-1.55% test=-0.99% diverged=False time=502s; ETA ~31 min
+[2026-10-24 14:49:09] [ok 42/160] dbp_Ns2_L7_R3_layerwise_w31_N30_const_1e-3_50k_seed17: val=-2.53% test=-1.99% diverged=False time=513s; ETA ~31 min
+[2026-10-24 14:49:50] [ok 43/160] dbp_Ns2_L7_R3_joint_from_scratch_w31_N30_const_1e-3_50k_seed17: val=-2.37% test=-1.85% diverged=False time=544s; ETA ~32 min
+[2026-10-24 14:49:54] [ok 44/160] dbp_Ns2_L7_R3_layerwise_w31_N30_const_1e-3_50k_seed29: val=-2.40% test=-2.07% diverged=False time=558s; ETA ~31 min
+[2026-10-24 14:49:57] [ok 45/160] dbp_Ns2_L7_R3_layerwise_w31_N30_const_1e-3_50k_seed71: val=-2.08% test=-1.45% diverged=False time=558s; ETA ~30 min
+[2026-10-24 14:50:40] [ok 46/160] dbp_Ns2_L7_R3_layerwise_w31_N30_const_1e-3_50k_seed57: val=-1.98% test=-1.27% diverged=False time=602s; ETA ~31 min
+[2026-10-24 14:51:07] [ok 47/160] dbp_Ns2_L7_R7_layerwise_w31_N30_const_1e-3_50k_seed29: val=0.71% test=1.31% diverged=False time=499s; ETA ~31 min
+[2026-10-24 14:51:11] [ok 48/160] dbp_Ns2_L7_R7_layerwise_w31_N30_const_1e-3_50k_seed57: val=0.77% test=1.19% diverged=False time=501s; ETA ~30 min
+[2026-10-24 14:51:13] [ok 49/160] dbp_Ns2_L7_R7_layerwise_w31_N30_const_1e-3_50k_seed71: val=1.06% test=1.57% diverged=False time=501s; ETA ~29 min
+[2026-10-24 14:51:19] [ok 50/160] dbp_Ns2_L7_R7_layerwise_w31_N30_const_1e-3_50k_seed43: val=1.22% test=1.63% diverged=False time=509s; ETA ~29 min
+[2026-10-24 14:51:58] [ok 51/160] dbp_Ns2_L7_R7_joint_from_scratch_w31_N30_const_1e-3_50k_seed17: val=0.73% test=1.21% diverged=False time=546s; ETA ~29 min
+[2026-10-24 14:52:00] [ok 52/160] dbp_Ns2_L7_R7_joint_from_scratch_w31_N30_const_1e-3_50k_seed43: val=1.35% test=1.70% diverged=False time=545s; ETA ~29 min
+[2026-10-24 14:52:13] [ok 53/160] dbp_Ns2_L7_R3_joint_from_scratch_w31_N30_const_1e-3_50k_seed71: val=-2.14% test=-1.43% diverged=False time=567s; ETA ~28 min
+[2026-10-24 14:52:29] [ok 54/160] dbp_Ns2_L7_R7_joint_from_scratch_w31_N30_const_1e-3_50k_seed29: val=1.24% test=1.65% diverged=False time=575s; ETA ~28 min
+[2026-10-24 14:52:40] [ok 55/160] dbp_Ns2_L7_R3_joint_from_scratch_w31_N30_const_1e-3_50k_seed43: val=-2.30% test=-1.95% diverged=False time=598s; ETA ~28 min
+[2026-10-24 14:53:06] [ok 56/160] dbp_Ns2_L31_R3_layerwise_w31_N30_const_1e-3_50k_seed43: val=-2.12% test=-1.07% diverged=False time=526s; ETA ~28 min
+[2026-10-24 14:53:23] [ok 57/160] dbp_Ns2_L7_R7_joint_from_scratch_w31_N30_const_1e-3_50k_seed57: val=1.37% test=1.63% diverged=False time=627s; ETA ~27 min
+[2026-10-24 14:53:51] [ok 58/160] dbp_Ns2_L7_R7_layerwise_w31_N30_const_1e-3_50k_seed17: val=0.75% test=1.28% diverged=False time=665s; ETA ~28 min
+[2026-10-24 14:54:03] [ok 59/160] dbp_Ns2_L7_R7_joint_from_scratch_w31_N30_const_1e-3_50k_seed71: val=1.22% test=1.77% diverged=False time=663s; ETA ~27 min
+[2026-10-24 14:54:42] [ok 60/160] dbp_Ns2_L7_R3_joint_from_scratch_w31_N30_const_1e-3_50k_seed57: val=-2.74% test=-2.21% diverged=False time=716s; ETA ~27 min
+[2026-10-24 14:55:02] [ok 61/160] dbp_Ns2_L7_R3_joint_from_scratch_w31_N30_const_1e-3_50k_seed29: val=-1.86% test=-1.38% diverged=False time=740s; ETA ~27 min
+[2026-10-24 14:55:32] [ok 62/160] dbp_Ns2_L31_R3_layerwise_w31_N30_const_1e-3_50k_seed29: val=-2.79% test=-2.32% diverged=False time=682s; ETA ~27 min
+[2026-10-24 14:55:38] [ok 63/160] dbp_Ns2_L31_R3_layerwise_w31_N30_const_1e-3_50k_seed17: val=-2.91% test=-2.18% diverged=False time=713s; ETA ~27 min
+[2026-10-24 14:58:14] [ok 64/160] dbp_Ns2_L31_R3_layerwise_w31_N30_const_1e-3_50k_seed71: val=-2.57% test=-1.71% diverged=False time=545s; ETA ~30 min
+[2026-10-24 14:59:15] [ok 65/160] dbp_Ns2_L31_R7_layerwise_w31_N30_const_1e-3_50k_seed17: val=0.97% test=1.76% diverged=False time=484s; ETA ~31 min
+[2026-10-24 14:59:19] [ok 66/160] dbp_Ns2_L31_R3_joint_from_scratch_w31_N30_const_1e-3_50k_seed17: val=-2.83% test=-1.88% diverged=False time=570s; ETA ~30 min
+[2026-10-24 14:59:22] [ok 67/160] dbp_Ns2_L31_R7_layerwise_w31_N30_const_1e-3_50k_seed29: val=1.04% test=1.49% diverged=False time=489s; ETA ~29 min
+[2026-10-24 14:59:25] [ok 68/160] dbp_Ns2_L31_R7_layerwise_w31_N30_const_1e-3_50k_seed43: val=1.45% test=1.83% diverged=False time=486s; ETA ~29 min
+[2026-10-24 14:59:29] [ok 69/160] dbp_Ns2_L31_R3_layerwise_w31_N30_const_1e-3_50k_seed57: val=-2.50% test=-1.51% diverged=False time=631s; ETA ~28 min
+[2026-10-24 14:59:47] [ok 70/160] dbp_Ns2_L31_R3_joint_from_scratch_w31_N30_const_1e-3_50k_seed71: val=-3.03% test=-2.30% diverged=False time=520s; ETA ~28 min
+[2026-10-24 14:59:57] [ok 71/160] dbp_Ns2_L31_R7_layerwise_w31_N30_const_1e-3_50k_seed71: val=1.41% test=1.49% diverged=False time=477s; ETA ~27 min
+[2026-10-24 15:00:01] [ok 72/160] dbp_Ns2_L31_R7_layerwise_w31_N30_const_1e-3_50k_seed57: val=0.81% test=1.31% diverged=False time=483s; ETA ~27 min
+[2026-10-24 15:00:18] [ok 73/160] dbp_Ns2_L31_R3_joint_from_scratch_w31_N30_const_1e-3_50k_seed29: val=-2.85% test=-2.21% diverged=False time=624s; ETA ~26 min
+[2026-10-24 15:00:41] [ok 74/160] dbp_Ns2_L31_R3_joint_from_scratch_w31_N30_const_1e-3_50k_seed57: val=-3.63% test=-3.05% diverged=False time=601s; ETA ~26 min
+[2026-10-24 15:02:21] [ok 75/160] dbp_Ns2_L31_R3_joint_from_scratch_w31_N30_const_1e-3_50k_seed43: val=-3.16% test=-2.36% diverged=False time=744s; ETA ~27 min
+[2026-10-24 15:02:58] [ok 76/160] dbp_Ns2_L31_R7_joint_from_scratch_w31_N30_const_1e-3_50k_seed57: val=5.72% test=6.01% diverged=False time=592s; ETA ~27 min
+[2026-10-24 15:03:00] [ok 77/160] dbp_Ns2_L31_R7_joint_from_scratch_w31_N30_const_1e-3_50k_seed71: val=6.13% test=6.54% diverged=False time=576s; ETA ~27 min
+[2026-10-24 15:04:47] [ok 78/160] dbp_Ns2_L31_R7_joint_from_scratch_w31_N30_const_1e-3_50k_seed29: val=6.58% test=6.87% diverged=False time=738s; ETA ~28 min
+[2026-10-24 15:04:59] [ok 79/160] dbp_Ns2_L31_R7_joint_from_scratch_w31_N30_const_1e-3_50k_seed43: val=6.53% test=7.03% diverged=False time=739s; ETA ~27 min
+[2026-10-24 15:05:40] [ok 80/160] dbp_Ns2_L31_R7_joint_from_scratch_w31_N30_const_1e-3_50k_seed17: val=6.35% test=6.69% diverged=False time=807s; ETA ~27 min
+[2026-10-24 15:26:13] [ok 81/160] dbp_Ns4_L7_R3_layerwise_w31_N30_const_1e-3_90k_seed17: val=-2.36% test=-1.82% diverged=False time=1941s; ETA ~47 min
+[2026-10-24 15:28:47] [ok 82/160] dbp_Ns4_L7_R7_layerwise_w31_N30_const_1e-3_90k_seed57: val=1.84% test=2.17% diverged=False time=1731s; ETA ~48 min
+[2026-10-24 15:28:58] [ok 83/160] dbp_Ns4_L7_R7_layerwise_w31_N30_const_1e-3_90k_seed17: val=0.20% test=0.75% diverged=False time=1773s; ETA ~47 min
+[2026-10-24 15:29:17] [ok 84/160] dbp_Ns4_L7_R7_layerwise_w31_N30_const_1e-3_90k_seed71: val=1.54% test=1.69% diverged=False time=1756s; ETA ~46 min
+[2026-10-24 15:29:17] [ok 85/160] dbp_Ns4_L7_R7_layerwise_w31_N30_const_1e-3_90k_seed43: val=1.08% test=1.45% diverged=False time=1770s; ETA ~45 min
+[2026-10-24 15:30:42] [ok 86/160] dbp_Ns4_L7_R3_layerwise_w31_N30_const_1e-3_90k_seed29: val=-2.17% test=-1.56% diverged=False time=2199s; ETA ~45 min
+[2026-10-24 15:32:21] [ok 87/160] dbp_Ns4_L7_R7_layerwise_w31_N30_const_1e-3_90k_seed29: val=0.88% test=1.48% diverged=False time=1972s; ETA ~45 min
+[2026-10-24 15:33:17] [ok 88/160] dbp_Ns4_L7_R3_joint_from_scratch_w31_N30_const_1e-3_90k_seed43: val=-1.14% test=-0.72% diverged=False time=2042s; ETA ~45 min
+[2026-10-24 15:33:36] [ok 89/160] dbp_Ns4_L7_R3_joint_from_scratch_w31_N30_const_1e-3_90k_seed57: val=-2.76% test=-2.04% diverged=False time=2056s; ETA ~44 min
+[2026-10-24 15:34:35] [ok 90/160] dbp_Ns4_L7_R3_joint_from_scratch_w31_N30_const_1e-3_90k_seed71: val=-0.06% test=0.62% diverged=False time=2113s; ETA ~44 min
+[2026-10-24 15:35:19] [ok 91/160] dbp_Ns4_L7_R3_layerwise_w31_N30_const_1e-3_90k_seed57: val=-1.24% test=-0.85% diverged=False time=2417s; ETA ~43 min
+[2026-10-24 15:35:31] [ok 92/160] dbp_Ns4_L7_R3_layerwise_w31_N30_const_1e-3_90k_seed43: val=-1.19% test=-0.63% diverged=False time=2450s; ETA ~42 min
+[2026-10-24 15:36:03] [ok 93/160] dbp_Ns4_L7_R3_layerwise_w31_N30_const_1e-3_90k_seed71: val=-1.68% test=-0.85% diverged=False time=2432s; ETA ~42 min
+[2026-10-24 15:37:21] [ok 94/160] dbp_Ns4_L31_R3_layerwise_w31_N30_const_1e-3_90k_seed29: val=-2.35% test=-1.75% diverged=False time=1942s; ETA ~42 min
+[2026-10-24 15:37:48] [ok 95/160] dbp_Ns4_L7_R3_joint_from_scratch_w31_N30_const_1e-3_90k_seed29: val=-1.13% test=-0.15% diverged=False time=2374s; ETA ~41 min
+[2026-10-24 15:40:25] [ok 96/160] dbp_Ns4_L7_R7_joint_from_scratch_w31_N30_const_1e-3_90k_seed71: val=3.94% test=4.65% diverged=False time=2246s; ETA ~41 min
+[2026-10-24 15:40:35] [ok 97/160] dbp_Ns4_L31_R3_layerwise_w31_N30_const_1e-3_90k_seed43: val=-1.77% test=-0.86% diverged=False time=2094s; ETA ~41 min
+[2026-10-24 15:40:46] [ok 98/160] dbp_Ns4_L7_R7_joint_from_scratch_w31_N30_const_1e-3_90k_seed29: val=3.30% test=4.00% diverged=False time=2405s; ETA ~40 min
+[2026-10-24 15:41:01] [ok 99/160] dbp_Ns4_L7_R7_joint_from_scratch_w31_N30_const_1e-3_90k_seed17: val=2.02% test=2.81% diverged=False time=2443s; ETA ~39 min
+[2026-10-24 15:42:24] [ok 100/160] dbp_Ns4_L31_R3_layerwise_w31_N30_const_1e-3_90k_seed17: val=-2.46% test=-2.06% diverged=False time=2257s; ETA ~39 min
+[2026-10-24 15:42:30] [ok 101/160] dbp_Ns4_L7_R7_joint_from_scratch_w31_N30_const_1e-3_90k_seed57: val=3.11% test=3.41% diverged=False time=2372s; ETA ~38 min
+[2026-10-24 15:42:53] [ok 102/160] dbp_Ns4_L7_R7_joint_from_scratch_w31_N30_const_1e-3_90k_seed43: val=3.17% test=3.97% diverged=False time=2432s; ETA ~37 min
+[2026-10-24 15:44:47] [ok 103/160] dbp_Ns4_L7_R3_joint_from_scratch_w31_N30_const_1e-3_90k_seed17: val=-2.68% test=-2.03% diverged=False time=2949s; ETA ~37 min
+[2026-10-24 15:57:24] [ok 104/160] dbp_Ns4_L31_R3_layerwise_w31_N30_const_1e-3_90k_seed71: val=-2.19% test=-1.42% diverged=False time=1717s; ETA ~43 min
+[2026-10-24 16:00:44] [ok 105/160] dbp_Ns4_L31_R3_layerwise_w31_N30_const_1e-3_90k_seed57: val=-1.58% test=-0.99% diverged=False time=2071s; ETA ~43 min
+[2026-10-24 16:02:50] [ok 106/160] dbp_Ns4_L31_R3_joint_from_scratch_w31_N30_const_1e-3_90k_seed29: val=0.51% test=0.82% diverged=False time=2014s; ETA ~43 min
+[2026-10-24 16:02:54] [ok 107/160] dbp_Ns4_L31_R7_layerwise_w31_N30_const_1e-3_90k_seed17: val=0.67% test=0.84% diverged=False time=1777s; ETA ~42 min
+[2026-10-24 16:03:05] [ok 108/160] dbp_Ns4_L31_R3_joint_from_scratch_w31_N30_const_1e-3_90k_seed17: val=-1.21% test=-0.90% diverged=False time=2047s; ETA ~41 min
+[2026-10-24 16:03:22] [ok 109/160] dbp_Ns4_L31_R7_layerwise_w31_N30_const_1e-3_90k_seed29: val=1.18% test=1.56% diverged=False time=1786s; ETA ~40 min
+[2026-10-24 16:03:25] [ok 110/160] dbp_Ns4_L31_R3_joint_from_scratch_w31_N30_const_1e-3_90k_seed43: val=1.14% test=1.93% diverged=False time=2048s; ETA ~39 min
+[2026-10-24 16:03:53] [ok 111/160] dbp_Ns4_L31_R7_layerwise_w31_N30_const_1e-3_90k_seed43: val=1.27% test=1.77% diverged=False time=1758s; ETA ~38 min
+[2026-10-24 16:11:26] [ok 112/160] dbp_Ns4_L31_R7_layerwise_w31_N30_const_1e-3_90k_seed71: val=1.58% test=1.78% diverged=False time=2155s; ETA ~40 min
+[2026-10-24 16:12:30] [ok 113/160] dbp_Ns4_L31_R7_layerwise_w31_N30_const_1e-3_90k_seed57: val=2.16% test=2.57% diverged=False time=2231s; ETA ~39 min
+[2026-10-24 16:14:18] [ok 114/160] dbp_Ns4_L31_R7_joint_from_scratch_w31_N30_const_1e-3_90k_seed17: val=29.79% test=31.12% diverged=False time=2295s; ETA ~39 min
+[2026-10-24 16:14:26] [ok 115/160] dbp_Ns4_L31_R3_joint_from_scratch_w31_N30_const_1e-3_90k_seed71: val=0.94% test=1.63% diverged=False time=2525s; ETA ~38 min
+[2026-10-24 16:15:09] [ok 116/160] dbp_Ns4_L31_R3_joint_from_scratch_w31_N30_const_1e-3_90k_seed57: val=-1.76% test=-1.07% diverged=False time=2667s; ETA ~37 min
+[2026-10-24 16:15:23] [ok 117/160] dbp_Ns4_L31_R7_joint_from_scratch_w31_N30_const_1e-3_90k_seed29: val=34.88% test=35.78% diverged=False time=2281s; ETA ~36 min
+[2026-10-24 16:18:49] [ok 118/160] dbp_Ns4_L31_R7_joint_from_scratch_w31_N30_const_1e-3_90k_seed71: val=31.55% test=32.54% diverged=False time=2295s; ETA ~36 min
+[2026-10-24 16:21:00] [ok 119/160] dbp_Ns4_L31_R7_joint_from_scratch_w31_N30_const_1e-3_90k_seed43: val=30.90% test=31.79% diverged=False time=2592s; ETA ~35 min
+[2026-10-24 16:23:35] [ok 120/160] dbp_Ns4_L31_R7_joint_from_scratch_w31_N30_const_1e-3_90k_seed57: val=35.33% test=36.05% diverged=False time=2590s; ETA ~35 min
+[2026-10-24 17:52:27] [ok 121/160] dbp_Ns8_L7_R3_layerwise_w31_N30_const_1e-3_170k_seed57: val=-1.77% test=-1.55% diverged=False time=7797s; ETA ~63 min
+[2026-10-24 17:52:43] [ok 122/160] dbp_Ns8_L7_R3_layerwise_w31_N30_const_1e-3_170k_seed71: val=-2.71% test=-2.44% diverged=False time=7790s; ETA ~61 min
+[2026-10-24 17:52:46] [ok 123/160] dbp_Ns8_L7_R7_layerwise_w31_N30_const_1e-3_170k_seed57: val=1.24% test=1.84% diverged=False time=6533s; ETA ~59 min
+[2026-10-24 17:52:55] [ok 124/160] dbp_Ns8_L7_R7_layerwise_w31_N30_const_1e-3_170k_seed17: val=-0.12% test=0.81% diverged=False time=6590s; ETA ~57 min
+[2026-10-24 17:53:01] [ok 125/160] dbp_Ns8_L7_R7_layerwise_w31_N30_const_1e-3_170k_seed43: val=2.26% test=3.12% diverged=False time=6577s; ETA ~55 min
+[2026-10-24 17:55:08] [ok 126/160] dbp_Ns8_L7_R3_layerwise_w31_N30_const_1e-3_170k_seed17: val=-3.09% test=-2.53% diverged=False time=8062s; ETA ~53 min
+[2026-10-24 17:56:39] [ok 127/160] dbp_Ns8_L7_R3_layerwise_w31_N30_const_1e-3_170k_seed43: val=-0.93% test=-0.16% diverged=False time=8055s; ETA ~52 min
+[2026-10-24 17:59:26] [ok 128/160] dbp_Ns8_L7_R7_layerwise_w31_N30_const_1e-3_170k_seed29: val=2.09% test=2.81% diverged=False time=6964s; ETA ~50 min
+[2026-10-24 17:59:29] [ok 129/160] dbp_Ns8_L7_R3_layerwise_w31_N30_const_1e-3_170k_seed29: val=-2.53% test=-1.77% diverged=False time=8308s; ETA ~48 min
+[2026-10-24 18:09:38] [ok 130/160] dbp_Ns8_L7_R3_joint_from_scratch_w31_N30_const_1e-3_170k_seed29: val=1.97% test=2.41% diverged=False time=7934s; ETA ~49 min
+[2026-10-24 18:15:36] [ok 131/160] dbp_Ns8_L7_R3_joint_from_scratch_w31_N30_const_1e-3_170k_seed57: val=0.38% test=1.02% diverged=False time=7966s; ETA ~48 min
+[2026-10-24 18:16:49] [ok 132/160] dbp_Ns8_L7_R3_joint_from_scratch_w31_N30_const_1e-3_170k_seed71: val=0.45% test=1.34% diverged=False time=8035s; ETA ~46 min
+[2026-10-24 18:18:47] [ok 133/160] dbp_Ns8_L7_R7_layerwise_w31_N30_const_1e-3_170k_seed71: val=2.41% test=3.04% diverged=False time=7640s; ETA ~45 min
+[2026-10-24 18:27:47] [ok 134/160] dbp_Ns8_L31_R3_layerwise_w31_N30_const_1e-3_170k_seed17: val=-4.09% test=-3.19% diverged=False time=7737s; ETA ~45 min
+[2026-10-24 18:28:37] [ok 135/160] dbp_Ns8_L7_R3_joint_from_scratch_w31_N30_const_1e-3_170k_seed17: val=0.16% test=0.76% diverged=False time=9830s; ETA ~43 min
+[2026-10-24 18:30:40] [ok 136/160] dbp_Ns8_L31_R3_layerwise_w31_N30_const_1e-3_170k_seed29: val=-3.17% test=-2.65% diverged=False time=7781s; ETA ~41 min
+[2026-10-24 18:33:04] [ok 137/160] dbp_Ns8_L31_R3_layerwise_w31_N30_const_1e-3_170k_seed43: val=-1.79% test=-1.34% diverged=False time=7769s; ETA ~39 min
+[2026-10-24 18:47:22] [ok 138/160] dbp_Ns8_L7_R7_joint_from_scratch_w31_N30_const_1e-3_170k_seed29: val=8.01% test=8.73% diverged=False time=9185s; ETA ~40 min
+[2026-10-24 18:53:19] [ok 139/160] dbp_Ns8_L7_R7_joint_from_scratch_w31_N30_const_1e-3_170k_seed57: val=5.50% test=6.06% diverged=False time=9490s; ETA ~39 min
+[2026-10-24 18:55:23] [ok 140/160] dbp_Ns8_L7_R7_joint_from_scratch_w31_N30_const_1e-3_170k_seed43: val=7.67% test=8.50% diverged=False time=9657s; ETA ~37 min
+[2026-10-24 18:57:01] [ok 141/160] dbp_Ns8_L7_R7_joint_from_scratch_w31_N30_const_1e-3_170k_seed17: val=5.60% test=6.06% diverged=False time=9871s; ETA ~35 min
+[2026-10-24 18:59:30] [ok 142/160] dbp_Ns8_L7_R3_joint_from_scratch_w31_N30_const_1e-3_170k_seed43: val=2.51% test=3.26% diverged=False time=10727s; ETA ~33 min
+[2026-10-24 19:06:41] [ok 143/160] dbp_Ns8_L7_R7_joint_from_scratch_w31_N30_const_1e-3_170k_seed71: val=5.26% test=6.42% diverged=False time=10278s; ETA ~32 min
+[2026-10-24 19:54:04] [ok 144/160] dbp_Ns8_L31_R3_layerwise_w31_N30_const_1e-3_170k_seed71: val=-3.61% test=-2.98% diverged=False time=7281s; ETA ~35 min
+[2026-10-24 19:55:01] [ok 145/160] dbp_Ns8_L31_R7_layerwise_w31_N30_const_1e-3_170k_seed17: val=-1.08% test=-0.13% diverged=False time=6935s; ETA ~33 min
+[2026-10-24 19:57:47] [ok 146/160] dbp_Ns8_L31_R3_layerwise_w31_N30_const_1e-3_170k_seed57: val=-2.99% test=-2.35% diverged=False time=7520s; ETA ~31 min
+[2026-10-24 19:57:52] [ok 147/160] dbp_Ns8_L31_R7_layerwise_w31_N30_const_1e-3_170k_seed43: val=1.57% test=2.84% diverged=False time=6494s; ETA ~28 min
+[2026-10-24 19:58:13] [ok 148/160] dbp_Ns8_L31_R7_layerwise_w31_N30_const_1e-3_170k_seed29: val=1.90% test=2.56% diverged=False time=7124s; ETA ~26 min
+[2026-10-24 20:03:04] [ok 149/160] dbp_Ns8_L31_R3_joint_from_scratch_w31_N30_const_1e-3_170k_seed17: val=32.55% test=33.57% diverged=False time=7818s; ETA ~24 min
+[2026-10-24 20:04:44] [ok 150/160] dbp_Ns8_L31_R7_layerwise_w31_N30_const_1e-3_170k_seed57: val=1.38% test=1.84% diverged=False time=6548s; ETA ~22 min
+[2026-10-24 20:06:02] [ok 151/160] dbp_Ns8_L31_R7_layerwise_w31_N30_const_1e-3_170k_seed71: val=2.48% test=3.19% diverged=False time=6552s; ETA ~20 min
+[2026-10-24 20:06:40] [ok 152/160] dbp_Ns8_L31_R3_joint_from_scratch_w31_N30_const_1e-3_170k_seed29: val=32.44% test=32.99% diverged=False time=8025s; ETA ~17 min
+[2026-10-24 20:06:42] [ok 153/160] dbp_Ns8_L31_R3_joint_from_scratch_w31_N30_const_1e-3_170k_seed43: val=34.86% test=35.88% diverged=False time=8021s; ETA ~15 min
+[2026-10-24 20:20:54] [ok 154/160] dbp_Ns8_L31_R3_joint_from_scratch_w31_N30_const_1e-3_170k_seed71: val=34.78% test=35.38% diverged=False time=8655s; ETA ~13 min
+[2026-10-24 20:22:04] [ok 155/160] dbp_Ns8_L31_R3_joint_from_scratch_w31_N30_const_1e-3_170k_seed57: val=34.49% test=34.17% diverged=False time=8816s; ETA ~11 min
+[2026-10-24 20:38:12] [ok 156/160] dbp_Ns8_L31_R7_joint_from_scratch_w31_N30_const_1e-3_170k_seed17: val=41.93% test=43.55% diverged=False time=8365s; ETA ~9 min
+[2026-10-24 20:48:46] [ok 157/160] dbp_Ns8_L31_R7_joint_from_scratch_w31_N30_const_1e-3_170k_seed29: val=48.53% test=49.16% diverged=False time=8459s; ETA ~7 min
+[2026-10-24 20:49:14] [ok 158/160] dbp_Ns8_L31_R7_joint_from_scratch_w31_N30_const_1e-3_170k_seed71: val=45.81% test=46.45% diverged=False time=8170s; ETA ~5 min
+[2026-10-24 20:50:26] [ok 159/160] dbp_Ns8_L31_R7_joint_from_scratch_w31_N30_const_1e-3_170k_seed57: val=44.84% test=45.52% diverged=False time=8386s; ETA ~2 min
+[2026-10-24 20:50:32] [ok 160/160] dbp_Ns8_L31_R7_joint_from_scratch_w31_N30_const_1e-3_170k_seed43: val=46.60% test=48.22% diverged=False time=8515s; ETA ~0 min
+[2026-10-24 20:50:33] finished: 160 ok, 0 failed
+=== 2026-10-24T20:50:33+07:00 E018 main exit=0 ===
+=== 2026-10-24T20:50:33+07:00 E018 summarize: .venv/bin/python -m constellation_denoiser.summarize_E018 ===
+JOBS=auto THREADS=auto DEVICE=auto SEEDS=default SMOKE=0 FORCE=0
+сводка: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E018_dbp_depth/results/dbp_depth_summary.csv; вердикты: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E018_dbp_depth/results/dbp_depth_verdicts.csv
+=== 2026-10-24T20:50:37+07:00 E018 summarize exit=0 ===
+=== 2026-10-24T20:50:37+07:00 E019_confirm_long_runs: control main summarize ===
+=== 2026-10-24T20:50:37+07:00 E019 control: .venv/bin/python -u -m constellation_denoiser.runner --exp E019 --stage control --no-control-gate ===
+JOBS=auto THREADS=auto DEVICE=auto SEEDS=default SMOKE=0 FORCE=0
+[2026-10-24 20:50:38] running 2 tasks with JOBS=23, THREADS=1, DEVICE=cpu
+[2026-10-24 20:54:16] [ok 1/2] control_complex_a_w31_h48_N30_20k_seed17: val=59.43% test=60.40% diverged=False time=216s; ETA ~4 min
+[2026-10-24 20:54:35] [ok 2/2] control_complex_a_w31_h48_N30_20k_seed29: val=60.74% test=62.37% diverged=False time=235s; ETA ~0 min
+[2026-10-24 20:54:36] finished: 2 ok, 0 failed
+=== 2026-10-24T20:54:36+07:00 E019 control exit=0 ===
+=== 2026-10-24T20:54:36+07:00 E019 check-control: .venv/bin/python -m constellation_denoiser.runner --exp E019 --stage control --check-control ===
+JOBS=auto THREADS=auto DEVICE=auto SEEDS=default SMOKE=0 FORCE=0
+[2026-10-24 20:54:38] control a_const_1e-3_20k: mean test_reduction_valbest_select = 62.19% по 2 seed; цель 62.191±0.7 п.п. -> OK
+=== 2026-10-24T20:54:38+07:00 E019 check-control exit=0 ===
+=== 2026-10-24T20:54:38+07:00 E019 main: .venv/bin/python -u -m constellation_denoiser.runner --exp E019 --stage main ===
+JOBS=auto THREADS=auto DEVICE=auto SEEDS=default SMOKE=0 FORCE=0
+[2026-10-24 20:54:40] E019: нет результатов E016 (phys_kerr.csv) — семейство пропущено
+[2026-10-24 20:54:40] E019: нет результатов E017 (phys_plus_mlp.csv) — семейство пропущено
+[2026-10-24 20:54:40] running 45 tasks with JOBS=23, THREADS=1, DEVICE=cpu
+[2026-10-24 21:11:15] [ok 1/45] control_complex_a_w31_h48_N30_best_e010_cm30_100k_seed43: val=64.79% test=65.94% diverged=False time=992s; ETA ~730 min
+[2026-10-24 21:12:31] [ok 2/45] control_complex_a_w31_h48_N30_best_e010_cm30_100k_seed29: val=64.55% test=65.85% diverged=False time=1067s; ETA ~384 min
+[2026-10-24 21:15:44] [ok 3/45] control_complex_a_w31_h48_N30_best_e010_cm30_100k_seed17: val=65.08% test=66.28% diverged=False time=1260s; ETA ~295 min
+[2026-10-24 21:26:16] [ok 4/45] control_complex_a_w31_h48_N30_const_1e-3_200k_seed29: val=61.10% test=62.17% diverged=False time=1893s; ETA ~324 min
+[2026-10-24 21:27:05] [ok 5/45] control_complex_a_w31_h48_N30_const_1e-3_200k_seed43: val=62.16% test=63.93% diverged=False time=1941s; ETA ~259 min
+[2026-10-24 21:27:24] [ok 6/45] control_complex_a_w31_h48_N30_const_1e-3_200k_seed71: val=62.09% test=63.51% diverged=False time=1961s; ETA ~213 min
+[2026-10-24 21:27:45] [ok 7/45] control_complex_a_w31_h48_N30_best_e010_cm30_100k_seed57: val=63.36% test=65.24% diverged=False time=990s; ETA ~180 min
+[2026-10-24 21:33:49] [ok 8/45] control_complex_a_w31_h48_N30_const_1e-3_200k_seed57: val=61.71% test=62.94% diverged=False time=2346s; ETA ~181 min
+[2026-10-24 21:33:51] [ok 9/45] control_complex_a_w31_h48_N30_const_1e-3_200k_seed17: val=62.20% test=63.24% diverged=False time=2348s; ETA ~157 min
+[2026-10-24 21:35:23] [ok 10/45] control_complex_a_w31_h48_N30_best_e010_cm30_100k_seed71: val=64.76% test=65.99% diverged=False time=1372s; ETA ~142 min
+[2026-10-24 21:49:12] [ok 11/45] E018_dbp_Ns8_L31_R7_joint_from_scratch_w31_N30_best_e010_cm1_100k_seed57: val=47.61% test=47.91% diverged=False time=3269s; ETA ~169 min
+[2026-10-24 21:50:00] [ok 12/45] E018_dbp_Ns8_L31_R7_joint_from_scratch_w31_N30_best_e010_cm1_100k_seed43: val=43.04% test=44.41% diverged=False time=3317s; ETA ~152 min
+[2026-10-24 21:50:42] [ok 13/45] E018_dbp_Ns8_L31_R7_joint_from_scratch_w31_N30_best_e010_cm1_100k_seed29: val=44.32% test=45.23% diverged=False time=3359s; ETA ~138 min
+[2026-10-24 21:50:52] [ok 14/45] control_complex_a_w31_h48_N30_best_e010_cm30_200k_seed17: val=65.33% test=66.72% diverged=False time=2108s; ETA ~124 min
+[2026-10-24 21:52:48] [ok 15/45] E018_dbp_Ns8_L31_R7_joint_from_scratch_w31_N30_best_e010_cm1_100k_seed71: val=46.26% test=46.68% diverged=False time=3485s; ETA ~116 min
+[2026-10-24 21:58:01] [ok 16/45] control_complex_a_w31_h48_N30_best_e010_cm30_200k_seed29: val=64.65% test=66.05% diverged=False time=1905s; ETA ~115 min
+[2026-10-24 22:02:56] [ok 17/45] control_complex_a_w31_h48_N30_best_e010_cm30_200k_seed71: val=64.99% test=66.53% diverged=False time=2111s; ETA ~112 min
+[2026-10-24 22:08:42] [ok 18/45] control_complex_a_w31_h48_N30_best_e010_cm30_200k_seed57: val=64.07% test=65.25% diverged=False time=2477s; ETA ~111 min
+[2026-10-24 22:10:25] [ok 19/45] E018_dbp_Ns8_L31_R7_joint_from_scratch_w31_N30_best_e010_cm1_100k_seed17: val=46.36% test=47.33% diverged=False time=4542s; ETA ~104 min
+[2026-10-24 22:11:46] [ok 20/45] control_complex_a_w31_h48_N30_best_e010_cm30_200k_seed43: val=65.03% test=66.00% diverged=False time=2681s; ETA ~96 min
+[2026-10-24 22:14:42] [ok 21/45] control_complex_both_w31_h48_N30_best_e010_cm30_100k_seed17: val=65.63% test=67.17% diverged=False time=1440s; ETA ~91 min
+[2026-10-24 22:22:26] [ok 22/45] control_complex_both_w31_h48_N30_best_e010_cm30_100k_seed29: val=65.33% test=66.81% diverged=False time=1894s; ETA ~92 min
+[2026-10-24 22:25:49] [ok 23/45] control_complex_both_w31_h48_N30_best_e010_cm30_100k_seed43: val=65.14% test=66.71% diverged=False time=1981s; ETA ~87 min
+[2026-10-24 22:29:01] [ok 24/45] control_complex_both_w31_h48_N30_best_e010_cm30_100k_seed57: val=65.22% test=66.65% diverged=False time=1860s; ETA ~83 min
+[2026-10-24 22:31:06] [ok 25/45] control_complex_both_w31_h48_N30_const_1e-3_200k_seed43: val=65.15% test=66.32% diverged=False time=3343s; ETA ~77 min
+[2026-10-24 22:33:54] [ok 26/45] control_complex_both_w31_h48_N30_const_1e-3_200k_seed57: val=64.44% test=65.51% diverged=False time=2682s; ETA ~73 min
+[2026-10-24 22:35:25] [ok 27/45] control_complex_both_w31_h48_N30_const_1e-3_200k_seed29: val=66.58% test=67.30% diverged=False time=3693s; ETA ~67 min
+[2026-10-24 22:36:09] [ok 28/45] control_complex_both_w31_h48_N30_best_e010_cm30_100k_seed71: val=64.57% test=66.13% diverged=False time=1993s; ETA ~62 min
+[2026-10-24 22:36:34] [ok 29/45] control_complex_both_w31_h48_N30_const_1e-3_200k_seed71: val=66.00% test=67.17% diverged=False time=2794s; ETA ~56 min
+[2026-10-24 22:36:38] [ok 30/45] control_complex_both_w31_h48_N30_const_1e-3_200k_seed17: val=65.29% test=66.74% diverged=False time=3769s; ETA ~51 min
+[2026-10-24 22:43:37] [ok 31/45] E018_dbp_Ns8_L31_R7_joint_from_scratch_w31_N30_const_1e-3_200k_seed17: val=42.19% test=43.60% diverged=False time=6535s; ETA ~49 min
+[2026-10-24 22:44:02] [ok 32/45] E018_dbp_Ns8_L31_R7_joint_from_scratch_w31_N30_const_1e-3_200k_seed29: val=47.68% test=48.61% diverged=False time=6559s; ETA ~44 min
+[2026-10-24 22:44:03] [ok 33/45] E018_dbp_Ns8_L31_R7_joint_from_scratch_w31_N30_best_e010_cm1_200k_seed43: val=45.69% test=46.83% diverged=False time=6560s; ETA ~40 min
+[2026-10-24 22:44:30] [ok 34/45] E018_dbp_Ns8_L31_R7_joint_from_scratch_w31_N30_const_1e-3_200k_seed57: val=43.44% test=44.01% diverged=False time=6587s; ETA ~36 min
+[2026-10-24 22:57:57] [ok 35/45] control_complex_both_w31_h48_N30_best_e010_cm30_200k_seed17: val=65.78% test=67.45% diverged=False time=2955s; ETA ~35 min
+[2026-10-24 22:58:00] [ok 36/45] E018_dbp_Ns8_L31_R7_joint_from_scratch_w31_N30_const_1e-3_200k_seed43: val=46.36% test=47.52% diverged=False time=7398s; ETA ~31 min
+[2026-10-24 22:59:05] [ok 37/45] control_complex_both_w31_h48_N30_best_e010_cm30_200k_seed57: val=65.48% test=66.80% diverged=False time=2662s; ETA ~27 min
+[2026-10-24 23:01:33] [ok 38/45] control_complex_both_w31_h48_N30_best_e010_cm30_200k_seed29: val=65.59% test=67.05% diverged=False time=3068s; ETA ~23 min
+[2026-10-24 23:02:33] [ok 39/45] E018_dbp_Ns8_L31_R7_joint_from_scratch_w31_N30_best_e010_cm1_200k_seed29: val=44.75% test=45.87% diverged=False time=7670s; ETA ~20 min
+[2026-10-24 23:02:44] [ok 40/45] E018_dbp_Ns8_L31_R7_joint_from_scratch_w31_N30_best_e010_cm1_200k_seed57: val=49.67% test=49.92% diverged=False time=7680s; ETA ~16 min
+[2026-10-24 23:04:14] [ok 41/45] control_complex_both_w31_h48_N30_best_e010_cm30_200k_seed43: val=65.71% test=67.26% diverged=False time=3149s; ETA ~13 min
+[2026-10-24 23:05:03] [ok 42/45] E018_dbp_Ns8_L31_R7_joint_from_scratch_w31_N30_best_e010_cm1_200k_seed17: val=47.70% test=48.43% diverged=False time=7820s; ETA ~9 min
+[2026-10-24 23:08:54] [ok 43/45] E018_dbp_Ns8_L31_R7_joint_from_scratch_w31_N30_const_1e-3_200k_seed71: val=46.84% test=47.38% diverged=False time=8051s; ETA ~6 min
+[2026-10-24 23:10:05] [ok 44/45] control_complex_both_w31_h48_N30_best_e010_cm30_200k_seed71: val=65.09% test=66.07% diverged=False time=2858s; ETA ~3 min
+[2026-10-24 23:10:46] [ok 45/45] E018_dbp_Ns8_L31_R7_joint_from_scratch_w31_N30_best_e010_cm1_200k_seed71: val=48.47% test=49.21% diverged=False time=8163s; ETA ~0 min
+[2026-10-24 23:10:47] finished: 45 ok, 0 failed
+=== 2026-10-24T23:10:48+07:00 E019 main exit=0 ===
+=== 2026-10-24T23:10:48+07:00 E019 summarize: .venv/bin/python -m constellation_denoiser.summarize_E019 ===
+JOBS=auto THREADS=auto DEVICE=auto SEEDS=default SMOKE=0 FORCE=0
+сводка: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E019_confirm_long_runs/results/confirm_summary.csv
+=== 2026-10-24T23:10:53+07:00 E019 summarize exit=0 ===
+=== 2026-10-24T23:10:53+07:00 итоговая сводка ===
+E010: 138 прогонов из /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E010_lr_schedule_study/results/runs -> experiments/E010_lr_schedule_study/results/lr_sweep_q2.csv
+E011: 46 прогонов из /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E011_long_runs_convergence/results/runs -> experiments/E011_long_runs_convergence/results/long_runs_q2.csv
+E012: 144 прогонов из /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E012_depth_vs_window/results/runs -> experiments/E012_depth_vs_window/results/depth_window_q2.csv
+E013: 38 прогонов из /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E013_transformer_scaling/results/runs -> experiments/E013_transformer_scaling/results/transformer_runs_q2.csv
+E014: 32 прогонов из /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E014_kerr_kan_hybrid/results/runs -> experiments/E014_kerr_kan_hybrid/results/kan_hybrid_q2.csv
+Traceback (most recent call last):
+  File "/home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/scripts/recompute_q2.py", line 147, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/scripts/recompute_q2.py", line 103, in main
+    base = e012[(e012.lr_branch == "const_1e-3") & (e012.window == 31) & (e012.budget == 20000)]
+                 ^^^^^^^^^^^^^^
+  File "/home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/.venv/lib/python3.12/site-packages/pandas/core/generic.py", line 6194, in __getattr__
+    return object.__getattribute__(self, name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'DataFrame' object has no attribute 'lr_branch'
+ОШИБКА: recompute_q2 прерван
+experiment                                                               hypothesis      verdict
+      E015                                                              память есть  не запущено
+      E016                                                        физика достаточна  не запущено
+      E016                                                           физика полезна  не запущено
+      E017                                        гибрид лучше при равной стоимости  не запущено
+      E017                                    нейросеть на остаток не нужна (h = 4)  не запущено
+      E018                                                         глубина помогает подтверждено
+      E018                                            послойная инициализация нужна  не доказано
+      E019  плато за 200k шагов: E018_dbp_Ns8_L31_R7_joint_from_scratch (best_e010)  не доказано
+      E019 плато за 200k шагов: E018_dbp_Ns8_L31_R7_joint_from_scratch (const_1e-3) подтверждено
+      E019                       плато за 200k шагов: control_complex_a (best_e010)  не доказано
+      E019                      плато за 200k шагов: control_complex_a (const_1e-3) подтверждено
+      E019                    плато за 200k шагов: control_complex_both (best_e010)  не доказано
+      E019                   плато за 200k шагов: control_complex_both (const_1e-3)  не доказано
+-> /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/results/E015_E018_verdicts.csv, /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/results/E015_E018_quality_vs_macs.png
+=== 2026-10-24T23:10:56+07:00 overnight part2 завершён; строки с ОШИБКА: 1 ===

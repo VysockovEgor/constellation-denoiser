@@ -1,1 +1,8 @@
 hypothesis,test_mean,verdict,rule_status
+"hyb_h48_joint_A0 (cos_3e-3_cm1, 40k) восстанавливает уровень ≥ 61.039 %",50.493159779026485,не доказано,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"hyb_h48_joint_A1 (cos_3e-3_cm30, 40k) восстанавливает уровень ≥ 61.039 %",66.33947412096641,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"hyb_h48_joint_A1 (cos_3e-3_cm30, 200k) восстанавливает уровень ≥ 61.039 %",67.57593000924675,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"hyb_h48_joint_A2 (const_3e-3_cm1, 200k) восстанавливает уровень ≥ 61.039 %",47.435806245109895,не доказано,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"hyb_h48_joint_A2 (const_3e-3_cm1, 40k) восстанавливает уровень ≥ 61.039 %",47.063565450363946,не доказано,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"hyb_h48_joint_A3 (cos_1e-3_cm1, 40k) восстанавливает уровень ≥ 61.039 %",63.01420205325178,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"hyb_h48_joint_A3 (cos_1e-3_cm1, 200k) восстанавливает уровень ≥ 61.039 %",64.41781065509639,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen

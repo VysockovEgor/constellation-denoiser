@@ -1,0 +1,104 @@
+=== 2026-10-26T15:10:30+07:00 overnight part2: JOBS=auto THREADS=auto DEVICE=auto host=hocalhost commit=6acc1c9 ===
+=== 2026-10-26T15:10:30+07:00 E018_dbp_depth: control main summarize ===
+=== 2026-10-26T15:10:30+07:00 E018 control: .venv/bin/python -u -m constellation_denoiser.runner --exp E018 --stage control --no-control-gate ===
+JOBS=auto THREADS=auto DEVICE=auto SEEDS=default SMOKE=0 FORCE=0
+[2026-10-26 15:10:32] nothing to run: all results exist (use FORCE=1 to recompute)
+=== 2026-10-26T15:10:32+07:00 E018 control exit=0 ===
+=== 2026-10-26T15:10:32+07:00 E018 check-control: .venv/bin/python -m constellation_denoiser.runner --exp E018 --stage control --check-control ===
+JOBS=auto THREADS=auto DEVICE=auto SEEDS=default SMOKE=0 FORCE=0
+[2026-10-26 15:10:34] control a_const_1e-3_20k: mean test_reduction_valbest_select = 62.19% по 2 seed; цель 62.191±0.7 п.п. -> OK
+=== 2026-10-26T15:10:34+07:00 E018 check-control exit=0 ===
+=== 2026-10-26T15:10:34+07:00 E018 main: .venv/bin/python -u -m constellation_denoiser.runner --exp E018 --stage main ===
+JOBS=auto THREADS=auto DEVICE=auto SEEDS=default SMOKE=0 FORCE=0
+[2026-10-26 15:10:36] nothing to run: all results exist (use FORCE=1 to recompute)
+=== 2026-10-26T15:10:36+07:00 E018 main exit=0 ===
+=== 2026-10-26T15:10:36+07:00 E018 summarize: .venv/bin/python -m constellation_denoiser.summarize_E018 ===
+JOBS=auto THREADS=auto DEVICE=auto SEEDS=default SMOKE=0 FORCE=0
+сводка: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E018_dbp_depth/results/dbp_depth_summary.csv; вердикты: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E018_dbp_depth/results/dbp_depth_verdicts.csv
+=== 2026-10-26T15:10:39+07:00 E018 summarize exit=0 ===
+=== 2026-10-26T15:10:39+07:00 E019_confirm_long_runs: control main summarize ===
+=== 2026-10-26T15:10:39+07:00 E019 control: .venv/bin/python -u -m constellation_denoiser.runner --exp E019 --stage control --no-control-gate ===
+JOBS=auto THREADS=auto DEVICE=auto SEEDS=default SMOKE=0 FORCE=0
+[2026-10-26 15:10:41] nothing to run: all results exist (use FORCE=1 to recompute)
+=== 2026-10-26T15:10:41+07:00 E019 control exit=0 ===
+=== 2026-10-26T15:10:41+07:00 E019 check-control: .venv/bin/python -m constellation_denoiser.runner --exp E019 --stage control --check-control ===
+JOBS=auto THREADS=auto DEVICE=auto SEEDS=default SMOKE=0 FORCE=0
+[2026-10-26 15:10:43] control a_const_1e-3_20k: mean test_reduction_valbest_select = 62.19% по 2 seed; цель 62.191±0.7 п.п. -> OK
+=== 2026-10-26T15:10:43+07:00 E019 check-control exit=0 ===
+=== 2026-10-26T15:10:43+07:00 E019 main: .venv/bin/python -u -m constellation_denoiser.runner --exp E019 --stage main ===
+JOBS=auto THREADS=auto DEVICE=auto SEEDS=default SMOKE=0 FORCE=0
+[2026-10-26 15:10:45] running 30 tasks with JOBS=23, THREADS=1, DEVICE=cpu
+[2026-10-26 15:17:21] [ok 1/30] E016_phys_R31_L7_sym_w31_N30_best_e010_cm1_100k_seed57: val=7.93% test=8.75% diverged=False time=393s; ETA ~192 min
+[2026-10-26 15:17:26] [ok 2/30] E016_phys_R31_L7_sym_w31_N30_best_e010_cm1_100k_seed29: val=7.95% test=8.77% diverged=False time=399s; ETA ~94 min
+[2026-10-26 15:17:29] [ok 3/30] E016_phys_R31_L7_sym_w31_N30_best_e010_cm1_100k_seed43: val=7.95% test=8.77% diverged=False time=401s; ETA ~61 min
+[2026-10-26 15:17:31] [ok 4/30] E016_phys_R31_L7_sym_w31_N30_best_e010_cm1_100k_seed71: val=7.95% test=8.76% diverged=False time=404s; ETA ~44 min
+[2026-10-26 15:17:33] [ok 5/30] E016_phys_R31_L7_sym_w31_N30_best_e010_cm1_100k_seed17: val=7.95% test=8.75% diverged=False time=405s; ETA ~34 min
+[2026-10-26 15:23:48] [ok 6/30] E016_phys_R31_L7_sym_w31_N30_best_e010_cm1_200k_seed17: val=7.93% test=8.75% diverged=False time=781s; ETA ~52 min
+[2026-10-26 15:23:59] [ok 7/30] E016_phys_R31_L7_sym_w31_N30_const_1e-3_200k_seed57: val=7.86% test=9.12% diverged=False time=792s; ETA ~43 min
+[2026-10-26 15:23:59] [ok 8/30] E016_phys_R31_L7_sym_w31_N30_const_1e-3_200k_seed43: val=6.62% test=7.30% diverged=False time=792s; ETA ~36 min
+[2026-10-26 15:24:05] [ok 9/30] E016_phys_R31_L7_sym_w31_N30_best_e010_cm1_200k_seed57: val=7.95% test=8.75% diverged=False time=797s; ETA ~31 min
+[2026-10-26 15:24:08] [ok 10/30] E016_phys_R31_L7_sym_w31_N30_const_1e-3_200k_seed17: val=7.43% test=8.47% diverged=False time=801s; ETA ~27 min
+[2026-10-26 15:24:10] [ok 11/30] E016_phys_R31_L7_sym_w31_N30_best_e010_cm1_200k_seed29: val=7.95% test=8.75% diverged=False time=802s; ETA ~23 min
+[2026-10-26 15:24:11] [ok 12/30] E016_phys_R31_L7_sym_w31_N30_const_1e-3_200k_seed71: val=7.95% test=8.73% diverged=False time=803s; ETA ~20 min
+[2026-10-26 15:24:11] [ok 13/30] E016_phys_R31_L7_sym_w31_N30_best_e010_cm1_200k_seed43: val=7.93% test=8.77% diverged=False time=803s; ETA ~18 min
+[2026-10-26 15:24:13] [ok 14/30] E016_phys_R31_L7_sym_w31_N30_const_1e-3_200k_seed29: val=8.02% test=9.15% diverged=False time=806s; ETA ~15 min
+[2026-10-26 15:24:16] [ok 15/30] E016_phys_R31_L7_sym_w31_N30_best_e010_cm1_200k_seed71: val=7.95% test=8.77% diverged=False time=809s; ETA ~14 min
+[2026-10-26 15:28:19] [ok 16/30] E017_hyb_R31_L7_sym_h48_joint_w31_N30_best_e010_cm1_100k_seed43: val=46.91% test=48.34% diverged=False time=1051s; ETA ~15 min
+[2026-10-26 15:28:42] [ok 17/30] E017_hyb_R31_L7_sym_h48_joint_w31_N30_best_e010_cm1_100k_seed17: val=50.64% test=52.28% diverged=False time=1074s; ETA ~14 min
+[2026-10-26 15:28:43] [ok 18/30] E017_hyb_R31_L7_sym_h48_joint_w31_N30_best_e010_cm1_100k_seed29: val=50.59% test=52.45% diverged=False time=1075s; ETA ~12 min
+[2026-10-26 15:34:33] [ok 19/30] E017_hyb_R31_L7_sym_h48_joint_w31_N30_best_e010_cm1_100k_seed57: val=48.89% test=50.90% diverged=False time=1032s; ETA ~14 min
+[2026-10-26 15:34:57] [ok 20/30] E017_hyb_R31_L7_sym_h48_joint_w31_N30_best_e010_cm1_100k_seed71: val=50.84% test=52.62% diverged=False time=1051s; ETA ~12 min
+[2026-10-26 15:44:06] [ok 21/30] E017_hyb_R31_L7_sym_h48_joint_w31_N30_const_1e-3_200k_seed29: val=61.15% test=62.08% diverged=False time=1998s; ETA ~14 min
+[2026-10-26 15:44:31] [ok 22/30] E017_hyb_R31_L7_sym_h48_joint_w31_N30_const_1e-3_200k_seed57: val=60.75% test=62.03% diverged=False time=2024s; ETA ~12 min
+[2026-10-26 15:44:44] [ok 23/30] E017_hyb_R31_L7_sym_h48_joint_w31_N30_const_1e-3_200k_seed43: val=59.04% test=60.56% diverged=False time=2036s; ETA ~10 min
+[2026-10-26 15:44:58] [ok 24/30] E017_hyb_R31_L7_sym_h48_joint_w31_N30_const_1e-3_200k_seed71: val=62.57% test=63.85% diverged=False time=2050s; ETA ~9 min
+[2026-10-26 15:45:09] [ok 25/30] E017_hyb_R31_L7_sym_h48_joint_w31_N30_const_1e-3_200k_seed17: val=58.56% test=60.23% diverged=False time=2062s; ETA ~7 min
+[2026-10-26 15:49:52] [ok 26/30] E017_hyb_R31_L7_sym_h48_joint_w31_N30_best_e010_cm1_200k_seed43: val=47.15% test=48.55% diverged=False time=1940s; ETA ~6 min
+[2026-10-26 15:50:42] [ok 27/30] E017_hyb_R31_L7_sym_h48_joint_w31_N30_best_e010_cm1_200k_seed17: val=50.72% test=52.47% diverged=False time=1993s; ETA ~4 min
+[2026-10-26 15:50:53] [ok 28/30] E017_hyb_R31_L7_sym_h48_joint_w31_N30_best_e010_cm1_200k_seed29: val=50.77% test=52.42% diverged=False time=2001s; ETA ~3 min
+[2026-10-26 15:54:11] [ok 29/30] E017_hyb_R31_L7_sym_h48_joint_w31_N30_best_e010_cm1_200k_seed71: val=51.54% test=52.84% diverged=False time=1812s; ETA ~1 min
+[2026-10-26 15:54:16] [ok 30/30] E017_hyb_R31_L7_sym_h48_joint_w31_N30_best_e010_cm1_200k_seed57: val=49.00% test=51.14% diverged=False time=1828s; ETA ~0 min
+[2026-10-26 15:54:17] finished: 30 ok, 0 failed
+=== 2026-10-26T15:54:18+07:00 E019 main exit=0 ===
+=== 2026-10-26T15:54:18+07:00 E019 summarize: .venv/bin/python -m constellation_denoiser.summarize_E019 ===
+JOBS=auto THREADS=auto DEVICE=auto SEEDS=default SMOKE=0 FORCE=0
+сводка: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E019_confirm_long_runs/results/confirm_summary.csv
+=== 2026-10-26T15:54:25+07:00 E019 summarize exit=0 ===
+=== 2026-10-26T15:54:25+07:00 итоговая сводка ===
+E010: 138 прогонов из /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E010_lr_schedule_study/results/runs -> experiments/E010_lr_schedule_study/results/lr_sweep_q2.csv
+E011: 46 прогонов из /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E011_long_runs_convergence/results/runs -> experiments/E011_long_runs_convergence/results/long_runs_q2.csv
+E012: 144 прогонов из /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E012_depth_vs_window/results/runs -> experiments/E012_depth_vs_window/results/depth_window_q2.csv
+E013: 38 прогонов из /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E013_transformer_scaling/results/runs -> experiments/E013_transformer_scaling/results/transformer_runs_q2.csv
+E014: 32 прогонов из /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E014_kerr_kan_hybrid/results/runs -> experiments/E014_kerr_kan_hybrid/results/kan_hybrid_q2.csv
+Traceback (most recent call last):
+  File "/home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/scripts/recompute_q2.py", line 147, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/scripts/recompute_q2.py", line 103, in main
+    base = e012[(e012.lr_branch == "const_1e-3") & (e012.window == 31) & (e012.budget == 20000)]
+                 ^^^^^^^^^^^^^^
+  File "/home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/.venv/lib/python3.12/site-packages/pandas/core/generic.py", line 6194, in __getattr__
+    return object.__getattribute__(self, name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'DataFrame' object has no attribute 'lr_branch'
+ОШИБКА: recompute_q2 прерван
+experiment                                                               hypothesis      verdict
+      E015                           память есть (фаза зависит от мощности соседей)  не доказано
+      E016                                                        физика достаточна  не доказано
+      E016                                                           физика полезна подтверждено
+      E017                                        гибрид лучше при равной стоимости  не доказано
+      E017                                    нейросеть на остаток не нужна (h = 4)  не доказано
+      E018                                                         глубина помогает подтверждено
+      E018                                            послойная инициализация нужна  не доказано
+      E019                    плато за 200k шагов: E016_phys_R31_L7_sym (best_e010) подтверждено
+      E019                   плато за 200k шагов: E016_phys_R31_L7_sym (const_1e-3)  не доказано
+      E019           плато за 200k шагов: E017_hyb_R31_L7_sym_h48_joint (best_e010)  не доказано
+      E019          плато за 200k шагов: E017_hyb_R31_L7_sym_h48_joint (const_1e-3) подтверждено
+      E019  плато за 200k шагов: E018_dbp_Ns8_L31_R7_joint_from_scratch (best_e010)  не доказано
+      E019 плато за 200k шагов: E018_dbp_Ns8_L31_R7_joint_from_scratch (const_1e-3) подтверждено
+      E019                       плато за 200k шагов: control_complex_a (best_e010)  не доказано
+      E019                      плато за 200k шагов: control_complex_a (const_1e-3) подтверждено
+      E019                    плато за 200k шагов: control_complex_both (best_e010)  не доказано
+      E019                   плато за 200k шагов: control_complex_both (const_1e-3)  не доказано
+-> /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/results/E015_E018_verdicts.csv, /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/results/E015_E018_quality_vs_macs.png
+=== 2026-10-26T15:54:28+07:00 overnight part2 завершён; строки с ОШИБКА: 1 ===

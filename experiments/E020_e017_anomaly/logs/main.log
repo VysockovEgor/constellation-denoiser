@@ -1,0 +1,23 @@
+=== 2026-10-27T11:41:08+07:00 E020 main: .venv/bin/python -u -m constellation_denoiser.runner --exp E020 --stage main ===
+JOBS=auto THREADS=auto DEVICE=auto SEEDS=default SMOKE=0 FORCE=0
+[2026-10-27 11:41:10] running 18 tasks with JOBS=23, THREADS=1, DEVICE=cpu
+[2026-10-27 11:49:11] [ok 1/18] hyb_h48_joint_A0_cos_3e-3_cm1_40k_seed43: val=46.58% test=48.21% diverged=False time=479s; ETA ~136 min
+[2026-10-27 11:49:12] [ok 2/18] hyb_h48_joint_A3_cos_1e-3_cm1_40k_seed17: val=60.88% test=62.01% diverged=False time=479s; ETA ~64 min
+[2026-10-27 11:49:14] [ok 3/18] hyb_h48_joint_A0_cos_3e-3_cm1_40k_seed29: val=49.64% test=51.42% diverged=False time=482s; ETA ~40 min
+[2026-10-27 11:49:15] [ok 4/18] hyb_h48_joint_A1_cos_3e-3_cm30_40k_seed29: val=65.96% test=66.90% diverged=False time=483s; ETA ~28 min
+[2026-10-27 11:49:18] [ok 5/18] hyb_h48_joint_A1_cos_3e-3_cm30_40k_seed43: val=65.09% test=66.21% diverged=False time=485s; ETA ~21 min
+[2026-10-27 11:49:19] [ok 6/18] hyb_h48_joint_A0_cos_3e-3_cm1_40k_seed17: val=50.25% test=51.95% diverged=False time=487s; ETA ~16 min
+[2026-10-27 11:49:24] [ok 7/18] hyb_h48_joint_A3_cos_1e-3_cm1_40k_seed43: val=61.23% test=62.74% diverged=False time=491s; ETA ~13 min
+[2026-10-27 11:49:24] [ok 8/18] hyb_h48_joint_A3_cos_1e-3_cm1_40k_seed29: val=63.32% test=64.37% diverged=False time=491s; ETA ~10 min
+[2026-10-27 11:49:46] [ok 9/18] hyb_h48_joint_A1_cos_3e-3_cm30_40k_seed17: val=64.52% test=65.90% diverged=False time=513s; ETA ~9 min
+[2026-10-27 12:17:40] [ok 10/18] hyb_h48_joint_A3_cos_1e-3_cm1_200k_seed17: val=61.88% test=63.34% diverged=False time=2187s; ETA ~29 min
+[2026-10-27 12:18:25] [ok 11/18] hyb_h48_joint_A1_cos_3e-3_cm30_200k_seed43: val=65.37% test=66.73% diverged=False time=2232s; ETA ~24 min
+[2026-10-27 12:18:33] [ok 12/18] hyb_h48_joint_A3_cos_1e-3_cm1_200k_seed43: val=62.47% test=64.04% diverged=False time=2240s; ETA ~19 min
+[2026-10-27 12:18:38] [ok 13/18] hyb_h48_joint_A2_const_3e-3_cm1_200k_seed43: val=42.59% test=43.51% diverged=False time=2245s; ETA ~14 min
+[2026-10-27 12:18:46] [ok 14/18] hyb_h48_joint_A2_const_3e-3_cm1_200k_seed29: val=45.71% test=47.20% diverged=False time=2253s; ETA ~11 min
+[2026-10-27 12:18:58] [ok 15/18] hyb_h48_joint_A3_cos_1e-3_cm1_200k_seed29: val=64.25% test=65.72% diverged=False time=2265s; ETA ~8 min
+[2026-10-27 12:19:27] [ok 16/18] hyb_h48_joint_A2_const_3e-3_cm1_200k_seed17: val=44.10% test=46.07% diverged=False time=2294s; ETA ~5 min
+[2026-10-27 12:19:50] [ok 17/18] hyb_h48_joint_A1_cos_3e-3_cm30_200k_seed17: val=67.20% test=68.48% diverged=False time=2318s; ETA ~2 min
+[2026-10-27 12:20:41] [ok 18/18] hyb_h48_joint_A1_cos_3e-3_cm30_200k_seed29: val=65.99% test=67.30% diverged=False time=2368s; ETA ~0 min
+[2026-10-27 12:20:42] finished: 18 ok, 0 failed
+=== 2026-10-27T12:20:42+07:00 E020 main exit=0 ===
