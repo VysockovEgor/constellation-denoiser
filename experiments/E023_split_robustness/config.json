@@ -1,0 +1,184 @@
+{
+  "experiment_id": "E023",
+  "title": "Robustness of the conclusions to the train/validation/test split",
+  "date": "not run",
+  "base_git_commit": "8a0bb70 (branch exp/E020-E023)",
+  "git_commit": "recorded per run in results/runs/*.json (field git_commit)",
+  "data_manifest_sha256": "cb5f2de47145c02d6485969ce116df2253a271c979a927452ea454551a48c0a8",
+  "data_audit_sha256": "a9c35fb7839e85c39f7131373418a6f3a04c731e9c4e55385347a1eabbdedbe4",
+  "split_source": "experiments/E004_training_file_curve/config.json (train_pool_files[:30], validation 45, test 45), as E007-E019",
+  "split_source_sha256": "04c0b2a5775d8fae1acdc348967c6fb976ef5d90e76a8334484242cc9707025a",
+  "dataset_root": "data/raw/archive",
+  "n_train_files": 30,
+  "base_lr": {
+    "peak_lr": 0.001,
+    "schedule": "const",
+    "warmup": 0,
+    "c_mult": 1.0,
+    "floor_frac": 0.1,
+    "optimizer": "adam",
+    "weight_decay": 0.0
+  },
+  "data_conditions": "the CSV files carry no metadata on transmission conditions (launch power, distance, OSNR): 4 columns tx_I, tx_Q, rx_I, rx_Q, 16384 symbols, file names only PR ids; raw BER over the 300 split files 0.0074 / 0.0097 / 0.0122 (min / median / max); the train-on-one-condition / test-on-another part is skipped",
+  "split_seeds": [
+    101,
+    202,
+    303
+  ],
+  "split_rule": "the same 300 files (E004 pool 210 + validation 45 + test 45) permuted by split seed: test = first 45, validation = next 45, train = next 30 (N = 30 as elsewhere); file-level, disjoint",
+  "members_rule": "best configuration by validation of each family from E021 (results/pareto_members.json) with <= max_macs multiplies; fallback list if E021 has not been summarized",
+  "max_macs": 40000,
+  "steps": 100000,
+  "seeds": [
+    17,
+    29,
+    43,
+    57,
+    71
+  ],
+  "eval_every": 5000,
+  "ckpt_every": 10000,
+  "lr_policies": {
+    "const_1e-3": {},
+    "const_3e-3_cm1": {
+      "peak_lr": 0.003
+    },
+    "cos_1e-3_cm1": {
+      "schedule": "cosine_to_zero"
+    },
+    "cos_3e-3_cm1": {
+      "from_e010_stage3": true,
+      "c_mult": 1
+    },
+    "cos_3e-3_cm30": {
+      "from_e010_stage3": true,
+      "c_mult": 30
+    },
+    "transformer": {
+      "peak_lr": 0.001,
+      "schedule": "cosine_to_zero",
+      "warmup": 1000,
+      "optimizer": "adamw",
+      "weight_decay": 1e-05
+    }
+  },
+  "fallback_members": [
+    {
+      "name": "kerr_a",
+      "family": "complex Kerr MLP",
+      "spec": {
+        "model": "complex_a",
+        "hidden": 48
+      },
+      "lr": "cos_3e-3_cm30"
+    },
+    {
+      "name": "kerr_both_h48",
+      "family": "complex Kerr MLP",
+      "spec": {
+        "model": "complex_both",
+        "hidden": 48
+      },
+      "lr": "cos_3e-3_cm30"
+    },
+    {
+      "name": "hyb_h48_joint",
+      "family": "Phys + MLP",
+      "spec": {
+        "model": "phys_plus_mlp",
+        "window": 31,
+        "fir_len": 7,
+        "n_alpha": 31,
+        "sym": true,
+        "mlp_hidden": 48
+      },
+      "lr": "const_1e-3"
+    },
+    {
+      "name": "real_h96",
+      "family": "real tanh MLP",
+      "spec": {
+        "model": "real_tanh",
+        "hidden": 96
+      },
+      "lr": "const_1e-3"
+    },
+    {
+      "name": "kan_h16",
+      "family": "KAN",
+      "spec": {
+        "model": "kan",
+        "kan_hidden": 16,
+        "grid": 5
+      },
+      "lr": "const_1e-3"
+    },
+    {
+      "name": "tr_w7_d16_L1",
+      "family": "transformer",
+      "spec": {
+        "model": "transformer",
+        "window": 7,
+        "d_model": 16,
+        "layers": 1,
+        "heads": 4,
+        "ffn_mult": 2
+      },
+      "lr": "transformer"
+    },
+    {
+      "name": "phys_R31_L7_sym",
+      "family": "PhysKerr",
+      "spec": {
+        "model": "phys_kerr",
+        "fir_len": 7,
+        "n_alpha": 31,
+        "sym": true
+      },
+      "lr": "const_1e-3"
+    },
+    {
+      "name": "dbp_Ns8_L31_R7",
+      "family": "DBP",
+      "spec": {
+        "model": "phys_dbp",
+        "fir_len": 31,
+        "n_alpha": 7,
+        "sym": true,
+        "n_steps": 8
+      },
+      "lr": "const_1e-3"
+    }
+  ],
+  "control": {
+    "runs": {
+      "a_const_1e-3_20k": {
+        "spec": {
+          "model": "complex_a",
+          "window": 31,
+          "hidden": 48,
+          "name": "complex_a"
+        },
+        "n_train_files": 30,
+        "steps": 20000
+      }
+    },
+    "targets": {
+      "a_const_1e-3_20k": {
+        "target": 62.191,
+        "tol": 0.7,
+        "seeds": [
+          17,
+          29
+        ],
+        "metric": "test_reduction_valbest_select",
+        "source": "experiments/E009_kerr_ablation/results/complex_mlp_ablation_summary.csv (variant a); reproduced in E010-E019 (62.19)"
+      }
+    }
+  },
+  "rule_draft": {
+    "status": "DRAFT: to be confirmed by the user before the first run; must not change after results are seen",
+    "robust_if": "the order of the families by mean test reduction and the sign of every pairwise difference are the same in all three splits, and for every family the range of its split means is < 2 p.p.",
+    "otherwise": "не доказано (вывод зависит от разбиения)"
+  }
+}
