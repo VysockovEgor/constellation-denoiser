@@ -1,7 +1,7 @@
 {
   "experiment_id": "E019",
   "title": "Long confirmation runs (100k and 200k steps) of the validation-best E016, E017, E018 configurations and the complex_a / complex_both controls",
-  "note": "the 'confirm' stage of the E015-E018 plan (part 6); a separate experiment folder because README.md requires a new E-number and output path for every new run",
+  "note": "the 'confirm' stage of the E015-E018 plan; a separate experiment folder because every new run gets a new E-number and output path",
   "date": "not run",
   "base_git_commit": "50f87f1 (branch exp/E015-E018)",
   "git_commit": "recorded per run in results/runs/*.json (field git_commit)",

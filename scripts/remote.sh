@@ -3,6 +3,7 @@
 #
 #   bash scripts/remote.sh go part1 | part2 | all | <E0NN> <stage>   push, update the server, start in tmux
 #   bash scripts/remote.sh estimate part1 | part2 | <E0NN> [stage]     hours from the server-side estimate stages
+#   bash scripts/remote.sh sync                                        update the server checkout only (no job)
 #   bash scripts/remote.sh status                                      sessions, processes, load, runs, logs, ОШИБКА
 #   bash scripts/remote.sh fetch [--to <folder>] [--journal]           bring results back (+ make journal), commit, push
 #   bash scripts/remote.sh stop <session>                              stop a session started by `go` (only those)
@@ -141,6 +142,13 @@ mkdir -p logs/remote && tmux new-session -d -s $session $(printf '%q' "$inner") 
   echo "подключиться: ssh $SERVER -t tmux attach -t $session"
 }
 
+cmd_sync() {
+  git diff --quiet && git diff --cached --quiet || die "есть незакоммиченные изменения в отслеживаемых файлах: сначала commit"
+  local_do git push -u origin "$BRANCH"
+  remote "BRANCH=$BRANCH; $SERVER_UPDATE"
+  echo "сервер обновлён до origin/$BRANCH"
+}
+
 cmd_estimate() {
   local targets=()
   case "${1:-}" in
@@ -256,6 +264,7 @@ tmux kill-session -t '$session' && grep -vx '$session' $REGISTRY > $REGISTRY.tmp
 
 case "${1:-}" in
   go) shift; cmd_go "$@" ;;
+  sync) shift; cmd_sync ;;
   estimate) shift; cmd_estimate "$@" ;;
   status) shift; cmd_status ;;
   fetch) shift; cmd_fetch "$@" ;;

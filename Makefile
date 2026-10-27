@@ -6,7 +6,7 @@ PYTHON ?= $(shell [ -x .venv/bin/python ] && echo .venv/bin/python || echo pytho
 deck:
 	$(PYTHON) scripts/make_deck.py
 
-# Research journal (Quarto, installed in ~/opt; see README.md "Журнал")
+# Research journal (Quarto, installed in ~/opt)
 QUARTO ?= $(shell command -v quarto 2>/dev/null || ls -d $(HOME)/opt/quarto-*/bin/quarto 2>/dev/null | tail -1)
 DATE := $(shell date +%Y%m%d)
 

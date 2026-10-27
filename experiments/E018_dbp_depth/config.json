@@ -13,7 +13,7 @@
   "n_train_files": 30,
   "model": "phys_models.PhysDBP: Ns steps, each a symmetric complex FIR of length L (unit-impulse init) followed by the nonlinear phase with R symmetric coefficients (alpha = 0 init); every step is the identity at start; inside the window of 31 symbols with zero padding; output = centre symbol of the last step",
   "grid": {"n_steps": [1, 2, 4, 8], "fir_len": [7, 31], "n_alpha": [3, 7]},
-  "grid_note": "R kept at {3, 7} as in the plan; the plan allows replacing R by the best E016 value after E015 - not done, so the grid does not depend on results that do not exist yet",
+  "grid_note": "R kept at {3, 7} as planned; the plan allows replacing R by the best E016 value after E015 - not done, so the grid does not depend on results that do not exist yet",
   "modes": ["layerwise", "joint_from_scratch"],
   "modes_note": "layerwise (paper): train step 1, then add step k (identity) and train it with steps 1..k-1 frozen, k = 2..Ns, steps_per_layer each, fresh Adam per phase; then joint fine-tuning of all steps for finetune_steps at lr / finetune_lr_divisor. joint_from_scratch: all steps trainable from the start for the same total Ns*steps_per_layer + finetune_steps",
   "steps_per_layer": 20000,

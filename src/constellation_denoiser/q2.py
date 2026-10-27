@@ -1,7 +1,7 @@
 """Q-factor in dB for 16-QAM from BER (fraction, not percent).
 
-Q2_dB = 10 * log10( 10 * erfcinv(8 * BER / 3)**2 )   (formula given in the E015-E018 plan as
-eq. (17) of Sidelnikov et al., JLT 2021; the PDF was not available to verify it). NaN for BER <= 0
+Q2_dB = 10 * log10( 10 * erfcinv(8 * BER / 3)**2 )   (eq. (17) of Sidelnikov et al., JLT 2021;
+not re-checked against the PDF). NaN for BER <= 0
 or BER >= 3/8, where the inverse is undefined.
 """
 

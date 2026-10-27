@@ -545,7 +545,7 @@ def e017_lr(config: dict, choice: dict, smoke: bool) -> tuple[str, dict]:
     if choice.get("lr_name") in branches:          # the branch under which the chosen PhysKerr was best
         return choice["lr_name"], branches[choice["lr_name"]]
     best = e010_stage3_lr(smoke)
-    if best is not None:                           # plan default: best_e010 as chosen by E010 stage3
+    if best is not None:                           # default: best_e010 as chosen by E010 stage3
         lr = lr_from(best, horizon=None)
         return f"best_e010_cm{lr['c_mult']:g}", lr
     return "const_1e-3", lr_from(config["base_lr"])

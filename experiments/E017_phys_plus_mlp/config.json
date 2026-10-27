@@ -23,7 +23,7 @@
   "seeds": [17, 29, 43, 57, 71],
   "base_lr": {"peak_lr": 0.001, "schedule": "const", "warmup": 0, "c_mult": 1.0, "floor_frac": 0.1, "optimizer": "adam", "weight_decay": 0.0},
   "best_e010_c_mult": [1, 30],
-  "lr_policy": "the lr branch under which the chosen PhysKerr configuration was best in E016 (const_1e-3, best_e010_cm1 or best_e010_cm30); if E016 results are missing: best_e010 = experiments/E010_lr_schedule_study/results/stage3_choice.json['a'] as is (c_mult 30); if that is missing too: const_1e-3. Deviation from the plan (always best_e010): the E016 smoke showed c_mult 30 collapsing some PhysKerr runs, so the validation-chosen branch is used when it exists",
+  "lr_policy": "the lr branch under which the chosen PhysKerr configuration was best in E016 (const_1e-3, best_e010_cm1 or best_e010_cm30); if E016 results are missing: best_e010 = experiments/E010_lr_schedule_study/results/stage3_choice.json['a'] as is (c_mult 30); if that is missing too: const_1e-3. Deviation from the original plan (always best_e010): the E016 smoke showed c_mult 30 collapsing some PhysKerr runs, so the validation-chosen branch is used when it exists",
   "macs": "PhysKerr macs_phys + MLP_res h(4W + 11) = h*135 (one hidden layer, nothing to merge)",
   "control": {
     "runs": {
