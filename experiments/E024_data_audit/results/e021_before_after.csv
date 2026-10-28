@@ -1,0 +1,5 @@
+level,old_best,old_family,old_rm,old_val,old_test,new_best,new_family,new_rm,new_val,new_test,new_n_seeds
+2000,E017 · h16_joint · const_1e-3 · 40k,Phys + MLP,2198,41.3545676047883,42.91059108044669,E017 · h16_joint · const_1e-3 · 40k,Phys + MLP,2198,41.3545676047883,42.91059108044669,5
+6500,E020 · hyb_h48_joint_A1 · cos_3e-3_cm30 · 200k,Phys + MLP,6518,66.38534788186966,67.57593000924675,E020 · hyb_h48_joint_A1 · cos_3e-3_cm30 · 200k,Phys + MLP,6518,66.38534788186966,67.57593000924675,3
+16000,E021 · hyb_h118 · const_1e-3 · 200k,Phys + MLP,15968,67.30887390091458,68.48353367949356,E012 · v4_one_hidden_wide · best_e010-cosine_to_zero_lr0.003_wu0_cm1 · 100k,Kerr MLP,16065,71.02298809986229,72.36527017094625,3
+40000,E021 · kerr_oh_h296 · cos_3e-3_cm30 · 200k,complex Kerr MLP,39960,71.95593064726862,72.90347819901842,E021 · kerr_oh_h296 · cos_3e-3_cm30 · 200k,Kerr MLP,39960,71.95593064726862,72.90347819901842,5

@@ -1,0 +1,23 @@
+{
+  "pooled_std_pp": 1.168474455458842,
+  "n_configs_5_seeds": 20,
+  "n_configs_all": 82,
+  "median_range_pp_5_seeds": 1.4563624724375828,
+  "max_range_pp_5_seeds": 6.426488370438875,
+  "mdd_pp_5_seeds": 1.7041558115583395,
+  "formula": "MDD = t_{0.975, 2n-2} * s_pooled * sqrt(2/n), n = 5 seeds per arm, s_pooled = sqrt(mean s_i^2) over configurations with 5 seeds (E019)",
+  "mdd_db_at_reduction": {
+    "10": 0.02779652382896991,
+    "48": 0.04152060896675991,
+    "66": 0.057578698221457,
+    "72": 0.06715860059014389
+  },
+  "db_per_pp_at_reduction": {
+    "10": 0.01626578325925898,
+    "48": 0.024239821028739783,
+    "66": 0.03351175988388633,
+    "72": 0.03901113259853872
+  },
+  "file_bootstrap": "not available: per-file BER is not stored in the run JSONs",
+  "raw_test_ber": 0.009551859551859552
+}

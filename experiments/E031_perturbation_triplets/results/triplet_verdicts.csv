@@ -1,0 +1,9 @@
+hypothesis,value,verdict,rule_status
+M=3: диагональной (XPM) физики недостаточно (T3 − T2 ≥ 5 п.п.),12.57984209403229,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+M=5: диагональной (XPM) физики недостаточно (T3 − T2 ≥ 5 п.п.),26.90376271427555,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+M=7: диагональной (XPM) физики недостаточно (T3 − T2 ≥ 5 п.п.),37.591578348388936,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+M=11: диагональной (XPM) физики недостаточно (T3 − T2 ≥ 5 п.п.),53.500248950849986,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+M=15: диагональной (XPM) физики недостаточно (T3 − T2 ≥ 5 п.п.),63.02653104772744,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+M=21: диагональной (XPM) физики недостаточно (T3 − T2 ≥ 5 п.п.),71.53851625293406,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+T1 ≈ PhysKerr (|T1 − 9.3| < 3 п.п.; M = 21 по валидации),0.13514474713707234,не доказано,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"наш подход лучше PB-NLC при равных RM (≥ 0.1 дБ, интервалы не пересекаются)",,проверяется в E033,DRAFT: to be confirmed by the user before the first run; must not change after results are seen

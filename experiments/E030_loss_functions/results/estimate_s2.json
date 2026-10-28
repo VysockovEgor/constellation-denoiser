@@ -1,0 +1,16 @@
+{
+  "stage": "s2",
+  "runs_total": 80,
+  "runs_todo": 80,
+  "jobs": 40,
+  "threads": 1,
+  "device": "cpu",
+  "hours": 3.253690189856811,
+  "hours_half_jobs": 6.507380379713622,
+  "longest_run_hours": 3.247843795645041,
+  "unique_models": 16,
+  "contention": 0.6665955032813512,
+  "synthetic_data": false,
+  "measured_at": "2026-10-27T12:02:05+00:00",
+  "hostname": "hocalhost"
+}

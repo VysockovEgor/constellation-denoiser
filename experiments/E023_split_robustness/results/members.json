@@ -1,0 +1,216 @@
+[
+  {
+    "name": "dbp_E018_dbp_Ns8_L31_R7_joint_from_scratch",
+    "family": "DBP",
+    "spec": {
+      "model": "phys_dbp",
+      "window": 31,
+      "fir_len": 31,
+      "n_alpha": 7,
+      "sym": true,
+      "n_steps": 8
+    },
+    "lr_config": {
+      "peak_lr": 0.001,
+      "schedule": "const",
+      "warmup": 0.0,
+      "c_mult": 1.0,
+      "floor_frac": 0.1,
+      "optimizer": "adam",
+      "weight_decay": 0.0
+    },
+    "lr": "const_1e-3",
+    "phases": [
+      {
+        "steps": 1
+      }
+    ],
+    "macs": 592,
+    "source_point": "E018 · dbp_Ns8_L31_R7_joint_from_scratch · const_1e-3 · 170k",
+    "val_mean": 47.40421625057382
+  },
+  {
+    "name": "kan_E014_k4_cascade_staged",
+    "family": "KAN",
+    "spec": {
+      "model": "kerr_kan",
+      "window": 31,
+      "hidden": 48,
+      "kan_hidden": 8,
+      "grid": 5,
+      "local_half": 3,
+      "mode": "cascade"
+    },
+    "lr_config": {
+      "peak_lr": 0.001,
+      "schedule": "const",
+      "warmup": 0.0,
+      "c_mult": 1.0,
+      "floor_frac": 0.1,
+      "optimizer": "adam",
+      "weight_decay": 0.0
+    },
+    "lr": "const_1e-3",
+    "phases": [
+      {
+        "steps": 1,
+        "trainable": [
+          "kerr."
+        ]
+      },
+      {
+        "steps": 1,
+        "trainable": [
+          "kan."
+        ],
+        "reset_optimizer": true
+      }
+    ],
+    "macs": 8088,
+    "source_point": "E014 · k4_cascade_staged · const_1e-3 · 40k",
+    "val_mean": 60.2316465976906
+  },
+  {
+    "name": "phys_E021_hyb_h118",
+    "family": "Phys + MLP",
+    "spec": {
+      "model": "phys_plus_mlp",
+      "window": 31,
+      "fir_len": 7,
+      "n_alpha": 31,
+      "sym": true,
+      "mlp_hidden": 118
+    },
+    "lr_config": {
+      "peak_lr": 0.001,
+      "schedule": "const",
+      "warmup": 0.0,
+      "c_mult": 1.0,
+      "floor_frac": 0.1,
+      "optimizer": "adam",
+      "weight_decay": 0.0
+    },
+    "lr": "const_1e-3",
+    "phases": [
+      {
+        "steps": 1
+      }
+    ],
+    "macs": 15968,
+    "source_point": "E021 · hyb_h118 · const_1e-3 · 200k",
+    "val_mean": 67.30887390091458
+  },
+  {
+    "name": "physkerr_E016_phys_R31_L7_sym",
+    "family": "PhysKerr",
+    "spec": {
+      "model": "phys_kerr",
+      "window": 31,
+      "fir_len": 7,
+      "n_alpha": 31,
+      "sym": true
+    },
+    "lr_config": {
+      "peak_lr": 0.001,
+      "schedule": "const",
+      "warmup": 0.0,
+      "c_mult": 1.0,
+      "floor_frac": 0.1,
+      "optimizer": "adam",
+      "weight_decay": 0.0
+    },
+    "lr": "const_1e-3",
+    "phases": [
+      {
+        "steps": 1
+      }
+    ],
+    "macs": 38,
+    "source_point": "E016 · phys_R31_L7_sym · const_1e-3 · 20k",
+    "val_mean": 8.334333839471736
+  },
+  {
+    "name": "complex_E021_kerr_oh_h296",
+    "family": "complex Kerr MLP",
+    "spec": {
+      "model": "complex_one_hidden",
+      "window": 31,
+      "hidden": 296
+    },
+    "lr_config": {
+      "peak_lr": 0.003,
+      "schedule": "cosine_to_zero",
+      "warmup": 0.0,
+      "c_mult": 30.0,
+      "floor_frac": 0.1,
+      "optimizer": "adam",
+      "weight_decay": 0.0
+    },
+    "lr": "cos_3e-3_cm30",
+    "phases": [
+      {
+        "steps": 1
+      }
+    ],
+    "macs": 39960,
+    "source_point": "E021 · kerr_oh_h296 · cos_3e-3_cm30 · 200k",
+    "val_mean": 71.95593064726862
+  },
+  {
+    "name": "real_E011_real_tanh",
+    "family": "real tanh MLP",
+    "spec": {
+      "model": "real_tanh",
+      "window": 31,
+      "hidden": 96
+    },
+    "lr_config": {
+      "peak_lr": 0.001,
+      "schedule": "const",
+      "warmup": 0.0,
+      "c_mult": 1.0,
+      "floor_frac": 0.1,
+      "optimizer": "adam",
+      "weight_decay": 0.0
+    },
+    "lr": "const_1e-3",
+    "phases": [
+      {
+        "steps": 1
+      }
+    ],
+    "macs": 15360,
+    "source_point": "E011 · real_tanh · const_1e-3 · 200k",
+    "val_mean": 32.09388278776322
+  },
+  {
+    "name": "transformer_E021_tr_w7_d8_L2",
+    "family": "transformer",
+    "spec": {
+      "model": "transformer",
+      "window": 7,
+      "d_model": 8,
+      "layers": 2,
+      "heads": 2,
+      "ffn_mult": 2
+    },
+    "lr_config": {
+      "peak_lr": 0.001,
+      "schedule": "cosine_to_zero",
+      "warmup": 1000.0,
+      "c_mult": 1.0,
+      "floor_frac": 0.1,
+      "optimizer": "adamw",
+      "weight_decay": 1e-05
+    },
+    "lr": "transformer",
+    "phases": [
+      {
+        "steps": 1
+      }
+    ],
+    "macs": 8928,
+    "source_point": "E021 · tr_w7_d8_L2 · transformer · 200k",
+    "val_mean": 15.553204992595727
+  }
+]

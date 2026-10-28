@@ -1,0 +1,163 @@
+source,model,variant,window,stored_rm,stored_rm_merged,formula_rm,formula_rm_merged,model_zoo_rm_merged,formula,match
+E010,complex_a,a,31,15696,6480,15696.0,6480.0,6480,trained 4Wh+4h^2+4h+7h; merged h(4W+11),True
+E010,complex_both,both,31,16032,16032,16032.0,16032.0,16032,4h(W+h+1)+14h,True
+E011,complex_a,complex_a,31,15696,6480,15696.0,6480.0,6480,trained 4Wh+4h^2+4h+7h; merged h(4W+11),True
+E011,complex_both,complex_both,31,16032,16032,16032.0,16032.0,16032,4h(W+h+1)+14h,True
+E011,complex_one_hidden,complex_one_hidden,31,6480,6480,6480.0,6480.0,6480,h(4W+11),True
+E011,real_tanh,real_tanh,31,15360,15360,15360.0,15360.0,15360,2Wh+h^2+2h,True
+E012,complex_both,v1_two_kerr_both,127,34464,34464,34464.0,34464.0,34464,4h(W+h+1)+14h,True
+E012,complex_both,v1_two_kerr_both,31,16032,16032,16032.0,16032.0,16032,4h(W+h+1)+14h,True
+E012,complex_both,v1_two_kerr_both,65,22560,22560,22560.0,22560.0,22560,4h(W+h+1)+14h,True
+E012,complex_a,v2_two_kerr_last,127,34128,24912,34128.0,24912.0,24912,trained 4Wh+4h^2+4h+7h; merged h(4W+11),True
+E012,complex_a,v2_two_kerr_last,31,15696,6480,15696.0,6480.0,6480,trained 4Wh+4h^2+4h+7h; merged h(4W+11),True
+E012,complex_a,v2_two_kerr_last,65,22224,13008,22224.0,13008.0,13008,trained 4Wh+4h^2+4h+7h; merged h(4W+11),True
+E012,complex_one_hidden,v3_one_hidden,127,24912,24912,24912.0,24912.0,24912,h(4W+11),True
+E012,complex_one_hidden,v3_one_hidden,31,6480,6480,6480.0,6480.0,6480,h(4W+11),True
+E012,complex_one_hidden,v3_one_hidden,65,13008,13008,13008.0,13008.0,13008,h(4W+11),True
+E012,complex_one_hidden,v4_one_hidden_wide,127,34254,34254,34254.0,34254.0,34254,h(4W+11),True
+E012,complex_one_hidden,v4_one_hidden_wide,31,16065,16065,16065.0,16065.0,16065,h(4W+11),True
+E012,complex_one_hidden,v4_one_hidden_wide,65,22493,22493,22493.0,22493.0,22493,h(4W+11),True
+E013,complex_both,complex_both,31,16032,16032,16032.0,16032.0,16032,4h(W+h+1)+14h,True
+E013,transformer,transformer_d32_L1,31,318528,318528,318528.0,318528.0,318528,W*2d + L[W(4d^2+2*ffn*d^2)+2W^2d] + d^2+2d,True
+E013,transformer,transformer_d64_L2,31,2285824,2285824,2285824.0,2285824.0,2285824,W*2d + L[W(4d^2+2*ffn*d^2)+2W^2d] + d^2+2d,True
+E013,transformer,transformer_d32_L1,7,62016,62016,62016.0,62016.0,62016,W*2d + L[W(4d^2+2*ffn*d^2)+2W^2d] + d^2+2d,True
+E013,transformer,transformer_d64_L2,7,476416,476416,476416.0,476416.0,476416,W*2d + L[W(4d^2+2*ffn*d^2)+2W^2d] + d^2+2d,True
+E014,complex_one_hidden,k0_kerr,31,6480,6480,6480.0,6480.0,6480,h(4W+11),True
+E014,complex_one_hidden,k0b_kerr_continued,31,6480,6480,6480.0,6480.0,6480,h(4W+11),True
+E014,kan,k1_kan_only,31,17718,8006,,,8006,no closed form (compared with model_zoo.cost),True
+E014,kan,k1_kan_only,31,23598,8006,,,8006,no closed form (compared with model_zoo.cost),True
+E014,kerr_kan,k2_parallel_joint,31,10030,7934,,,7934,no closed form (compared with model_zoo.cost),True
+E014,kerr_kan,k2_parallel_joint,31,11206,7934,,,7934,no closed form (compared with model_zoo.cost),True
+E014,kerr_kan,k3_parallel_staged,31,10030,7934,,,7934,no closed form (compared with model_zoo.cost),True
+E014,kerr_kan,k3_parallel_staged,31,11206,7934,,,7934,no closed form (compared with model_zoo.cost),True
+E014,kerr_kan,k4_cascade_staged,31,10392,8088,,,8088,no closed form (compared with model_zoo.cost),True
+E014,kerr_kan,k4_cascade_staged,31,11688,8088,,,8088,no closed form (compared with model_zoo.cost),True
+E016,complex_a,complex_a,31,15696,6480,15696.0,6480.0,6480,trained 4Wh+4h^2+4h+7h; merged h(4W+11),True
+E016,phys_kerr,fir_L31_nosym,31,124,124,124.0,124.0,124,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E016,phys_kerr,fir_L31_sym,31,64,64,64.0,64.0,64,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E016,phys_kerr,phys_R11_L1_nosym,31,17,17,17.0,17.0,17,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E016,phys_kerr,phys_R11_L1_sym,31,12,12,12.0,12.0,12,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E016,phys_kerr,phys_R11_L31_nosym,31,141,141,141.0,141.0,141,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E016,phys_kerr,phys_R11_L31_sym,31,76,76,76.0,76.0,76,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E016,phys_kerr,phys_R11_L7_nosym,31,45,45,45.0,45.0,45,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E016,phys_kerr,phys_R11_L7_sym,31,28,28,28.0,28.0,28,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E016,phys_kerr,phys_R1_L1_nosym,31,7,7,7.0,7.0,7,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E016,phys_kerr,phys_R1_L31_nosym,31,131,131,131.0,131.0,131,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E016,phys_kerr,phys_R1_L31_sym,31,71,71,71.0,71.0,71,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E016,phys_kerr,phys_R1_L7_nosym,31,35,35,35.0,35.0,35,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E016,phys_kerr,phys_R1_L7_sym,31,23,23,23.0,23.0,23,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E016,phys_kerr,phys_R21_L1_nosym,31,27,27,27.0,27.0,27,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E016,phys_kerr,phys_R21_L1_sym,31,17,17,17.0,17.0,17,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E016,phys_kerr,phys_R21_L31_nosym,31,151,151,151.0,151.0,151,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E016,phys_kerr,phys_R21_L31_sym,31,81,81,81.0,81.0,81,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E016,phys_kerr,phys_R21_L7_nosym,31,55,55,55.0,55.0,55,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E016,phys_kerr,phys_R21_L7_sym,31,33,33,33.0,33.0,33,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E016,phys_kerr,phys_R31_L1_nosym,31,37,37,37.0,37.0,37,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E016,phys_kerr,phys_R31_L1_sym,31,22,22,22.0,22.0,22,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E016,phys_kerr,phys_R31_L31_nosym,31,161,161,161.0,161.0,161,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E016,phys_kerr,phys_R31_L31_sym,31,86,86,86.0,86.0,86,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E016,phys_kerr,phys_R31_L7_nosym,31,65,65,65.0,65.0,65,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E016,phys_kerr,phys_R31_L7_sym,31,38,38,38.0,38.0,38,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E016,phys_kerr,phys_R3_L1_nosym,31,9,9,9.0,9.0,9,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E016,phys_kerr,phys_R3_L1_sym,31,8,8,8.0,8.0,8,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E016,phys_kerr,phys_R3_L31_nosym,31,133,133,133.0,133.0,133,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E016,phys_kerr,phys_R3_L31_sym,31,72,72,72.0,72.0,72,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E016,phys_kerr,phys_R3_L7_nosym,31,37,37,37.0,37.0,37,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E016,phys_kerr,phys_R3_L7_sym,31,24,24,24.0,24.0,24,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E016,phys_kerr,phys_R7_L1_nosym,31,13,13,13.0,13.0,13,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E016,phys_kerr,phys_R7_L1_sym,31,10,10,10.0,10.0,10,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E016,phys_kerr,phys_R7_L31_nosym,31,137,137,137.0,137.0,137,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E016,phys_kerr,phys_R7_L31_sym,31,74,74,74.0,74.0,74,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E016,phys_kerr,phys_R7_L7_nosym,31,41,41,41.0,41.0,41,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E016,phys_kerr,phys_R7_L7_sym,31,26,26,26.0,26.0,26,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E017,complex_a,complex_a,31,15696,6480,15696.0,6480.0,6480,trained 4Wh+4h^2+4h+7h; merged h(4W+11),True
+E017,complex_one_hidden,one_hidden,31,6480,6480,6480.0,6480.0,6480,h(4W+11),True
+E017,phys_plus_mlp,h16_frozen,31,2198,2198,2198.0,2198.0,2198,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E017,phys_plus_mlp,h16_joint,31,2198,2198,2198.0,2198.0,2198,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E017,phys_plus_mlp,h48_frozen,31,6518,6518,6518.0,6518.0,6518,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E017,phys_plus_mlp,h48_joint,31,6518,6518,6518.0,6518.0,6518,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E017,phys_plus_mlp,h4_frozen,31,578,578,578.0,578.0,578,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E017,phys_plus_mlp,h4_joint,31,578,578,578.0,578.0,578,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E017,phys_plus_mlp,h8_frozen,31,1118,1118,1118.0,1118.0,1118,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E017,phys_plus_mlp,h8_joint,31,1118,1118,1118.0,1118.0,1118,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E018,complex_a,complex_a,31,15696,6480,15696.0,6480.0,6480,trained 4Wh+4h^2+4h+7h; merged h(4W+11),True
+E018,phys_dbp,dbp_Ns1_L31_R3_joint_from_scratch,31,72,72,72.0,72.0,72,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E018,phys_dbp,dbp_Ns1_L31_R3_layerwise,31,72,72,72.0,72.0,72,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E018,phys_dbp,dbp_Ns1_L31_R7_joint_from_scratch,31,74,74,74.0,74.0,74,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E018,phys_dbp,dbp_Ns1_L31_R7_layerwise,31,74,74,74.0,74.0,74,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E018,phys_dbp,dbp_Ns1_L7_R3_joint_from_scratch,31,24,24,24.0,24.0,24,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E018,phys_dbp,dbp_Ns1_L7_R3_layerwise,31,24,24,24.0,24.0,24,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E018,phys_dbp,dbp_Ns1_L7_R7_joint_from_scratch,31,26,26,26.0,26.0,26,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E018,phys_dbp,dbp_Ns1_L7_R7_layerwise,31,26,26,26.0,26.0,26,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E018,phys_dbp,dbp_Ns2_L31_R3_joint_from_scratch,31,144,144,144.0,144.0,144,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E018,phys_dbp,dbp_Ns2_L31_R3_layerwise,31,144,144,144.0,144.0,144,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E018,phys_dbp,dbp_Ns2_L31_R7_joint_from_scratch,31,148,148,148.0,148.0,148,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E018,phys_dbp,dbp_Ns2_L31_R7_layerwise,31,148,148,148.0,148.0,148,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E018,phys_dbp,dbp_Ns2_L7_R3_joint_from_scratch,31,48,48,48.0,48.0,48,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E018,phys_dbp,dbp_Ns2_L7_R3_layerwise,31,48,48,48.0,48.0,48,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E018,phys_dbp,dbp_Ns2_L7_R7_joint_from_scratch,31,52,52,52.0,52.0,52,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E018,phys_dbp,dbp_Ns2_L7_R7_layerwise,31,52,52,52.0,52.0,52,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E018,phys_dbp,dbp_Ns4_L31_R3_joint_from_scratch,31,288,288,288.0,288.0,288,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E018,phys_dbp,dbp_Ns4_L31_R3_layerwise,31,288,288,288.0,288.0,288,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E018,phys_dbp,dbp_Ns4_L31_R7_joint_from_scratch,31,296,296,296.0,296.0,296,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E018,phys_dbp,dbp_Ns4_L31_R7_layerwise,31,296,296,296.0,296.0,296,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E018,phys_dbp,dbp_Ns4_L7_R3_joint_from_scratch,31,96,96,96.0,96.0,96,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E018,phys_dbp,dbp_Ns4_L7_R3_layerwise,31,96,96,96.0,96.0,96,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E018,phys_dbp,dbp_Ns4_L7_R7_joint_from_scratch,31,104,104,104.0,104.0,104,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E018,phys_dbp,dbp_Ns4_L7_R7_layerwise,31,104,104,104.0,104.0,104,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E018,phys_dbp,dbp_Ns8_L31_R3_joint_from_scratch,31,576,576,576.0,576.0,576,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E018,phys_dbp,dbp_Ns8_L31_R3_layerwise,31,576,576,576.0,576.0,576,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E018,phys_dbp,dbp_Ns8_L31_R7_joint_from_scratch,31,592,592,592.0,592.0,592,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E018,phys_dbp,dbp_Ns8_L31_R7_layerwise,31,592,592,592.0,592.0,592,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E018,phys_dbp,dbp_Ns8_L7_R3_joint_from_scratch,31,192,192,192.0,192.0,192,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E018,phys_dbp,dbp_Ns8_L7_R3_layerwise,31,192,192,192.0,192.0,192,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E018,phys_dbp,dbp_Ns8_L7_R7_joint_from_scratch,31,208,208,208.0,208.0,208,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E018,phys_dbp,dbp_Ns8_L7_R7_layerwise,31,208,208,208.0,208.0,208,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E020,complex_a,complex_a,31,15696,6480,15696.0,6480.0,6480,trained 4Wh+4h^2+4h+7h; merged h(4W+11),True
+E020,phys_plus_mlp,hyb_h48_joint_A0,31,6518,6518,6518.0,6518.0,6518,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E020,phys_plus_mlp,hyb_h48_joint_A1,31,6518,6518,6518.0,6518.0,6518,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E020,phys_plus_mlp,hyb_h48_joint_A2,31,6518,6518,6518.0,6518.0,6518,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E020,phys_plus_mlp,hyb_h48_joint_A3,31,6518,6518,6518.0,6518.0,6518,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E021,complex_a,complex_a,31,15696,6480,15696.0,6480.0,6480,trained 4Wh+4h^2+4h+7h; merged h(4W+11),True
+E021,phys_plus_mlp,hyb_h118,31,15968,15968,15968.0,15968.0,15968,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E021,phys_plus_mlp,hyb_h15,31,2063,2063,2063.0,2063.0,2063,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E021,phys_plus_mlp,hyb_h296,31,39998,39998,39998.0,39998.0,39998,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E021,kan,kan_h110,31,82108,41564,,,41564,no closed form (compared with model_zoo.cost),True
+E021,kan,kan_h2,31,8128,3008,,,3008,no closed form (compared with model_zoo.cost),True
+E021,kan,kan_h32,31,28678,13718,,,13718,no closed form (compared with model_zoo.cost),True
+E021,complex_both,kerr_both_h11,31,2046,2046,2046.0,2046.0,2046,4h(W+h+1)+14h,True
+E021,complex_both,kerr_both_h84,31,40152,40152,40152.0,40152.0,40152,4h(W+h+1)+14h,True
+E021,complex_one_hidden,kerr_oh_h15,31,2025,2025,2025.0,2025.0,2025,h(4W+11),True
+E021,complex_one_hidden,kerr_oh_h296,31,39960,39960,39960.0,39960.0,39960,h(4W+11),True
+E021,real_tanh,real_h171,31,40185,40185,40185.0,40185.0,40185,2Wh+h^2+2h,True
+E021,real_tanh,real_h23,31,2001,2001,2001.0,2001.0,2001,2Wh+h^2+2h,True
+E021,real_tanh,real_h55,31,6545,6545,6545.0,6545.0,6545,2Wh+h^2+2h,True
+E021,transformer,tr_w15_d16_L1,15,38688,38688,38688.0,38688.0,38688,W*2d + L[W(4d^2+2*ffn*d^2)+2W^2d] + d^2+2d,True
+E021,transformer,tr_w7_d16_L1,7,16416,16416,16416.0,16416.0,16416,W*2d + L[W(4d^2+2*ffn*d^2)+2W^2d] + d^2+2d,True
+E021,transformer,tr_w7_d4_L2,7,2656,2656,2656.0,2656.0,2656,W*2d + L[W(4d^2+2*ffn*d^2)+2W^2d] + d^2+2d,True
+E021,transformer,tr_w7_d8_L2,7,8928,8928,8928.0,8928.0,8928,W*2d + L[W(4d^2+2*ffn*d^2)+2W^2d] + d^2+2d,True
+E022,cnn,cnn_C13_k9,31,1989,1989,,,1989,no closed form (compared with model_zoo.cost),True
+E022,cnn,cnn_C22_k11,31,6292,6292,,,6292,no closed form (compared with model_zoo.cost),True
+E022,cnn,cnn_C36_k11,31,15840,15840,,,15840,no closed form (compared with model_zoo.cost),True
+E022,complex_a,complex_a,31,15696,6480,15696.0,6480.0,6480,trained 4Wh+4h^2+4h+7h; merged h(4W+11),True
+E022,phys_dbp,dbp_fixed_Ns1,31,131,131,131.0,131.0,131,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E022,phys_dbp,dbp_fixed_Ns4,31,524,524,524.0,524.0,524,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E022,phys_dbp,dbp_fixed_Ns8,31,1048,1048,1048.0,1048.0,1048,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E022,phys_dbp,dbp_train_Ns1,31,131,131,131.0,131.0,131,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E022,phys_dbp,dbp_train_Ns4,31,524,524,524.0,524.0,524,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E022,phys_dbp,dbp_train_Ns8,31,1048,1048,1048.0,1048.0,1048,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E022,phys_kerr,fir_L127_nosym,127,508,508,508.0,508.0,508,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E022,phys_kerr,fir_L127_sym,127,256,256,256.0,256.0,256,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E022,phys_kerr,fir_L255_nosym,255,1020,1020,1020.0,1020.0,1020,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E022,phys_kerr,fir_L255_sym,255,512,512,512.0,512.0,512,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E022,phys_kerr,fir_L31_nosym,31,124,124,124.0,124.0,124,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E022,phys_kerr,fir_L31_sym,31,64,64,64.0,64.0,64,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E022,phys_kerr,fir_L501_nosym,501,2004,2004,2004.0,2004.0,2004,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E022,phys_kerr,fir_L501_sym,501,1004,1004,1004.0,1004.0,1004,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E023,complex_one_hidden,complex_E021_kerr_oh_h296,31,39960,39960,39960.0,39960.0,39960,h(4W+11),True
+E023,phys_dbp,dbp_E018_dbp_Ns8_L31_R7_joint_from_scratch,31,592,592,592.0,592.0,592,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E023,kerr_kan,kan_E014_k4_cascade_staged,31,10392,8088,,,8088,no closed form (compared with model_zoo.cost),True
+E023,phys_plus_mlp,phys_E021_hyb_h118,31,15968,15968,15968.0,15968.0,15968,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E023,phys_kerr,physkerr_E016_phys_R31_L7_sym,31,38,38,38.0,38.0,38,Ns * [FIR (2(L+1) sym / 4L) + 2 + R' + 4] (+ h(4W+11)),True
+E023,real_tanh,real_E011_real_tanh,31,15360,15360,15360.0,15360.0,15360,2Wh+h^2+2h,True
+E023,transformer,transformer_E021_tr_w7_d8_L2,7,8928,8928,8928.0,8928.0,8928,W*2d + L[W(4d^2+2*ffn*d^2)+2W^2d] + d^2+2d,True

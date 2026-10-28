@@ -1,0 +1,4 @@
+=== 2026-10-28T08:45:13+07:00 E023 summarize: .venv/bin/python -m constellation_denoiser.summarize_E023 ===
+JOBS=auto THREADS=auto DEVICE=auto SEEDS=default SMOKE=0 FORCE=0
+сводка: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E023_split_robustness/results/split_summary.csv; вердикты: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E023_split_robustness/results/robustness_verdicts.csv
+=== 2026-10-28T08:45:16+07:00 E023 summarize exit=0 ===

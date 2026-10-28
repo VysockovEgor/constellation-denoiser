@@ -1,0 +1,39 @@
+{
+  "splits": {
+    "train": {
+      "files": 30,
+      "raw_ber_window31_centres": 0.00947525579878521,
+      "raw_ber_all_symbols": 0.009491984049479167
+    },
+    "validation": {
+      "files": 45,
+      "raw_ber_window31_centres": 0.009620140502493444,
+      "raw_ber_all_symbols": 0.009640842013888888
+    },
+    "test": {
+      "files": 45,
+      "raw_ber_window31_centres": 0.009551859551859552,
+      "raw_ber_all_symbols": 0.009569973415798612
+    }
+  },
+  "recorded_raw_test_ber": 0.009551859551859552,
+  "recomputed_equals_recorded": true,
+  "raw_q2_db": 13.972039971471064,
+  "hd_fec_ber": 0.0038,
+  "hd_fec_reduction_pct": 60.217170495767846,
+  "hd_fec_q2_gain_db": 1.2205324782069962,
+  "tx_power_range": [
+    0.98872070320677,
+    1.01489257821019
+  ],
+  "rx_power_range": [
+    0.9999999999927307,
+    1.0000000000062492
+  ],
+  "tx_levels_unique": [
+    "0.3162",
+    "0.9487"
+  ],
+  "normalisation_note": "tx levels ±1/√10, ±3/√10 in every file if tx_levels_unique has 2 values; rx power per file in rx_power_range",
+  "metadata": "the CSV files have 4 columns (tx_I, tx_Q, rx_I, rx_Q) and no metadata on launch power, OSNR or channel; file names carry only the PR id (E023 config)"
+}

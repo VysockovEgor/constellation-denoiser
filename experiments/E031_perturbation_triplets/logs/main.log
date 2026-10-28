@@ -1,0 +1,34 @@
+=== 2026-10-28T08:51:07+07:00 E031 main: .venv/bin/python -u -m constellation_denoiser.summarize_E031 all ===
+JOBS=40 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+T1 M=3: test -0.25 %
+T2 M=3: test -3.64 %
+T3 M=3: test 8.94 %
+T3+FIR7 M=3: test 12.67 %
+T3+FIR15 M=3: test 12.65 %
+T1 M=5: test -0.38 %
+T2 M=5: test -3.65 %
+T3 M=5: test 23.25 %
+T3+FIR7 M=5: test 29.30 %
+T3+FIR15 M=5: test 29.27 %
+T1 M=7: test -0.46 %
+T2 M=7: test -3.75 %
+T3 M=7: test 33.85 %
+T3+FIR7 M=7: test 41.82 %
+T3+FIR15 M=7: test 41.76 %
+T1 M=11: test -0.41 %
+T2 M=11: test -3.86 %
+T3 M=11: test 49.64 %
+T3+FIR7 M=11: test 58.91 %
+T3+FIR15 M=11: test 58.89 %
+T1 M=15: test -0.29 %
+T2 M=15: test -3.70 %
+T3 M=15: test 59.33 %
+T3+FIR7 M=15: test 69.08 %
+T3+FIR15 M=15: test 69.07 %
+T1 M=21: test 0.14 %
+T2 M=21: test -3.30 %
+T3 M=21: test 68.24 %
+T3+FIR7 M=21: test 77.84 %
+T3+FIR15 M=21: test 77.82 %
+E031: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E031_perturbation_triplets/results/triplet_summary.csv
+=== 2026-10-28T09:30:48+07:00 E031 main exit=0 ===

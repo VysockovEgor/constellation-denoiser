@@ -1,0 +1,5 @@
+hypothesis,value,verdict,detail,rule_status
+утечки по последовательностям нет (K = 12: ≤ 5 × случайной и < 1 %),0.0,подтверждено,случайная доля 1.75e-09; max совпадение файлов 0.0716,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+сырой test BER совпадает с записанным 0.009551859551859552,0.009551859551859552,подтверждено,"HD-FEC 3.8e-3 = снижение 60.2 %, Q² 1.221 дБ",DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+RM всех таблиц E010–E023 совпадает с независимыми формулами,0.0,подтверждено,проверено 162 конфигураций,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"минимально различимая разница при 5 seeds (MDD), п.п.",1.7041558115583395,справочно,"MDD = t_{0.975, 2n-2} * s_pooled * sqrt(2/n), n = 5 seeds per arm, s_pooled = sqrt(mean s_i^2) over configurations with 5 seeds (E019)",DRAFT: to be confirmed by the user before the first run; must not change after results are seen

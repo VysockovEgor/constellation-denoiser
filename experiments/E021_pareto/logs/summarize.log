@@ -1,0 +1,8 @@
+=== 2026-10-27T21:53:48+07:00 E021 summarize: .venv/bin/python -m constellation_denoiser.summarize_E021 ===
+JOBS=auto THREADS=auto DEVICE=auto SEEDS=default SMOKE=0 FORCE=0
+точек 278; лучшие по уровням: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E021_pareto/results/level_best.csv; участники E023: 7
+=== 2026-10-27T21:53:51+07:00 E021 summarize exit=0 ===
+=== 2026-10-28T04:48:00+07:00 E021 summarize: .venv/bin/python -m constellation_denoiser.summarize_E021 ===
+JOBS=auto THREADS=auto DEVICE=auto SEEDS=default SMOKE=0 FORCE=0
+точек 296; лучшие по уровням: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E021_pareto/results/level_best.csv; участники E023: 7
+=== 2026-10-28T04:48:03+07:00 E021 summarize exit=0 ===

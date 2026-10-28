@@ -1,0 +1,16 @@
+{
+  "stage": "dedup",
+  "runs_total": 1,
+  "runs_todo": 1,
+  "jobs": 40,
+  "threads": 1,
+  "device": "cpu",
+  "hours": 0.7224422119879824,
+  "hours_half_jobs": 0.7224422119879824,
+  "longest_run_hours": 0.7224422119879824,
+  "unique_models": 1,
+  "contention": 0.6665955032813512,
+  "synthetic_data": false,
+  "measured_at": "2026-10-27T11:26:23+00:00",
+  "hostname": "hocalhost"
+}

@@ -1,0 +1,16 @@
+{
+  "rule": "no leakage if, for K = 12, the share of test windows whose exact label sequence occurs in train is <= 5 x the random share 1 - exp(-N_train_windows / 16^K) and < 1 %",
+  "k": 12,
+  "share_test_to_train": 0.0,
+  "expected_random": 1.745057431890018e-09,
+  "matched_windows": 0,
+  "no_leakage": true,
+  "verdict": "утечки нет",
+  "max_cross_file_match": 0.07159423828125,
+  "random_match": 0.0625,
+  "files": {
+    "train": 30,
+    "validation": 45,
+    "test": 45
+  }
+}

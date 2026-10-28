@@ -1,0 +1,14 @@
+=== 2026-10-28T08:50:43+07:00 E024 audit: .venv/bin/python -m constellation_denoiser.audit_e024 leakage data budget noise ===
+JOBS=40 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+утечка: утечки нет (K=12: 0 при случайной 1.75e-09); max совпадение между файлами 0.0716 (случайно 1/16 = 0.0625)
+сырой BER test 0.00955186 (записан 0.009551859551859552); HD-FEC 3.8e-3 = снижение 60.2 %
+бюджет настройки: 10 семейств -> /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E024_data_audit/results/tuning_budget.csv
+шумовой пол: s = 1.17 п.п., MDD(5 seeds) = 1.70 п.п.
+=== 2026-10-28T08:50:55+07:00 E024 audit exit=0 ===
+=== 2026-10-28T08:50:55+07:00 E024 audit: .venv/bin/python -m constellation_denoiser.rm_audit ===
+JOBS=40 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+RM: проверено 162 конфигураций, несовпадений 0 -> /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E024_data_audit/results/rm_audit_mismatches.csv
+=== 2026-10-28T08:50:57+07:00 E024 audit exit=0 ===
+=== 2026-10-28T08:50:57+07:00 E024 audit: .venv/bin/python -m constellation_denoiser.audit_e024 pareto ===
+JOBS=40 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+=== 2026-10-28T08:51:01+07:00 E024 audit exit=0 ===

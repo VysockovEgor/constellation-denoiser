@@ -1,0 +1,24 @@
+=== 2026-10-27T18:26:24+07:00 E025 estimate: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/.venv/bin/python -m constellation_denoiser.runner --exp E025 --stage control --estimate ===
+JOBS=40 THREADS=auto DEVICE=auto SEEDS=default SMOKE=0 FORCE=0
+Стадия control: всего прогонов 2, осталось 2.
+  замер 1 моделей за 24 с на cpu, THREADS=1, коэффициент конкуренции процессов 0.67 (из resources.json)
+  оценка: ~0.2 ч при JOBS=40; ~0.2 ч при JOBS=20; самый длинный прогон ~0.2 ч
+=== 2026-10-27T18:26:52+07:00 E025 estimate exit=0 ===
+=== 2026-10-27T18:26:52+07:00 E025 estimate: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/.venv/bin/python -m constellation_denoiser.runner --exp E025 --stage s1 --estimate ===
+JOBS=40 THREADS=auto DEVICE=auto SEEDS=default SMOKE=0 FORCE=0
+Стадия s1: всего прогонов 806, осталось 806.
+  замер 403 моделей за 388 с на cpu, THREADS=1, коэффициент конкуренции процессов 0.67 (из resources.json)
+  оценка: ~14.1 ч при JOBS=40; ~28.2 ч при JOBS=20; самый длинный прогон ~12.9 ч
+=== 2026-10-27T18:33:25+07:00 E025 estimate exit=0 ===
+=== 2026-10-27T18:33:25+07:00 E025 estimate: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/.venv/bin/python -m constellation_denoiser.runner --exp E025 --stage s2 --estimate ===
+JOBS=40 THREADS=auto DEVICE=auto SEEDS=default SMOKE=0 FORCE=0
+Стадия s2: всего прогонов 195, осталось 195.
+  замер 65 моделей за 146 с на cpu, THREADS=1, коэффициент конкуренции процессов 0.67 (из resources.json)
+  оценка: ~24.7 ч при JOBS=40; ~24.7 ч при JOBS=20; самый длинный прогон ~24.7 ч
+=== 2026-10-27T18:35:56+07:00 E025 estimate exit=0 ===
+=== 2026-10-27T18:35:56+07:00 E025 estimate: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/.venv/bin/python -m constellation_denoiser.runner --exp E025 --stage s3 --estimate ===
+JOBS=40 THREADS=auto DEVICE=auto SEEDS=default SMOKE=0 FORCE=0
+Стадия s3: всего прогонов 171, осталось 171.
+  замер 35 моделей за 105 с на cpu, THREADS=1, коэффициент конкуренции процессов 0.67 (из resources.json)
+  оценка: ~23.7 ч при JOBS=40; ~23.7 ч при JOBS=20; самый длинный прогон ~23.7 ч
+=== 2026-10-27T18:37:45+07:00 E025 estimate exit=0 ===

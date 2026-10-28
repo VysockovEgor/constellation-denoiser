@@ -71,3 +71,4 @@ JOBS=auto THREADS=auto DEVICE=auto SEEDS=default SMOKE=0 FORCE=0
 [2026-10-27 17:17:25] [ok 68/85] kan_h2_const_1e-3_200k_seed43: val=-4.66% test=-4.64% diverged=False time=6429s; ETA ~73 min
 [2026-10-27 17:26:19] [ok 69/85] kan_h2_const_1e-3_200k_seed57: val=-0.01% test=-0.06% diverged=False time=5601s; ETA ~70 min
 [2026-10-27 17:53:41] [ok 70/85] kan_h2_const_1e-3_200k_seed71: val=-4.05% test=-4.40% diverged=False time=6685s; ETA ~70 min
+=== 2026-10-27T21:53:48+07:00 E021 main exit=0 ===

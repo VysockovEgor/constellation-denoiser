@@ -1,0 +1,197 @@
+source,model,variant,family
+E010,complex_a,a,Kerr MLP
+E010,complex_both,both,Kerr MLP
+E011,complex_a,complex_a,Kerr MLP
+E011,complex_both,complex_both,Kerr MLP
+E011,complex_one_hidden,complex_one_hidden,Kerr MLP
+E011,real_tanh,real_tanh,real MLP
+E012,complex_a,v2_two_kerr_last,Kerr MLP
+E012,complex_both,v1_two_kerr_both,Kerr MLP
+E012,complex_one_hidden,v3_one_hidden,Kerr MLP
+E012,complex_one_hidden,v4_one_hidden_wide,Kerr MLP
+E013,transformer,transformer_d32_L1,transformer
+E013,transformer,transformer_d64_L2,transformer
+E014,complex_one_hidden,k0_kerr,Kerr MLP
+E014,complex_one_hidden,k0b_kerr_continued,Kerr MLP
+E014,kan,k1_kan_only,KAN
+E014,kerr_kan,k2_parallel_joint,KAN
+E014,kerr_kan,k3_parallel_staged,KAN
+E014,kerr_kan,k4_cascade_staged,KAN
+E016,phys_kerr,fir_L31_nosym,linear FIR
+E016,phys_kerr,fir_L31_sym,linear FIR
+E016,phys_kerr,phys_R11_L1_nosym,PhysKerr
+E016,phys_kerr,phys_R11_L1_sym,PhysKerr
+E016,phys_kerr,phys_R11_L31_nosym,PhysKerr
+E016,phys_kerr,phys_R11_L31_sym,PhysKerr
+E016,phys_kerr,phys_R11_L7_nosym,PhysKerr
+E016,phys_kerr,phys_R11_L7_sym,PhysKerr
+E016,phys_kerr,phys_R1_L1_nosym,PhysKerr
+E016,phys_kerr,phys_R1_L31_nosym,PhysKerr
+E016,phys_kerr,phys_R1_L31_sym,PhysKerr
+E016,phys_kerr,phys_R1_L7_nosym,PhysKerr
+E016,phys_kerr,phys_R1_L7_sym,PhysKerr
+E016,phys_kerr,phys_R21_L1_nosym,PhysKerr
+E016,phys_kerr,phys_R21_L1_sym,PhysKerr
+E016,phys_kerr,phys_R21_L31_nosym,PhysKerr
+E016,phys_kerr,phys_R21_L31_sym,PhysKerr
+E016,phys_kerr,phys_R21_L7_nosym,PhysKerr
+E016,phys_kerr,phys_R21_L7_sym,PhysKerr
+E016,phys_kerr,phys_R31_L1_nosym,PhysKerr
+E016,phys_kerr,phys_R31_L1_sym,PhysKerr
+E016,phys_kerr,phys_R31_L31_nosym,PhysKerr
+E016,phys_kerr,phys_R31_L31_sym,PhysKerr
+E016,phys_kerr,phys_R31_L7_nosym,PhysKerr
+E016,phys_kerr,phys_R31_L7_sym,PhysKerr
+E016,phys_kerr,phys_R3_L1_nosym,PhysKerr
+E016,phys_kerr,phys_R3_L1_sym,PhysKerr
+E016,phys_kerr,phys_R3_L31_nosym,PhysKerr
+E016,phys_kerr,phys_R3_L31_sym,PhysKerr
+E016,phys_kerr,phys_R3_L7_nosym,PhysKerr
+E016,phys_kerr,phys_R3_L7_sym,PhysKerr
+E016,phys_kerr,phys_R7_L1_nosym,PhysKerr
+E016,phys_kerr,phys_R7_L1_sym,PhysKerr
+E016,phys_kerr,phys_R7_L31_nosym,PhysKerr
+E016,phys_kerr,phys_R7_L31_sym,PhysKerr
+E016,phys_kerr,phys_R7_L7_nosym,PhysKerr
+E016,phys_kerr,phys_R7_L7_sym,PhysKerr
+E017,phys_plus_mlp,h16_frozen,Phys + MLP
+E017,phys_plus_mlp,h16_joint,Phys + MLP
+E017,phys_plus_mlp,h48_frozen,Phys + MLP
+E017,phys_plus_mlp,h48_joint,Phys + MLP
+E017,phys_plus_mlp,h4_frozen,Phys + MLP
+E017,phys_plus_mlp,h4_joint,Phys + MLP
+E017,phys_plus_mlp,h8_frozen,Phys + MLP
+E017,phys_plus_mlp,h8_joint,Phys + MLP
+E018,phys_dbp,dbp_Ns1_L31_R3_joint_from_scratch,DBP
+E018,phys_dbp,dbp_Ns1_L31_R3_layerwise,DBP
+E018,phys_dbp,dbp_Ns1_L31_R7_joint_from_scratch,DBP
+E018,phys_dbp,dbp_Ns1_L31_R7_layerwise,DBP
+E018,phys_dbp,dbp_Ns1_L7_R3_joint_from_scratch,DBP
+E018,phys_dbp,dbp_Ns1_L7_R3_layerwise,DBP
+E018,phys_dbp,dbp_Ns1_L7_R7_joint_from_scratch,DBP
+E018,phys_dbp,dbp_Ns1_L7_R7_layerwise,DBP
+E018,phys_dbp,dbp_Ns2_L31_R3_joint_from_scratch,DBP
+E018,phys_dbp,dbp_Ns2_L31_R3_layerwise,DBP
+E018,phys_dbp,dbp_Ns2_L31_R7_joint_from_scratch,DBP
+E018,phys_dbp,dbp_Ns2_L31_R7_layerwise,DBP
+E018,phys_dbp,dbp_Ns2_L7_R3_joint_from_scratch,DBP
+E018,phys_dbp,dbp_Ns2_L7_R3_layerwise,DBP
+E018,phys_dbp,dbp_Ns2_L7_R7_joint_from_scratch,DBP
+E018,phys_dbp,dbp_Ns2_L7_R7_layerwise,DBP
+E018,phys_dbp,dbp_Ns4_L31_R3_joint_from_scratch,DBP
+E018,phys_dbp,dbp_Ns4_L31_R3_layerwise,DBP
+E018,phys_dbp,dbp_Ns4_L31_R7_joint_from_scratch,DBP
+E018,phys_dbp,dbp_Ns4_L31_R7_layerwise,DBP
+E018,phys_dbp,dbp_Ns4_L7_R3_joint_from_scratch,DBP
+E018,phys_dbp,dbp_Ns4_L7_R3_layerwise,DBP
+E018,phys_dbp,dbp_Ns4_L7_R7_joint_from_scratch,DBP
+E018,phys_dbp,dbp_Ns4_L7_R7_layerwise,DBP
+E018,phys_dbp,dbp_Ns8_L31_R3_joint_from_scratch,DBP
+E018,phys_dbp,dbp_Ns8_L31_R3_layerwise,DBP
+E018,phys_dbp,dbp_Ns8_L31_R7_joint_from_scratch,DBP
+E018,phys_dbp,dbp_Ns8_L31_R7_layerwise,DBP
+E018,phys_dbp,dbp_Ns8_L7_R3_joint_from_scratch,DBP
+E018,phys_dbp,dbp_Ns8_L7_R3_layerwise,DBP
+E018,phys_dbp,dbp_Ns8_L7_R7_joint_from_scratch,DBP
+E018,phys_dbp,dbp_Ns8_L7_R7_layerwise,DBP
+E019,complex_a,control_complex_a,Kerr MLP
+E019,complex_both,control_complex_both,Kerr MLP
+E019,phys_dbp,E018_dbp_Ns8_L31_R7_joint_from_scratch,DBP
+E019,phys_kerr,E016_phys_R31_L7_sym,PhysKerr
+E019,phys_plus_mlp,E017_hyb_R31_L7_sym_h48_joint,Phys + MLP
+E020,phys_plus_mlp,hyb_h48_joint_A0,Phys + MLP
+E020,phys_plus_mlp,hyb_h48_joint_A1,Phys + MLP
+E020,phys_plus_mlp,hyb_h48_joint_A2,Phys + MLP
+E020,phys_plus_mlp,hyb_h48_joint_A3,Phys + MLP
+E021,complex_both,kerr_both_h11,Kerr MLP
+E021,complex_both,kerr_both_h84,Kerr MLP
+E021,complex_one_hidden,kerr_oh_h15,Kerr MLP
+E021,complex_one_hidden,kerr_oh_h296,Kerr MLP
+E021,kan,kan_h110,KAN
+E021,kan,kan_h2,KAN
+E021,kan,kan_h32,KAN
+E021,phys_plus_mlp,hyb_h118,Phys + MLP
+E021,phys_plus_mlp,hyb_h15,Phys + MLP
+E021,phys_plus_mlp,hyb_h296,Phys + MLP
+E021,real_tanh,real_h171,real MLP
+E021,real_tanh,real_h23,real MLP
+E021,real_tanh,real_h55,real MLP
+E021,transformer,tr_w15_d16_L1,transformer
+E021,transformer,tr_w7_d16_L1,transformer
+E021,transformer,tr_w7_d4_L2,transformer
+E021,transformer,tr_w7_d8_L2,transformer
+E022,cnn,cnn_C13_k9,CNN
+E022,cnn,cnn_C22_k11,CNN
+E022,cnn,cnn_C36_k11,CNN
+E022,phys_dbp,dbp_fixed_Ns1,DBP (fixed nonlinearity)
+E022,phys_dbp,dbp_fixed_Ns4,DBP (fixed nonlinearity)
+E022,phys_dbp,dbp_fixed_Ns8,DBP (fixed nonlinearity)
+E022,phys_dbp,dbp_train_Ns1,DBP
+E022,phys_dbp,dbp_train_Ns4,DBP
+E022,phys_dbp,dbp_train_Ns8,DBP
+E022,phys_kerr,fir_L127_nosym,linear FIR
+E022,phys_kerr,fir_L127_sym,linear FIR
+E022,phys_kerr,fir_L255_nosym,linear FIR
+E022,phys_kerr,fir_L255_sym,linear FIR
+E022,phys_kerr,fir_L31_nosym,linear FIR
+E022,phys_kerr,fir_L31_sym,linear FIR
+E022,phys_kerr,fir_L501_nosym,linear FIR
+E022,phys_kerr,fir_L501_sym,linear FIR
+E025,complex_a,*,Kerr MLP
+E025,complex_both,*,Kerr MLP
+E025,complex_one_hidden,*,Kerr MLP
+E025,kerr_kan,*,KAN
+E025,phys_dbp,*,DBP
+E025,phys_kerr,*,PhysKerr
+E025,phys_plus_mlp,*,Phys + MLP
+E025,real_mlp,*,real MLP
+E025,transformer,*,transformer
+E026,complex_both,*,Kerr MLP
+E026,complex_one_hidden,*,Kerr MLP
+E027,act_mlp,cardioid_h119,"complex MLP, other activation"
+E027,act_mlp,cardioid_h16,"complex MLP, other activation"
+E027,act_mlp,cardioid_h48,"complex MLP, other activation"
+E027,act_mlp,crelu_h119,"complex MLP, other activation"
+E027,act_mlp,crelu_h16,"complex MLP, other activation"
+E027,act_mlp,crelu_h48,"complex MLP, other activation"
+E027,act_mlp,identity_h119,"complex MLP, other activation"
+E027,act_mlp,identity_h16,"complex MLP, other activation"
+E027,act_mlp,identity_h48,"complex MLP, other activation"
+E027,act_mlp,kerr_c_fixed_h119,"complex MLP, other activation"
+E027,act_mlp,kerr_c_fixed_h16,"complex MLP, other activation"
+E027,act_mlp,kerr_c_fixed_h48,"complex MLP, other activation"
+E027,act_mlp,kerr_c_train_h119,Kerr MLP
+E027,act_mlp,kerr_c_train_h16,Kerr MLP
+E027,act_mlp,kerr_c_train_h48,Kerr MLP
+E027,act_mlp,kerr_taylor1_h119,"complex MLP, other activation"
+E027,act_mlp,kerr_taylor1_h16,"complex MLP, other activation"
+E027,act_mlp,kerr_taylor1_h48,"complex MLP, other activation"
+E027,act_mlp,modrelu_h119,"complex MLP, other activation"
+E027,act_mlp,modrelu_h16,"complex MLP, other activation"
+E027,act_mlp,modrelu_h48,"complex MLP, other activation"
+E027,act_mlp,sigmoid_gate_h119,"complex MLP, other activation"
+E027,act_mlp,sigmoid_gate_h16,"complex MLP, other activation"
+E027,act_mlp,sigmoid_gate_h48,"complex MLP, other activation"
+E027,act_mlp,split_tanh_h119,"complex MLP, other activation"
+E027,act_mlp,split_tanh_h16,"complex MLP, other activation"
+E027,act_mlp,split_tanh_h48,"complex MLP, other activation"
+E028,dbp_mlp,*,DBP + MLP
+E028,dbp_noise,*,DBP
+E028,dbp_shared,*,DBP
+E028,phys_dbp,*,DBP
+E029,complex_one_hidden,*,Kerr MLP
+E029,phys_plus_mlp,*,Phys + MLP
+E030,complex_one_hidden,*,Kerr MLP
+E030,phys_dbp,*,DBP
+E030,phys_plus_mlp,*,Phys + MLP
+E031,triplets,*,PB-NLC (triplets)
+E032,complex_both,*,Kerr MLP
+E032,complex_one_hidden,*,Kerr MLP
+E032,phys_dbp,*,DBP
+E032,phys_plus_mlp,*,Phys + MLP
+E032,real_mlp,*,real MLP
+E033,complex_both,*,Kerr MLP
+E033,complex_one_hidden,*,Kerr MLP
+E033,phys_dbp,*,DBP
+E033,phys_plus_mlp,*,Phys + MLP
+E033,real_mlp,*,real MLP

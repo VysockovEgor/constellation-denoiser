@@ -1,5 +1,56 @@
 level,hypothesis,diff_pp,intervals_overlap,verdict,rule_status
-6500,6500: complex Kerr MLP лучше Phys + MLP,3.1759015577210405,False,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+2000,2000: Phys + MLP лучше complex Kerr MLP,4.071413329539794,False,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+2000,2000: Phys + MLP лучше CNN (приближение),15.161818052493068,False,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+2000,2000: Phys + MLP лучше real tanh MLP,35.96984138274415,False,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+2000,2000: Phys + MLP лучше transformer,43.23010258286077,False,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+2000,2000: Phys + MLP лучше линейный FIR,48.28516605028325,False,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+2000,2000: complex Kerr MLP лучше CNN (приближение),11.090404722953274,False,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+2000,2000: complex Kerr MLP лучше real tanh MLP,31.898428053204356,False,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+2000,2000: complex Kerr MLP лучше transformer,39.15868925332098,False,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+2000,2000: complex Kerr MLP лучше линейный FIR,44.21375272074346,False,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+2000,2000: CNN (приближение) лучше real tanh MLP,20.808023330251082,False,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+2000,2000: CNN (приближение) лучше transformer,28.068284530367706,False,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+2000,2000: CNN (приближение) лучше линейный FIR,33.123347997790184,False,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+2000,2000: real tanh MLP лучше transformer,7.2602612001166245,False,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+2000,2000: real tanh MLP лучше линейный FIR,12.315324667539103,False,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+2000,2000: transformer лучше линейный FIR,5.055063467422479,False,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+6500,6500: Phys + MLP лучше complex Kerr MLP,1.5634113379329904,False,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+6500,6500: Phys + MLP лучше KAN,5.802333025108474,False,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+6500,6500: Phys + MLP лучше CNN (приближение),28.94658226047372,False,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+6500,6500: Phys + MLP лучше real tanh MLP,42.77900277402376,False,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+6500,6500: Phys + MLP лучше transformer,51.77786127877245,False,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
 6500,6500: complex Kerr MLP лучше KAN,4.238921687175484,False,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
-6500,6500: Phys + MLP лучше KAN,1.0630201294544435,True,не различимы,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+6500,6500: complex Kerr MLP лучше CNN (приближение),27.383170922540728,False,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+6500,6500: complex Kerr MLP лучше real tanh MLP,41.21559143609077,False,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+6500,6500: complex Kerr MLP лучше transformer,50.21444994083946,False,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+6500,6500: KAN лучше CNN (приближение),23.144249235365244,False,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+6500,6500: KAN лучше real tanh MLP,36.976669748915285,False,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+6500,6500: KAN лучше transformer,45.975528253663974,False,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+6500,6500: CNN (приближение) лучше real tanh MLP,13.83242051355004,False,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+6500,6500: CNN (приближение) лучше transformer,22.83127901829873,False,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+6500,6500: real tanh MLP лучше transformer,8.99885850474869,False,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+16000,16000: Phys + MLP лучше complex Kerr MLP,1.2751025440405783,True,не различимы,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+16000,16000: Phys + MLP лучше CNN (приближение),24.74073547193968,False,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+16000,16000: Phys + MLP лучше real tanh MLP,36.2941887758731,False,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+16000,16000: Phys + MLP лучше KAN,52.83946226616402,False,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+16000,16000: Phys + MLP лучше transformer,57.68546494901926,False,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+16000,16000: complex Kerr MLP лучше CNN (приближение),23.4656329278991,False,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
 16000,16000: complex Kerr MLP лучше real tanh MLP,35.019086231832524,False,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+16000,16000: complex Kerr MLP лучше KAN,51.56435972212344,False,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+16000,16000: complex Kerr MLP лучше transformer,56.410362404978684,False,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+16000,16000: CNN (приближение) лучше real tanh MLP,11.553453303933424,False,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+16000,16000: CNN (приближение) лучше KAN,28.098726794224337,False,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+16000,16000: CNN (приближение) лучше transformer,32.94472947707958,False,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+16000,16000: real tanh MLP лучше KAN,16.545273490290914,False,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+16000,16000: real tanh MLP лучше transformer,21.39127617314616,False,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+16000,16000: KAN лучше transformer,4.846002682855245,False,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+40000,40000: complex Kerr MLP лучше Phys + MLP,4.985418593072055,False,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+40000,40000: complex Kerr MLP лучше KAN,31.50152926950708,False,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+40000,40000: complex Kerr MLP лучше real tanh MLP,35.38587381748346,False,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+40000,40000: complex Kerr MLP лучше transformer,57.57952252979422,False,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+40000,40000: Phys + MLP лучше KAN,26.516110676435027,False,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+40000,40000: Phys + MLP лучше real tanh MLP,30.400455224411402,False,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+40000,40000: Phys + MLP лучше transformer,52.59410393672216,False,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+40000,40000: KAN лучше real tanh MLP,3.884344547976376,True,не различимы,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+40000,40000: KAN лучше transformer,26.077993260287133,False,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+40000,40000: real tanh MLP лучше transformer,22.193648712310758,False,подтверждено,DRAFT: to be confirmed by the user before the first run; must not change after results are seen

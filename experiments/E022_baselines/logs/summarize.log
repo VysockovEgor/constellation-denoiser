@@ -1,0 +1,4 @@
+=== 2026-10-28T04:47:57+07:00 E022 summarize: .venv/bin/python -m constellation_denoiser.summarize_E022 ===
+JOBS=auto THREADS=auto DEVICE=auto SEEDS=default SMOKE=0 FORCE=0
+базовые методы: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E022_baselines/results/baselines_summary.csv; вердикты: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E022_baselines/results/baselines_verdicts.csv
+=== 2026-10-28T04:48:00+07:00 E022 summarize exit=0 ===
