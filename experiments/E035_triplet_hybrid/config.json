@@ -1,0 +1,153 @@
+{
+ "experiment_id": "E035",
+ "title": "Triplets trained by gradient and triplets + small Kerr MLP",
+ "question": "Does gradient training reproduce the closed-form triplets, and does a small Kerr MLP on the residual add to them?",
+ "date": "not run",
+ "base_git_commit": "9c27810 (branch exp/E024-E033)",
+ "git_commit": "recorded per run in results/runs/*.json (field git_commit); rule commit: see LOG.md",
+ "data_manifest_sha256": "cb5f2de47145c02d6485969ce116df2253a271c979a927452ea454551a48c0a8",
+ "data_audit_sha256": "a9c35fb7839e85c39f7131373418a6f3a04c731e9c4e55385347a1eabbdedbe4",
+ "split_source": "experiments/E004_training_file_curve/config.json (train_pool_files[:30], validation 45, test 45), as E007-E019",
+ "split_source_sha256": "04c0b2a5775d8fae1acdc348967c6fb976ef5d90e76a8334484242cc9707025a",
+ "dataset_root": "data/raw/archive",
+ "n_train_files": 30,
+ "base_lr": {
+  "peak_lr": 0.001,
+  "schedule": "const",
+  "warmup": 0,
+  "c_mult": 1.0,
+  "floor_frac": 0.1,
+  "optimizer": "adam",
+  "weight_decay": 0.0
+ },
+ "seeds": [
+  17,
+  29,
+  43,
+  57,
+  71
+ ],
+ "ckpt_every": 10000,
+ "eval_rule": "validation and (report-only) test every max(500, steps/40) steps; selection only by validation",
+ "control": {
+  "runs": {
+   "a_const_1e-3_20k": {
+    "spec": {
+     "model": "complex_a",
+     "window": 31,
+     "hidden": 48,
+     "name": "complex_a"
+    },
+    "n_train_files": 30,
+    "steps": 20000
+   }
+  },
+  "targets": {
+   "a_const_1e-3_20k": {
+    "target": 62.191,
+    "tol": 0.7,
+    "seeds": [
+     17,
+     29
+    ],
+    "metric": "test_reduction_valbest_select",
+    "source": "experiments/E009_kerr_ablation/results/complex_mlp_ablation_summary.csv (variant a); reproduced in E010-E019 (62.19)"
+   }
+  }
+ },
+ "model": "triplets_ext.TripletNet: y = x_c + sum C T(x) + FIR7(x) (+ one-hidden Kerr MLP on the residual, output at zero); window W >= 2M + 1 (M = 15: W = 31, M = 21: W = 43)",
+ "fir_len": 7,
+ "lambda_grid": [
+  1e-08,
+  1e-06,
+  0.0001,
+  0.001,
+  0.01,
+  0.1
+ ],
+ "warm_start": "stage fit: closed-form T3 + FIR7 on all 30 train files, lambda by validation -> results/warm_M<M>.npz",
+ "configs": {
+  "tg_M15_scratch": {
+   "M": 15,
+   "window": 31
+  },
+  "tg_M15_warm": {
+   "M": 15,
+   "window": 31,
+   "warm": true
+  },
+  "th_M15_h4": {
+   "M": 15,
+   "window": 31,
+   "warm": true,
+   "mlp_hidden": 4
+  },
+  "th_M15_h8": {
+   "M": 15,
+   "window": 31,
+   "warm": true,
+   "mlp_hidden": 8
+  },
+  "th_M15_h16": {
+   "M": 15,
+   "window": 31,
+   "warm": true,
+   "mlp_hidden": 16
+  },
+  "tg_M21_warm": {
+   "M": 21,
+   "window": 43,
+   "warm": true
+  },
+  "th_M21_h8": {
+   "M": 21,
+   "window": 43,
+   "warm": true,
+   "mlp_hidden": 8
+  },
+  "th_M21_h16": {
+   "M": 21,
+   "window": 43,
+   "warm": true,
+   "mlp_hidden": 16
+  }
+ },
+ "lr_grid": [
+  {
+   "name": "cos1e-4",
+   "peak_lr": 0.0001,
+   "schedule": "cosine_to_zero",
+   "c_mult": 30.0
+  },
+  {
+   "name": "cos3e-4",
+   "peak_lr": 0.0003,
+   "schedule": "cosine_to_zero",
+   "c_mult": 30.0
+  },
+  {
+   "name": "cos1e-3",
+   "peak_lr": 0.001,
+   "schedule": "cosine_to_zero",
+   "c_mult": 30.0
+  }
+ ],
+ "stages": {
+  "s1": {
+   "seeds": 2,
+   "steps": 20000
+  },
+  "s2": {
+   "seeds": 5,
+   "steps": 200000
+  }
+ },
+ "window_note": "W = 43 runs compute raw BER on the window-43 centres (6 fewer symbols per file edge than W = 31)",
+ "rule_draft": {
+  "status": "DRAFT: to be confirmed by the user before the first run; must not change after results are seen",
+  "hybrid": "a Kerr MLP on the residual helps if th_M*_h* - tg_M*_warm (same M) >= 1 p.p. (5 seeds, intervals do not overlap)",
+  "gradient_warm": "gradient training keeps the closed form if |tg_M*_warm - closed form (E031/E034, same M)| < 1 p.p.",
+  "gradient_scratch": "gradient from scratch reaches the closed form if tg_M15_scratch >= closed form - 1 p.p.",
+  "otherwise": "не доказано"
+ }
+}

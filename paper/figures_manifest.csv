@@ -49,3 +49,5 @@ fig_no,experiment_id,file,caption,source_csv
 48,E033,experiments/E033_pareto_final/figures/E033_pareto_q2.png,Final Pareto frontier: Q2 gain vs RM (not run),experiments/E033_pareto_final/results/pareto_points.csv
 49,E033,experiments/E033_pareto_final/figures/E033_pareto_ber.png,Final Pareto frontier: BER reduction vs RM (not run),experiments/E033_pareto_final/results/pareto_points.csv
 50,E033,experiments/E033_pareto_final/figures/E033_physics_ladder.png,Physical ladder (not run),experiments/E033_pareto_final/results/level_best.csv
+51,E034,experiments/E034_triplets_extended/figures/E034_triplets_pruned_vs_rm.png,Perturbation triplets: memory M and pruning to K terms vs RM (not run),experiments/E034_triplets_extended/results/triplet_ext_summary.csv
+52,E035,experiments/E035_triplet_hybrid/figures/E035_triplet_net.png,Triplets by gradient and triplets + Kerr MLP (not run),experiments/E035_triplet_hybrid/results/triplet_net_summary.csv

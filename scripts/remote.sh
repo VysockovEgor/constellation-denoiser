@@ -110,9 +110,13 @@ resolve_job() {
       JOB_CMD="bash scripts/overnight_e020_e023.sh $2"
       ;;
     q)
-      [[ $# -eq 2 && "$2" =~ ^(p0|p1|p2|p3|p4|p5|conv|all)$ ]] || die "использование: go q p0|p1|p2|p3|p4|p5|conv|all"
+      [[ $# -eq 2 && "$2" =~ ^(p0|p1|p2|p3|p4|p5|conv|all|x)$ ]] || die "использование: go q p0|p1|p2|p3|p4|p5|conv|all|x"
       JOB_STEM="q_$2"
       JOB_CMD="bash scripts/overnight_e024_e033.sh $2"
+      if [[ "$2" == x ]]; then    # E034 + E035; session q_conv_*: the main queue reserves 16 cores, E033 waits for it
+        JOB_STEM="q_conv"
+        JOB_CMD="bash scripts/overnight_e034_e035.sh"
+      fi
       ;;
     E0[0-9][0-9])
       [[ $# -eq 2 ]] || die "использование: go <E0NN> <стадия>"

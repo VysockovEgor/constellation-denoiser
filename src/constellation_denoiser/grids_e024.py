@@ -762,6 +762,80 @@ SPECIAL_STAGES = {("E025", "check-code"): e025_check_code}
 POST_HOOKS = {"dedup_eval": dedup_eval_hook}
 
 
+# --------------------------------------------------------------------------- E035 (triplets by gradient, + Kerr MLP)
+
+def e035_warm_path(directory: Path, smoke: bool, M: int) -> str:
+    from .paths import PROJECT_ROOT
+
+    return str((results_dir(directory, smoke) / f"warm_M{M}.npz").relative_to(PROJECT_ROOT))
+
+
+def e035_fit(options: Options) -> int:
+    """Closed-form T3 + FIR coefficients on all train files (lambda by validation) -> results/warm_M<M>.npz."""
+    from .runner import atomic_write_json, default_files, log
+    from .triplets_ext import closed_form_coefficients
+    from .window_data import load_fileset, resolve_paths
+
+    directory, config = load_config("E035")
+    files = default_files(config["n_train_files"], options.smoke)
+    train, val = (load_fileset(resolve_paths(files[k])) for k in ("train", "validation"))
+    out = results_dir(directory, options.smoke)
+    out.mkdir(parents=True, exist_ok=True)
+    info = {}
+    for M in sorted({c["M"] for c in config["configs"].values()}):
+        coef, lam = closed_form_coefficients(train, val, M, config["fir_len"], config["lambda_grid"], 4096)
+        np.savez(out / f"warm_M{M}.npz", coef=coef)
+        info[f"M{M}"] = {"lambda": lam, "n_coefficients": int(len(coef))}
+        log(f"E035 warm start M={M}: {len(coef)} coefficients, lambda {lam:g}")
+    atomic_write_json(out / "warm_info.json", info)
+    return 0
+
+
+def e035_spec(directory: Path, config: dict, options: Options, item: dict) -> dict:
+    spec = {"model": "triplet_net", "window": item["window"], "M": item["M"], "fir_len": config["fir_len"],
+            "mlp_hidden": item.get("mlp_hidden", 0)}
+    if item.get("warm"):
+        spec["warm"] = e035_warm_path(directory, options.smoke, item["M"])
+    return spec
+
+
+def e035_tasks(stage: str, options: Options) -> list[dict]:
+    exp = "E035"
+    directory, config = load_config(exp)
+    if stage == "control":
+        return control_tasks(exp, directory, config, options)
+    if stage not in ("s1", "s2"):
+        raise SystemExit(f"E035: неизвестная стадия {stage!r}")
+    s1 = config["stages"]["s1"]
+
+    def make(name, item, lr_item, n_seeds, steps, stage_name):
+        lr = lr_from(config["base_lr"], **{k: v for k, v in lr_item.items() if k != "name"})
+        return [run(exp, stage_name, directory, config, options, name=name, spec=e035_spec(directory, config, options, item),
+                    lr=lr, lr_name=lr_item["name"], steps=steps, seed=seed,
+                    meta={"e035_config": name, "lr_id": lr_item["name"], "recipe_source": "E035 s1 (validation)"})
+                for seed in first_seeds(config, options, n_seeds)]
+
+    first = [t for name, item in config["configs"].items() for lr_item in config["lr_grid"]
+             for t in make(name, item, lr_item, s1["seeds"], s1["steps"], "s1")]
+    if stage == "s1":
+        return first
+    runs = read_runs(directory, options.smoke)
+    complete = require(first, runs, "E035 s1")
+    s2, tasks, selection = config["stages"]["s2"], [], {}
+    by_lr = {i["name"]: i for i in config["lr_grid"]}
+    for name, item in config["configs"].items():
+        stats = group_val([r for r in runs if r.get("e035_config") == name and r["stage"] == "s1"], "lr_id") if complete else {}
+        best = best_keys(stats, 1, [config["lr_grid"][0]["name"]])[0]
+        selection[name] = best
+        tasks += make(name, item, by_lr[best], s2["seeds"], s2["steps"], "s2")
+    save_json(directory, options, "s2_selection.json", selection)
+    return tasks
+
+
+BUILDERS["E035"] = e035_tasks
+SPECIAL_STAGES[("E035", "fit")] = e035_fit
+
+
 def _register() -> None:
     from . import grids
 

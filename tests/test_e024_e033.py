@@ -147,6 +147,30 @@ class TripletTests(unittest.TestCase):
         self.assertGreater(rm["rm_naive"], rm["rm_sym"])
 
 
+class TripletNetTests(unittest.TestCase):
+    def test_torch_module_matches_closed_form_prediction(self):
+        import tempfile
+
+        from constellation_denoiser.triplets import triplet_terms
+        from constellation_denoiser.triplets_ext import TripletNet, triplet_net_macs
+
+        rng = np.random.default_rng(3)
+        M, fir, W = 3, 7, 31
+        p = len(triplet_terms(M, "T3")) + fir
+        coef = (rng.normal(size=p) + 1j * rng.normal(size=p)) * 0.01
+        rx = (rng.normal(size=400) + 1j * rng.normal(size=400)) / np.sqrt(2)
+        with tempfile.NamedTemporaryFile(suffix=".npz") as handle:
+            np.savez(handle.name, coef=coef)
+            net = TripletNet(W, M, fir, 0, handle.name)
+        expected = triplets.predict(rx, coef, triplet_terms(M, "T3"), fir, False, 4096)[:, 0]   # centres 15 .. 384
+        windows = np.lib.stride_tricks.sliding_window_view(rx, W)
+        x = torch.tensor(np.stack([windows.real, windows.imag], -1), dtype=torch.float32)
+        with torch.no_grad():
+            got = net(x).numpy()
+        self.assertLess(np.abs(got - expected).max(), 1e-4)
+        self.assertEqual(triplet_net_macs(W, M, fir, 8), 12 * len(triplet_terms(M, "T3")) + 28 + 8 * (4 * W + 11))
+
+
 class SelectionTests(unittest.TestCase):
     def test_pareto_front_and_thinning(self):
         from constellation_denoiser.grids_e024 import pareto_front, thin_by_log

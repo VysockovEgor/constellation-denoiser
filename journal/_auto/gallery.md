@@ -218,11 +218,11 @@
 
 ::: {layout-ncol=3}
 
-![E025 · E025_before_after.png · 2026-10-30](figs/experiments/E025_family_tuning/figures/E025_before_after.png){group="gallery"}
+![E025 · E025_before_after.png · 2026-10-31](figs/experiments/E025_family_tuning/figures/E025_before_after.png){group="gallery"}
 
-![E025 · E025_search_response.png · 2026-10-30](figs/experiments/E025_family_tuning/figures/E025_search_response.png){group="gallery"}
+![E025 · E025_search_response.png · 2026-10-31](figs/experiments/E025_family_tuning/figures/E025_search_response.png){group="gallery"}
 
-![E025 · E025_hparam_importance.png · 2026-10-30](figs/experiments/E025_family_tuning/figures/E025_hparam_importance.png){group="gallery"}
+![E025 · E025_hparam_importance.png · 2026-10-31](figs/experiments/E025_family_tuning/figures/E025_hparam_importance.png){group="gallery"}
 
 :::
 
@@ -230,11 +230,11 @@
 
 ::: {layout-ncol=3}
 
-![E026 · E026_heatmap_val.png · 2026-10-30](figs/experiments/E026_kerr_complexity_map/figures/E026_heatmap_val.png){group="gallery"}
+![E026 · E026_heatmap_val.png · 2026-10-31](figs/experiments/E026_kerr_complexity_map/figures/E026_heatmap_val.png){group="gallery"}
 
-![E026 · E026_pareto_by_window.png · 2026-10-30](figs/experiments/E026_kerr_complexity_map/figures/E026_pareto_by_window.png){group="gallery"}
+![E026 · E026_pareto_by_window.png · 2026-10-31](figs/experiments/E026_kerr_complexity_map/figures/E026_pareto_by_window.png){group="gallery"}
 
-![E026 · E026_instability.png · 2026-10-30](figs/experiments/E026_kerr_complexity_map/figures/E026_instability.png){group="gallery"}
+![E026 · E026_instability.png · 2026-10-31](figs/experiments/E026_kerr_complexity_map/figures/E026_instability.png){group="gallery"}
 
 :::
 
@@ -250,6 +250,6 @@
 
 ::: {layout-ncol=3}
 
-![E032 · E032_valbest_test_vs_steps.png · 2026-10-30](figs/experiments/E032_convergence_1m/figures/E032_valbest_test_vs_steps.png){group="gallery"}
+![E032 · E032_valbest_test_vs_steps.png · 2026-10-31](figs/experiments/E032_convergence_1m/figures/E032_valbest_test_vs_steps.png){group="gallery"}
 
 :::

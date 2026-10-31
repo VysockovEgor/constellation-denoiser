@@ -22,7 +22,7 @@ from .complex_mlp_ablation import complexity
 from .experiment import set_seed
 
 
-NEW_KINDS = ("act_mlp", "real_mlp", "dbp_shared", "dbp_mlp", "dbp_noise")   # = models_e024.KINDS
+NEW_KINDS = ("act_mlp", "real_mlp", "dbp_shared", "dbp_mlp", "dbp_noise", "triplet_net")   # = models_e024.KINDS
 
 
 @dataclass(frozen=True)
@@ -177,4 +177,4 @@ def n_params(model: nn.Module) -> int:
 
 
 def outputs_complex(spec: dict) -> bool:
-    return spec["model"].startswith(("complex", "phys")) or spec["model"] in ("kerr_kan", "act_mlp", "dbp_shared", "dbp_mlp", "dbp_noise")
+    return spec["model"].startswith(("complex", "phys")) or spec["model"] in ("kerr_kan", "act_mlp", "dbp_shared", "dbp_mlp", "dbp_noise", "triplet_net")

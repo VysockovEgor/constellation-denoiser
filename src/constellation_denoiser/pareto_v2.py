@@ -40,11 +40,12 @@ TABLES = [
     ("E027_activation_ablation", "runs_table.csv"), ("E028_dbp_depth_layerwise", "runs_table.csv"),
     ("E029_frontend_vs_width", "runs_table.csv"), ("E030_loss_functions", "runs_table.csv"),
     ("E031_perturbation_triplets", "runs_table.csv"), ("E032_convergence_1m", "runs_table.csv"),
-    ("E033_pareto_final", "runs_table.csv"),
+    ("E033_pareto_final", "runs_table.csv"), ("E034_triplets_extended", "runs_table.csv"),
+    ("E035_triplet_hybrid", "runs_table.csv"),
 ]
 E019_FAMILY = {"E016": "PhysKerr", "E017": "Phys + MLP", "E018": "DBP", "control": "Kerr MLP"}
 FAMILY_ORDER = ["Kerr MLP", "complex MLP, other activation", "Phys + MLP", "PhysKerr", "DBP", "DBP + MLP",
-                "PB-NLC (triplets)", "real MLP", "KAN", "transformer", "linear FIR", "DBP (fixed nonlinearity)", "CNN"]
+                "PB-NLC (triplets)", "PB-NLC + MLP", "real MLP", "KAN", "transformer", "linear FIR", "DBP (fixed nonlinearity)", "CNN"]
 
 
 def load_tables(smoke: bool = False) -> pd.DataFrame:
@@ -120,6 +121,8 @@ def default_family(source: str, model: str, variant: str) -> str:
         return "CNN"
     if model == "triplets":
         return "PB-NLC (triplets)"
+    if model == "triplet_net":
+        return "PB-NLC + MLP" if variant.startswith("th_") else "PB-NLC (triplets)"
     return "unmapped"
 
 
@@ -127,7 +130,7 @@ WILDCARD_SOURCES = {"E025": ["complex_one_hidden", "complex_both", "complex_a", 
                              "real_mlp", "kerr_kan", "transformer"],
                     "E026": ["complex_one_hidden", "complex_both"], "E028": ["phys_dbp", "dbp_shared", "dbp_noise", "dbp_mlp"],
                     "E029": ["complex_one_hidden", "phys_plus_mlp"],
-                    "E030": ["complex_one_hidden", "phys_dbp", "phys_plus_mlp"], "E031": ["triplets"],
+                    "E030": ["complex_one_hidden", "phys_dbp", "phys_plus_mlp"], "E031": ["triplets"], "E034": ["triplets"],
                     "E032": ["complex_one_hidden", "complex_both", "phys_plus_mlp", "phys_dbp", "real_mlp"],
                     "E033": ["complex_one_hidden", "complex_both", "phys_plus_mlp", "phys_dbp", "real_mlp"]}
 

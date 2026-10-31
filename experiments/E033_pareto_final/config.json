@@ -66,12 +66,15 @@
    "E030",
    "E031",
    "E032",
-   "E033"
+   "E033",
+   "E034",
+   "E035"
   ],
   "min_seeds": 5,
   "min_steps": 200000,
   "closed_form_sources": [
-   "E031"
+   "E031",
+   "E034"
   ],
   "recipe_required": [
    "E026",
@@ -82,7 +85,7 @@
    "E032",
    "E033"
   ],
-  "note": "E025 only S3 (5 seeds x 200k), E026 confirm, E027 S3, E030 S2 enter through min_seeds/min_steps; E028 a_long is 400k"
+  "note": "E025 only S3 (5 seeds x 200k), E026 confirm, E027 S3, E030 S2 enter through min_seeds/min_steps; E028 a_long is 400k; E034 (closed form) and E035 (5 seeds x 200k) added on 2026-10-31 before E033 ran"
  },
  "levels": [
   300,

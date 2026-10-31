@@ -57,6 +57,8 @@ RUNS = {
     "E031": ("results/runs_table.csv", ["variant"]),
     "E032": ("results/runs_table.csv", ["variant"]),
     "E033": ("results/runs_table.csv", ["variant"]),
+    "E034": ("results/runs_table.csv", ["variant"]),
+    "E035": ("results/runs_table.csv", ["e035_config", "lr_id", "budget"]),
 }
 VERDICTS = {
     "E012": "results/depth_window_verdicts.csv", "E013": "results/transformer_verdicts.csv",
@@ -67,7 +69,8 @@ VERDICTS = {
     "E024": "results/audit_verdicts.csv", "E025": "results/tuning_verdicts.csv", "E026": "results/map_verdicts.csv",
     "E027": "results/activation_verdicts.csv", "E028": "results/dbp_verdicts.csv", "E029": "results/width_verdicts.csv",
     "E030": "results/loss_verdicts.csv", "E031": "results/triplet_verdicts.csv", "E032": "results/convergence_verdicts.csv",
-    "E033": "results/pareto_verdicts.csv",
+    "E033": "results/pareto_verdicts.csv", "E034": "results/triplet_ext_verdicts.csv",
+    "E035": "results/triplet_net_verdicts.csv",
 }
 # extra tables shown on the experiment page: (file, {column: header}, title)
 EXTRA_TABLES = {
@@ -111,7 +114,7 @@ EXTRA_TABLES = {
 TEST, VAL = "test_reduction_valbest_select", "best_val_reduction"
 # the control is a different model (complex_a vs physics models): "worse than control" is not an anomaly there
 CONTROL_IS_OTHER_MODEL = {"E016", "E017", "E018", "E020", "E021", "E022", "E023", "E024", "E025", "E026", "E027",
-                          "E028", "E029", "E030", "E031", "E032", "E033"}
+                          "E028", "E029", "E030", "E031", "E032", "E033", "E034", "E035"}
 COLUMN_RU = {
     "hypothesis": "гипотеза", "candidate": "кандидат", "candidate_macs": "умножений (кандидат)",
     "reference": "эталон", "reference_macs": "умножений (эталон)", "diff_pp": "разница, п.п.",

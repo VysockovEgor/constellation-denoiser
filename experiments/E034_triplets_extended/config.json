@@ -1,0 +1,81 @@
+{
+ "experiment_id": "E034",
+ "title": "Perturbation triplets: larger memory M and pruning to K terms (closed form)",
+ "question": "Does the T3 + FIR quality keep growing beyond M = 21, and how few triplet terms keep it (RM vs quality)?",
+ "date": "not run",
+ "base_git_commit": "9c27810 (branch exp/E024-E033)",
+ "git_commit": "recorded per run in results/runs/*.json (field git_commit); rule commit: see LOG.md",
+ "data_manifest_sha256": "cb5f2de47145c02d6485969ce116df2253a271c979a927452ea454551a48c0a8",
+ "data_audit_sha256": "a9c35fb7839e85c39f7131373418a6f3a04c731e9c4e55385347a1eabbdedbe4",
+ "split_source": "experiments/E004_training_file_curve/config.json (train_pool_files[:30], validation 45, test 45), as E007-E019",
+ "split_source_sha256": "04c0b2a5775d8fae1acdc348967c6fb976ef5d90e76a8334484242cc9707025a",
+ "dataset_root": "data/raw/archive",
+ "n_train_files": 30,
+ "base_lr": {
+  "peak_lr": 0.001,
+  "schedule": "const",
+  "warmup": 0,
+  "c_mult": 1.0,
+  "floor_frac": 0.1,
+  "optimizer": "adam",
+  "weight_decay": 0.0
+ },
+ "seeds": [
+  17,
+  29,
+  43,
+  57,
+  71
+ ],
+ "ckpt_every": 10000,
+ "eval_rule": "validation and (report-only) test every max(500, steps/40) steps; selection only by validation",
+ "model": "T3 + FIR7 of E031 (triplets.py, triplets_ext.py)",
+ "M": [
+  25,
+  31
+ ],
+ "fir_len": 7,
+ "prune_M": 25,
+ "K": [
+  16,
+  32,
+  64,
+  128,
+  256,
+  512
+ ],
+ "rule_k": 128,
+ "pruning": "per bootstrap replica: full T3 + FIR7 fit at M = 25 (lambda by validation); terms ranked by |C_j| * rms(feature_j) on train; the K strongest terms + the 7 FIR taps refitted from the sub-matrix, lambda by validation",
+ "lambda_grid": [
+  1e-08,
+  1e-06,
+  0.0001,
+  0.001,
+  0.01,
+  0.1
+ ],
+ "max_block": 4096,
+ "bootstrap": {
+  "replicas": [
+   17,
+   29,
+   43,
+   57,
+   71
+  ],
+  "rule": "as E031"
+ },
+ "smoke_M": [
+  5
+ ],
+ "smoke_prune_M": 5,
+ "rm": "sym: 12 per merged triplet term + 4 L (E031)",
+ "threads": "BLAS limited to 16 threads (OPENBLAS/OMP/MKL_NUM_THREADS)",
+ "rule_draft": {
+  "status": "DRAFT: to be confirmed by the user before the first run; must not change after results are seen",
+  "memory": "growth with M continues if T3 + FIR7 at M = 31 - M = 21 (E031) >= 1 p.p. (test mean, 5 replicas)",
+  "pruning": "K = 128 terms keep >= 90 % of the reduction of the full M = 25 model",
+  "vs_networks": "pruned triplets beat the Kerr MLP at equal RM if Q2 gain difference >= 0.1 dB with non-overlapping intervals (checked in E033 with the E025 recipes)",
+  "otherwise": "не доказано"
+ }
+}

@@ -195,3 +195,12 @@ E033,complex_one_hidden,*,Kerr MLP
 E033,phys_dbp,*,DBP
 E033,phys_plus_mlp,*,Phys + MLP
 E033,real_mlp,*,real MLP
+E034,triplets,*,PB-NLC (triplets)
+E035,triplet_net,tg_M15_scratch,PB-NLC (triplets)
+E035,triplet_net,tg_M15_warm,PB-NLC (triplets)
+E035,triplet_net,tg_M21_warm,PB-NLC (triplets)
+E035,triplet_net,th_M15_h16,PB-NLC + MLP
+E035,triplet_net,th_M15_h4,PB-NLC + MLP
+E035,triplet_net,th_M15_h8,PB-NLC + MLP
+E035,triplet_net,th_M21_h16,PB-NLC + MLP
+E035,triplet_net,th_M21_h8,PB-NLC + MLP
