@@ -1,0 +1,8 @@
+hypothesis,value,verdict,detail,rule_status
+both_h48: плато (500k → 1M < 0.3 п.п.),0.45285345093297735,не доказано,тест в точке лучшей валидации внутри горизонта,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+dbp_Ns8_L31_R7: плато (500k → 1M < 0.3 п.п.),0.689949498541857,не доказано,тест в точке лучшей валидации внутри горизонта,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+hyb48: плато (500k → 1M < 0.3 п.п.),1.8066718827797104,не доказано,тест в точке лучшей валидации внутри горизонта,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+oh48: плато (500k → 1M < 0.3 п.п.),5.326362709533633,не доказано,тест в точке лучшей валидации внутри горизонта,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+real_F11: плато (500k → 1M < 0.3 п.п.),0.0,подтверждено,тест в точке лучшей валидации внутри горизонта,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+v4_h119: плато (500k → 1M < 0.3 п.п.),3.4995376627071693,не доказано,тест в точке лучшей валидации внутри горизонта,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"ранжирование стабильно (порядок при 200k и 1M совпадает, знаки разностей те же)",,не доказано,200k: both_h48 > v4_h119 > hyb48 > oh48 > dbp_Ns8_L31_R7 > real_F11 | 1M: v4_h119 > both_h48 > hyb48 > oh48 > dbp_Ns8_L31_R7 > real_F11,DRAFT: to be confirmed by the user before the first run; must not change after results are seen

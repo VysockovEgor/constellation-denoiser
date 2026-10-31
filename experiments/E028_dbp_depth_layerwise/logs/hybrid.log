@@ -1,0 +1,32 @@
+=== 2026-10-30T22:07:48+07:00 E028 hybrid: .venv/bin/python -u -m constellation_denoiser.runner --exp E028 --stage hybrid ===
+JOBS=40 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+[2026-10-30 22:07:50] running 27 tasks with JOBS=40, THREADS=1, DEVICE=cpu
+[2026-10-30 22:50:39] [ok 1/27] dbpmlp_Ns4_h4_const_0.001_cm1_100k_seed17: val=35.38% test=36.34% diverged=False time=2566s; ETA ~1113 min
+[2026-10-30 22:51:23] [ok 2/27] dbpmlp_Ns4_h4_const_0.001_cm1_100k_seed29: val=37.23% test=37.89% diverged=False time=2611s; ETA ~544 min
+[2026-10-30 22:52:28] [ok 3/27] dbpmlp_Ns4_h4_const_0.001_cm1_100k_seed43: val=29.98% test=30.84% diverged=False time=2676s; ETA ~357 min
+[2026-10-30 22:53:36] [ok 4/27] dbpmlp_Ns4_h16_const_0.001_cm1_100k_seed17: val=53.92% test=55.20% diverged=False time=2743s; ETA ~263 min
+[2026-10-30 22:53:49] [ok 5/27] dbpmlp_Ns4_h8_const_0.001_cm1_100k_seed43: val=48.77% test=49.74% diverged=False time=2756s; ETA ~202 min
+[2026-10-30 22:56:02] [ok 6/27] dbpmlp_Ns4_h8_const_0.001_cm1_100k_seed17: val=40.52% test=41.41% diverged=False time=2889s; ETA ~169 min
+[2026-10-30 22:56:38] [ok 7/27] dbpmlp_Ns4_h8_const_0.001_cm1_100k_seed29: val=49.19% test=50.47% diverged=False time=2926s; ETA ~139 min
+[2026-10-30 22:58:24] [ok 8/27] dbpmlp_Ns4_h16_const_0.001_cm1_100k_seed43: val=51.00% test=51.65% diverged=False time=3031s; ETA ~120 min
+[2026-10-30 22:58:25] [ok 9/27] dbpmlp_Ns4_h16_const_0.001_cm1_100k_seed29: val=49.65% test=50.22% diverged=False time=3032s; ETA ~101 min
+[2026-10-30 23:26:21] [ok 10/27] dbpmlp_Ns8_h8_const_0.001_cm1_100k_seed29: val=52.46% test=53.04% diverged=False time=4708s; ETA ~133 min
+[2026-10-30 23:26:21] [ok 11/27] dbpmlp_Ns8_h4_const_0.001_cm1_100k_seed29: val=40.04% test=40.95% diverged=False time=4708s; ETA ~114 min
+[2026-10-30 23:27:33] [ok 12/27] dbpmlp_Ns8_h4_const_0.001_cm1_100k_seed17: val=47.66% test=48.33% diverged=False time=4780s; ETA ~100 min
+[2026-10-30 23:27:44] [ok 13/27] dbpmlp_Ns8_h8_const_0.001_cm1_100k_seed17: val=52.62% test=53.82% diverged=False time=4791s; ETA ~86 min
+[2026-10-30 23:28:15] [ok 14/27] dbpmlp_Ns8_h4_const_0.001_cm1_100k_seed43: val=49.85% test=50.88% diverged=False time=4822s; ETA ~75 min
+[2026-10-30 23:31:34] [ok 15/27] dbpmlp_Ns8_h16_const_0.001_cm1_100k_seed43: val=57.12% test=58.14% diverged=False time=5021s; ETA ~67 min
+[2026-10-30 23:32:15] [ok 16/27] dbpmlp_Ns8_h16_const_0.001_cm1_100k_seed17: val=60.01% test=60.35% diverged=False time=5062s; ETA ~58 min
+[2026-10-30 23:33:02] [ok 17/27] dbpmlp_Ns8_h8_const_0.001_cm1_100k_seed43: val=57.21% test=57.60% diverged=False time=5108s; ETA ~50 min
+[2026-10-30 23:38:15] [ok 18/27] dbpmlp_Ns8_h16_const_0.001_cm1_100k_seed29: val=54.65% test=56.00% diverged=False time=5422s; ETA ~45 min
+[2026-10-31 00:30:23] [ok 19/27] dbpmlp_Ns16_h4_const_0.001_cm1_100k_seed17: val=51.21% test=52.13% diverged=False time=8550s; ETA ~60 min
+[2026-10-31 00:30:31] [ok 20/27] dbpmlp_Ns16_h8_const_0.001_cm1_100k_seed29: val=54.83% test=55.90% diverged=False time=8558s; ETA ~50 min
+[2026-10-31 00:32:43] [ok 21/27] dbpmlp_Ns16_h4_const_0.001_cm1_100k_seed29: val=47.03% test=47.90% diverged=False time=8690s; ETA ~41 min
+[2026-10-31 00:33:56] [ok 22/27] dbpmlp_Ns16_h16_const_0.001_cm1_100k_seed29: val=58.83% test=59.94% diverged=False time=8763s; ETA ~33 min
+[2026-10-31 00:34:12] [ok 23/27] dbpmlp_Ns16_h4_const_0.001_cm1_100k_seed43: val=50.56% test=51.06% diverged=False time=8779s; ETA ~25 min
+[2026-10-31 00:36:50] [ok 24/27] dbpmlp_Ns16_h16_const_0.001_cm1_100k_seed43: val=58.22% test=59.70% diverged=False time=8937s; ETA ~19 min
+[2026-10-31 00:40:25] [ok 25/27] dbpmlp_Ns16_h16_const_0.001_cm1_100k_seed17: val=60.60% test=61.38% diverged=False time=9151s; ETA ~12 min
+[2026-10-31 00:41:36] [ok 26/27] dbpmlp_Ns16_h8_const_0.001_cm1_100k_seed43: val=58.55% test=59.42% diverged=False time=9222s; ETA ~6 min
+[2026-10-31 00:47:42] [ok 27/27] dbpmlp_Ns16_h8_const_0.001_cm1_100k_seed17: val=57.15% test=58.68% diverged=False time=9589s; ETA ~0 min
+[2026-10-31 00:47:44] finished: 27 ok, 0 failed
+=== 2026-10-31T00:47:44+07:00 E028 hybrid exit=0 ===

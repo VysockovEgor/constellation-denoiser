@@ -1,0 +1,272 @@
+=== 2026-10-30T05:13:06+07:00 E026 grid: .venv/bin/python -u -m constellation_denoiser.runner --exp E026 --stage grid ===
+JOBS=24 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+[2026-10-30 05:13:08] running 216 tasks with JOBS=24, THREADS=1, DEVICE=cpu
+[2026-10-30 05:21:08] [ok 1/216] oh_w5_h2_floor_0.00391_cm100_100k_seed43: val=-3.74% test=-3.47% diverged=False time=476s; ETA ~1721 min
+[2026-10-30 05:21:08] polite mode: foreign load 28.4 > 25.0; waiting (checked every 30 s)
+[2026-10-30 05:22:38] [ok 2/216] oh_w5_h4_floor_0.00391_cm100_100k_seed43: val=-1.65% test=-2.02% diverged=False time=516s; ETA ~1017 min
+[2026-10-30 05:22:38] [ok 3/216] oh_w5_h2_floor_0.00391_cm100_100k_seed29: val=-3.72% test=-3.21% diverged=False time=512s; ETA ~675 min
+[2026-10-30 05:22:38] [ok 4/216] oh_w5_h4_floor_0.00391_cm100_100k_seed29: val=-2.29% test=-2.54% diverged=False time=509s; ETA ~504 min
+[2026-10-30 05:22:38] [ok 5/216] oh_w5_h2_floor_0.00391_cm100_100k_seed17: val=-2.25% test=-2.01% diverged=False time=493s; ETA ~401 min
+[2026-10-30 05:22:38] polite mode: foreign load 27.4 > 25.0; waiting (checked every 30 s)
+[2026-10-30 05:24:08] [ok 6/216] oh_w5_h4_floor_0.00391_cm100_100k_seed17: val=2.50% test=2.47% diverged=False time=584s; ETA ~385 min
+[2026-10-30 05:24:08] [ok 7/216] oh_w5_h8_floor_0.00391_cm100_100k_seed43: val=3.37% test=3.16% diverged=False time=623s; ETA ~329 min
+[2026-10-30 05:24:08] [ok 8/216] oh_w5_h8_floor_0.00391_cm100_100k_seed17: val=3.81% test=3.95% diverged=False time=584s; ETA ~286 min
+[2026-10-30 05:24:08] [ok 9/216] oh_w5_h8_floor_0.00391_cm100_100k_seed29: val=3.08% test=3.25% diverged=False time=584s; ETA ~253 min
+[2026-10-30 05:25:00] [ok 10/216] oh_w5_h16_floor_0.00391_cm100_100k_seed29: val=4.48% test=5.05% diverged=False time=707s; ETA ~244 min
+[2026-10-30 05:25:00] polite mode: foreign load 25.1 > 25.0; waiting (checked every 30 s)
+[2026-10-30 05:27:00] [ok 11/216] oh_w5_h16_floor_0.00391_cm100_100k_seed43: val=4.27% test=4.88% diverged=False time=710s; ETA ~258 min
+[2026-10-30 05:27:00] [ok 12/216] oh_w5_h16_floor_0.00391_cm100_100k_seed17: val=4.72% test=5.27% diverged=False time=746s; ETA ~236 min
+[2026-10-30 05:27:00] polite mode: foreign load 25.9 > 25.0; waiting (checked every 30 s)
+[2026-10-30 05:31:00] [ok 13/216] oh_w5_h32_floor_0.00391_cm100_100k_seed29: val=4.55% test=5.02% diverged=False time=967s; ETA ~279 min
+[2026-10-30 05:31:00] [ok 14/216] oh_w5_h32_floor_0.00391_cm100_100k_seed43: val=4.41% test=5.05% diverged=False time=967s; ETA ~258 min
+[2026-10-30 05:31:00] [ok 15/216] oh_w5_h32_floor_0.00391_cm100_100k_seed17: val=4.74% test=5.20% diverged=False time=1008s; ETA ~239 min
+[2026-10-30 05:31:00] [ok 16/216] oh_w9_h2_floor_0.00391_cm100_100k_seed17: val=-1.67% test=-1.94% diverged=False time=497s; ETA ~223 min
+[2026-10-30 05:31:00] polite mode: foreign load 26.5 > 25.0; waiting (checked every 30 s)
+[2026-10-30 05:34:00] [ok 17/216] oh_w9_h4_floor_0.00391_cm100_100k_seed17: val=3.92% test=4.12% diverged=False time=567s; ETA ~244 min
+[2026-10-30 05:34:00] [ok 18/216] oh_w9_h4_floor_0.00391_cm100_100k_seed29: val=4.09% test=3.91% diverged=False time=537s; ETA ~229 min
+[2026-10-30 05:34:00] [ok 19/216] oh_w9_h4_floor_0.00391_cm100_100k_seed43: val=-2.15% test=-1.92% diverged=False time=565s; ETA ~216 min
+[2026-10-30 05:34:00] [ok 20/216] oh_w9_h2_floor_0.00391_cm100_100k_seed29: val=-2.48% test=-2.21% diverged=False time=528s; ETA ~204 min
+[2026-10-30 05:34:00] [ok 21/216] oh_w9_h2_floor_0.00391_cm100_100k_seed43: val=-3.06% test=-2.83% diverged=False time=496s; ETA ~194 min
+[2026-10-30 05:34:00] polite mode: foreign load 25.5 > 25.0; waiting (checked every 30 s)
+[2026-10-30 05:34:30] [ok 22/216] oh_w9_h8_floor_0.00391_cm100_100k_seed17: val=16.00% test=17.09% diverged=False time=598s; ETA ~188 min
+[2026-10-30 05:34:30] [ok 23/216] oh_w9_h8_floor_0.00391_cm100_100k_seed29: val=12.37% test=12.88% diverged=False time=600s; ETA ~179 min
+[2026-10-30 05:34:30] [ok 24/216] oh_w9_h8_floor_0.00391_cm100_100k_seed43: val=12.08% test=12.78% diverged=False time=609s; ETA ~171 min
+[2026-10-30 05:37:36] [ok 25/216] oh_w5_h64_floor_0.00391_cm100_100k_seed43: val=4.43% test=4.97% diverged=False time=1463s; ETA ~187 min
+[2026-10-30 05:37:36] polite mode: foreign load 28.2 > 25.0; waiting (checked every 30 s)
+[2026-10-30 05:40:06] [ok 26/216] oh_w9_h16_floor_0.00391_cm100_100k_seed17: val=19.67% test=20.58% diverged=False time=738s; ETA ~197 min
+[2026-10-30 05:40:06] [ok 27/216] oh_w5_h64_floor_0.00391_cm100_100k_seed29: val=4.77% test=5.12% diverged=False time=1501s; ETA ~189 min
+[2026-10-30 05:40:06] [ok 28/216] oh_w5_h64_floor_0.00391_cm100_100k_seed17: val=4.78% test=5.15% diverged=False time=1484s; ETA ~181 min
+[2026-10-30 05:40:06] polite mode: foreign load 26.6 > 25.0; waiting (checked every 30 s)
+[2026-10-30 05:46:06] [ok 29/216] oh_w9_h16_floor_0.00391_cm100_100k_seed29: val=19.57% test=20.52% diverged=False time=758s; ETA ~213 min
+[2026-10-30 05:46:06] [ok 30/216] oh_w9_h16_floor_0.00391_cm100_100k_seed43: val=19.86% test=20.67% diverged=False time=792s; ETA ~204 min
+[2026-10-30 05:49:05] [ok 31/216] oh_w15_h2_floor_0.00391_cm100_100k_seed17: val=-2.16% test=-2.07% diverged=False time=539s; ETA ~215 min
+[2026-10-30 05:49:05] polite mode: foreign load 28.4 > 25.0; waiting (checked every 30 s)
+[2026-10-30 05:53:35] [ok 32/216] oh_w9_h32_floor_0.00391_cm100_100k_seed17: val=22.04% test=22.61% diverged=False time=1037s; ETA ~233 min
+[2026-10-30 05:53:35] [ok 33/216] oh_w9_h32_floor_0.00391_cm100_100k_seed29: val=22.22% test=22.65% diverged=False time=1073s; ETA ~224 min
+[2026-10-30 05:53:35] [ok 34/216] oh_w9_h32_floor_0.00391_cm100_100k_seed43: val=22.11% test=22.82% diverged=False time=1071s; ETA ~217 min
+[2026-10-30 05:53:35] polite mode: foreign load 26.5 > 25.0; waiting (checked every 30 s)
+[2026-10-30 05:56:35] [ok 35/216] oh_w15_h4_floor_0.00391_cm100_100k_seed17: val=3.91% test=4.12% diverged=False time=583s; ETA ~225 min
+[2026-10-30 05:56:35] [ok 36/216] oh_w15_h2_floor_0.00391_cm100_100k_seed43: val=-2.09% test=-2.00% diverged=False time=593s; ETA ~217 min
+[2026-10-30 05:56:35] [ok 37/216] oh_w15_h2_floor_0.00391_cm100_100k_seed29: val=-10.58% test=-11.11% diverged=False time=539s; ETA ~210 min
+[2026-10-30 05:56:35] [ok 38/216] oh_w15_h4_floor_0.00391_cm100_100k_seed29: val=5.01% test=5.29% diverged=False time=584s; ETA ~204 min
+[2026-10-30 05:56:35] polite mode: foreign load 25.9 > 25.0; waiting (checked every 30 s)
+[2026-10-30 05:58:05] [ok 39/216] oh_w5_h128_floor_0.00391_cm100_100k_seed17: val=4.66% test=5.32% diverged=False time=2621s; ETA ~204 min
+[2026-10-30 05:58:05] [ok 40/216] oh_w5_h128_floor_0.00391_cm100_100k_seed29: val=4.53% test=5.11% diverged=False time=2661s; ETA ~198 min
+[2026-10-30 05:58:05] [ok 41/216] oh_w5_h128_floor_0.00391_cm100_100k_seed43: val=4.50% test=5.09% diverged=False time=2631s; ETA ~192 min
+[2026-10-30 05:58:05] [ok 42/216] oh_w15_h4_floor_0.00391_cm100_100k_seed43: val=5.51% test=5.76% diverged=False time=654s; ETA ~186 min
+[2026-10-30 05:59:55] [ok 43/216] oh_w9_h64_floor_0.00391_cm100_100k_seed17: val=22.17% test=22.89% diverged=False time=1555s; ETA ~188 min
+[2026-10-30 05:59:55] polite mode: foreign load 27.2 > 25.0; waiting (checked every 30 s)
+[2026-10-30 06:04:25] [ok 44/216] oh_w9_h64_floor_0.00391_cm100_100k_seed29: val=22.18% test=22.66% diverged=False time=1532s; ETA ~200 min
+[2026-10-30 06:04:25] [ok 45/216] oh_w9_h64_floor_0.00391_cm100_100k_seed43: val=22.24% test=23.00% diverged=False time=1580s; ETA ~195 min
+[2026-10-30 06:04:25] [ok 46/216] oh_w15_h8_floor_0.00391_cm100_100k_seed17: val=16.74% test=17.28% diverged=False time=637s; ETA ~189 min
+[2026-10-30 06:04:25] polite mode: foreign load 26.7 > 25.0; waiting (checked every 30 s)
+[2026-10-30 06:10:25] [ok 47/216] oh_w15_h8_floor_0.00391_cm100_100k_seed43: val=19.51% test=20.28% diverged=False time=673s; ETA ~206 min
+[2026-10-30 06:10:25] [ok 48/216] oh_w15_h16_floor_0.00391_cm100_100k_seed17: val=31.53% test=31.78% diverged=False time=804s; ETA ~200 min
+[2026-10-30 06:10:25] [ok 49/216] oh_w15_h8_floor_0.00391_cm100_100k_seed29: val=14.85% test=15.48% diverged=False time=655s; ETA ~195 min
+[2026-10-30 06:11:18] [ok 50/216] oh_w15_h16_floor_0.00391_cm100_100k_seed29: val=33.69% test=34.31% diverged=False time=793s; ETA ~193 min
+[2026-10-30 06:11:18] polite mode: foreign load 25.6 > 25.0; waiting (checked every 30 s)
+[2026-10-30 06:16:48] [ok 51/216] oh_w15_h32_floor_0.00391_cm100_100k_seed43: val=41.47% test=42.66% diverged=False time=1072s; ETA ~206 min
+[2026-10-30 06:16:48] [ok 52/216] oh_w15_h32_floor_0.00391_cm100_100k_seed29: val=41.73% test=42.43% diverged=False time=1078s; ETA ~201 min
+[2026-10-30 06:16:48] [ok 53/216] oh_w15_h16_floor_0.00391_cm100_100k_seed43: val=33.33% test=33.94% diverged=False time=798s; ETA ~196 min
+[2026-10-30 06:16:48] [ok 54/216] oh_w15_h32_floor_0.00391_cm100_100k_seed17: val=39.66% test=41.03% diverged=False time=1082s; ETA ~191 min
+[2026-10-30 06:16:48] polite mode: foreign load 27.9 > 25.0; waiting (checked every 30 s)
+[2026-10-30 06:20:48] [ok 55/216] oh_w21_h2_floor_0.00391_cm100_100k_seed17: val=-1.46% test=-0.98% diverged=False time=599s; ETA ~198 min
+[2026-10-30 06:20:48] [ok 56/216] oh_w9_h128_floor_0.00391_cm100_100k_seed29: val=22.22% test=22.75% diverged=False time=2668s; ETA ~193 min
+[2026-10-30 06:20:48] [ok 57/216] oh_w9_h128_floor_0.00391_cm100_100k_seed43: val=22.35% test=23.14% diverged=False time=2706s; ETA ~189 min
+[2026-10-30 06:20:48] [ok 58/216] oh_w9_h128_floor_0.00391_cm100_100k_seed17: val=22.25% test=22.96% diverged=False time=2639s; ETA ~184 min
+[2026-10-30 06:25:00] [ok 59/216] oh_w15_h64_floor_0.00391_cm100_100k_seed29: val=43.58% test=44.67% diverged=False time=1615s; ETA ~191 min
+[2026-10-30 06:25:00] polite mode: foreign load 28.2 > 25.0; waiting (checked every 30 s)
+[2026-10-30 06:27:30] [ok 60/216] oh_w21_h2_floor_0.00391_cm100_100k_seed29: val=-1.69% test=-0.90% diverged=False time=574s; ETA ~193 min
+[2026-10-30 06:27:30] [ok 61/216] oh_w15_h64_floor_0.00391_cm100_100k_seed43: val=43.69% test=44.47% diverged=False time=1644s; ETA ~189 min
+[2026-10-30 06:27:30] [ok 62/216] oh_w15_h64_floor_0.00391_cm100_100k_seed17: val=41.70% test=42.80% diverged=False time=1627s; ETA ~185 min
+[2026-10-30 06:27:30] polite mode: foreign load 26.9 > 25.0; waiting (checked every 30 s)
+[2026-10-30 06:32:00] [ok 63/216] oh_w21_h2_floor_0.00391_cm100_100k_seed43: val=-1.73% test=-1.74% diverged=False time=580s; ETA ~192 min
+[2026-10-30 06:32:00] [ok 64/216] oh_w21_h4_floor_0.00391_cm100_100k_seed29: val=5.05% test=6.32% diverged=False time=629s; ETA ~187 min
+[2026-10-30 06:32:00] [ok 65/216] oh_w21_h4_floor_0.00391_cm100_100k_seed43: val=5.08% test=5.55% diverged=False time=632s; ETA ~183 min
+[2026-10-30 06:32:00] [ok 66/216] oh_w21_h4_floor_0.00391_cm100_100k_seed17: val=5.47% test=6.39% diverged=False time=615s; ETA ~179 min
+[2026-10-30 06:32:00] polite mode: foreign load 25.8 > 25.0; waiting (checked every 30 s)
+[2026-10-30 06:33:30] [ok 67/216] oh_w21_h8_floor_0.00391_cm100_100k_seed43: val=13.56% test=14.51% diverged=False time=713s; ETA ~179 min
+[2026-10-30 06:33:30] [ok 68/216] oh_w21_h8_floor_0.00391_cm100_100k_seed29: val=19.77% test=20.37% diverged=False time=707s; ETA ~175 min
+[2026-10-30 06:33:30] [ok 69/216] oh_w21_h8_floor_0.00391_cm100_100k_seed17: val=19.44% test=20.50% diverged=False time=700s; ETA ~171 min
+[2026-10-30 06:34:05] [ok 70/216] oh_w5_h256_floor_0.00391_cm100_100k_seed43: val=4.76% test=5.07% diverged=False time=4852s; ETA ~169 min
+[2026-10-30 06:34:44] [ok 71/216] oh_w21_h16_floor_0.00391_cm100_100k_seed17: val=39.96% test=40.86% diverged=False time=836s; ETA ~167 min
+[2026-10-30 06:34:44] polite mode: foreign load 26.6 > 25.0; waiting (checked every 30 s)
+[2026-10-30 06:38:44] [ok 72/216] oh_w5_h256_floor_0.00391_cm100_100k_seed29: val=4.65% test=5.11% diverged=False time=4927s; ETA ~171 min
+[2026-10-30 06:38:44] [ok 73/216] oh_w5_h256_floor_0.00391_cm100_100k_seed17: val=4.94% test=5.24% diverged=False time=4931s; ETA ~168 min
+[2026-10-30 06:38:44] polite mode: foreign load 25.9 > 25.0; waiting (checked every 30 s)
+[2026-10-30 06:48:44] polite mode: foreign load 25.3 > 25.0; waiting (checked every 30 s)
+[2026-10-30 06:50:44] [ok 74/216] oh_w21_h16_floor_0.00391_cm100_100k_seed29: val=35.81% test=36.75% diverged=False time=827s; ETA ~187 min
+[2026-10-30 06:50:44] [ok 75/216] oh_w21_h16_floor_0.00391_cm100_100k_seed43: val=36.19% test=36.76% diverged=False time=834s; ETA ~183 min
+[2026-10-30 06:50:44] [ok 76/216] oh_w21_h32_floor_0.00391_cm100_100k_seed17: val=50.52% test=51.56% diverged=False time=1121s; ETA ~180 min
+[2026-10-30 06:50:44] polite mode: foreign load 25.8 > 25.0; waiting (checked every 30 s)
+[2026-10-30 06:53:44] [ok 77/216] oh_w15_h128_floor_0.00391_cm100_100k_seed17: val=41.46% test=42.84% diverged=False time=2789s; ETA ~182 min
+[2026-10-30 06:53:44] [ok 78/216] oh_w21_h32_floor_0.00391_cm100_100k_seed43: val=51.01% test=51.53% diverged=False time=1141s; ETA ~178 min
+[2026-10-30 06:53:44] [ok 79/216] oh_w21_h32_floor_0.00391_cm100_100k_seed29: val=50.05% test=51.19% diverged=False time=1130s; ETA ~174 min
+[2026-10-30 06:55:53] [ok 80/216] oh_w15_h128_floor_0.00391_cm100_100k_seed43: val=44.06% test=44.77% diverged=False time=2728s; ETA ~175 min
+[2026-10-30 06:55:53] polite mode: foreign load 27.7 > 25.0; waiting (checked every 30 s)
+[2026-10-30 06:59:53] [ok 81/216] oh_w9_h256_floor_0.00391_cm100_100k_seed17: val=22.20% test=22.91% diverged=False time=5074s; ETA ~178 min
+[2026-10-30 06:59:53] [ok 82/216] oh_w15_h128_floor_0.00391_cm100_100k_seed29: val=43.96% test=44.80% diverged=False time=2754s; ETA ~174 min
+[2026-10-30 06:59:53] [ok 83/216] oh_w9_h256_floor_0.00391_cm100_100k_seed43: val=22.35% test=23.15% diverged=False time=4941s; ETA ~171 min
+[2026-10-30 06:59:53] polite mode: foreign load 26.7 > 25.0; waiting (checked every 30 s)
+[2026-10-30 07:01:53] [ok 84/216] oh_w21_h64_floor_0.00391_cm100_100k_seed17: val=56.95% test=58.01% diverged=False time=1624s; ETA ~171 min
+[2026-10-30 07:01:53] [ok 85/216] oh_w31_h2_floor_0.00391_cm100_100k_seed17: val=-1.36% test=-1.72% diverged=False time=653s; ETA ~168 min
+[2026-10-30 07:01:53] [ok 86/216] oh_w21_h64_floor_0.00391_cm100_100k_seed29: val=56.25% test=57.98% diverged=False time=1620s; ETA ~164 min
+[2026-10-30 07:01:53] [ok 87/216] oh_w9_h256_floor_0.00391_cm100_100k_seed29: val=22.28% test=22.91% diverged=False time=5132s; ETA ~161 min
+[2026-10-30 07:01:53] [ok 88/216] oh_w21_h64_floor_0.00391_cm100_100k_seed43: val=56.79% test=57.82% diverged=False time=1697s; ETA ~158 min
+[2026-10-30 07:01:53] polite mode: foreign load 26.5 > 25.0; waiting (checked every 30 s)
+[2026-10-30 07:05:23] [ok 89/216] oh_w31_h4_floor_0.00391_cm100_100k_seed43: val=4.55% test=4.51% diverged=False time=658s; ETA ~160 min
+[2026-10-30 07:05:23] [ok 90/216] oh_w31_h2_floor_0.00391_cm100_100k_seed43: val=-1.51% test=-1.44% diverged=False time=634s; ETA ~157 min
+[2026-10-30 07:05:23] [ok 91/216] oh_w31_h4_floor_0.00391_cm100_100k_seed17: val=5.28% test=5.98% diverged=False time=676s; ETA ~154 min
+[2026-10-30 07:05:23] [ok 92/216] oh_w31_h4_floor_0.00391_cm100_100k_seed29: val=5.49% test=6.03% diverged=False time=666s; ETA ~151 min
+[2026-10-30 07:05:23] [ok 93/216] oh_w31_h2_floor_0.00391_cm100_100k_seed29: val=-1.42% test=-0.90% diverged=False time=646s; ETA ~148 min
+[2026-10-30 07:05:41] [ok 94/216] oh_w31_h8_floor_0.00391_cm100_100k_seed17: val=19.67% test=19.74% diverged=False time=717s; ETA ~146 min
+[2026-10-30 07:11:43] [ok 95/216] oh_w31_h8_floor_0.00391_cm100_100k_seed29: val=19.09% test=20.02% diverged=False time=710s; ETA ~151 min
+[2026-10-30 07:14:09] [ok 96/216] oh_w31_h8_floor_0.00391_cm100_100k_seed43: val=14.22% test=14.73% diverged=False time=737s; ETA ~151 min
+[2026-10-30 07:14:09] polite mode: foreign load 25.2 > 25.0; waiting (checked every 30 s)
+[2026-10-30 07:16:19] [ok 97/216] oh_w31_h16_floor_0.00391_cm100_100k_seed17: val=40.52% test=40.96% diverged=False time=866s; ETA ~151 min
+[2026-10-30 07:16:19] polite mode: foreign load 25.1 > 25.0; waiting (checked every 30 s)
+[2026-10-30 07:16:49] [ok 98/216] oh_w31_h16_floor_0.00391_cm100_100k_seed29: val=36.14% test=37.03% diverged=False time=870s; ETA ~149 min
+[2026-10-30 07:19:24] [ok 99/216] oh_w21_h128_floor_0.00391_cm100_100k_seed29: val=57.42% test=58.71% diverged=False time=2754s; ETA ~149 min
+[2026-10-30 07:19:24] polite mode: foreign load 25.1 > 25.0; waiting (checked every 30 s)
+[2026-10-30 07:19:54] [ok 100/216] oh_w21_h128_floor_0.00391_cm100_100k_seed43: val=57.59% test=58.90% diverged=False time=2783s; ETA ~147 min
+[2026-10-30 07:20:45] [ok 101/216] oh_w31_h16_floor_0.00391_cm100_100k_seed43: val=40.42% test=41.44% diverged=False time=922s; ETA ~145 min
+[2026-10-30 07:20:45] polite mode: foreign load 25.1 > 25.0; waiting (checked every 30 s)
+[2026-10-30 07:21:15] [ok 102/216] oh_w21_h128_floor_0.00391_cm100_100k_seed17: val=57.70% test=58.69% diverged=False time=2840s; ETA ~143 min
+[2026-10-30 07:24:02] [ok 103/216] oh_w31_h32_floor_0.00391_cm100_100k_seed17: val=54.22% test=55.43% diverged=False time=1119s; ETA ~144 min
+[2026-10-30 07:24:15] [ok 104/216] oh_w31_h32_floor_0.00391_cm100_100k_seed29: val=52.85% test=53.61% diverged=False time=1132s; ETA ~141 min
+[2026-10-30 07:24:15] polite mode: foreign load 25.1 > 25.0; waiting (checked every 30 s)
+[2026-10-30 07:24:45] [ok 105/216] oh_w31_h32_floor_0.00391_cm100_100k_seed43: val=53.93% test=54.94% diverged=False time=1143s; ETA ~139 min
+[2026-10-30 07:27:44] [ok 106/216] oh_w41_h2_floor_0.00391_cm100_100k_seed17: val=-1.89% test=-1.74% diverged=False time=655s; ETA ~140 min
+[2026-10-30 07:27:44] polite mode: foreign load 25.8 > 25.0; waiting (checked every 30 s)
+[2026-10-30 07:28:44] [ok 107/216] oh_w41_h2_floor_0.00391_cm100_100k_seed29: val=-2.29% test=-1.99% diverged=False time=685s; ETA ~138 min
+[2026-10-30 07:30:48] [ok 108/216] oh_w41_h2_floor_0.00391_cm100_100k_seed43: val=-1.54% test=-1.68% diverged=False time=654s; ETA ~138 min
+[2026-10-30 07:30:48] polite mode: foreign load 25.1 > 25.0; waiting (checked every 30 s)
+[2026-10-30 07:32:02] [ok 109/216] oh_w41_h4_floor_0.00391_cm100_100k_seed17: val=3.79% test=4.53% diverged=False time=727s; ETA ~136 min
+[2026-10-30 07:32:02] polite mode: foreign load 25.0 > 25.0; waiting (checked every 30 s)
+[2026-10-30 07:33:27] [ok 110/216] oh_w31_h64_floor_0.00391_cm100_100k_seed43: val=67.88% test=69.64% diverged=False time=1684s; ETA ~135 min
+[2026-10-30 07:33:29] [ok 111/216] oh_w31_h64_floor_0.00391_cm100_100k_seed29: val=66.87% test=68.27% diverged=False time=1686s; ETA ~133 min
+[2026-10-30 07:33:36] [ok 112/216] oh_w41_h4_floor_0.00391_cm100_100k_seed29: val=4.91% test=5.96% diverged=False time=741s; ETA ~130 min
+[2026-10-30 07:33:37] [ok 113/216] oh_w15_h256_floor_0.00391_cm100_100k_seed43: val=43.83% test=44.73% diverged=False time=4992s; ETA ~128 min
+[2026-10-30 07:33:41] [ok 114/216] oh_w41_h4_floor_0.00391_cm100_100k_seed43: val=4.93% test=5.19% diverged=False time=746s; ETA ~126 min
+[2026-10-30 07:35:13] [ok 115/216] oh_w31_h64_floor_0.00391_cm100_100k_seed17: val=67.70% test=69.16% diverged=False time=1791s; ETA ~125 min
+[2026-10-30 07:35:13] polite mode: foreign load 25.4 > 25.0; waiting (checked every 30 s)
+[2026-10-30 07:37:13] [ok 116/216] oh_w15_h256_floor_0.00391_cm100_100k_seed29: val=43.79% test=44.65% diverged=False time=5207s; ETA ~124 min
+[2026-10-30 07:37:13] [ok 117/216] oh_w41_h8_floor_0.00391_cm100_100k_seed17: val=18.08% test=19.11% diverged=False time=750s; ETA ~122 min
+[2026-10-30 07:37:13] polite mode: foreign load 25.8 > 25.0; waiting (checked every 30 s)
+[2026-10-30 07:38:13] [ok 118/216] oh_w41_h8_floor_0.00391_cm100_100k_seed43: val=19.90% test=19.77% diverged=False time=778s; ETA ~120 min
+[2026-10-30 07:38:13] [ok 119/216] oh_w41_h8_floor_0.00391_cm100_100k_seed29: val=18.30% test=19.66% diverged=False time=754s; ETA ~118 min
+[2026-10-30 07:39:13] [ok 120/216] oh_w15_h256_floor_0.00391_cm100_100k_seed17: val=41.40% test=43.05% diverged=False time=5328s; ETA ~117 min
+[2026-10-30 07:39:13] polite mode: foreign load 25.6 > 25.0; waiting (checked every 30 s)
+[2026-10-30 07:43:18] [ok 121/216] oh_w41_h16_floor_0.00391_cm100_100k_seed17: val=38.46% test=39.50% diverged=False time=874s; ETA ~118 min
+[2026-10-30 07:43:18] polite mode: foreign load 25.3 > 25.0; waiting (checked every 30 s)
+[2026-10-30 07:44:48] [ok 122/216] oh_w41_h16_floor_0.00391_cm100_100k_seed29: val=40.73% test=41.56% diverged=False time=936s; ETA ~117 min
+[2026-10-30 07:46:16] [ok 123/216] oh_w41_h16_floor_0.00391_cm100_100k_seed43: val=35.35% test=36.12% diverged=False time=898s; ETA ~116 min
+[2026-10-30 07:46:16] polite mode: foreign load 25.3 > 25.0; waiting (checked every 30 s)
+[2026-10-30 07:51:56] [ok 124/216] oh_w41_h32_floor_0.00391_cm100_100k_seed17: val=52.89% test=54.13% diverged=False time=1164s; ETA ~118 min
+[2026-10-30 07:51:56] polite mode: foreign load 26.4 > 25.0; waiting (checked every 30 s)
+[2026-10-30 07:53:26] [ok 125/216] oh_w41_h32_floor_0.00391_cm100_100k_seed43: val=53.73% test=55.20% diverged=False time=1171s; ETA ~117 min
+[2026-10-30 07:53:31] [ok 126/216] oh_w41_h32_floor_0.00391_cm100_100k_seed29: val=55.00% test=55.77% diverged=False time=1204s; ETA ~115 min
+[2026-10-30 07:53:31] polite mode: foreign load 25.0 > 25.0; waiting (checked every 30 s)
+[2026-10-30 07:55:01] [ok 127/216] oh_w31_h128_floor_0.00391_cm100_100k_seed17: val=70.32% test=71.67% diverged=False time=2978s; ETA ~113 min
+[2026-10-30 07:55:05] [ok 128/216] oh_w31_h128_floor_0.00391_cm100_100k_seed43: val=70.94% test=71.88% diverged=False time=2983s; ETA ~111 min
+[2026-10-30 07:55:10] [ok 129/216] oh_w31_h128_floor_0.00391_cm100_100k_seed29: val=69.63% test=70.85% diverged=False time=2988s; ETA ~109 min
+[2026-10-30 07:55:10] polite mode: foreign load 25.1 > 25.0; waiting (checked every 30 s)
+[2026-10-30 07:57:10] [ok 130/216] oh_w51_h2_floor_0.00391_cm100_100k_seed29: val=-3.77% test=-3.31% diverged=False time=730s; ETA ~109 min
+[2026-10-30 07:57:10] [ok 131/216] oh_w51_h2_floor_0.00391_cm100_100k_seed17: val=-1.82% test=-1.11% diverged=False time=698s; ETA ~106 min
+[2026-10-30 07:57:10] polite mode: foreign load 25.6 > 25.0; waiting (checked every 30 s)
+[2026-10-30 08:01:10] [ok 132/216] oh_w51_h2_floor_0.00391_cm100_100k_seed43: val=-3.77% test=-3.81% diverged=False time=705s; ETA ~107 min
+[2026-10-30 08:01:49] [ok 133/216] oh_w21_h256_floor_0.00391_cm100_100k_seed17: val=57.61% test=58.74% diverged=False time=5263s; ETA ~105 min
+[2026-10-30 08:01:49] polite mode: foreign load 25.1 > 25.0; waiting (checked every 30 s)
+[2026-10-30 08:02:19] [ok 134/216] oh_w41_h64_floor_0.00391_cm100_100k_seed29: val=71.14% test=71.95% diverged=False time=1717s; ETA ~104 min
+[2026-10-30 08:03:25] [ok 135/216] oh_w21_h256_floor_0.00391_cm100_100k_seed29: val=57.47% test=58.75% diverged=False time=5081s; ETA ~102 min
+[2026-10-30 08:03:25] polite mode: foreign load 25.4 > 25.0; waiting (checked every 30 s)
+[2026-10-30 08:04:25] [ok 136/216] oh_w41_h64_floor_0.00391_cm100_100k_seed43: val=70.37% test=71.58% diverged=False time=1821s; ETA ~101 min
+[2026-10-30 08:04:40] [ok 137/216] oh_w41_h64_floor_0.00391_cm100_100k_seed17: val=70.84% test=71.75% diverged=False time=1864s; ETA ~99 min
+[2026-10-30 08:04:40] polite mode: foreign load 25.7 > 25.0; waiting (checked every 30 s)
+[2026-10-30 08:06:10] [ok 138/216] oh_w51_h4_floor_0.00391_cm100_100k_seed29: val=4.75% test=5.66% diverged=False time=727s; ETA ~98 min
+[2026-10-30 08:06:10] [ok 139/216] oh_w51_h4_floor_0.00391_cm100_100k_seed17: val=5.71% test=5.99% diverged=False time=737s; ETA ~96 min
+[2026-10-30 08:06:10] polite mode: foreign load 25.1 > 25.0; waiting (checked every 30 s)
+[2026-10-30 08:07:40] [ok 140/216] oh_w51_h4_floor_0.00391_cm100_100k_seed43: val=4.39% test=5.37% diverged=False time=729s; ETA ~95 min
+[2026-10-30 08:08:40] [ok 141/216] oh_w51_h8_floor_0.00391_cm100_100k_seed17: val=19.46% test=19.74% diverged=False time=819s; ETA ~93 min
+[2026-10-30 08:08:40] polite mode: foreign load 25.2 > 25.0; waiting (checked every 30 s)
+[2026-10-30 08:09:40] [ok 142/216] oh_w51_h8_floor_0.00391_cm100_100k_seed29: val=19.39% test=19.92% diverged=False time=853s; ETA ~92 min
+[2026-10-30 08:10:57] [ok 143/216] oh_w51_h8_floor_0.00391_cm100_100k_seed43: val=12.62% test=13.52% diverged=False time=827s; ETA ~91 min
+[2026-10-30 08:10:57] polite mode: foreign load 25.9 > 25.0; waiting (checked every 30 s)
+[2026-10-30 08:13:08] [ok 144/216] oh_w21_h256_floor_0.00391_cm100_100k_seed43: val=57.72% test=58.99% diverged=False time=4945s; ETA ~90 min
+[2026-10-30 08:13:08] polite mode: foreign load 25.1 > 25.0; waiting (checked every 30 s)
+[2026-10-30 08:17:08] [ok 145/216] oh_w51_h16_floor_0.00391_cm100_100k_seed17: val=36.71% test=37.72% diverged=False time=913s; ETA ~90 min
+[2026-10-30 08:17:08] [ok 146/216] oh_w51_h16_floor_0.00391_cm100_100k_seed43: val=40.08% test=41.19% diverged=False time=924s; ETA ~88 min
+[2026-10-30 08:17:08] polite mode: foreign load 25.1 > 25.0; waiting (checked every 30 s)
+[2026-10-30 08:17:38] [ok 147/216] oh_w51_h16_floor_0.00391_cm100_100k_seed29: val=40.20% test=41.64% diverged=False time=979s; ETA ~87 min
+[2026-10-30 08:22:24] [ok 148/216] oh_w51_h32_floor_0.00391_cm100_100k_seed29: val=51.40% test=52.83% diverged=False time=1205s; ETA ~87 min
+[2026-10-30 08:22:24] polite mode: foreign load 26.2 > 25.0; waiting (checked every 30 s)
+[2026-10-30 08:23:24] [ok 149/216] oh_w65_h2_floor_0.00391_cm100_100k_seed17: val=-1.16% test=-1.13% diverged=False time=778s; ETA ~86 min
+[2026-10-30 08:23:37] [ok 150/216] oh_w51_h32_floor_0.00391_cm100_100k_seed17: val=54.21% test=54.72% diverged=False time=1279s; ETA ~84 min
+[2026-10-30 08:24:15] [ok 151/216] oh_w51_h32_floor_0.00391_cm100_100k_seed43: val=52.68% test=53.56% diverged=False time=1190s; ETA ~82 min
+[2026-10-30 08:24:44] [ok 152/216] oh_w41_h128_floor_0.00391_cm100_100k_seed29: val=77.30% test=78.44% diverged=False time=2791s; ETA ~81 min
+[2026-10-30 08:26:02] [ok 153/216] oh_w65_h2_floor_0.00391_cm100_100k_seed29: val=-5.08% test=-5.35% diverged=False time=784s; ETA ~79 min
+[2026-10-30 08:27:37] [ok 154/216] oh_w41_h128_floor_0.00391_cm100_100k_seed17: val=76.59% test=77.74% diverged=False time=3024s; ETA ~78 min
+[2026-10-30 08:28:43] [ok 155/216] oh_w41_h128_floor_0.00391_cm100_100k_seed43: val=76.82% test=77.98% diverged=False time=3029s; ETA ~77 min
+[2026-10-30 08:29:52] [ok 156/216] oh_w65_h2_floor_0.00391_cm100_100k_seed43: val=-3.54% test=-3.37% diverged=False time=764s; ETA ~76 min
+[2026-10-30 08:30:10] [ok 157/216] oh_w65_h4_floor_0.00391_cm100_100k_seed17: val=5.41% test=5.83% diverged=False time=751s; ETA ~74 min
+[2026-10-30 08:30:42] [ok 158/216] oh_w65_h4_floor_0.00391_cm100_100k_seed29: val=3.25% test=2.95% diverged=False time=784s; ETA ~73 min
+[2026-10-30 08:31:12] [ok 159/216] oh_w65_h4_floor_0.00391_cm100_100k_seed43: val=0.44% test=0.79% diverged=False time=813s; ETA ~71 min
+[2026-10-30 08:34:50] [ok 160/216] oh_w31_h256_floor_0.00391_cm100_100k_seed29: val=70.22% test=71.64% diverged=False time=4987s; ETA ~71 min
+[2026-10-30 08:34:59] [ok 161/216] oh_w51_h64_floor_0.00391_cm100_100k_seed17: val=73.22% test=74.01% diverged=False time=1834s; ETA ~69 min
+[2026-10-30 08:35:35] [ok 162/216] oh_w31_h256_floor_0.00391_cm100_100k_seed17: val=70.89% test=71.58% diverged=False time=5394s; ETA ~67 min
+[2026-10-30 08:37:01] [ok 163/216] oh_w51_h64_floor_0.00391_cm100_100k_seed43: val=71.69% test=72.73% diverged=False time=1761s; ETA ~66 min
+[2026-10-30 08:37:07] [ok 164/216] oh_w51_h64_floor_0.00391_cm100_100k_seed29: val=72.04% test=73.74% diverged=False time=1857s; ETA ~65 min
+[2026-10-30 08:37:58] [ok 165/216] oh_w65_h8_floor_0.00391_cm100_100k_seed17: val=19.58% test=20.14% diverged=False time=874s; ETA ~63 min
+[2026-10-30 08:37:59] [ok 166/216] oh_w65_h8_floor_0.00391_cm100_100k_seed43: val=14.91% test=15.86% diverged=False time=862s; ETA ~62 min
+[2026-10-30 08:38:09] [ok 167/216] oh_w65_h8_floor_0.00391_cm100_100k_seed29: val=17.53% test=18.49% diverged=False time=885s; ETA ~60 min
+[2026-10-30 08:40:19] [ok 168/216] oh_w65_h16_floor_0.00391_cm100_100k_seed17: val=37.35% test=37.87% diverged=False time=964s; ETA ~59 min
+[2026-10-30 08:40:57] [ok 169/216] oh_w65_h16_floor_0.00391_cm100_100k_seed29: val=36.00% test=36.65% diverged=False time=973s; ETA ~58 min
+[2026-10-30 08:43:17] [ok 170/216] oh_w65_h16_floor_0.00391_cm100_100k_seed43: val=34.15% test=34.74% diverged=False time=1036s; ETA ~57 min
+[2026-10-30 08:46:01] [ok 171/216] oh_w31_h256_floor_0.00391_cm100_100k_seed43: val=71.22% test=72.14% diverged=False time=5452s; ETA ~56 min
+[2026-10-30 08:49:45] [ok 172/216] oh_w65_h32_floor_0.00391_cm100_100k_seed17: val=54.20% test=55.02% diverged=False time=1328s; ETA ~55 min
+[2026-10-30 08:50:31] [ok 173/216] oh_w65_h32_floor_0.00391_cm100_100k_seed43: val=51.97% test=53.46% diverged=False time=1239s; ETA ~54 min
+[2026-10-30 08:50:55] [ok 174/216] both_w15_h8_const_0.001_cm1_100k_seed17: val=14.73% test=15.89% diverged=False time=835s; ETA ~53 min
+[2026-10-30 08:51:16] [ok 175/216] oh_w65_h32_floor_0.00391_cm100_100k_seed29: val=53.93% test=54.38% diverged=False time=1354s; ETA ~51 min
+[2026-10-30 08:52:05] [ok 176/216] both_w15_h8_const_0.001_cm1_100k_seed29: val=17.51% test=17.97% diverged=False time=898s; ETA ~50 min
+[2026-10-30 08:52:13] [ok 177/216] both_w15_h8_const_0.001_cm1_100k_seed43: val=17.22% test=18.02% diverged=False time=855s; ETA ~48 min
+[2026-10-30 08:55:02] [ok 178/216] oh_w51_h128_floor_0.00391_cm100_100k_seed17: val=80.01% test=80.84% diverged=False time=2842s; ETA ~47 min
+[2026-10-30 08:55:30] [ok 179/216] oh_w51_h128_floor_0.00391_cm100_100k_seed29: val=80.85% test=81.80% diverged=False time=2870s; ETA ~46 min
+[2026-10-30 08:56:18] [ok 180/216] both_w15_h16_const_0.001_cm1_100k_seed17: val=35.34% test=35.87% diverged=False time=1099s; ETA ~45 min
+[2026-10-30 08:57:49] [ok 181/216] both_w15_h16_const_0.001_cm1_100k_seed29: val=36.17% test=37.41% diverged=False time=1180s; ETA ~43 min
+[2026-10-30 08:58:27] [ok 182/216] both_w15_h16_const_0.001_cm1_100k_seed43: val=35.86% test=36.62% diverged=False time=1088s; ETA ~42 min
+[2026-10-30 08:59:20] [ok 183/216] oh_w65_h64_floor_0.00391_cm100_100k_seed17: val=71.17% test=71.95% diverged=False time=1750s; ETA ~41 min
+[2026-10-30 09:00:12] [ok 184/216] oh_w65_h64_floor_0.00391_cm100_100k_seed29: val=71.33% test=72.30% diverged=False time=1769s; ETA ~39 min
+[2026-10-30 09:00:15] [ok 185/216] oh_w41_h256_floor_0.00391_cm100_100k_seed17: val=77.58% test=78.55% diverged=False time=4922s; ETA ~38 min
+[2026-10-30 09:00:44] [ok 186/216] oh_w51_h128_floor_0.00391_cm100_100k_seed43: val=79.30% test=80.44% diverged=False time=3063s; ETA ~37 min
+[2026-10-30 09:03:34] [ok 187/216] oh_w65_h64_floor_0.00391_cm100_100k_seed43: val=70.37% test=71.71% diverged=False time=1942s; ETA ~36 min
+[2026-10-30 09:06:42] [ok 188/216] oh_w41_h256_floor_0.00391_cm100_100k_seed29: val=78.31% test=79.51% diverged=False time=5309s; ETA ~35 min
+[2026-10-30 09:07:26] [ok 189/216] both_w15_h32_const_0.001_cm1_100k_seed17: val=40.17% test=41.09% diverged=False time=1590s; ETA ~33 min
+[2026-10-30 09:10:38] [ok 190/216] both_w31_h8_const_0.001_cm1_100k_seed17: val=16.19% test=15.93% diverged=False time=936s; ETA ~32 min
+[2026-10-30 09:11:08] [ok 191/216] both_w31_h8_const_0.001_cm1_100k_seed29: val=17.75% test=18.63% diverged=False time=938s; ETA ~31 min
+[2026-10-30 09:11:47] [ok 192/216] both_w31_h8_const_0.001_cm1_100k_seed43: val=18.33% test=18.93% diverged=False time=928s; ETA ~30 min
+[2026-10-30 09:12:47] [ok 193/216] both_w15_h32_const_0.001_cm1_100k_seed29: val=40.09% test=41.14% diverged=False time=1770s; ETA ~29 min
+[2026-10-30 09:13:31] [ok 194/216] oh_w41_h256_floor_0.00391_cm100_100k_seed43: val=78.38% test=79.57% diverged=False time=5448s; ETA ~27 min
+[2026-10-30 09:15:00] [ok 195/216] both_w15_h32_const_0.001_cm1_100k_seed43: val=40.88% test=42.13% diverged=False time=1739s; ETA ~26 min
+[2026-10-30 09:18:02] [ok 196/216] both_w31_h16_const_0.001_cm1_100k_seed29: val=35.25% test=36.04% diverged=False time=1175s; ETA ~25 min
+[2026-10-30 09:18:38] [ok 197/216] both_w31_h16_const_0.001_cm1_100k_seed17: val=37.48% test=38.15% diverged=False time=1249s; ETA ~24 min
+[2026-10-30 09:18:40] [ok 198/216] both_w31_h16_const_0.001_cm1_100k_seed43: val=39.66% test=40.50% diverged=False time=1160s; ETA ~22 min
+[2026-10-30 09:21:14] [ok 199/216] oh_w65_h128_floor_0.00391_cm100_100k_seed17: val=81.66% test=82.34% diverged=False time=2784s; ETA ~21 min
+[2026-10-30 09:25:59] [ok 200/216] both_w15_h48_const_0.001_cm1_100k_seed43: val=41.67% test=42.68% diverged=False time=2103s; ETA ~20 min
+[2026-10-30 09:27:02] [ok 201/216] both_w31_h32_const_0.001_cm1_100k_seed17: val=61.04% test=62.50% diverged=False time=1611s; ETA ~19 min
+[2026-10-30 09:27:26] [ok 202/216] both_w15_h48_const_0.001_cm1_100k_seed29: val=41.72% test=42.53% diverged=False time=2215s; ETA ~18 min
+[2026-10-30 09:27:30] [ok 203/216] oh_w65_h128_floor_0.00391_cm100_100k_seed29: val=80.89% test=81.48% diverged=False time=3151s; ETA ~16 min
+[2026-10-30 09:27:31] [ok 204/216] both_w31_h32_const_0.001_cm1_100k_seed29: val=57.37% test=58.89% diverged=False time=1636s; ETA ~15 min
+[2026-10-30 09:28:10] [ok 205/216] oh_w65_h128_floor_0.00391_cm100_100k_seed43: val=80.71% test=81.36% diverged=False time=3155s; ETA ~14 min
+[2026-10-30 09:28:38] [ok 206/216] both_w15_h48_const_0.001_cm1_100k_seed17: val=42.16% test=42.82% diverged=False time=2333s; ETA ~12 min
+[2026-10-30 09:29:59] [ok 207/216] both_w31_h32_const_0.001_cm1_100k_seed43: val=59.66% test=60.17% diverged=False time=1755s; ETA ~11 min
+[2026-10-30 09:34:50] [ok 208/216] both_w15_h64_const_0.001_cm1_100k_seed43: val=41.75% test=43.16% diverged=False time=2556s; ETA ~10 min
+[2026-10-30 09:38:59] [ok 209/216] both_w15_h64_const_0.001_cm1_100k_seed29: val=42.04% test=43.08% diverged=False time=2814s; ETA ~9 min
+[2026-10-30 09:39:07] [ok 210/216] both_w31_h48_const_0.001_cm1_100k_seed43: val=64.96% test=66.15% diverged=False time=1900s; ETA ~8 min
+[2026-10-30 09:40:09] [ok 211/216] both_w15_h64_const_0.001_cm1_100k_seed17: val=42.56% test=42.94% diverged=False time=2933s; ETA ~6 min
+[2026-10-30 09:40:53] [ok 212/216] both_w31_h48_const_0.001_cm1_100k_seed17: val=63.59% test=64.55% diverged=False time=2239s; ETA ~5 min
+[2026-10-30 09:43:37] [ok 213/216] both_w31_h48_const_0.001_cm1_100k_seed29: val=63.63% test=64.76% diverged=False time=2215s; ETA ~4 min
+[2026-10-30 09:48:53] [ok 214/216] both_w31_h64_const_0.001_cm1_100k_seed43: val=65.33% test=67.26% diverged=False time=2226s; ETA ~3 min
+[2026-10-30 09:49:02] [ok 215/216] both_w31_h64_const_0.001_cm1_100k_seed29: val=65.60% test=66.78% diverged=False time=2274s; ETA ~1 min
+[2026-10-30 09:49:17] [ok 216/216] both_w31_h64_const_0.001_cm1_100k_seed17: val=64.73% test=65.61% diverged=False time=2319s; ETA ~0 min
+[2026-10-30 09:49:19] finished: 216 ok, 0 failed
+=== 2026-10-30T09:49:19+07:00 E026 grid exit=0 ===

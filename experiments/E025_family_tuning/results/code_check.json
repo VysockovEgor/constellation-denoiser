@@ -1,0 +1,11 @@
+{
+  "values": [
+    66.6832633899993,
+    65.82260473717903
+  ],
+  "mean": 66.25293406358917,
+  "target": 66.253,
+  "tol": 0.7,
+  "ok": true,
+  "source": "experiments/E019_confirm_long_runs/results/confirm.csv, control_complex_a best_e010_cm30 200k, mean of seeds 17, 29 (66.683, 65.823); the plan names F2, but the anchor 66.0 was measured on complex_a (class a, 6480 RM after merging), so the check uses that configuration"
+}

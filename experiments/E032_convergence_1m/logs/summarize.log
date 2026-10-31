@@ -1,0 +1,4 @@
+=== 2026-10-30T19:33:21+07:00 E032 summarize: .venv/bin/python -m constellation_denoiser.summarize_E032 ===
+JOBS=16 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+E032: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E032_convergence_1m/results/horizons.csv; вердикты: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E032_convergence_1m/results/convergence_verdicts.csv
+=== 2026-10-30T19:33:24+07:00 E032 summarize exit=0 ===

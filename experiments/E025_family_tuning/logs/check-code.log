@@ -1,0 +1,4 @@
+=== 2026-10-29T01:49:30+07:00 E025 check-code: .venv/bin/python -m constellation_denoiser.runner --exp E025 --stage check-code ===
+JOBS=40 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+[2026-10-29 01:49:32] code check (complex_a cm30 200k): 66.25% по 2 seed; цель 66.253±0.7 -> OK
+=== 2026-10-29T01:49:33+07:00 E025 check-code exit=0 ===

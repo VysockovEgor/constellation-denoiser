@@ -1,0 +1,4 @@
+=== 2026-10-30T11:50:31+07:00 E028 check-control: .venv/bin/python -m constellation_denoiser.runner --exp E028 --stage control --check-control ===
+JOBS=24 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+[2026-10-30 11:50:33] control a_const_1e-3_20k: mean test_reduction_valbest_select = 62.19% по 2 seed; цель 62.191±0.7 п.п. -> OK
+=== 2026-10-30T11:50:33+07:00 E028 check-control exit=0 ===

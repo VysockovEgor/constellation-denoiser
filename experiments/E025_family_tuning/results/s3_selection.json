@@ -1,0 +1,60 @@
+{
+  "F1": [
+    "F1_s27",
+    "F1_s04",
+    "F1_ref_current"
+  ],
+  "F2": [
+    "F2_s27",
+    "F2_s08",
+    "F2_ref_current"
+  ],
+  "F3": [
+    "F3_ref_e010best",
+    "F3_ref_current"
+  ],
+  "F4": [
+    "F4_ref_e010best",
+    "F4_s08",
+    "F4_ref_current"
+  ],
+  "F5": [
+    "F5_ref_current",
+    "F5_s26"
+  ],
+  "F6": [
+    "F6_s12",
+    "F6_ref_e010best",
+    "F6_ref_current"
+  ],
+  "F7": [
+    "F7_s24",
+    "F7_s12",
+    "F7_ref_current"
+  ],
+  "F8": [
+    "F8_s16",
+    "F8_s23",
+    "F8_ref_current"
+  ],
+  "F9": [
+    "F9_ref_e010best",
+    "F9_s05",
+    "F9_ref_current"
+  ],
+  "F10": [
+    "F10_s16",
+    "F10_ref_current"
+  ],
+  "F11": [
+    "F11_s02",
+    "F11_s17",
+    "F11_ref_current"
+  ],
+  "F12": [
+    "F12_ref_e010best"
+  ],
+  "F13": [
+    "F13_s08"
+  ]
+}

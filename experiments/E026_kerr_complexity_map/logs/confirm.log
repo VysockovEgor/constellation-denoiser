@@ -1,0 +1,65 @@
+=== 2026-10-30T09:49:29+07:00 E026 confirm: .venv/bin/python -u -m constellation_denoiser.runner --exp E026 --stage confirm ===
+JOBS=24 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+[2026-10-30 09:49:32] running 60 tasks with JOBS=24, THREADS=1, DEVICE=cpu
+[2026-10-30 10:02:25] [ok 1/60] oh_w5_h2_floor_0.00391_cm100_200k_seed57: val=-2.39% test=-2.21% diverged=False time=770s; ETA ~760 min
+[2026-10-30 10:02:53] [ok 2/60] oh_w5_h2_floor_0.00391_cm100_200k_seed29: val=-3.89% test=-3.75% diverged=False time=798s; ETA ~387 min
+[2026-10-30 10:03:01] [ok 3/60] oh_w5_h2_floor_0.00391_cm100_200k_seed17: val=-3.00% test=-2.81% diverged=False time=806s; ETA ~256 min
+[2026-10-30 10:03:03] [ok 4/60] oh_w5_h2_floor_0.00391_cm100_200k_seed71: val=-3.62% test=-3.44% diverged=False time=808s; ETA ~189 min
+[2026-10-30 10:03:14] [ok 5/60] oh_w5_h2_floor_0.00391_cm100_200k_seed43: val=-2.46% test=-2.39% diverged=False time=818s; ETA ~151 min
+[2026-10-30 10:03:59] [ok 6/60] oh_w5_h4_floor_0.00391_cm100_200k_seed43: val=-3.08% test=-3.50% diverged=False time=864s; ETA ~130 min
+[2026-10-30 10:04:04] [ok 7/60] oh_w5_h4_floor_0.00391_cm100_200k_seed29: val=-1.51% test=-1.82% diverged=False time=868s; ETA ~110 min
+[2026-10-30 10:04:05] [ok 8/60] oh_w5_h4_floor_0.00391_cm100_200k_seed71: val=-2.18% test=-2.63% diverged=False time=870s; ETA ~95 min
+[2026-10-30 10:04:14] [ok 9/60] oh_w5_h4_floor_0.00391_cm100_200k_seed17: val=1.61% test=1.97% diverged=False time=879s; ETA ~83 min
+[2026-10-30 10:04:19] [ok 10/60] oh_w5_h4_floor_0.00391_cm100_200k_seed57: val=-1.64% test=-2.02% diverged=False time=883s; ETA ~74 min
+[2026-10-30 10:04:43] [ok 11/60] oh_w9_h4_floor_0.00391_cm100_200k_seed71: val=-3.29% test=-2.67% diverged=False time=907s; ETA ~68 min
+[2026-10-30 10:04:54] [ok 12/60] oh_w9_h4_floor_0.00391_cm100_200k_seed43: val=-1.84% test=-1.96% diverged=False time=919s; ETA ~61 min
+[2026-10-30 10:04:59] [ok 13/60] oh_w9_h4_floor_0.00391_cm100_200k_seed29: val=4.31% test=4.45% diverged=False time=923s; ETA ~56 min
+[2026-10-30 10:05:03] [ok 14/60] oh_w9_h4_floor_0.00391_cm100_200k_seed17: val=3.24% test=3.46% diverged=False time=928s; ETA ~51 min
+[2026-10-30 10:05:05] [ok 15/60] oh_w9_h4_floor_0.00391_cm100_200k_seed57: val=-1.95% test=-1.62% diverged=False time=930s; ETA ~47 min
+[2026-10-30 10:06:03] [ok 16/60] oh_w9_h8_floor_0.00391_cm100_200k_seed71: val=12.22% test=12.70% diverged=False time=987s; ETA ~45 min
+[2026-10-30 10:06:18] [ok 17/60] oh_w9_h8_floor_0.00391_cm100_200k_seed29: val=12.73% test=13.32% diverged=False time=1002s; ETA ~42 min
+[2026-10-30 10:06:25] [ok 18/60] oh_w9_h8_floor_0.00391_cm100_200k_seed57: val=12.01% test=12.77% diverged=False time=1009s; ETA ~39 min
+[2026-10-30 10:06:40] [ok 19/60] oh_w9_h8_floor_0.00391_cm100_200k_seed17: val=15.07% test=16.10% diverged=False time=1024s; ETA ~37 min
+[2026-10-30 10:06:41] [ok 20/60] oh_w9_h8_floor_0.00391_cm100_200k_seed43: val=12.40% test=12.88% diverged=False time=1025s; ETA ~34 min
+[2026-10-30 10:07:03] [ok 21/60] oh_w15_h8_floor_0.00391_cm100_200k_seed29: val=13.80% test=14.45% diverged=False time=1047s; ETA ~33 min
+[2026-10-30 10:07:05] [ok 22/60] oh_w15_h8_floor_0.00391_cm100_200k_seed17: val=19.16% test=20.33% diverged=False time=1049s; ETA ~30 min
+[2026-10-30 10:07:22] [ok 23/60] oh_w15_h8_floor_0.00391_cm100_200k_seed43: val=20.28% test=20.98% diverged=False time=1066s; ETA ~29 min
+[2026-10-30 10:07:33] [ok 24/60] oh_w15_h8_floor_0.00391_cm100_200k_seed57: val=14.53% test=15.13% diverged=False time=1076s; ETA ~27 min
+[2026-10-30 10:19:59] [ok 25/60] oh_w15_h8_floor_0.00391_cm100_200k_seed71: val=19.90% test=20.81% diverged=False time=1054s; ETA ~43 min
+[2026-10-30 10:25:03] [ok 26/60] oh_w15_h16_floor_0.00391_cm100_200k_seed71: val=35.74% test=36.35% diverged=False time=1263s; ETA ~46 min
+[2026-10-30 10:25:39] [ok 27/60] oh_w15_h16_floor_0.00391_cm100_200k_seed17: val=33.09% test=33.80% diverged=False time=1366s; ETA ~44 min
+[2026-10-30 10:25:40] [ok 28/60] oh_w15_h16_floor_0.00391_cm100_200k_seed29: val=32.99% test=33.60% diverged=False time=1359s; ETA ~41 min
+[2026-10-30 10:26:14] [ok 29/60] oh_w15_h16_floor_0.00391_cm100_200k_seed43: val=32.70% test=33.36% diverged=False time=1391s; ETA ~39 min
+[2026-10-30 10:26:28] [ok 30/60] oh_w15_h16_floor_0.00391_cm100_200k_seed57: val=33.08% test=33.45% diverged=False time=1394s; ETA ~37 min
+[2026-10-30 10:29:36] [ok 31/60] oh_w31_h16_floor_0.00391_cm100_200k_seed57: val=37.52% test=38.53% diverged=False time=1375s; ETA ~37 min
+[2026-10-30 10:29:48] [ok 32/60] oh_w31_h16_floor_0.00391_cm100_200k_seed17: val=39.86% test=40.60% diverged=False time=1410s; ETA ~35 min
+[2026-10-30 10:30:04] [ok 33/60] oh_w31_h16_floor_0.00391_cm100_200k_seed29: val=36.22% test=37.37% diverged=False time=1419s; ETA ~33 min
+[2026-10-30 10:30:11] [ok 34/60] oh_w31_h16_floor_0.00391_cm100_200k_seed71: val=37.47% test=38.47% diverged=False time=1388s; ETA ~31 min
+[2026-10-30 10:32:27] [ok 35/60] oh_w31_h16_floor_0.00391_cm100_200k_seed43: val=39.16% test=40.42% diverged=False time=1547s; ETA ~31 min
+[2026-10-30 10:33:26] [ok 36/60] oh_w21_h32_floor_0.00391_cm100_200k_seed29: val=50.74% test=51.43% diverged=False time=1761s; ETA ~29 min
+[2026-10-30 10:33:33] [ok 37/60] oh_w21_h32_floor_0.00391_cm100_200k_seed71: val=50.14% test=51.15% diverged=False time=1731s; ETA ~27 min
+[2026-10-30 10:36:16] [ok 38/60] oh_w21_h32_floor_0.00391_cm100_200k_seed57: val=50.47% test=51.63% diverged=False time=1917s; ETA ~27 min
+[2026-10-30 10:36:20] [ok 39/60] oh_w21_h32_floor_0.00391_cm100_200k_seed43: val=50.78% test=51.48% diverged=False time=1926s; ETA ~25 min
+[2026-10-30 10:36:25] [ok 40/60] oh_w21_h32_floor_0.00391_cm100_200k_seed17: val=50.88% test=51.44% diverged=False time=1941s; ETA ~23 min
+[2026-10-30 10:47:28] [ok 41/60] oh_w21_h64_floor_0.00391_cm100_200k_seed17: val=57.01% test=57.73% diverged=False time=2553s; ETA ~27 min
+[2026-10-30 10:48:20] [ok 42/60] oh_w21_h64_floor_0.00391_cm100_200k_seed71: val=56.02% test=57.09% diverged=False time=2536s; ETA ~25 min
+[2026-10-30 10:49:59] [ok 43/60] oh_w41_h64_floor_0.00391_cm100_200k_seed17: val=71.62% test=72.56% diverged=False time=2574s; ETA ~24 min
+[2026-10-30 10:52:06] [ok 44/60] oh_w41_h64_floor_0.00391_cm100_200k_seed43: val=71.01% test=72.39% diverged=False time=2674s; ETA ~23 min
+[2026-10-30 10:52:15] [ok 45/60] oh_w21_h64_floor_0.00391_cm100_200k_seed43: val=56.68% test=58.06% diverged=False time=2832s; ETA ~21 min
+[2026-10-30 10:52:54] [ok 46/60] oh_w21_h64_floor_0.00391_cm100_200k_seed29: val=56.70% test=58.07% diverged=False time=2875s; ETA ~19 min
+[2026-10-30 10:53:58] [ok 47/60] oh_w21_h64_floor_0.00391_cm100_200k_seed57: val=56.79% test=57.79% diverged=False time=2932s; ETA ~18 min
+[2026-10-30 10:54:34] [ok 48/60] oh_w41_h64_floor_0.00391_cm100_200k_seed29: val=71.32% test=71.89% diverged=False time=2831s; ETA ~16 min
+[2026-10-30 10:59:55] [ok 49/60] oh_w41_h64_floor_0.00391_cm100_200k_seed57: val=72.16% test=73.44% diverged=False time=2396s; ETA ~16 min
+[2026-10-30 11:04:58] [ok 50/60] oh_w41_h64_floor_0.00391_cm100_200k_seed71: val=71.98% test=72.99% diverged=False time=2395s; ETA ~15 min
+[2026-10-30 11:29:02] [ok 51/60] oh_w41_h128_floor_0.00391_cm100_200k_seed17: val=77.01% test=78.18% diverged=False time=3803s; ETA ~18 min
+[2026-10-30 11:30:53] [ok 52/60] oh_w41_h128_floor_0.00391_cm100_200k_seed57: val=77.33% test=78.92% diverged=False time=3864s; ETA ~16 min
+[2026-10-30 11:33:10] [ok 53/60] oh_w65_h128_floor_0.00391_cm100_200k_seed43: val=81.24% test=81.79% diverged=False time=3779s; ETA ~14 min
+[2026-10-30 11:33:39] [ok 54/60] oh_w65_h128_floor_0.00391_cm100_200k_seed17: val=81.14% test=81.69% diverged=False time=3832s; ETA ~12 min
+[2026-10-30 11:33:47] [ok 55/60] oh_w65_h128_floor_0.00391_cm100_200k_seed29: val=81.28% test=81.44% diverged=False time=3824s; ETA ~9 min
+[2026-10-30 11:35:35] [ok 56/60] oh_w41_h128_floor_0.00391_cm100_200k_seed29: val=77.65% test=78.82% diverged=False time=4195s; ETA ~8 min
+[2026-10-30 11:36:41] [ok 57/60] oh_w41_h128_floor_0.00391_cm100_200k_seed71: val=76.91% test=78.07% diverged=False time=4024s; ETA ~6 min
+[2026-10-30 11:41:15] [ok 58/60] oh_w41_h128_floor_0.00391_cm100_200k_seed43: val=77.13% test=78.30% diverged=False time=4501s; ETA ~4 min
+[2026-10-30 11:43:55] [ok 59/60] oh_w65_h128_floor_0.00391_cm100_200k_seed71: val=81.74% test=82.15% diverged=False time=4228s; ETA ~2 min
+[2026-10-30 11:45:49] [ok 60/60] oh_w65_h128_floor_0.00391_cm100_200k_seed57: val=80.09% test=80.86% diverged=False time=4401s; ETA ~0 min
+[2026-10-30 11:45:50] finished: 60 ok, 0 failed
+=== 2026-10-30T11:45:51+07:00 E026 confirm exit=0 ===

@@ -1,0 +1,26 @@
+=== 2026-10-31T00:47:53+07:00 E028 b: .venv/bin/python -u -m constellation_denoiser.runner --exp E028 --stage b ===
+JOBS=40 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+[2026-10-31 00:47:55] running 21 tasks with JOBS=40, THREADS=1, DEVICE=cpu
+[2026-10-31 02:56:08] [ok 1/21] b_d_lr_rewarm_per_stage_170k_seed29: val=2.05% test=2.90% diverged=False time=7690s; ETA ~2564 min
+[2026-10-31 02:57:07] [ok 2/21] b_d_lr_rewarm_per_stage_170k_seed43: val=1.23% test=2.32% diverged=False time=7749s; ETA ~1227 min
+[2026-10-31 02:57:50] [ok 3/21] b_a_e018_layerwise_170k_seed17: val=-1.08% test=-0.13% diverged=False time=7793s; ETA ~780 min
+[2026-10-31 02:59:19] [ok 4/21] b_a_e018_layerwise_170k_seed43: val=1.57% test=2.84% diverged=False time=7882s; ETA ~559 min
+[2026-10-31 03:00:42] [ok 5/21] b_a_e018_layerwise_170k_seed29: val=1.90% test=2.56% diverged=False time=7965s; ETA ~425 min
+[2026-10-31 03:03:57] [ok 6/21] b_d_lr_rewarm_per_stage_170k_seed17: val=-1.07% test=-0.14% diverged=False time=8160s; ETA ~340 min
+[2026-10-31 03:08:57] [ok 7/21] b_e_layerwise_then_joint_170k_seed43: val=43.23% test=44.02% diverged=False time=8459s; ETA ~282 min
+[2026-10-31 03:11:19] [ok 8/21] b_e_layerwise_then_joint_170k_seed29: val=39.39% test=39.95% diverged=False time=8601s; ETA ~233 min
+[2026-10-31 03:15:46] [ok 9/21] b_g_identity_all_trainable_recipe_170k_seed43: val=36.04% test=37.21% diverged=False time=8868s; ETA ~197 min
+[2026-10-31 03:16:11] [ok 10/21] b_e_layerwise_then_joint_170k_seed17: val=43.72% test=44.96% diverged=False time=8893s; ETA ~163 min
+[2026-10-31 03:16:49] [ok 11/21] b_g_identity_all_trainable_recipe_170k_seed29: val=35.77% test=36.77% diverged=False time=8930s; ETA ~135 min
+[2026-10-31 03:19:48] [ok 12/21] b_g_identity_all_trainable_recipe_170k_seed17: val=35.31% test=36.58% diverged=False time=9110s; ETA ~114 min
+[2026-10-31 03:19:51] [ok 13/21] b_c_small_random_all_trainable_170k_seed29: val=35.12% test=36.15% diverged=False time=9114s; ETA ~94 min
+[2026-10-31 03:22:06] [ok 14/21] b_b_identity_all_trainable_170k_seed17: val=35.31% test=36.58% diverged=False time=9249s; ETA ~77 min
+[2026-10-31 03:22:34] [ok 15/21] b_b_identity_all_trainable_170k_seed43: val=36.04% test=37.21% diverged=False time=9276s; ETA ~62 min
+[2026-10-31 03:23:35] [ok 16/21] b_b_identity_all_trainable_170k_seed29: val=35.77% test=36.77% diverged=False time=9337s; ETA ~49 min
+[2026-10-31 03:25:12] [ok 17/21] b_f_joint_from_scratch_170k_seed43: val=46.60% test=48.22% diverged=False time=9434s; ETA ~37 min
+[2026-10-31 03:25:48] [ok 18/21] b_f_joint_from_scratch_170k_seed17: val=41.93% test=43.55% diverged=False time=9470s; ETA ~26 min
+[2026-10-31 03:26:08] [ok 19/21] b_c_small_random_all_trainable_170k_seed17: val=35.33% test=36.51% diverged=False time=9490s; ETA ~17 min
+[2026-10-31 03:27:27] [ok 20/21] b_f_joint_from_scratch_170k_seed29: val=48.53% test=49.16% diverged=False time=9568s; ETA ~8 min
+[2026-10-31 03:28:02] [ok 21/21] b_c_small_random_all_trainable_170k_seed43: val=36.88% test=37.87% diverged=False time=9605s; ETA ~0 min
+[2026-10-31 03:28:04] finished: 21 ok, 0 failed
+=== 2026-10-31T03:28:04+07:00 E028 b exit=0 ===

@@ -178,8 +178,78 @@
 
 ::: {layout-ncol=3}
 
-![E021 · E021_pareto_ber.png · 2026-10-27](figs/experiments/E021_pareto/figures/E021_pareto_ber.png){group="gallery"}
+![E021 · E021_pareto_ber.png · 2026-10-28](figs/experiments/E021_pareto/figures/E021_pareto_ber.png){group="gallery"}
 
-![E021 · E021_pareto_q2.png · 2026-10-27](figs/experiments/E021_pareto/figures/E021_pareto_q2.png){group="gallery"}
+![E021 · E021_pareto_q2.png · 2026-10-28](figs/experiments/E021_pareto/figures/E021_pareto_q2.png){group="gallery"}
+
+:::
+
+## E022
+
+::: {layout-ncol=3}
+
+![E022 · E022_baselines_vs_macs.png · 2026-10-28](figs/experiments/E022_baselines/figures/E022_baselines_vs_macs.png){group="gallery"}
+
+:::
+
+## E023
+
+::: {layout-ncol=3}
+
+![E023 · E023_split_robustness.png · 2026-10-28](figs/experiments/E023_split_robustness/figures/E023_split_robustness.png){group="gallery"}
+
+:::
+
+## E024
+
+::: {layout-ncol=3}
+
+![E024 · E024_window_overlap.png · 2026-10-28](figs/experiments/E024_data_audit/figures/E024_window_overlap.png){group="gallery"}
+
+![E024 · E024_raw_ber_per_file.png · 2026-10-28](figs/experiments/E024_data_audit/figures/E024_raw_ber_per_file.png){group="gallery"}
+
+![E024 · E024_tuning_budget.png · 2026-10-28](figs/experiments/E024_data_audit/figures/E024_tuning_budget.png){group="gallery"}
+
+![E024 · E024_pareto_v2.png · 2026-10-28](figs/experiments/E024_data_audit/figures/E024_pareto_v2.png){group="gallery"}
+
+:::
+
+## E025
+
+::: {layout-ncol=3}
+
+![E025 · E025_before_after.png · 2026-10-30](figs/experiments/E025_family_tuning/figures/E025_before_after.png){group="gallery"}
+
+![E025 · E025_search_response.png · 2026-10-30](figs/experiments/E025_family_tuning/figures/E025_search_response.png){group="gallery"}
+
+![E025 · E025_hparam_importance.png · 2026-10-30](figs/experiments/E025_family_tuning/figures/E025_hparam_importance.png){group="gallery"}
+
+:::
+
+## E026
+
+::: {layout-ncol=3}
+
+![E026 · E026_heatmap_val.png · 2026-10-30](figs/experiments/E026_kerr_complexity_map/figures/E026_heatmap_val.png){group="gallery"}
+
+![E026 · E026_pareto_by_window.png · 2026-10-30](figs/experiments/E026_kerr_complexity_map/figures/E026_pareto_by_window.png){group="gallery"}
+
+![E026 · E026_instability.png · 2026-10-30](figs/experiments/E026_kerr_complexity_map/figures/E026_instability.png){group="gallery"}
+
+:::
+
+## E031
+
+::: {layout-ncol=3}
+
+![E031 · E031_triplets_vs_rm.png · 2026-10-28](figs/experiments/E031_perturbation_triplets/figures/E031_triplets_vs_rm.png){group="gallery"}
+
+:::
+
+## E032
+
+::: {layout-ncol=3}
+
+![E032 · E032_valbest_test_vs_steps.png · 2026-10-30](figs/experiments/E032_convergence_1m/figures/E032_valbest_test_vs_steps.png){group="gallery"}
 
 :::

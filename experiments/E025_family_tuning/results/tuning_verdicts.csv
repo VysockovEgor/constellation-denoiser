@@ -1,0 +1,16 @@
+hypothesis,value,verdict,detail,rule_status
+"F1 (Kerr MLP, 2160 RM): новый рецепт заменяет прежний",0.6370281436491396,не доказано,F1_ref_current,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"F2 (Kerr MLP, 6480 RM): новый рецепт заменяет прежний",2.0311451675553656,подтверждено,F2_s08,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"F3 (Kerr MLP, 16065 RM): новый рецепт заменяет прежний",0.19774709558953418,не доказано,F3_ref_current,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"F4 (Kerr MLP, 16032 RM): новый рецепт заменяет прежний",0.0,не доказано,F4_ref_current,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"F5 (PhysKerr, 38 RM): новый рецепт заменяет прежний",0.0,не доказано,F5_ref_current,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"F6 (DBP, 592 RM): новый рецепт заменяет прежний",0.35735725131537066,не доказано,F6_ref_current,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"F7 (DBP, 1184 RM): новый рецепт заменяет прежний",3.3956001271231386,не доказано,F7_ref_current,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"F8 (Phys + MLP, 2198 RM): новый рецепт заменяет прежний",0.9965041138458162,не доказано,F8_ref_current,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"F9 (Phys + MLP, 6518 RM): новый рецепт заменяет прежний",4.258624951446031,подтверждено,F9_s05,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"F10 (real MLP, 6400 RM): новый рецепт заменяет прежний",0.28108337158798236,не доказано,F10_ref_current,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"F11 (real MLP, 15360 RM): новый рецепт заменяет прежний",17.33465164730393,подтверждено,F11_s02,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"F12 (KAN, 8088 RM): новый рецепт заменяет прежний",3.4028979366032104,подтверждено,F12_ref_e010best,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"F13 (transformer, 2285824 RM): новый рецепт заменяет прежний",2.6625233941876445,не доказано,F13_ref_current,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+чистая физика F5 была недообучена (лучший рецепт ≥ ref_current + 3 п.п.),0.0,не доказано,"F5_ref_current, 60000 шагов",DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"рейтинг семейств изменился (на уровне RM два семейства поменялись местами, ≥ 1 п.п.)",,подтверждено,"6500: KAN / Kerr MLP (было -4.24, стало +2.38); 6500: KAN / Phys + MLP (было -5.80, стало +1.67)",DRAFT: to be confirmed by the user before the first run; must not change after results are seen

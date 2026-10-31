@@ -1,0 +1,17 @@
+hypothesis,value,verdict,detail,rule_status
+300 RM: окно шире 31 окупается (oh_w41_h2 против oh_w31_h2),-0.1872651619321346,не доказано,"лучшие по валидации в окне ±25 %, тест",DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+600 RM: окно шире 31 окупается (oh_w41_h4 против oh_w31_h4),0.35054524483658156,не доказано,"лучшие по валидации в окне ±25 %, тест",DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+1000 RM: окно шире 31 окупается (oh_w51_h4 против oh_w31_h8),-12.281979235386348,не доказано,"лучшие по валидации в окне ±25 %, тест",DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+1000 RM: глубина (both) окупается (both_w15_h8 против oh_w15_h16),-15.975182343468784,не доказано,тест,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+2000 RM: окно шире 31 окупается (oh_w65_h8 против oh_w31_h16),-20.659917304346042,не доказано,"лучшие по валидации в окне ±25 %, тест",DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+2000 RM: глубина (both) окупается (both_w15_h16 против oh_w15_h32),-5.265463673392063,не доказано,тест,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+4000 RM: окно шире 31 окупается (oh_w51_h16 против oh_w31_h32),-14.891232088950765,не доказано,"лучшие по валидации в окне ±25 %, тест",DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+4000 RM: глубина (both) окупается (both_w31_h16 против oh_w31_h32),-16.533892880005702,не доказано,тест,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+6500 RM: глубина (both) окупается (both_w15_h32 против oh_w21_h64),-16.284363783632415,не доказано,тест,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+10000 RM: окно шире 31 окупается (oh_w41_h64 против oh_w31_h64),2.628801689496285,подтверждено,"лучшие по валидации в окне ±25 %, тест",DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+10000 RM: глубина (both) окупается (both_w31_h32 против oh_w41_h64),-11.310073472695656,не доказано,тест,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+16000 RM: окно шире 31 окупается (oh_w51_h64 против oh_w31_h128),1.5893188663692968,подтверждено,"лучшие по валидации в окне ±25 %, тест",DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+16000 RM: глубина (both) окупается (both_w31_h48 против oh_w51_h64),-7.354309263979374,не доказано,тест,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+25000 RM: глубина (both) окупается (both_w31_h64 против oh_w51_h128),-13.149452805904232,не доказано,тест,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+40000 RM: окно шире 31 окупается (oh_w65_h128 против oh_w31_h256),9.71175888748111,подтверждено,"лучшие по валидации в окне ±25 %, тест",DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"насыщение: наименьший RM, после которого удвоение RM даёт < 0.5 п.п.",,не доказано,"огибающая средних валидаций (100k, 3 seeds)",DRAFT: to be confirmed by the user before the first run; must not change after results are seen

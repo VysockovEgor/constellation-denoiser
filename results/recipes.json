@@ -1,0 +1,390 @@
+{
+  "source": "experiments/E025_family_tuning (summarize_E025)",
+  "git_commit": "b270a0017edd4a4829da43019a85387cd606beb3+dirty",
+  "rule": "a new recipe replaces the previous one (ref_current) if on S3 its mean validation is higher by >= 0.5 p.p. and the min-max intervals over seeds do not overlap; otherwise ref_current stays",
+  "recipes": {
+    "F1": {
+      "recipe": {
+        "name": "F1_ref_current",
+        "lr": {
+          "peak_lr": 0.003,
+          "schedule": "cosine_to_zero",
+          "warmup": 0,
+          "c_mult": 1.0,
+          "floor_frac": 0.1,
+          "optimizer": "adam",
+          "weight_decay": 0.0,
+          "horizon": null
+        },
+        "spec_overrides": {}
+      },
+      "family": "Kerr MLP",
+      "level_rm": 2160,
+      "val_mean": 38.73159362971857,
+      "test_mean": 39.43096948573867,
+      "test_min": 36.819830713422,
+      "test_max": 42.28252365033075,
+      "n_seeds": 5,
+      "steps": 200000,
+      "ref_current_val_mean": 38.73159362971857,
+      "ref_current_test_mean": 39.43096948573867,
+      "best_val_gain_over_ref": 0.6370281436491396,
+      "replaced": false,
+      "compared_at_steps": 200000
+    },
+    "F2": {
+      "recipe": {
+        "name": "F2_s08",
+        "lr": {
+          "peak_lr": 0.00391,
+          "schedule": "cosine_to_floor",
+          "warmup": 0,
+          "c_mult": 100.0,
+          "floor_frac": 0.05,
+          "optimizer": "adam",
+          "weight_decay": 0.0,
+          "horizon": null
+        },
+        "spec_overrides": {}
+      },
+      "family": "Kerr MLP",
+      "level_rm": 6480,
+      "val_mean": 64.9246089198065,
+      "test_mean": 66.12419090973754,
+      "test_min": 65.93285439931716,
+      "test_max": 66.29561135215876,
+      "n_seeds": 5,
+      "steps": 200000,
+      "ref_current_val_mean": 62.89346375225114,
+      "ref_current_test_mean": 63.835265666121344,
+      "best_val_gain_over_ref": 2.0311451675553656,
+      "replaced": true,
+      "compared_at_steps": 200000
+    },
+    "F3": {
+      "recipe": {
+        "name": "F3_ref_current",
+        "lr": {
+          "peak_lr": 0.003,
+          "schedule": "cosine_to_zero",
+          "warmup": 0,
+          "c_mult": 1.0,
+          "floor_frac": 0.1,
+          "optimizer": "adam",
+          "weight_decay": 0.0,
+          "horizon": null
+        },
+        "spec_overrides": {}
+      },
+      "family": "Kerr MLP",
+      "level_rm": 16065,
+      "val_mean": 71.06112503972598,
+      "test_mean": 72.53858738174834,
+      "test_min": 72.26687531118857,
+      "test_max": 72.74699480759655,
+      "n_seeds": 5,
+      "steps": 200000,
+      "ref_current_val_mean": 71.06112503972598,
+      "ref_current_test_mean": 72.53858738174834,
+      "best_val_gain_over_ref": 0.19774709558953418,
+      "replaced": false,
+      "compared_at_steps": 200000
+    },
+    "F4": {
+      "recipe": {
+        "name": "F4_ref_current",
+        "lr": {
+          "peak_lr": 0.001,
+          "schedule": "const",
+          "warmup": 0,
+          "c_mult": 1.0,
+          "floor_frac": 0.1,
+          "optimizer": "adam",
+          "weight_decay": 0.0,
+          "horizon": null
+        },
+        "spec_overrides": {}
+      },
+      "family": "Kerr MLP",
+      "level_rm": 16032,
+      "val_mean": 66.23680214696847,
+      "test_mean": 67.27363254854541,
+      "test_min": 66.99978661355715,
+      "test_max": 67.56881712781848,
+      "n_seeds": 5,
+      "steps": 200000,
+      "ref_current_val_mean": 66.23680214696847,
+      "ref_current_test_mean": 67.27363254854541,
+      "best_val_gain_over_ref": 0.0,
+      "replaced": false,
+      "compared_at_steps": 200000
+    },
+    "F5": {
+      "recipe": {
+        "name": "F5_ref_current",
+        "lr": {
+          "peak_lr": 0.001,
+          "schedule": "const",
+          "warmup": 0,
+          "c_mult": 1.0,
+          "floor_frac": 0.1,
+          "optimizer": "adam",
+          "weight_decay": 0.0,
+          "horizon": null
+        },
+        "spec_overrides": {}
+      },
+      "family": "PhysKerr",
+      "level_rm": 38,
+      "val_mean": 8.29760937886225,
+      "test_mean": 9.322142399886197,
+      "test_min": 9.12582687246604,
+      "test_max": 9.645067216729496,
+      "n_seeds": 5,
+      "steps": 200000,
+      "ref_current_val_mean": 8.29760937886225,
+      "ref_current_test_mean": 9.322142399886197,
+      "best_val_gain_over_ref": 0.0,
+      "replaced": false,
+      "compared_at_steps": 200000
+    },
+    "F6": {
+      "recipe": {
+        "name": "F6_ref_current",
+        "lr": {
+          "peak_lr": 0.001,
+          "schedule": "const",
+          "warmup": 0,
+          "c_mult": 1.0,
+          "floor_frac": 0.1,
+          "optimizer": "adam",
+          "weight_decay": 0.0,
+          "horizon": null
+        },
+        "spec_overrides": {}
+      },
+      "family": "DBP",
+      "level_rm": 592,
+      "val_mean": 47.20152547759455,
+      "test_mean": 47.98136425065794,
+      "test_min": 46.119923180880576,
+      "test_max": 50.10313678070987,
+      "n_seeds": 5,
+      "steps": 200000,
+      "ref_current_val_mean": 47.20152547759455,
+      "ref_current_test_mean": 47.98136425065794,
+      "best_val_gain_over_ref": 0.35735725131537066,
+      "replaced": false,
+      "compared_at_steps": 200000
+    },
+    "F7": {
+      "recipe": {
+        "name": "F7_ref_current",
+        "lr": {
+          "peak_lr": 0.001,
+          "schedule": "const",
+          "warmup": 0,
+          "c_mult": 1.0,
+          "floor_frac": 0.1,
+          "optimizer": "adam",
+          "weight_decay": 0.0,
+          "horizon": null
+        },
+        "spec_overrides": {}
+      },
+      "family": "DBP",
+      "level_rm": 1184,
+      "val_mean": 50.138776086726224,
+      "test_mean": 50.867771534248526,
+      "test_min": 47.92659506366029,
+      "test_max": 53.2790383384309,
+      "n_seeds": 5,
+      "steps": 200000,
+      "ref_current_val_mean": 50.138776086726224,
+      "ref_current_test_mean": 50.867771534248526,
+      "best_val_gain_over_ref": 3.3956001271231386,
+      "replaced": false,
+      "compared_at_steps": 200000
+    },
+    "F8": {
+      "recipe": {
+        "name": "F8_ref_current",
+        "lr": {
+          "peak_lr": 0.001,
+          "schedule": "const",
+          "warmup": 0,
+          "c_mult": 1.0,
+          "floor_frac": 0.1,
+          "optimizer": "adam",
+          "weight_decay": 0.0,
+          "horizon": null
+        },
+        "spec_overrides": {}
+      },
+      "family": "Phys + MLP",
+      "level_rm": 2198,
+      "val_mean": 41.93580281789612,
+      "test_mean": 43.488868340564764,
+      "test_min": 43.07916637029661,
+      "test_max": 43.81890603883634,
+      "n_seeds": 5,
+      "steps": 200000,
+      "ref_current_val_mean": 41.93580281789612,
+      "ref_current_test_mean": 43.488868340564764,
+      "best_val_gain_over_ref": 0.9965041138458162,
+      "replaced": false,
+      "compared_at_steps": 200000
+    },
+    "F9": {
+      "recipe": {
+        "name": "F9_s05",
+        "lr": {
+          "peak_lr": 0.00121,
+          "schedule": "cosine_to_zero",
+          "warmup": 1000,
+          "c_mult": 100.0,
+          "floor_frac": 0.1,
+          "optimizer": "adam",
+          "weight_decay": 0.0,
+          "horizon": null
+        },
+        "spec_overrides": {}
+      },
+      "family": "Phys + MLP",
+      "level_rm": 6518,
+      "val_mean": 65.85896394646704,
+      "test_mean": 66.8354790525642,
+      "test_min": 66.05021694288357,
+      "test_max": 67.32342271854328,
+      "n_seeds": 5,
+      "steps": 200000,
+      "ref_current_val_mean": 61.60033899502101,
+      "ref_current_test_mean": 62.836617113592716,
+      "best_val_gain_over_ref": 4.258624951446031,
+      "replaced": true,
+      "compared_at_steps": 200000
+    },
+    "F10": {
+      "recipe": {
+        "name": "F10_ref_current",
+        "lr": {
+          "peak_lr": 0.001,
+          "schedule": "const",
+          "warmup": 0,
+          "c_mult": 1.0,
+          "floor_frac": 0.1,
+          "optimizer": "adam",
+          "weight_decay": 0.0,
+          "horizon": null
+        },
+        "spec_overrides": {
+          "activation": "tanh",
+          "init_scale": 1.0
+        }
+      },
+      "family": "real MLP",
+      "level_rm": 6400,
+      "val_mean": 41.92309050460821,
+      "test_mean": 42.02574863077033,
+      "test_min": 39.82146667615051,
+      "test_max": 43.32811722028595,
+      "n_seeds": 5,
+      "steps": 200000,
+      "ref_current_val_mean": 41.92309050460821,
+      "ref_current_test_mean": 42.02574863077033,
+      "best_val_gain_over_ref": 0.28108337158798236,
+      "replaced": false,
+      "compared_at_steps": 200000
+    },
+    "F11": {
+      "recipe": {
+        "name": "F11_s02",
+        "lr": {
+          "peak_lr": 0.00087,
+          "schedule": "cosine_to_floor",
+          "warmup": 0,
+          "c_mult": 1.0,
+          "floor_frac": 0.05,
+          "optimizer": "adamw",
+          "weight_decay": 0.001,
+          "horizon": null
+        },
+        "spec_overrides": {
+          "activation": "silu",
+          "init_scale": 1.0
+        }
+      },
+      "family": "real MLP",
+      "level_rm": 15360,
+      "val_mean": 49.1302658992196,
+      "test_mean": 50.030585390141546,
+      "test_min": 43.783341631695,
+      "test_max": 55.58361192118927,
+      "n_seeds": 5,
+      "steps": 200000,
+      "ref_current_val_mean": 31.795614251915673,
+      "ref_current_test_mean": 31.709225407212465,
+      "best_val_gain_over_ref": 17.33465164730393,
+      "replaced": true,
+      "compared_at_steps": 200000
+    },
+    "F12": {
+      "recipe": {
+        "name": "F12_ref_e010best",
+        "lr": {
+          "peak_lr": 0.003,
+          "schedule": "cosine_to_zero",
+          "warmup": 0,
+          "c_mult": 30.0,
+          "floor_frac": 0.1,
+          "optimizer": "adam",
+          "weight_decay": 0.0,
+          "horizon": null
+        },
+        "spec_overrides": {}
+      },
+      "family": "KAN",
+      "level_rm": 8088,
+      "val_mean": 67.16809680191155,
+      "test_mean": 68.50534651587357,
+      "test_min": 67.91734831780354,
+      "test_max": 69.29369087417312,
+      "n_seeds": 3,
+      "steps": 100000,
+      "ref_current_val_mean": 63.68868957237191,
+      "ref_current_test_mean": 64.83984161984019,
+      "best_val_gain_over_ref": 3.4028979366032104,
+      "replaced": true,
+      "compared_at_steps": 60000
+    },
+    "F13": {
+      "recipe": {
+        "name": "F13_ref_current",
+        "lr": {
+          "peak_lr": 0.001,
+          "schedule": "cosine_to_zero",
+          "warmup": 1000,
+          "c_mult": 1.0,
+          "floor_frac": 0.1,
+          "optimizer": "adamw",
+          "weight_decay": 1e-05,
+          "horizon": null
+        },
+        "spec_overrides": {}
+      },
+      "family": "transformer",
+      "level_rm": 2285824,
+      "val_mean": 33.983073790270375,
+      "test_mean": 34.25800791900799,
+      "test_min": 33.90354932783271,
+      "test_max": 34.8851269649335,
+      "n_seeds": 3,
+      "steps": 60000,
+      "ref_current_val_mean": 33.983073790270375,
+      "ref_current_test_mean": 34.25800791900799,
+      "best_val_gain_over_ref": 2.6625233941876445,
+      "replaced": false,
+      "compared_at_steps": 60000
+    }
+  }
+}

@@ -1,0 +1,4 @@
+=== 2026-10-30T11:46:00+07:00 E026 summarize: .venv/bin/python -m constellation_denoiser.summarize_E026 ===
+JOBS=24 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+карта: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E026_kerr_complexity_map/results/map_summary.csv; вердикты: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E026_kerr_complexity_map/results/map_verdicts.csv
+=== 2026-10-30T11:46:04+07:00 E026 summarize exit=0 ===

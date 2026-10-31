@@ -1,0 +1,39 @@
+=== 2026-10-30T05:13:05+07:00 E032 main: .venv/bin/python -u -m constellation_denoiser.runner --exp E032 --stage main ===
+JOBS=16 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+[2026-10-30 05:13:07] running 18 tasks with JOBS=16, THREADS=1, DEVICE=cpu
+[2026-10-30 07:04:27] [ok 1/18] real_F11_floor_0.00087_cm1_wd0.001_adamw_1000k_seed17: val=38.36% test=39.28% diverged=False time=6676s; ETA ~1893 min
+[2026-10-30 07:04:27] polite mode: foreign load 30.9 > 25.0; waiting (checked every 30 s)
+[2026-10-30 07:14:27] polite mode: foreign load 33.0 > 25.0; waiting (checked every 30 s)
+[2026-10-30 07:24:27] polite mode: foreign load 33.2 > 25.0; waiting (checked every 30 s)
+[2026-10-30 07:34:27] polite mode: foreign load 32.8 > 25.0; waiting (checked every 30 s)
+[2026-10-30 07:44:27] polite mode: foreign load 33.4 > 25.0; waiting (checked every 30 s)
+[2026-10-30 07:54:27] polite mode: foreign load 33.3 > 25.0; waiting (checked every 30 s)
+[2026-10-30 08:04:27] polite mode: foreign load 32.8 > 25.0; waiting (checked every 30 s)
+[2026-10-30 08:14:27] polite mode: foreign load 33.2 > 25.0; waiting (checked every 30 s)
+[2026-10-30 08:24:27] polite mode: foreign load 32.3 > 25.0; waiting (checked every 30 s)
+[2026-10-30 08:34:27] polite mode: foreign load 30.9 > 25.0; waiting (checked every 30 s)
+[2026-10-30 08:44:27] polite mode: foreign load 31.0 > 25.0; waiting (checked every 30 s)
+[2026-10-30 08:54:27] polite mode: foreign load 31.4 > 25.0; waiting (checked every 30 s)
+[2026-10-30 09:04:27] polite mode: foreign load 30.9 > 25.0 for 7200s; starting anyway
+[2026-10-30 09:04:27] [ok 2/18] real_F11_floor_0.00087_cm1_wd0.001_adamw_1000k_seed43: val=34.56% test=35.26% diverged=False time=6771s; ETA ~1851 min
+[2026-10-30 09:04:27] [ok 3/18] real_F11_floor_0.00087_cm1_wd0.001_adamw_1000k_seed29: val=35.44% test=36.23% diverged=False time=6708s; ETA ~1157 min
+[2026-10-30 09:04:27] [ok 4/18] oh48_floor_0.00391_cm100_1000k_seed17: val=64.28% test=65.55% diverged=False time=11361s; ETA ~810 min
+[2026-10-30 09:04:27] [ok 5/18] oh48_floor_0.00391_cm100_1000k_seed43: val=64.82% test=66.23% diverged=False time=11644s; ETA ~601 min
+[2026-10-30 09:04:27] [ok 6/18] oh48_floor_0.00391_cm100_1000k_seed29: val=65.38% test=66.31% diverged=False time=11368s; ETA ~463 min
+[2026-10-30 09:04:27] polite mode: foreign load 34.9 > 25.0; waiting (checked every 30 s)
+[2026-10-30 09:14:27] polite mode: foreign load 34.6 > 25.0; waiting (checked every 30 s)
+[2026-10-30 09:24:27] polite mode: foreign load 28.7 > 25.0; waiting (checked every 30 s)
+[2026-10-30 09:28:27] [ok 7/18] hyb48_cos_0.00121_wu1000_cm100_1000k_seed29: val=66.16% test=67.42% diverged=False time=15126s; ETA ~401 min
+[2026-10-30 09:28:27] [ok 8/18] hyb48_cos_0.00121_wu1000_cm100_1000k_seed17: val=65.77% test=66.88% diverged=False time=14753s; ETA ~319 min
+[2026-10-30 09:29:27] [ok 9/18] hyb48_cos_0.00121_wu1000_cm100_1000k_seed43: val=65.62% test=67.05% diverged=False time=15376s; ETA ~256 min
+[2026-10-30 10:10:19] [ok 10/18] both_h48_const_0.001_cm1_1000k_seed17: val=67.77% test=69.11% diverged=False time=17829s; ETA ~238 min
+[2026-10-30 10:17:37] [ok 11/18] both_h48_const_0.001_cm1_1000k_seed43: val=67.33% test=68.33% diverged=False time=18266s; ETA ~194 min
+[2026-10-30 10:18:27] [ok 12/18] both_h48_const_0.001_cm1_1000k_seed29: val=67.90% test=68.82% diverged=False time=18317s; ETA ~153 min
+[2026-10-30 10:46:44] [ok 13/18] v4_h119_cos_0.003_cm1_1000k_seed17: val=71.72% test=72.83% diverged=False time=20014s; ETA ~128 min
+[2026-10-30 10:49:22] [ok 14/18] v4_h119_cos_0.003_cm1_1000k_seed43: val=71.33% test=72.75% diverged=False time=20172s; ETA ~96 min
+[2026-10-30 11:02:41] [ok 15/18] v4_h119_cos_0.003_cm1_1000k_seed29: val=71.37% test=72.75% diverged=False time=20970s; ETA ~70 min
+[2026-10-30 16:24:19] [ok 16/18] dbp_Ns8_L31_R7_const_0.001_cm1_1000k_seed17: val=44.34% test=45.55% diverged=False time=40269s; ETA ~84 min
+[2026-10-30 18:57:08] [ok 17/18] dbp_Ns8_L31_R7_const_0.001_cm1_1000k_seed29: val=51.62% test=52.83% diverged=False time=35561s; ETA ~48 min
+[2026-10-30 19:33:10] [ok 18/18] dbp_Ns8_L31_R7_const_0.001_cm1_1000k_seed43: val=49.04% test=50.07% diverged=False time=36283s; ETA ~0 min
+[2026-10-30 19:33:11] finished: 18 ok, 0 failed
+=== 2026-10-30T19:33:12+07:00 E032 main exit=0 ===

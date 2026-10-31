@@ -1,0 +1,14 @@
+=== 2026-10-30T18:06:00+07:00 E028 shared: .venv/bin/python -u -m constellation_denoiser.runner --exp E028 --stage shared ===
+JOBS=24 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+[2026-10-30 18:06:02] running 9 tasks with JOBS=24, THREADS=1, DEVICE=cpu
+[2026-10-30 19:05:34] [ok 1/9] dbps_Ns8_L31_R7_const_0.001_cm1_100k_seed29: val=-3.56% test=-3.02% diverged=False time=3571s; ETA ~476 min
+[2026-10-30 19:05:37] [ok 2/9] dbps_Ns8_L31_R7_const_0.001_cm1_100k_seed43: val=-3.35% test=-2.83% diverged=False time=3573s; ETA ~209 min
+[2026-10-30 19:05:47] [ok 3/9] dbps_Ns8_L31_R7_const_0.001_cm1_100k_seed17: val=-2.59% test=-2.41% diverged=False time=3584s; ETA ~120 min
+[2026-10-30 20:01:48] [ok 4/9] dbps_Ns16_L31_R7_const_0.001_cm1_100k_seed17: val=-10.61% test=-10.82% diverged=False time=6944s; ETA ~145 min
+[2026-10-30 20:01:56] [ok 5/9] dbps_Ns16_L31_R7_const_0.001_cm1_100k_seed29: val=-4.83% test=-4.80% diverged=False time=6952s; ETA ~93 min
+[2026-10-30 20:07:40] [ok 6/9] dbps_Ns16_L31_R7_const_0.001_cm1_100k_seed43: val=-6.95% test=-6.69% diverged=False time=7296s; ETA ~61 min
+[2026-10-30 21:47:28] [ok 7/9] dbps_Ns32_L31_R7_const_0.001_cm1_100k_seed17: val=-11.82% test=-11.48% diverged=False time=13284s; ETA ~63 min
+[2026-10-30 21:53:19] [ok 8/9] dbps_Ns32_L31_R7_const_0.001_cm1_100k_seed43: val=-6.86% test=-6.78% diverged=False time=13635s; ETA ~28 min
+[2026-10-30 22:07:38] [ok 9/9] dbps_Ns32_L31_R7_const_0.001_cm1_100k_seed29: val=-10.11% test=-10.26% diverged=False time=14494s; ETA ~0 min
+[2026-10-30 22:07:39] finished: 9 ok, 0 failed
+=== 2026-10-30T22:07:40+07:00 E028 shared exit=0 ===

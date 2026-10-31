@@ -1,0 +1,12 @@
+{
+  "ranking_changed": "да",
+  "detail": "6500: KAN / Kerr MLP (было -4.24, стало +2.38); 6500: KAN / Phys + MLP (было -5.80, стало +1.67)",
+  "replaced_recipes": [
+    "F2",
+    "F9",
+    "F11",
+    "F12"
+  ],
+  "recipes_json": "results/recipes.json",
+  "git_commit": "b270a0017edd4a4829da43019a85387cd606beb3+dirty"
+}
