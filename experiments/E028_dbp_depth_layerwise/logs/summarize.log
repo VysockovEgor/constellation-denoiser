@@ -1,0 +1,4 @@
+=== 2026-10-31T19:57:58+07:00 E028 summarize: .venv/bin/python -m constellation_denoiser.summarize_E028 ===
+JOBS=24 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+E028: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E028_dbp_depth_layerwise/results/a_summary.csv; вердикты: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E028_dbp_depth_layerwise/results/dbp_verdicts.csv
+=== 2026-10-31T19:58:04+07:00 E028 summarize exit=0 ===

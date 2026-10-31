@@ -238,6 +238,16 @@
 
 :::
 
+## E028
+
+::: {layout-ncol=3}
+
+![E028 · E028_val_vs_ns.png · 2026-10-31](figs/experiments/E028_dbp_depth_layerwise/figures/E028_val_vs_ns.png){group="gallery"}
+
+![E028 · E028_layerwise_phases.png · 2026-10-31](figs/experiments/E028_dbp_depth_layerwise/figures/E028_layerwise_phases.png){group="gallery"}
+
+:::
+
 ## E031
 
 ::: {layout-ncol=3}
@@ -251,5 +261,21 @@
 ::: {layout-ncol=3}
 
 ![E032 · E032_valbest_test_vs_steps.png · 2026-10-31](figs/experiments/E032_convergence_1m/figures/E032_valbest_test_vs_steps.png){group="gallery"}
+
+:::
+
+## E034
+
+::: {layout-ncol=3}
+
+![E034 · E034_triplets_pruned_vs_rm.png · 2026-10-31](figs/experiments/E034_triplets_extended/figures/E034_triplets_pruned_vs_rm.png){group="gallery"}
+
+:::
+
+## E035
+
+::: {layout-ncol=3}
+
+![E035 · E035_triplet_net.png · 2026-10-31](figs/experiments/E035_triplet_hybrid/figures/E035_triplet_net.png){group="gallery"}
 
 :::

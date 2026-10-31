@@ -1,0 +1,8 @@
+=== 2026-10-31T14:26:47+07:00 E035 control: .venv/bin/python -u -m constellation_denoiser.runner --exp E035 --stage control --no-control-gate ===
+JOBS=16 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+[2026-10-31 14:26:49] running 2 tasks with JOBS=16, THREADS=1, DEVICE=cpu
+[2026-10-31 14:26:49] polite mode: foreign load 26.7 > 25.0; waiting (checked every 30 s)
+[2026-10-31 14:32:13] [ok 1/2] control_complex_a_w31_h48_N30_20k_seed29: val=60.74% test=62.37% diverged=False time=291s; ETA ~5 min
+[2026-10-31 14:32:23] [ok 2/2] control_complex_a_w31_h48_N30_20k_seed17: val=59.43% test=60.40% diverged=False time=302s; ETA ~0 min
+[2026-10-31 14:32:24] finished: 2 ok, 0 failed
+=== 2026-10-31T14:32:25+07:00 E035 control exit=0 ===

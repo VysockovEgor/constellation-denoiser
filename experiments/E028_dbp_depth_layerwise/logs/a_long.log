@@ -6,3 +6,4 @@ JOBS=40 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
 [2026-10-31 11:07:36] [ok 3/15] dbp_Ns16_L31_R15_const_0.001_cm1_400k_seed57: val=53.34% test=54.18% diverged=False time=27559s; ETA ~1837 min
 [2026-10-31 11:19:36] [ok 4/15] dbp_Ns16_L31_R15_const_0.001_cm1_400k_seed43: val=56.26% test=57.22% diverged=False time=28279s; ETA ~1296 min
 [2026-10-31 11:40:24] [ok 5/15] dbp_Ns16_L31_R15_const_0.001_cm1_400k_seed17: val=58.68% test=59.38% diverged=False time=29527s; ETA ~984 min
+=== 2026-10-31T19:57:48+07:00 E028 a_long exit=0 ===

@@ -1,0 +1,18 @@
+=== 2026-10-31T20:46:46+07:00 E027 s1_fixed: .venv/bin/python -u -m constellation_denoiser.runner --exp E027 --stage s1_fixed ===
+JOBS=24 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+[2026-10-31 20:46:49] running 12 tasks with JOBS=24, THREADS=1, DEVICE=cpu
+[2026-10-31 20:46:49] polite mode: foreign load 34.5 > 25.0; waiting (checked every 30 s)
+[2026-10-31 20:55:23] [ok 1/12] kerr_c_fixed_h48_cos3e-3_cm1_20k_seed17: val=64.28% test=65.50% diverged=False time=421s; ETA ~94 min
+[2026-10-31 20:55:46] [ok 2/12] kerr_c_fixed_h48_cos5e-4_cm1_20k_seed29: val=-4.21% test=-4.52% diverged=False time=444s; ETA ~45 min
+[2026-10-31 20:56:02] [ok 3/12] kerr_c_fixed_h48_cos6e-3_cm1_20k_seed17: val=61.05% test=62.21% diverged=False time=460s; ETA ~28 min
+[2026-10-31 20:56:06] [ok 4/12] kerr_c_fixed_h48_cos1.5e-3_cm1_20k_seed17: val=63.56% test=64.58% diverged=False time=465s; ETA ~19 min
+[2026-10-31 20:56:09] [ok 5/12] kerr_c_fixed_h48_const1e-3_cm1_20k_seed17: val=60.96% test=62.62% diverged=False time=467s; ETA ~13 min
+[2026-10-31 20:56:11] [ok 6/12] kerr_c_fixed_h48_cos1e-2_cm1_20k_seed29: val=59.58% test=60.81% diverged=False time=469s; ETA ~9 min
+[2026-10-31 20:56:18] [ok 7/12] kerr_c_fixed_h48_cos1.5e-3_cm1_20k_seed29: val=61.91% test=63.03% diverged=False time=476s; ETA ~7 min
+[2026-10-31 20:56:19] [ok 8/12] kerr_c_fixed_h48_cos3e-3_cm1_20k_seed29: val=63.49% test=64.58% diverged=False time=477s; ETA ~5 min
+[2026-10-31 20:56:25] [ok 9/12] kerr_c_fixed_h48_cos5e-4_cm1_20k_seed17: val=-4.32% test=-4.17% diverged=False time=483s; ETA ~3 min
+[2026-10-31 20:56:28] [ok 10/12] kerr_c_fixed_h48_cos1e-2_cm1_20k_seed17: val=58.57% test=59.30% diverged=False time=486s; ETA ~2 min
+[2026-10-31 20:56:32] [ok 11/12] kerr_c_fixed_h48_cos6e-3_cm1_20k_seed29: val=62.26% test=63.28% diverged=False time=490s; ETA ~1 min
+[2026-10-31 20:56:38] [ok 12/12] kerr_c_fixed_h48_const1e-3_cm1_20k_seed29: val=61.13% test=63.05% diverged=False time=495s; ETA ~0 min
+[2026-10-31 20:56:39] finished: 12 ok, 0 failed
+=== 2026-10-31T20:56:40+07:00 E027 s1_fixed exit=0 ===

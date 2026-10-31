@@ -1,0 +1,20 @@
+hypothesis,value,verdict,detail,rule_status
+"L=15, R=7: насыщение при удвоении Ns 8 → 16 (< 1 п.п.)",21.007097708252413,не доказано,"валидация, 100k",DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"L=15, R=7: насыщение при удвоении Ns 16 → 32 (< 1 п.п.)",7.025907223654315,не доказано,"валидация, 100k",DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"L=15, R=15: насыщение при удвоении Ns 8 → 16 (< 1 п.п.)",10.182798356815795,не доказано,"валидация, 100k",DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"L=15, R=15: насыщение при удвоении Ns 16 → 32 (< 1 п.п.)",7.616794378332571,не доказано,"валидация, 100k",DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"L=31, R=7: насыщение при удвоении Ns 4 → 8 (< 1 п.п.)",12.011958991018986,не доказано,"валидация, 100k",DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"L=31, R=7: насыщение при удвоении Ns 8 → 16 (< 1 п.п.)",1.783255058441327,не доказано,"валидация, 100k",DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"L=31, R=7: насыщение при удвоении Ns 12 → 24 (< 1 п.п.)",5.506314959332364,не доказано,"валидация, 100k",DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"L=31, R=7: насыщение при удвоении Ns 16 → 32 (< 1 п.п.)",6.429134738750193,не доказано,"валидация, 100k",DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"L=31, R=15: насыщение при удвоении Ns 8 → 16 (< 1 п.п.)",9.390632908412492,не доказано,"валидация, 100k",DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"L=31, R=15: насыщение при удвоении Ns 16 → 32 (< 1 п.п.)",1.7244017561825373,не доказано,"валидация, 100k",DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+Ns=16: shared лучше independent (≥ 1 п.п.),-50.891481139009414,не доказано,"тест, 3 seeds",DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+Ns=32: shared лучше independent (≥ 1 п.п.),-58.9325935936648,не доказано,"тест, 3 seeds",DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+Ns=8: shared лучше independent (≥ 1 п.п.),-47.36467743082722,не доказано,"тест, 3 seeds",DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+диагноз: b_a_e018_layerwise поднимает послойное до ≥ 90 % от joint,4.659038680180954,не доказано,тест 2.28 против joint 49.01,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+диагноз: b_b_identity_all_trainable поднимает послойное до ≥ 90 % от joint,75.80734899247685,не доказано,тест 37.15 против joint 49.01,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+диагноз: b_c_small_random_all_trainable поднимает послойное до ≥ 90 % от joint,76.35162921212414,не доказано,тест 37.42 против joint 49.01,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+диагноз: b_d_lr_rewarm_per_stage поднимает послойное до ≥ 90 % от joint,4.634848448196626,не доказано,тест 2.27 против joint 49.01,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+диагноз: b_e_layerwise_then_joint поднимает послойное до ≥ 90 % от joint,90.80045477636132,подтверждено,тест 44.50 против joint 49.01,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+диагноз: b_g_identity_all_trainable_recipe поднимает послойное до ≥ 90 % от joint,75.80734899247685,не доказано,тест 37.15 против joint 49.01,DRAFT: to be confirmed by the user before the first run; must not change after results are seen

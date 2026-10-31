@@ -1,0 +1,10 @@
+{
+  "M15": {
+    "lambda": 0.0001,
+    "n_coefficients": 375
+  },
+  "M21": {
+    "lambda": 1e-08,
+    "n_coefficients": 711
+  }
+}

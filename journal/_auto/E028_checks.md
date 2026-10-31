@@ -10,3 +10,21 @@
 
     2026-10-30T11:50:31+07:00 E028 check-control: .venv/bin/python -m constellation_denoiser.runner --exp E028 --stage control --check-control ===
     [2026-10-30 11:50:33] control a_const_1e-3_20k: mean test_reduction_valbest_select = 62.19% по 2 seed; цель 62.191±0.7 п.п. -> OK
+
+**Аномалии** (пороги: хуже контроля > 5 п.п., разброс seeds > 3 п.п., |валидация − тест| > 5 п.п.):
+
+- **diverged = true**: 0
+- **«тест хуже контроля более чем на 5 п.п.» не применяется: контроль — другая модель (complex_a)**
+- **разброс seeds больше 3 п.п.**: 19:
+  - b_e_layerwise_then_joint · b · 170000: 5.04 п.п.
+  - b_f_joint_from_scratch · b · 170000: 4.26 п.п.
+  - dbp_Ns16_L15_R15 · a · 100000: 6.31 п.п.
+  - dbp_Ns16_L15_R7 · a · 100000: 5.49 п.п.
+  - dbp_Ns16_L31_R15 · a · 100000: 5.07 п.п.
+  - dbp_Ns16_L31_R15 · a_long · 400000: 6.64 п.п.
+  - dbp_Ns16_L31_R7 · a · 100000: 3.49 п.п.
+  - dbp_Ns32_L31_R7 · a_long · 400000: 3.42 п.п.
+  - dbp_Ns8_L15_R15 · a · 100000: 6.84 п.п.
+  - dbp_Ns8_L15_R7 · a · 100000: 6.70 п.п.
+  - … ещё 9
+- **валидация и тест расходятся больше чем на 5 п.п.**: 0

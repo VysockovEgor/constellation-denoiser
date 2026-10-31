@@ -1,0 +1,4 @@
+hypothesis,value,verdict,detail,rule_status
+рост с M продолжается (M=31 − M=21 ≥ 1 п.п.),7.234511700689964,подтверждено,E031 M=21 против E034,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+K=128 членов сохраняют ≥ 90 % снижения полной модели M=25,66.66928625067672,не доказано,,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"сжатые триплеты лучше Kerr-сети при равных RM (≥ 0.1 дБ, интервалы не пересекаются)",,проверяется в E033,,DRAFT: to be confirmed by the user before the first run; must not change after results are seen

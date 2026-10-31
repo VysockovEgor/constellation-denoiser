@@ -1,0 +1,45 @@
+=== 2026-10-31T16:53:17+07:00 E035 s2: .venv/bin/python -u -m constellation_denoiser.runner --exp E035 --stage s2 ===
+JOBS=16 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+[2026-10-31 16:53:19] running 40 tasks with JOBS=16, THREADS=1, DEVICE=cpu
+[2026-10-31 17:52:34] [ok 1/40] tg_M15_scratch_cos3e-4_200k_seed43: val=67.86% test=69.30% diverged=False time=3552s; ETA ~2310 min
+[2026-10-31 17:53:50] [ok 2/40] tg_M15_scratch_cos3e-4_200k_seed17: val=67.87% test=69.27% diverged=False time=3628s; ETA ~1150 min
+[2026-10-31 17:54:14] [ok 3/40] tg_M15_scratch_cos3e-4_200k_seed57: val=67.85% test=69.27% diverged=False time=3652s; ETA ~751 min
+[2026-10-31 17:55:43] [ok 4/40] tg_M15_warm_cos1e-4_200k_seed17: val=67.86% test=69.26% diverged=False time=3741s; ETA ~562 min
+[2026-10-31 17:57:39] [ok 5/40] tg_M15_scratch_cos3e-4_200k_seed29: val=67.85% test=69.28% diverged=False time=3857s; ETA ~450 min
+[2026-10-31 18:09:49] [ok 6/40] th_M15_h4_cos1e-3_200k_seed57: val=70.23% test=71.77% diverged=False time=4587s; ETA ~433 min
+[2026-10-31 18:11:53] [ok 7/40] tg_M15_scratch_cos3e-4_200k_seed71: val=67.83% test=69.28% diverged=False time=4711s; ETA ~370 min
+[2026-10-31 18:12:24] [ok 8/40] tg_M15_warm_cos1e-4_200k_seed43: val=67.85% test=69.29% diverged=False time=4742s; ETA ~316 min
+[2026-10-31 18:12:27] [ok 9/40] tg_M15_warm_cos1e-4_200k_seed71: val=67.84% test=69.27% diverged=False time=4744s; ETA ~273 min
+[2026-10-31 18:13:22] [ok 10/40] tg_M15_warm_cos1e-4_200k_seed57: val=67.86% test=69.27% diverged=False time=4800s; ETA ~240 min
+[2026-10-31 18:14:56] [ok 11/40] tg_M15_warm_cos1e-4_200k_seed29: val=67.84% test=69.29% diverged=False time=4894s; ETA ~215 min
+[2026-10-31 18:18:25] [ok 12/40] th_M15_h4_cos1e-3_200k_seed43: val=69.52% test=70.66% diverged=False time=5102s; ETA ~199 min
+[2026-10-31 18:18:57] [ok 13/40] th_M15_h4_cos1e-3_200k_seed71: val=70.28% test=71.57% diverged=False time=5134s; ETA ~178 min
+[2026-10-31 18:19:27] [ok 14/40] th_M15_h4_cos1e-3_200k_seed29: val=70.24% test=71.54% diverged=False time=5164s; ETA ~160 min
+[2026-10-31 18:23:56] [ok 15/40] th_M15_h8_cos1e-3_200k_seed17: val=71.28% test=72.63% diverged=False time=5434s; ETA ~151 min
+[2026-10-31 18:27:55] [ok 16/40] th_M15_h4_cos1e-3_200k_seed17: val=70.28% test=71.58% diverged=False time=5672s; ETA ~142 min
+[2026-10-31 19:11:33] [ok 17/40] th_M15_h8_cos1e-3_200k_seed29: val=71.29% test=72.62% diverged=False time=4739s; ETA ~187 min
+[2026-10-31 19:13:52] [ok 18/40] th_M15_h8_cos1e-3_200k_seed43: val=71.39% test=72.64% diverged=False time=4802s; ETA ~172 min
+[2026-10-31 19:14:51] [ok 19/40] th_M15_h8_cos1e-3_200k_seed71: val=71.28% test=72.63% diverged=False time=4748s; ETA ~156 min
+[2026-10-31 19:15:08] [ok 20/40] th_M15_h8_cos1e-3_200k_seed57: val=71.27% test=72.60% diverged=False time=4854s; ETA ~142 min
+[2026-10-31 19:18:17] [ok 21/40] th_M15_h16_cos1e-3_200k_seed17: val=71.93% test=73.18% diverged=False time=4838s; ETA ~131 min
+[2026-10-31 19:34:50] [ok 22/40] th_M15_h16_cos1e-3_200k_seed29: val=72.46% test=73.86% diverged=False time=5101s; ETA ~132 min
+[2026-10-31 19:36:23] [ok 23/40] th_M15_h16_cos1e-3_200k_seed43: val=72.15% test=73.35% diverged=False time=5070s; ETA ~121 min
+[2026-10-31 19:37:05] [ok 24/40] th_M15_h16_cos1e-3_200k_seed71: val=71.87% test=73.27% diverged=False time=5079s; ETA ~109 min
+[2026-10-31 19:37:14] [ok 25/40] th_M15_h16_cos1e-3_200k_seed57: val=72.12% test=73.13% diverged=False time=5090s; ETA ~98 min
+[2026-10-31 20:39:54] [ok 26/40] tg_M21_warm_cos1e-3_200k_seed17: val=77.25% test=78.06% diverged=False time=8791s; ETA ~122 min
+[2026-10-31 20:40:38] [ok 27/40] tg_M21_warm_cos1e-3_200k_seed57: val=77.25% test=78.07% diverged=False time=8501s; ETA ~109 min
+[2026-10-31 20:42:49] [ok 28/40] tg_M21_warm_cos1e-3_200k_seed29: val=77.25% test=78.06% diverged=False time=8873s; ETA ~98 min
+[2026-10-31 20:43:12] [ok 29/40] tg_M21_warm_cos1e-3_200k_seed71: val=77.24% test=78.07% diverged=False time=8626s; ETA ~87 min
+[2026-10-31 20:47:30] [ok 30/40] tg_M21_warm_cos1e-3_200k_seed43: val=77.24% test=78.07% diverged=False time=8945s; ETA ~78 min
+[2026-10-31 21:03:12] [ok 31/40] th_M21_h8_cos1e-3_200k_seed17: val=80.53% test=81.17% diverged=False time=9556s; ETA ~73 min
+[2026-10-31 21:07:50] [ok 32/40] th_M21_h8_cos1e-3_200k_seed29: val=80.39% test=81.21% diverged=False time=9595s; ETA ~64 min
+[2026-10-31 21:36:29] [ok 33/40] th_M21_h16_cos1e-3_200k_seed17: val=80.77% test=81.76% diverged=False time=8481s; ETA ~60 min
+[2026-10-31 21:36:45] [ok 34/40] th_M21_h8_cos1e-3_200k_seed43: val=80.38% test=81.03% diverged=False time=8712s; ETA ~50 min
+[2026-10-31 21:40:24] [ok 35/40] th_M21_h8_cos1e-3_200k_seed57: val=80.42% test=81.12% diverged=False time=8792s; ETA ~41 min
+[2026-10-31 21:44:51] [ok 36/40] th_M21_h8_cos1e-3_200k_seed71: val=80.35% test=81.06% diverged=False time=8999s; ETA ~32 min
+[2026-10-31 21:54:27] [ok 37/40] th_M21_h16_cos1e-3_200k_seed29: val=80.91% test=81.79% diverged=False time=9370s; ETA ~24 min
+[2026-10-31 22:05:21] [ok 38/40] th_M21_h16_cos1e-3_200k_seed57: val=81.36% test=82.08% diverged=False time=8938s; ETA ~16 min
+[2026-10-31 22:20:41] [ok 39/40] th_M21_h16_cos1e-3_200k_seed71: val=80.73% test=81.64% diverged=False time=9816s; ETA ~8 min
+[2026-10-31 22:31:28] [ok 40/40] th_M21_h16_cos1e-3_200k_seed43: val=81.15% test=82.05% diverged=False time=10599s; ETA ~0 min
+[2026-10-31 22:31:30] finished: 40 ok, 0 failed
+=== 2026-10-31T22:31:32+07:00 E035 s2 exit=0 ===

@@ -1,0 +1,10 @@
+{
+  "tg_M15_scratch": "cos3e-4",
+  "tg_M15_warm": "cos1e-4",
+  "th_M15_h4": "cos1e-3",
+  "th_M15_h8": "cos1e-3",
+  "th_M15_h16": "cos1e-3",
+  "tg_M21_warm": "cos1e-3",
+  "th_M21_h8": "cos1e-3",
+  "th_M21_h16": "cos1e-3"
+}

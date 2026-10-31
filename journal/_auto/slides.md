@@ -162,8 +162,24 @@
 
 ---
 
+![](figs/experiments/E028_dbp_depth_layerwise/figures/E028_val_vs_ns.png)
+
+---
+
+![](figs/experiments/E028_dbp_depth_layerwise/figures/E028_layerwise_phases.png)
+
+---
+
 ![](figs/experiments/E031_perturbation_triplets/figures/E031_triplets_vs_rm.png)
 
 ---
 
 ![](figs/experiments/E032_convergence_1m/figures/E032_valbest_test_vs_steps.png)
+
+---
+
+![](figs/experiments/E034_triplets_extended/figures/E034_triplets_pruned_vs_rm.png)
+
+---
+
+![](figs/experiments/E035_triplet_hybrid/figures/E035_triplet_net.png)

@@ -1,0 +1,9 @@
+hypothesis,value,verdict,detail,rule_status
+"th_M15_h4: сеть на остаток помогает (≥ 1 п.п. к tg_M15_warm, интервалы не пересекаются)",2.2490931076178953,подтверждено,RM 4984 против 4444,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"th_M15_h8: сеть на остаток помогает (≥ 1 п.п. к tg_M15_warm, интервалы не пересекаются)",3.4028024752827264,подтверждено,RM 5524 против 4444,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"th_M15_h16: сеть на остаток помогает (≥ 1 п.п. к tg_M15_warm, интервалы не пересекаются)",4.0315811935414985,подтверждено,RM 6604 против 4444,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"th_M21_h8: сеть на остаток помогает (≥ 1 п.п. к tg_M21_warm, интервалы не пересекаются)",3.0718302840464276,подтверждено,RM 9940 против 8476,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"th_M21_h16: сеть на остаток помогает (≥ 1 п.п. к tg_M21_warm, интервалы не пересекаются)",3.7723357300491216,подтверждено,RM 11404 против 8476,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+tg_M15_warm: градиент не хуже закрытой формы (|Δ| < 1 п.п.),0.20485098513408673,подтверждено,закрытая форма M=15: 69.08 %,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+tg_M15_scratch: градиент не хуже закрытой формы (Δ ≥ −1 п.п.),0.2759797994167599,подтверждено,закрытая форма M=15: 69.08 %,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+tg_M21_warm: градиент не хуже закрытой формы (|Δ| < 1 п.п.),0.22168866975208346,подтверждено,закрытая форма M=21: 77.84 %,DRAFT: to be confirmed by the user before the first run; must not change after results are seen

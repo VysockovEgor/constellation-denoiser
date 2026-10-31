@@ -1,0 +1,11 @@
+=== 2026-10-31T14:04:52+07:00 E034 main: .venv/bin/python -u -m constellation_denoiser.summarize_E034 all ===
+JOBS=16 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+pruning M=25, replica 17: done
+pruning M=25, replica 29: done
+pruning M=25, replica 43: done
+pruning M=25, replica 57: done
+pruning M=25, replica 71: done
+T3+FIR7 M=25: done
+T3+FIR7 M=31: done
+E034: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E034_triplets_extended/results/triplet_ext_summary.csv
+=== 2026-10-31T14:26:40+07:00 E034 main exit=0 ===

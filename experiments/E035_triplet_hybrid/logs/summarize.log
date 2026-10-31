@@ -1,0 +1,4 @@
+=== 2026-10-31T22:31:43+07:00 E035 summarize: .venv/bin/python -m constellation_denoiser.summarize_E035 ===
+JOBS=16 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+E035: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E035_triplet_hybrid/results/triplet_net_summary.csv; вердикты: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E035_triplet_hybrid/results/triplet_net_verdicts.csv
+=== 2026-10-31T22:31:49+07:00 E035 summarize exit=0 ===
