@@ -68,7 +68,11 @@ fi
 bad=0
 for f in $(git diff --name-only --diff-filter=A HEAD "origin/$BRANCH"); do
   if [ -e "$f" ] && ! git ls-files --error-unmatch "$f" >/dev/null 2>&1 && ! git show "origin/$BRANCH:$f" | cmp -s - "$f"; then
-    echo "неотслеживаемый файл отличается от origin: $f" >&2; bad=1
+    saved=0      # overwriting is safe if this exact content is already in an origin commit (brought by fetch)
+    for c in $(git log --format=%H "origin/$BRANCH" -- "$f"); do
+      if git show "$c:$f" 2>/dev/null | cmp -s - "$f"; then saved=1; break; fi
+    done
+    [ "$saved" = 1 ] || { echo "неотслеживаемый файл отличается от origin: $f" >&2; bad=1; }
   fi
 done
 [ "$bad" = 0 ] || { echo 'сначала remote.sh fetch' >&2; exit 1; }
