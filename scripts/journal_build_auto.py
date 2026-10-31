@@ -279,7 +279,8 @@ def results_table(agg: pd.DataFrame) -> str:
 def anomalies(runs: pd.DataFrame, agg: pd.DataFrame, control_mean: float | None, other_model: bool = False) -> str:
     out = []
     diverged = runs[runs.diverged.astype(bool)] if "diverged" in runs else runs.iloc[0:0]
-    out.append(("diverged = true", [str(r) for r in diverged.run_id]))
+    ids = diverged.run_id if "run_id" in diverged else diverged.get("variant", pd.Series(dtype=str))
+    out.append(("diverged = true", [str(r) for r in ids]))
     if other_model:
         out.append(("«тест хуже контроля более чем на 5 п.п.» не применяется: контроль — другая модель (complex_a)", []))
     elif control_mean is not None:
