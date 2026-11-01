@@ -1,0 +1,4 @@
+=== 2026-11-01T04:07:38+07:00 E029 summarize: .venv/bin/python -m constellation_denoiser.summarize_E029 ===
+JOBS=40 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+E029: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E029_frontend_vs_width/results/width_summary.csv; вердикты: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E029_frontend_vs_width/results/width_verdicts.csv
+=== 2026-11-01T04:07:41+07:00 E029 summarize exit=0 ===

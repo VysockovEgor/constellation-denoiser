@@ -1,0 +1,4 @@
+=== 2026-11-01T10:11:26+07:00 E033 fill: .venv/bin/python -u -m constellation_denoiser.runner --exp E033 --stage fill ===
+JOBS=40 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+[2026-11-01 10:11:28] nothing to run: all results exist (use FORCE=1 to recompute)
+=== 2026-11-01T10:11:28+07:00 E033 fill exit=0 ===

@@ -1,0 +1,18 @@
+{
+  "oh48_mse": 0.5,
+  "oh48_ce_dist": 0.5,
+  "oh48_bit_bce": 0.5,
+  "oh48_mse+ce": 0.5,
+  "v4_h119_mse": 0.5,
+  "v4_h119_ce_dist": 2.0,
+  "v4_h119_bit_bce": 2.0,
+  "v4_h119_mse+ce": 1.0,
+  "dbp8_mse": 2.0,
+  "dbp8_ce_dist": 2.0,
+  "dbp8_bit_bce": 2.0,
+  "dbp8_mse+ce": 2.0,
+  "hyb48_mse": 2.0,
+  "hyb48_ce_dist": 1.0,
+  "hyb48_bit_bce": 2.0,
+  "hyb48_mse+ce": 1.0
+}

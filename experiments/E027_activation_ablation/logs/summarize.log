@@ -1,0 +1,4 @@
+=== 2026-11-01T01:21:16+07:00 E027 summarize: .venv/bin/python -m constellation_denoiser.summarize_E027 ===
+JOBS=40 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+активации: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E027_activation_ablation/results/activation_summary.csv; вердикты: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E027_activation_ablation/results/activation_verdicts.csv
+=== 2026-11-01T01:21:19+07:00 E027 summarize exit=0 ===

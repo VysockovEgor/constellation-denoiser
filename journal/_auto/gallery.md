@@ -238,6 +238,16 @@
 
 :::
 
+## E027
+
+::: {layout-ncol=3}
+
+![E027 · E027_activations_by_width.png · 2026-11-01](figs/experiments/E027_activation_ablation/figures/E027_activations_by_width.png){group="gallery"}
+
+![E027 · E027_activations_200k.png · 2026-11-01](figs/experiments/E027_activation_ablation/figures/E027_activations_200k.png){group="gallery"}
+
+:::
+
 ## E028
 
 ::: {layout-ncol=3}
@@ -245,6 +255,22 @@
 ![E028 · E028_val_vs_ns.png · 2026-10-31](figs/experiments/E028_dbp_depth_layerwise/figures/E028_val_vs_ns.png){group="gallery"}
 
 ![E028 · E028_layerwise_phases.png · 2026-10-31](figs/experiments/E028_dbp_depth_layerwise/figures/E028_layerwise_phases.png){group="gallery"}
+
+:::
+
+## E029
+
+::: {layout-ncol=3}
+
+![E029 · E029_hybrid_vs_width.png · 2026-11-01](figs/experiments/E029_frontend_vs_width/figures/E029_hybrid_vs_width.png){group="gallery"}
+
+:::
+
+## E030
+
+::: {layout-ncol=3}
+
+![E030 · E030_losses.png · 2026-11-01](figs/experiments/E030_loss_functions/figures/E030_losses.png){group="gallery"}
 
 :::
 
@@ -261,6 +287,18 @@
 ::: {layout-ncol=3}
 
 ![E032 · E032_valbest_test_vs_steps.png · 2026-10-31](figs/experiments/E032_convergence_1m/figures/E032_valbest_test_vs_steps.png){group="gallery"}
+
+:::
+
+## E033
+
+::: {layout-ncol=3}
+
+![E033 · E033_pareto_q2.png · 2026-11-01](figs/experiments/E033_pareto_final/figures/E033_pareto_q2.png){group="gallery"}
+
+![E033 · E033_pareto_ber.png · 2026-11-01](figs/experiments/E033_pareto_final/figures/E033_pareto_ber.png){group="gallery"}
+
+![E033 · E033_physics_ladder.png · 2026-11-01](figs/experiments/E033_pareto_final/figures/E033_physics_ladder.png){group="gallery"}
 
 :::
 

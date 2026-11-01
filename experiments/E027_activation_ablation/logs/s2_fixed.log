@@ -1,0 +1,35 @@
+=== 2026-10-31T23:42:56+07:00 E027 s2_fixed: .venv/bin/python -u -m constellation_denoiser.runner --exp E027 --stage s2_fixed ===
+JOBS=40 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+[2026-10-31 23:42:57] running 30 tasks with JOBS=40, THREADS=1, DEVICE=cpu
+[2026-10-31 23:53:57] [ok 1/30] kerr_c_fixed_h16_cos1.5e-3_cm1_100k_seed29: val=40.79% test=41.73% diverged=False time=656s; ETA ~319 min
+[2026-10-31 23:54:06] [ok 2/30] kerr_c_fixed_h16_cos3e-3_cm1_100k_seed17: val=41.03% test=41.73% diverged=False time=666s; ETA ~156 min
+[2026-10-31 23:54:50] [ok 3/30] kerr_c_fixed_h16_cos3e-3_cm1_100k_seed29: val=40.56% test=42.01% diverged=False time=710s; ETA ~107 min
+[2026-10-31 23:54:52] [ok 4/30] kerr_c_fixed_h16_cos3e-3_cm1_100k_seed57: val=40.92% test=41.73% diverged=False time=712s; ETA ~77 min
+[2026-10-31 23:55:08] [ok 5/30] kerr_c_fixed_h16_cos3e-3_cm1_100k_seed43: val=37.80% test=38.73% diverged=False time=728s; ETA ~61 min
+[2026-10-31 23:55:42] [ok 6/30] kerr_c_fixed_h16_cos1.5e-3_cm1_100k_seed71: val=36.82% test=37.72% diverged=False time=761s; ETA ~51 min
+[2026-10-31 23:55:58] [ok 7/30] kerr_c_fixed_h16_cos1.5e-3_cm1_100k_seed17: val=40.20% test=41.30% diverged=False time=777s; ETA ~43 min
+[2026-10-31 23:56:14] [ok 8/30] kerr_c_fixed_h16_cos1.5e-3_cm1_100k_seed57: val=38.24% test=39.06% diverged=False time=793s; ETA ~37 min
+[2026-10-31 23:56:16] [ok 9/30] kerr_c_fixed_h16_cos3e-3_cm1_100k_seed71: val=37.54% test=38.50% diverged=False time=795s; ETA ~31 min
+[2026-10-31 23:56:21] [ok 10/30] kerr_c_fixed_h16_cos1.5e-3_cm1_100k_seed43: val=40.68% test=42.00% diverged=False time=800s; ETA ~27 min
+[2026-11-01 00:01:31] [ok 11/30] kerr_c_fixed_h48_cos3e-3_cm1_100k_seed71: val=63.98% test=64.97% diverged=False time=1110s; ETA ~32 min
+[2026-11-01 00:01:34] [ok 12/30] kerr_c_fixed_h48_cos3e-3_cm1_100k_seed57: val=62.28% test=63.50% diverged=False time=1113s; ETA ~28 min
+[2026-11-01 00:02:49] [ok 13/30] kerr_c_fixed_h48_cos3e-3_cm1_100k_seed17: val=64.94% test=66.24% diverged=False time=1189s; ETA ~26 min
+[2026-11-01 00:02:53] [ok 14/30] kerr_c_fixed_h48_cos1.5e-3_cm1_100k_seed57: val=63.06% test=63.96% diverged=False time=1192s; ETA ~23 min
+[2026-11-01 00:02:54] [ok 15/30] kerr_c_fixed_h48_cos1.5e-3_cm1_100k_seed43: val=63.76% test=65.11% diverged=False time=1193s; ETA ~20 min
+[2026-11-01 00:03:38] [ok 16/30] kerr_c_fixed_h48_cos3e-3_cm1_100k_seed29: val=63.75% test=65.12% diverged=False time=1237s; ETA ~18 min
+[2026-11-01 00:03:39] [ok 17/30] kerr_c_fixed_h48_cos3e-3_cm1_100k_seed43: val=62.54% test=63.61% diverged=False time=1238s; ETA ~16 min
+[2026-11-01 00:03:40] [ok 18/30] kerr_c_fixed_h48_cos1.5e-3_cm1_100k_seed17: val=65.12% test=66.12% diverged=False time=1239s; ETA ~14 min
+[2026-11-01 00:03:54] [ok 19/30] kerr_c_fixed_h48_cos1.5e-3_cm1_100k_seed29: val=64.59% test=65.59% diverged=False time=1253s; ETA ~12 min
+[2026-11-01 00:04:22] [ok 20/30] kerr_c_fixed_h48_cos1.5e-3_cm1_100k_seed71: val=64.16% test=65.41% diverged=False time=1281s; ETA ~11 min
+[2026-11-01 00:17:23] [ok 21/30] kerr_c_fixed_h119_cos3e-3_cm1_100k_seed71: val=69.80% test=71.15% diverged=False time=2062s; ETA ~15 min
+[2026-11-01 00:17:57] [ok 22/30] kerr_c_fixed_h119_cos3e-3_cm1_100k_seed17: val=70.29% test=71.80% diverged=False time=2097s; ETA ~13 min
+[2026-11-01 00:18:07] [ok 23/30] kerr_c_fixed_h119_cos1.5e-3_cm1_100k_seed17: val=70.94% test=72.50% diverged=False time=2106s; ETA ~11 min
+[2026-11-01 00:18:10] [ok 24/30] kerr_c_fixed_h119_cos3e-3_cm1_100k_seed29: val=69.80% test=71.34% diverged=False time=2109s; ETA ~9 min
+[2026-11-01 00:18:33] [ok 25/30] kerr_c_fixed_h119_cos1.5e-3_cm1_100k_seed71: val=70.34% test=71.70% diverged=False time=2132s; ETA ~7 min
+[2026-11-01 00:18:34] [ok 26/30] kerr_c_fixed_h119_cos3e-3_cm1_100k_seed43: val=70.19% test=71.93% diverged=False time=2133s; ETA ~5 min
+[2026-11-01 00:18:42] [ok 27/30] kerr_c_fixed_h119_cos3e-3_cm1_100k_seed57: val=70.24% test=71.78% diverged=False time=2142s; ETA ~4 min
+[2026-11-01 00:18:48] [ok 28/30] kerr_c_fixed_h119_cos1.5e-3_cm1_100k_seed57: val=70.62% test=72.17% diverged=False time=2147s; ETA ~3 min
+[2026-11-01 00:19:12] [ok 29/30] kerr_c_fixed_h119_cos1.5e-3_cm1_100k_seed43: val=70.71% test=72.18% diverged=False time=2171s; ETA ~1 min
+[2026-11-01 00:19:14] [ok 30/30] kerr_c_fixed_h119_cos1.5e-3_cm1_100k_seed29: val=70.87% test=72.17% diverged=False time=2173s; ETA ~0 min
+[2026-11-01 00:19:16] finished: 30 ok, 0 failed
+=== 2026-11-01T00:19:16+07:00 E027 s2_fixed exit=0 ===

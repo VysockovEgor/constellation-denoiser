@@ -1,0 +1,4 @@
+hypothesis,value,verdict,detail,rule_status
+"потеря ce_dist лучше MSE (≥ 0.7 п.п., интервалы не пересекаются, ≥ 2 из 4 моделей)",0,не доказано,oh48: -2.31; v4_h119: -5.83; dbp8: -6.36; hyb48: -2.43,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"потеря bit_bce лучше MSE (≥ 0.7 п.п., интервалы не пересекаются, ≥ 2 из 4 моделей)",0,не доказано,oh48: -2.85; v4_h119: -5.70; dbp8: -6.41; hyb48: -2.34,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"потеря mse+ce лучше MSE (≥ 0.7 п.п., интервалы не пересекаются, ≥ 2 из 4 моделей)",0,не доказано,oh48: -0.20; v4_h119: -0.70; dbp8: -1.18; hyb48: +0.68,DRAFT: to be confirmed by the user before the first run; must not change after results are seen

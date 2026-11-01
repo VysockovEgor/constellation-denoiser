@@ -1,0 +1,45 @@
+=== 2026-11-01T00:19:24+07:00 E027 s3: .venv/bin/python -u -m constellation_denoiser.runner --exp E027 --stage s3 ===
+JOBS=40 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+[2026-11-01 00:19:26] running 40 tasks with JOBS=40, THREADS=1, DEVICE=cpu
+[2026-11-01 00:39:14] [ok 1/40] identity_h48_cos1e-2_cm1_200k_seed71: val=-5.25% test=-5.19% diverged=False time=1184s; ETA ~772 min
+[2026-11-01 00:39:20] [ok 2/40] identity_h48_cos1e-2_cm1_200k_seed43: val=-5.20% test=-5.17% diverged=False time=1189s; ETA ~378 min
+[2026-11-01 00:39:23] [ok 3/40] identity_h48_cos1e-2_cm1_200k_seed57: val=-5.23% test=-5.19% diverged=False time=1193s; ETA ~246 min
+[2026-11-01 00:39:23] [ok 4/40] identity_h48_cos1e-2_cm1_200k_seed17: val=-5.24% test=-5.19% diverged=False time=1193s; ETA ~180 min
+[2026-11-01 00:39:34] [ok 5/40] identity_h48_cos1e-2_cm1_200k_seed29: val=-5.24% test=-5.17% diverged=False time=1204s; ETA ~141 min
+[2026-11-01 00:43:23] [ok 6/40] crelu_h48_cos6e-3_cm1_200k_seed29: val=6.73% test=6.98% diverged=False time=1433s; ETA ~136 min
+[2026-11-01 00:43:42] [ok 7/40] split_tanh_h48_cos1.5e-3_cm1_200k_seed29: val=44.76% test=45.20% diverged=False time=1452s; ETA ~114 min
+[2026-11-01 00:43:53] [ok 8/40] crelu_h48_cos6e-3_cm1_200k_seed43: val=7.29% test=7.22% diverged=False time=1463s; ETA ~98 min
+[2026-11-01 00:43:55] [ok 9/40] split_tanh_h48_cos1.5e-3_cm1_200k_seed43: val=44.13% test=44.38% diverged=False time=1465s; ETA ~84 min
+[2026-11-01 00:43:56] [ok 10/40] crelu_h48_cos6e-3_cm1_200k_seed71: val=7.19% test=7.03% diverged=False time=1466s; ETA ~73 min
+[2026-11-01 00:43:57] [ok 11/40] crelu_h48_cos6e-3_cm1_200k_seed57: val=6.89% test=6.96% diverged=False time=1467s; ETA ~65 min
+[2026-11-01 00:44:00] [ok 12/40] split_tanh_h48_cos1.5e-3_cm1_200k_seed71: val=43.77% test=43.76% diverged=False time=1470s; ETA ~57 min
+[2026-11-01 00:44:12] [ok 13/40] split_tanh_h48_cos1.5e-3_cm1_200k_seed57: val=51.32% test=52.39% diverged=False time=1482s; ETA ~51 min
+[2026-11-01 00:44:13] [ok 14/40] split_tanh_h48_cos1.5e-3_cm1_200k_seed17: val=43.94% test=44.31% diverged=False time=1483s; ETA ~46 min
+[2026-11-01 00:44:15] [ok 15/40] crelu_h48_cos6e-3_cm1_200k_seed17: val=13.66% test=13.96% diverged=False time=1485s; ETA ~41 min
+[2026-11-01 00:48:40] [ok 16/40] modrelu_h48_cos6e-3_cm1_200k_seed17: val=49.50% test=50.63% diverged=False time=1750s; ETA ~44 min
+[2026-11-01 00:48:52] [ok 17/40] modrelu_h48_cos6e-3_cm1_200k_seed43: val=53.00% test=53.66% diverged=False time=1762s; ETA ~40 min
+[2026-11-01 00:48:59] [ok 18/40] modrelu_h48_cos6e-3_cm1_200k_seed71: val=49.82% test=50.84% diverged=False time=1769s; ETA ~36 min
+[2026-11-01 00:49:07] [ok 19/40] kerr_taylor1_h48_cos3e-3_cm30_200k_seed71: val=64.57% test=66.07% diverged=False time=1777s; ETA ~33 min
+[2026-11-01 00:49:10] [ok 20/40] kerr_taylor1_h48_cos3e-3_cm30_200k_seed29: val=65.61% test=66.99% diverged=False time=1780s; ETA ~30 min
+[2026-11-01 00:49:13] [ok 21/40] modrelu_h48_cos6e-3_cm1_200k_seed57: val=49.80% test=51.07% diverged=False time=1783s; ETA ~27 min
+[2026-11-01 00:49:33] [ok 22/40] kerr_taylor1_h48_cos3e-3_cm30_200k_seed43: val=64.57% test=66.07% diverged=False time=1803s; ETA ~25 min
+[2026-11-01 00:49:35] [ok 23/40] kerr_taylor1_h48_cos3e-3_cm30_200k_seed57: val=64.85% test=66.31% diverged=False time=1805s; ETA ~22 min
+[2026-11-01 00:49:36] [ok 24/40] cardioid_h48_cos1e-2_cm1_200k_seed71: val=34.82% test=35.32% diverged=False time=1805s; ETA ~20 min
+[2026-11-01 00:49:45] [ok 25/40] sigmoid_gate_h48_cos3e-3_cm1_200k_seed57: val=56.58% test=57.37% diverged=False time=1814s; ETA ~18 min
+[2026-11-01 00:49:46] [ok 26/40] kerr_taylor1_h48_cos3e-3_cm30_200k_seed17: val=64.58% test=66.03% diverged=False time=1816s; ETA ~16 min
+[2026-11-01 00:49:48] [ok 27/40] sigmoid_gate_h48_cos3e-3_cm1_200k_seed29: val=59.40% test=60.44% diverged=False time=1818s; ETA ~15 min
+[2026-11-01 00:49:52] [ok 28/40] modrelu_h48_cos6e-3_cm1_200k_seed29: val=48.94% test=50.31% diverged=False time=1822s; ETA ~13 min
+[2026-11-01 00:49:52] [ok 29/40] cardioid_h48_cos1e-2_cm1_200k_seed29: val=39.09% test=39.36% diverged=False time=1822s; ETA ~12 min
+[2026-11-01 00:49:56] [ok 30/40] cardioid_h48_cos1e-2_cm1_200k_seed57: val=40.84% test=41.50% diverged=False time=1826s; ETA ~10 min
+[2026-11-01 00:50:00] [ok 31/40] cardioid_h48_cos1e-2_cm1_200k_seed17: val=31.95% test=32.61% diverged=False time=1830s; ETA ~9 min
+[2026-11-01 00:50:22] [ok 32/40] cardioid_h48_cos1e-2_cm1_200k_seed43: val=37.01% test=36.70% diverged=False time=1851s; ETA ~8 min
+[2026-11-01 00:50:37] [ok 33/40] sigmoid_gate_h48_cos3e-3_cm1_200k_seed43: val=53.04% test=53.94% diverged=False time=1866s; ETA ~7 min
+[2026-11-01 00:50:41] [ok 34/40] sigmoid_gate_h48_cos3e-3_cm1_200k_seed71: val=56.88% test=57.25% diverged=False time=1871s; ETA ~6 min
+[2026-11-01 00:51:05] [ok 35/40] sigmoid_gate_h48_cos3e-3_cm1_200k_seed17: val=55.15% test=56.10% diverged=False time=1895s; ETA ~5 min
+[2026-11-01 00:55:49] [ok 36/40] kerr_c_train_h48_cos3e-3_cm30_200k_seed71: val=64.68% test=66.22% diverged=False time=2179s; ETA ~4 min
+[2026-11-01 00:55:58] [ok 37/40] kerr_c_train_h48_cos3e-3_cm30_200k_seed43: val=64.72% test=65.78% diverged=False time=2189s; ETA ~3 min
+[2026-11-01 00:56:00] [ok 38/40] kerr_c_train_h48_cos3e-3_cm30_200k_seed29: val=64.37% test=65.67% diverged=False time=2190s; ETA ~2 min
+[2026-11-01 00:56:10] [ok 39/40] kerr_c_train_h48_cos3e-3_cm30_200k_seed57: val=64.14% test=65.25% diverged=False time=2200s; ETA ~1 min
+[2026-11-01 00:56:13] [ok 40/40] kerr_c_train_h48_cos3e-3_cm30_200k_seed17: val=63.48% test=64.69% diverged=False time=2204s; ETA ~0 min
+[2026-11-01 00:56:14] finished: 40 ok, 0 failed
+=== 2026-11-01T00:56:15+07:00 E027 s3 exit=0 ===

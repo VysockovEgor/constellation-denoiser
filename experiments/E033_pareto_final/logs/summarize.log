@@ -1,0 +1,4 @@
+=== 2026-11-01T10:11:37+07:00 E033 summarize: .venv/bin/python -m constellation_denoiser.summarize_E033 ===
+JOBS=40 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+E033: точек 140; лучшие по уровням: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E033_pareto_final/results/level_best.md
+=== 2026-11-01T10:11:41+07:00 E033 summarize exit=0 ===

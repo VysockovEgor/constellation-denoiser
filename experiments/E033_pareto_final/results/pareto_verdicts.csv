@@ -1,0 +1,18 @@
+hypothesis,value,verdict,detail,rule_status
+"наш подход лучше PB-NLC при равных RM (уровень 300, E031 · T3+FIR15_M3 · closed_form · 0k)",,не доказано,,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"наш подход лучше PB-NLC при равных RM (уровень 600, E031 · T3+FIR15_M5 · closed_form · 0k)",0.4083019107437068,подтверждено,E025 · F6_s12 · r · 200k,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"наш подход лучше PB-NLC при равных RM (уровень 1000, E031 · T3+FIR15_M7 · closed_form · 0k)",0.15106193898427733,подтверждено,E025 · F6_s12 · r · 200k,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"наш подход лучше PB-NLC при равных RM (уровень 2000, E031 · T3+FIR7_M11 · closed_form · 0k)",,не доказано,,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"наш подход лучше PB-NLC при равных RM (уровень 4000, E035 · tg_M15_warm · cos1e-4 · 200k)",,не доказано,,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"наш подход лучше PB-NLC при равных RM (уровень 6500, E034 · T3FIR7_M25_K512 · closed_form · 0k)",,не доказано,,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"наш подход лучше PB-NLC при равных RM (уровень 10000, E034 · T3FIR7_M25_full · closed_form · 0k)",,не доказано,,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"наш подход лучше PB-NLC при равных RM (уровень 16000, E034 · T3FIR7_M31_full · closed_form · 0k)",,не доказано,,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+CNN доминирует другие семейства (число пар A ≻ B),1.0,подтверждено,,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+DBP доминирует другие семейства (число пар A ≻ B),25.0,подтверждено,,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+DBP (fixed nonlinearity) доминирует другие семейства (число пар A ≻ B),0.0,не доказано,,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+Kerr MLP доминирует другие семейства (число пар A ≻ B),13.0,подтверждено,,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+PB-NLC (triplets) доминирует другие семейства (число пар A ≻ B),41.0,подтверждено,,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+PB-NLC + MLP доминирует другие семейства (число пар A ≻ B),13.0,подтверждено,,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+Phys + MLP доминирует другие семейства (число пар A ≻ B),8.0,подтверждено,,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+linear FIR доминирует другие семейства (число пар A ≻ B),0.0,не доказано,,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+real MLP доминирует другие семейства (число пар A ≻ B),0.0,не доказано,,DRAFT: to be confirmed by the user before the first run; must not change after results are seen

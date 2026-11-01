@@ -1,0 +1,10 @@
+=== 2026-11-01T00:56:23+07:00 E027 s3_fixed: .venv/bin/python -u -m constellation_denoiser.runner --exp E027 --stage s3_fixed ===
+JOBS=40 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+[2026-11-01 00:56:25] running 5 tasks with JOBS=40, THREADS=1, DEVICE=cpu
+[2026-11-01 01:20:46] [ok 1/5] kerr_c_fixed_h48_cos1.5e-3_cm1_200k_seed57: val=62.84% test=63.93% diverged=False time=1459s; ETA ~97 min
+[2026-11-01 01:20:52] [ok 2/5] kerr_c_fixed_h48_cos1.5e-3_cm1_200k_seed17: val=64.92% test=66.38% diverged=False time=1465s; ETA ~37 min
+[2026-11-01 01:20:53] [ok 3/5] kerr_c_fixed_h48_cos1.5e-3_cm1_200k_seed29: val=64.80% test=65.78% diverged=False time=1466s; ETA ~16 min
+[2026-11-01 01:21:04] [ok 4/5] kerr_c_fixed_h48_cos1.5e-3_cm1_200k_seed43: val=63.72% test=65.09% diverged=False time=1477s; ETA ~6 min
+[2026-11-01 01:21:06] [ok 5/5] kerr_c_fixed_h48_cos1.5e-3_cm1_200k_seed71: val=64.50% test=65.71% diverged=False time=1479s; ETA ~0 min
+[2026-11-01 01:21:07] finished: 5 ok, 0 failed
+=== 2026-11-01T01:21:07+07:00 E027 s3_fixed exit=0 ===

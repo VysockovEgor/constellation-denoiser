@@ -1,0 +1,9 @@
+hypothesis,value,verdict,detail,rule_status
+h=119: физический front-end окупается (гибрид − чистая ≥ 1 п.п.),0.2290347819901939,не доказано,RM 16103 против 16065,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+h=16: физический front-end окупается (гибрид − чистая ≥ 1 п.п.),4.057898854826092,подтверждено,RM 2198 против 2160,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+h=192: физический front-end окупается (гибрид − чистая ≥ 1 п.п.),0.07326267871114567,не доказано,RM 25958 против 25920,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+h=32: физический front-end окупается (гибрид − чистая ≥ 1 п.п.),2.0243260544846677,подтверждено,RM 4358 против 4320,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+h=48: физический front-end окупается (гибрид − чистая ≥ 1 п.п.),0.7112881428266604,не доказано,RM 6518 против 6480,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+h=8: физический front-end окупается (гибрид − чистая ≥ 1 п.п.),9.46795646916566,подтверждено,RM 1118 против 1080,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+h=96: физический front-end окупается (гибрид − чистая ≥ 1 п.п.),0.4481115299807925,не доказано,RM 12998 против 12960,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"выигрыш убывает с h (разность при h=16 больше, чем при h=119, на ≥ 1 п.п.)",3.8288640728358985,подтверждено,,DRAFT: to be confirmed by the user before the first run; must not change after results are seen

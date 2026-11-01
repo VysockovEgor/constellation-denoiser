@@ -1,0 +1,4 @@
+=== 2026-11-01T10:07:07+07:00 E030 summarize: .venv/bin/python -m constellation_denoiser.summarize_E030 ===
+JOBS=40 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+E030: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E030_loss_functions/results/loss_summary.csv; вердикты: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E030_loss_functions/results/loss_verdicts.csv
+=== 2026-11-01T10:07:10+07:00 E030 summarize exit=0 ===

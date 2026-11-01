@@ -162,6 +162,10 @@
 
 ---
 
+![](figs/experiments/E027_activation_ablation/figures/E027_activations_by_width.png)
+
+---
+
 ![](figs/experiments/E028_dbp_depth_layerwise/figures/E028_val_vs_ns.png)
 
 ---
@@ -170,11 +174,31 @@
 
 ---
 
+![](figs/experiments/E029_frontend_vs_width/figures/E029_hybrid_vs_width.png)
+
+---
+
+![](figs/experiments/E030_loss_functions/figures/E030_losses.png)
+
+---
+
 ![](figs/experiments/E031_perturbation_triplets/figures/E031_triplets_vs_rm.png)
 
 ---
 
 ![](figs/experiments/E032_convergence_1m/figures/E032_valbest_test_vs_steps.png)
+
+---
+
+![](figs/experiments/E033_pareto_final/figures/E033_pareto_q2.png)
+
+---
+
+![](figs/experiments/E033_pareto_final/figures/E033_pareto_ber.png)
+
+---
+
+![](figs/experiments/E033_pareto_final/figures/E033_physics_ladder.png)
 
 ---
 

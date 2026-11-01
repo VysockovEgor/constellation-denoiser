@@ -1,0 +1,102 @@
+a,a_family,a_rm,b,b_family,b_rm,q2_diff_db
+E031 · T3+FIR15_M3 · closed_form · 0k,PB-NLC (triplets),300,E022 · dbp_fixed_Ns4 · cos_3e-3_cm1 · 200k,DBP (fixed nonlinearity),524,0.270686391018566
+E031 · T3+FIR15_M3 · closed_form · 0k,PB-NLC (triplets),300,E022 · fir_L127_nosym · cos_3e-3_cm1 · 200k,linear FIR,508,0.27612117547115134
+E031 · T3+FIR15_M3 · closed_form · 0k,PB-NLC (triplets),300,E022 · dbp_fixed_Ns8 · cos_3e-3_cm1 · 200k,DBP (fixed nonlinearity),1048,0.25119617395867727
+E031 · T3+FIR15_M3 · closed_form · 0k,PB-NLC (triplets),300,E022 · fir_L255_nosym · cos_3e-3_cm1 · 200k,linear FIR,1020,0.2785748952694454
+E031 · T3+FIR15_M3 · closed_form · 0k,PB-NLC (triplets),300,E022 · fir_L501_nosym · cos_3e-3_cm1 · 200k,linear FIR,2004,0.2789653785323959
+E025 · F6_s12 · r · 200k,DBP,592,E031 · T3+FIR15_M5 · closed_form · 0k,PB-NLC (triplets),636,0.4083019107437068
+E025 · F6_s12 · r · 200k,DBP,592,E031 · T3+FIR15_M7 · closed_form · 0k,PB-NLC (triplets),1116,0.15106193898427733
+E025 · F6_s12 · r · 200k,DBP,592,E026 · oh_w15_h16 · floor_0.00391_cm100 · 200k,Kerr MLP,1136,0.30567374783069257
+E025 · F6_s12 · r · 200k,DBP,592,E029 · hyb_R31_L7_h8 · const_0.001_cm1 · 200k,Phys + MLP,1118,0.45982347726412454
+E025 · F6_s12 · r · 200k,DBP,592,E022 · dbp_fixed_Ns8 · cos_3e-3_cm1 · 200k,DBP (fixed nonlinearity),1048,0.9554167466265585
+E025 · F6_s12 · r · 200k,DBP,592,E022 · fir_L255_nosym · cos_3e-3_cm1 · 200k,linear FIR,1020,0.9827954679373267
+E025 · F6_s12 · r · 200k,DBP,592,E025 · F1_s04 · r · 200k,Kerr MLP,2160,0.1822552427155124
+E025 · F6_s12 · r · 200k,DBP,592,E022 · cnn_C13_k9 · cos_3e-3_cm1 · 200k,CNN,1989,0.4371160222107232
+E025 · F6_s12 · r · 200k,DBP,592,E022 · fir_L501_nosym · cos_3e-3_cm1 · 200k,linear FIR,2004,0.9831859512002772
+E025 · F6_s12 · r · 200k,DBP,592,E025 · F10_s16 · r · 200k,real MLP,6400,0.13634065688920072
+E025 · F6_s12 · r · 200k,DBP,592,E022 · cnn_C22_k11 · cos_3e-3_cm1 · 200k,CNN,6292,0.21664192578514696
+E025 · F6_s12 · r · 200k,DBP,592,E022 · cnn_C36_k11 · cos_3e-3_cm1 · 200k,CNN,15840,0.10612434192971643
+E031 · T3+FIR15_M5 · closed_form · 0k,PB-NLC (triplets),636,E022 · dbp_fixed_Ns8 · cos_3e-3_cm1 · 200k,DBP (fixed nonlinearity),1048,0.5471148358828517
+E031 · T3+FIR15_M5 · closed_form · 0k,PB-NLC (triplets),636,E022 · fir_L255_nosym · cos_3e-3_cm1 · 200k,linear FIR,1020,0.5744935571936199
+E031 · T3+FIR15_M5 · closed_form · 0k,PB-NLC (triplets),636,E022 · fir_L501_nosym · cos_3e-3_cm1 · 200k,linear FIR,2004,0.5748840404565704
+E026 · oh_w15_h8 · floor_0.00391_cm100 · 200k,Kerr MLP,568,E022 · dbp_fixed_Ns8 · cos_3e-3_cm1 · 200k,DBP (fixed nonlinearity),1048,0.3530070119183303
+E026 · oh_w15_h8 · floor_0.00391_cm100 · 200k,Kerr MLP,568,E022 · fir_L255_nosym · cos_3e-3_cm1 · 200k,linear FIR,1020,0.3803857332290984
+E026 · oh_w15_h8 · floor_0.00391_cm100 · 200k,Kerr MLP,568,E022 · fir_L501_nosym · cos_3e-3_cm1 · 200k,linear FIR,2004,0.38077621649204896
+E028 · dbp_Ns16_L31_R15 · const_0.001_cm1 · 400k,DBP,1248,E025 · F8_s16 · r · 200k,Phys + MLP,2198,0.29115548026849103
+E028 · dbp_Ns16_L31_R15 · const_0.001_cm1 · 400k,DBP,1248,E025 · F1_s04 · r · 200k,Kerr MLP,2160,0.380681697555008
+E028 · dbp_Ns16_L31_R15 · const_0.001_cm1 · 400k,DBP,1248,E022 · cnn_C13_k9 · cos_3e-3_cm1 · 200k,CNN,1989,0.6355424770502188
+E028 · dbp_Ns16_L31_R15 · const_0.001_cm1 · 400k,DBP,1248,E022 · fir_L501_nosym · cos_3e-3_cm1 · 200k,linear FIR,2004,1.1816124060397728
+E028 · dbp_Ns16_L31_R15 · const_0.001_cm1 · 400k,DBP,1248,E025 · F10_s16 · r · 200k,real MLP,6400,0.33476711172869633
+E028 · dbp_Ns16_L31_R15 · const_0.001_cm1 · 400k,DBP,1248,E022 · cnn_C22_k11 · cos_3e-3_cm1 · 200k,CNN,6292,0.4150683806246426
+E028 · dbp_Ns16_L31_R15 · const_0.001_cm1 · 400k,DBP,1248,E022 · cnn_C36_k11 · cos_3e-3_cm1 · 200k,CNN,15840,0.30455079676921204
+E031 · T3+FIR15_M7 · closed_form · 0k,PB-NLC (triplets),1116,E026 · oh_w15_h16 · floor_0.00391_cm100 · 200k,Kerr MLP,1136,0.15461180884641523
+E031 · T3+FIR15_M7 · closed_form · 0k,PB-NLC (triplets),1116,E029 · hyb_R31_L7_h8 · const_0.001_cm1 · 200k,Phys + MLP,1118,0.3087615382798472
+E031 · T3+FIR15_M7 · closed_form · 0k,PB-NLC (triplets),1116,E022 · cnn_C13_k9 · cos_3e-3_cm1 · 200k,CNN,1989,0.2860540832264459
+E031 · T3+FIR15_M7 · closed_form · 0k,PB-NLC (triplets),1116,E022 · fir_L501_nosym · cos_3e-3_cm1 · 200k,linear FIR,2004,0.8321240122159999
+E026 · oh_w15_h16 · floor_0.00391_cm100 · 200k,Kerr MLP,1136,E022 · cnn_C13_k9 · cos_3e-3_cm1 · 200k,CNN,1989,0.13144227438003064
+E026 · oh_w15_h16 · floor_0.00391_cm100 · 200k,Kerr MLP,1136,E022 · fir_L501_nosym · cos_3e-3_cm1 · 200k,linear FIR,2004,0.6775122033695846
+E029 · hyb_R31_L7_h8 · const_0.001_cm1 · 200k,Phys + MLP,1118,E022 · fir_L501_nosym · cos_3e-3_cm1 · 200k,linear FIR,2004,0.5233624739361527
+E028 · dbp_Ns32_L31_R15 · const_0.001_cm1 · 400k,DBP,2496,E029 · hyb_R31_L7_h32 · cos_0.00121_wu1000_cm100 · 200k,Phys + MLP,4358,0.12620636804938634
+E028 · dbp_Ns32_L31_R15 · const_0.001_cm1 · 400k,DBP,2496,E029 · pure_h32 · floor_0.00391_cm100 · 200k,Kerr MLP,4320,0.1817620379186935
+E028 · dbp_Ns32_L31_R15 · const_0.001_cm1 · 400k,DBP,2496,E025 · F10_s16 · r · 200k,real MLP,6400,0.4990947693679193
+E028 · dbp_Ns32_L31_R15 · const_0.001_cm1 · 400k,DBP,2496,E022 · cnn_C22_k11 · cos_3e-3_cm1 · 200k,CNN,6292,0.5793960382638655
+E028 · dbp_Ns32_L31_R15 · const_0.001_cm1 · 400k,DBP,2496,E025 · F11_s02 · r · 200k,real MLP,15360,0.31727822811459605
+E028 · dbp_Ns32_L31_R15 · const_0.001_cm1 · 400k,DBP,2496,E022 · cnn_C36_k11 · cos_3e-3_cm1 · 200k,CNN,15840,0.468878454408435
+E031 · T3+FIR7_M11 · closed_form · 0k,PB-NLC (triplets),2476,E025 · F10_s16 · r · 200k,real MLP,6400,0.4153313740519071
+E031 · T3+FIR7_M11 · closed_form · 0k,PB-NLC (triplets),2476,E022 · cnn_C22_k11 · cos_3e-3_cm1 · 200k,CNN,6292,0.49563264294785336
+E031 · T3+FIR7_M11 · closed_form · 0k,PB-NLC (triplets),2476,E025 · F11_s02 · r · 200k,real MLP,15360,0.23351483279858387
+E031 · T3+FIR7_M11 · closed_form · 0k,PB-NLC (triplets),2476,E022 · cnn_C36_k11 · cos_3e-3_cm1 · 200k,CNN,15840,0.38511505909242283
+E025 · F8_s16 · r · 200k,Phys + MLP,2198,E022 · cnn_C22_k11 · cos_3e-3_cm1 · 200k,CNN,6292,0.12391290035615155
+E022 · cnn_C13_k9 · cos_3e-3_cm1 · 200k,CNN,1989,E022 · fir_L501_nosym · cos_3e-3_cm1 · 200k,linear FIR,2004,0.546069928989554
+E035 · th_M15_h4 · cos1e-3 · 200k,PB-NLC + MLP,4984,E030 · oh48_msepce · x0.5 · 200k,Kerr MLP,6480,0.18807767139623932
+E035 · th_M15_h4 · cos1e-3 · 200k,PB-NLC + MLP,4984,E025 · F10_s16 · r · 200k,real MLP,6400,0.8295781492547181
+E035 · th_M15_h4 · cos1e-3 · 200k,PB-NLC + MLP,4984,E022 · cnn_C22_k11 · cos_3e-3_cm1 · 200k,CNN,6292,0.9098794181506643
+E035 · th_M15_h4 · cos1e-3 · 200k,PB-NLC + MLP,4984,E025 · F11_s02 · r · 200k,real MLP,15360,0.6477616080013948
+E035 · th_M15_h4 · cos1e-3 · 200k,PB-NLC + MLP,4984,E022 · cnn_C36_k11 · cos_3e-3_cm1 · 200k,CNN,15840,0.7993618342952338
+E035 · tg_M15_warm · cos1e-4 · 200k,PB-NLC (triplets),4444,E030 · oh48_msepce · x0.5 · 200k,Kerr MLP,6480,0.10508679487123618
+E035 · tg_M15_warm · cos1e-4 · 200k,PB-NLC (triplets),4444,E025 · F10_s16 · r · 200k,real MLP,6400,0.7465872727297149
+E035 · tg_M15_warm · cos1e-4 · 200k,PB-NLC (triplets),4444,E022 · cnn_C22_k11 · cos_3e-3_cm1 · 200k,CNN,6292,0.8268885416256612
+E035 · tg_M15_warm · cos1e-4 · 200k,PB-NLC (triplets),4444,E025 · F11_s02 · r · 200k,real MLP,15360,0.5647707314763917
+E035 · tg_M15_warm · cos1e-4 · 200k,PB-NLC (triplets),4444,E022 · cnn_C36_k11 · cos_3e-3_cm1 · 200k,CNN,15840,0.7163709577702306
+E029 · hyb_R31_L7_h32 · cos_0.00121_wu1000_cm100 · 200k,Phys + MLP,4358,E025 · F10_s16 · r · 200k,real MLP,6400,0.37288840131853296
+E029 · hyb_R31_L7_h32 · cos_0.00121_wu1000_cm100 · 200k,Phys + MLP,4358,E022 · cnn_C22_k11 · cos_3e-3_cm1 · 200k,CNN,6292,0.4531896702144792
+E029 · hyb_R31_L7_h32 · cos_0.00121_wu1000_cm100 · 200k,Phys + MLP,4358,E025 · F11_s02 · r · 200k,real MLP,15360,0.1910718600652097
+E029 · hyb_R31_L7_h32 · cos_0.00121_wu1000_cm100 · 200k,Phys + MLP,4358,E022 · cnn_C36_k11 · cos_3e-3_cm1 · 200k,CNN,15840,0.34267208635904867
+E029 · pure_h32 · floor_0.00391_cm100 · 200k,Kerr MLP,4320,E025 · F10_s16 · r · 200k,real MLP,6400,0.3173327314492258
+E029 · pure_h32 · floor_0.00391_cm100 · 200k,Kerr MLP,4320,E022 · cnn_C22_k11 · cos_3e-3_cm1 · 200k,CNN,6292,0.39763400034517205
+E029 · pure_h32 · floor_0.00391_cm100 · 200k,Kerr MLP,4320,E022 · cnn_C36_k11 · cos_3e-3_cm1 · 200k,CNN,15840,0.2871164164897415
+E034 · T3FIR7_M25_K512 · closed_form · 0k,PB-NLC (triplets),6172,E035 · th_M15_h16 · cos1e-3 · 200k,PB-NLC + MLP,6604,0.2828399264547563
+E034 · T3FIR7_M25_K512 · closed_form · 0k,PB-NLC (triplets),6172,E030 · hyb48_msepce · x1 · 200k,Phys + MLP,6518,0.4396295178720848
+E034 · T3FIR7_M25_K512 · closed_form · 0k,PB-NLC (triplets),6172,E030 · oh48_msepce · x0.5 · 200k,Kerr MLP,6480,0.5403210913108552
+E034 · T3FIR7_M25_K512 · closed_form · 0k,PB-NLC (triplets),6172,E025 · F10_s16 · r · 200k,real MLP,6400,1.181821569169334
+E034 · T3FIR7_M25_K512 · closed_form · 0k,PB-NLC (triplets),6172,E022 · cnn_C22_k11 · cos_3e-3_cm1 · 200k,CNN,6292,1.26212283806528
+E034 · T3FIR7_M25_K512 · closed_form · 0k,PB-NLC (triplets),6172,E026 · oh_w41_h64 · floor_0.00391_cm100 · 200k,Kerr MLP,11200,0.30562197880671715
+E034 · T3FIR7_M25_K512 · closed_form · 0k,PB-NLC (triplets),6172,E029 · hyb_R31_L7_h119 · cos_0.00121_wu1000_cm100 · 200k,Phys + MLP,16103,0.3046128629774003
+E034 · T3FIR7_M25_K512 · closed_form · 0k,PB-NLC (triplets),6172,E030 · v4_h119_mse · x0.5 · 200k,Kerr MLP,16065,0.3067519719616971
+E034 · T3FIR7_M25_K512 · closed_form · 0k,PB-NLC (triplets),6172,E025 · F11_s02 · r · 200k,real MLP,15360,1.0000050279160106
+E034 · T3FIR7_M25_K512 · closed_form · 0k,PB-NLC (triplets),6172,E022 · cnn_C36_k11 · cos_3e-3_cm1 · 200k,CNN,15840,1.1516052542098496
+E034 · T3FIR7_M25_K512 · closed_form · 0k,PB-NLC (triplets),6172,E029 · hyb_R31_L7_h192 · cos_0.00121_wu1000_cm100 · 200k,Phys + MLP,25958,0.29595183121510327
+E035 · th_M15_h16 · cos1e-3 · 200k,PB-NLC + MLP,6604,E025 · F11_s02 · r · 200k,real MLP,15360,0.7171651014612543
+E035 · th_M15_h16 · cos1e-3 · 200k,PB-NLC + MLP,6604,E022 · cnn_C36_k11 · cos_3e-3_cm1 · 200k,CNN,15840,0.8687653277550933
+E030 · hyb48_msepce · x1 · 200k,Phys + MLP,6518,E025 · F11_s02 · r · 200k,real MLP,15360,0.5603755100439258
+E030 · hyb48_msepce · x1 · 200k,Phys + MLP,6518,E022 · cnn_C36_k11 · cos_3e-3_cm1 · 200k,CNN,15840,0.7119757363377648
+E030 · oh48_msepce · x0.5 · 200k,Kerr MLP,6480,E025 · F11_s02 · r · 200k,real MLP,15360,0.4596839366051555
+E030 · oh48_msepce · x0.5 · 200k,Kerr MLP,6480,E022 · cnn_C36_k11 · cos_3e-3_cm1 · 200k,CNN,15840,0.6112841628989945
+E035 · th_M21_h16 · cos1e-3 · 200k,PB-NLC + MLP,11404,E029 · hyb_R31_L7_h119 · cos_0.00121_wu1000_cm100 · 200k,Phys + MLP,16103,0.4145517662814624
+E035 · th_M21_h16 · cos1e-3 · 200k,PB-NLC + MLP,11404,E030 · v4_h119_mse · x0.5 · 200k,Kerr MLP,16065,0.4166908752657592
+E035 · th_M21_h16 · cos1e-3 · 200k,PB-NLC + MLP,11404,E025 · F11_s02 · r · 200k,real MLP,15360,1.1099439312200727
+E035 · th_M21_h16 · cos1e-3 · 200k,PB-NLC + MLP,11404,E022 · cnn_C36_k11 · cos_3e-3_cm1 · 200k,CNN,15840,1.2615441575139117
+E035 · th_M21_h16 · cos1e-3 · 200k,PB-NLC + MLP,11404,E026 · oh_w41_h128 · floor_0.00391_cm100 · 200k,Kerr MLP,22400,0.1646739161080828
+E035 · th_M21_h16 · cos1e-3 · 200k,PB-NLC + MLP,11404,E029 · hyb_R31_L7_h192 · cos_0.00121_wu1000_cm100 · 200k,Phys + MLP,25958,0.40589073451916535
+E034 · T3FIR7_M25_full · closed_form · 0k,PB-NLC (triplets),11884,E029 · hyb_R31_L7_h119 · cos_0.00121_wu1000_cm100 · 200k,Phys + MLP,16103,0.39455825115500587
+E034 · T3FIR7_M25_full · closed_form · 0k,PB-NLC (triplets),11884,E030 · v4_h119_mse · x0.5 · 200k,Kerr MLP,16065,0.3966973601393027
+E034 · T3FIR7_M25_full · closed_form · 0k,PB-NLC (triplets),11884,E025 · F11_s02 · r · 200k,real MLP,15360,1.0899504160936162
+E034 · T3FIR7_M25_full · closed_form · 0k,PB-NLC (triplets),11884,E022 · cnn_C36_k11 · cos_3e-3_cm1 · 200k,CNN,15840,1.2415506423874552
+E034 · T3FIR7_M25_full · closed_form · 0k,PB-NLC (triplets),11884,E026 · oh_w41_h128 · floor_0.00391_cm100 · 200k,Kerr MLP,22400,0.14468040098162627
+E034 · T3FIR7_M25_full · closed_form · 0k,PB-NLC (triplets),11884,E029 · hyb_R31_L7_h192 · cos_0.00121_wu1000_cm100 · 200k,Phys + MLP,25958,0.3858972193927088
+E026 · oh_w41_h64 · floor_0.00391_cm100 · 200k,Kerr MLP,11200,E025 · F11_s02 · r · 200k,real MLP,15360,0.6943830491092935
+E026 · oh_w41_h64 · floor_0.00391_cm100 · 200k,Kerr MLP,11200,E022 · cnn_C36_k11 · cos_3e-3_cm1 · 200k,CNN,15840,0.8459832754031325
+E034 · T3FIR7_M31_full · closed_form · 0k,PB-NLC (triplets),18076,E026 · oh_w41_h128 · floor_0.00391_cm100 · 200k,Kerr MLP,22400,0.3535837050285431
+E034 · T3FIR7_M31_full · closed_form · 0k,PB-NLC (triplets),18076,E029 · hyb_R31_L7_h192 · cos_0.00121_wu1000_cm100 · 200k,Phys + MLP,25958,0.5948005234396256
+E034 · T3FIR7_M31_full · closed_form · 0k,PB-NLC (triplets),18076,E026 · oh_w65_h128 · floor_0.00391_cm100 · 200k,Kerr MLP,34688,0.17912002742194666
+E026 · oh_w41_h128 · floor_0.00391_cm100 · 200k,Kerr MLP,22400,E029 · hyb_R31_L7_h192 · cos_0.00121_wu1000_cm100 · 200k,Phys + MLP,25958,0.24121681841108256
