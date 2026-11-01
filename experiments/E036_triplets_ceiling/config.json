@@ -1,0 +1,75 @@
+{
+ "experiment_id": "E036",
+ "title": "Ceiling of the triplets: memory M = 41, 51 and pruning of the M = 51 pool",
+ "question": "Where does the growth of the T3 + FIR triplets with memory M stop, and how many terms keep the large-M quality?",
+ "date": "not run",
+ "base_git_commit": "1ca1acb (branch exp/E024-E033)",
+ "git_commit": "recorded per run in results/runs/*.json (field git_commit); rule commit: see LOG.md",
+ "data_manifest_sha256": "cb5f2de47145c02d6485969ce116df2253a271c979a927452ea454551a48c0a8",
+ "data_audit_sha256": "a9c35fb7839e85c39f7131373418a6f3a04c731e9c4e55385347a1eabbdedbe4",
+ "split_source": "experiments/E004_training_file_curve/config.json (train_pool_files[:30], validation 45, test 45), as E007-E019",
+ "split_source_sha256": "04c0b2a5775d8fae1acdc348967c6fb976ef5d90e76a8334484242cc9707025a",
+ "dataset_root": "data/raw/archive",
+ "n_train_files": 30,
+ "base_lr": {
+  "peak_lr": 0.001,
+  "schedule": "const",
+  "warmup": 0,
+  "c_mult": 1.0,
+  "floor_frac": 0.1,
+  "optimizer": "adam",
+  "weight_decay": 0.0
+ },
+ "seeds": [
+  17,
+  29,
+  43,
+  57,
+  71
+ ],
+ "ckpt_every": 10000,
+ "eval_rule": "validation and (report-only) test every max(500, steps/40) steps; selection only by validation",
+ "model": "T3 + FIR7 (E031/E034)",
+ "M": [
+  41
+ ],
+ "fir_len": 7,
+ "prune_M": 51,
+ "K": [
+  512,
+  1024,
+  2048
+ ],
+ "rule_k": 2048,
+ "lambda_grid": [
+  1e-08,
+  1e-06,
+  0.0001,
+  0.001,
+  0.01,
+  0.1
+ ],
+ "max_block": 4096,
+ "bootstrap": {
+  "replicas": [
+   17,
+   29,
+   43,
+   57,
+   71
+  ],
+  "rule": "as E031"
+ },
+ "smoke_M": [
+  7
+ ],
+ "smoke_prune_M": 7,
+ "memory_note": "M = 51: 3 979 terms, normal matrix 3 986^2 complex per file (~0.25 GB x 30 files)",
+ "rule_draft": {
+  "status": "DRAFT: to be confirmed by the user before the first run; must not change after results are seen",
+  "memory": "growth continues if M = 51 - M = 31 (E034) >= 1 p.p. (test mean, 5 replicas)",
+  "pruning": "K = 2048 terms keep >= 95 % of the reduction of the full M = 51 model",
+  "otherwise": "не доказано"
+ },
+ "M_note": "the full M = 51 model is the 'full' row of the pruning stage (prune_M = 51), not refitted"
+}

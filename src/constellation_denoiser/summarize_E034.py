@@ -21,25 +21,27 @@ from .runner import atomic_write_json, default_files, exp_dir, git_commit, resul
 TEST = "test_reduction_valbest_select"
 
 
-def fit(config: dict, smoke: bool, out) -> pd.DataFrame:
+def fit(config: dict, smoke: bool, out, files: dict | None = None, name: str = "triplet_ext_fits.csv",
+        prune: bool = True) -> pd.DataFrame:
     from .triplets import FileGram, fit_arm, triplet_terms
     from .triplets_ext import prune_replica
     from .window_data import load_fileset, resolve_paths
 
-    files = default_files(config["n_train_files"], smoke)
+    files = files or default_files(config["n_train_files"], smoke)
     data = {k: load_fileset(resolve_paths(v)) for k, v in files.items()}
     tr, va, te = data["train"], data["validation"], data["test"]
     raw_val, raw_test = va.raw_ber(31), te.raw_ber(31)
     reps = config["bootstrap"]["replicas"][:1] if smoke else config["bootstrap"]["replicas"]
     lambdas, block, fir = config["lambda_grid"], config["max_block"], config["fir_len"]
     rows = []
-    base_m = config["smoke_prune_M"] if smoke else config["prune_M"]
-    terms = triplet_terms(base_m, "T3")
-    grams = [FileGram(tr.rx_c[f], tr.tx_c[f], terms, fir, False, block) for f in range(tr.n_files)]
-    for replica in reps:
-        rows += prune_replica(tr, va, te, base_m, fir, config["K"], lambdas, replica, grams, terms, block)
-        print(f"pruning M={base_m}, replica {replica}: done", flush=True)
-    del grams
+    if prune:
+        base_m = config["smoke_prune_M"] if smoke else config["prune_M"]
+        terms = triplet_terms(base_m, "T3")
+        grams = [FileGram(tr.rx_c[f], tr.tx_c[f], terms, fir, False, block) for f in range(tr.n_files)]
+        for replica in reps:
+            rows += prune_replica(tr, va, te, base_m, fir, config["K"], lambdas, replica, grams, terms, block)
+            print(f"pruning M={base_m}, replica {replica}: done", flush=True)
+        del grams
     for M in (config["smoke_M"] if smoke else config["M"]):
         for r in fit_arm(tr, va, te, M, "T3", fir, lambdas, reps, block):
             rows.append({"variant": f"T3FIR{fir}_M{M}_full", "K": r["n_terms"], "replica": r["replica"],
@@ -51,7 +53,7 @@ def fit(config: dict, smoke: bool, out) -> pd.DataFrame:
     frame["q2_gain_db"] = [q2_db(t) - q2_db(raw_test) for t in frame.test_ber]
     frame["raw_ber"] = raw_test
     frame["git_commit"] = git_commit()
-    frame.to_csv(out / "triplet_ext_fits.csv", index=False)
+    frame.to_csv(out / name, index=False)
     return frame
 
 
@@ -106,8 +108,8 @@ def plot(summary: pd.DataFrame, figures) -> None:
     fig, ax = plt.subplots(figsize=(9, 4.8))
     pruned = summary[summary.variant.str.contains("_K")]
     full = summary[summary.variant.str.endswith("_full")]
-    for index, (frame, label, marker) in enumerate(((pruned, "pruned to K terms (M = 25 pool)", "o"),
-                                                   (full, "all terms, M = 25 / 31", "s"))):
+    for index, (frame, label, marker) in enumerate(((pruned, "pruned to K terms", "o"),
+                                                   (full, "all terms (full M)", "s"))):
         ax.errorbar(frame.rm, frame.test_mean, yerr=[frame.test_mean - frame.test_min, frame.test_max - frame.test_mean],
                     marker=marker, color=plot_style.color(index), capsize=2, linestyle="-" if index == 0 else "",
                     label=label)

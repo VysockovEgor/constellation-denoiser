@@ -20,7 +20,7 @@ from torch import nn
 
 from .paper_complex_mlp import ComplexDense, NonlinearPhase
 
-KINDS = ("act_mlp", "real_mlp", "dbp_shared", "dbp_mlp", "dbp_noise", "triplet_net")
+KINDS = ("act_mlp", "real_mlp", "dbp_shared", "dbp_mlp", "dbp_noise", "triplet_net", "dbp_triplets")
 
 # real multiplies per hidden neuron of each activation (|z|^2 = 2, real x complex = 2, complex x complex = 4,
 # a division counts as 1, exp/cos/sin/sqrt/sigmoid/tanh/ReLU from lookup or comparison = 0)
@@ -216,6 +216,13 @@ def build(spec: dict) -> nn.Module:
     if kind == "dbp_mlp":
         return DBPPlusMLP(window, int(spec["fir_len"]), int(spec["n_alpha"]), bool(spec["sym"]), int(spec["n_steps"]),
                           int(spec["mlp_hidden"]))
+    if kind == "dbp_triplets":           # E038: DBP + K selected triplet terms
+        from .paths import PROJECT_ROOT
+        from .triplets_ext import DBPTriplets
+
+        terms = spec.get("terms")
+        return DBPTriplets(window, int(spec["fir_len"]), int(spec["n_alpha"]), bool(spec["sym"]), int(spec["n_steps"]),
+                           str(PROJECT_ROOT / terms) if terms else None, int(spec.get("k", 0)))
     if kind == "triplet_net":            # E035: perturbation triplets (+ Kerr MLP), triplets_ext.TripletNet
         from .paths import PROJECT_ROOT
         from .triplets_ext import TripletNet
@@ -255,6 +262,10 @@ def macs(spec: dict) -> tuple[int, int]:
     if kind == "real_mlp":
         m = real_mlp_macs(window, int(spec["hidden"]), int(spec["layers"]))
         return m, m
+    if kind == "dbp_triplets":
+        total = macs_phys(int(spec["n_alpha"]), int(spec["fir_len"]), bool(spec["sym"])) * int(spec["n_steps"])
+        total += 12 * int(spec.get("k", 0))
+        return total, total
     if kind == "triplet_net":
         from .triplets_ext import triplet_net_macs
 

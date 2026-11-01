@@ -836,6 +836,53 @@ BUILDERS["E035"] = e035_tasks
 SPECIAL_STAGES[("E035", "fit")] = e035_fit
 
 
+# --------------------------------------------------------------------------- E038 (DBP + selected triplets)
+
+def e038_select(options: Options) -> int:
+    """Rank the T3 terms of the closed-form fit (M of config) on all train files -> results/terms.npz."""
+    from .runner import atomic_write_json, default_files, log
+    from .triplets_ext import rank_terms
+    from .window_data import load_fileset, resolve_paths
+
+    directory, config = load_config("E038")
+    files = default_files(config["n_train_files"], options.smoke)
+    train, val = (load_fileset(resolve_paths(files[k])) for k in ("train", "validation"))
+    out = results_dir(directory, options.smoke)
+    out.mkdir(parents=True, exist_ok=True)
+    terms = rank_terms(train, val, config["select_M"], config["select_fir_len"], config["lambda_grid"], 4096)
+    np.savez(out / "terms.npz", terms=np.array(terms[: max(config["k"])]))
+    atomic_write_json(out / "terms.json", {"M": config["select_M"], "top": [list(t) for t in terms[: max(config["k"])]]})
+    log(f"E038: {len(terms)} членов ранжированы, сохранены первые {max(config['k'])}")
+    return 0
+
+
+def e038_tasks(stage: str, options: Options) -> list[dict]:
+    exp = "E038"
+    directory, config = load_config(exp)
+    if stage == "control":
+        return control_tasks(exp, directory, config, options)
+    if stage != "main":
+        raise SystemExit(f"E038: неизвестная стадия {stage!r}")
+    from .paths import PROJECT_ROOT
+
+    terms = str((results_dir(directory, options.smoke) / "terms.npz").relative_to(PROJECT_ROOT))
+    tasks = []
+    for ns, key in config["dbp"].items():
+        dbp = dict(config["dbp_spec"], n_steps=int(ns))
+        lr, _, source = recipe_lr(key, options)
+        for k in [0] + list(config["k"]):
+            spec = dict(dbp, model="dbp_triplets", window=31, k=k, terms=terms if k else None)
+            for seed in first_seeds(config, options, config["n_seeds"]):
+                tasks.append(run(exp, stage, directory, config, options, name=f"dbp_Ns{ns}_K{k}", spec=spec, lr=lr,
+                                 steps=config["steps"], seed=seed,
+                                 meta={"n_steps": int(ns), "k": k, "recipe": key, "recipe_source": source}))
+    return tasks
+
+
+BUILDERS["E038"] = e038_tasks
+SPECIAL_STAGES[("E038", "select")] = e038_select
+
+
 def _register() -> None:
     from . import grids
 

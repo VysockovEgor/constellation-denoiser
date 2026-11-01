@@ -118,3 +118,43 @@ class TripletNet(nn.Module):
 
 def triplet_net_macs(window: int, M: int, fir_len: int, mlp_hidden: int) -> int:
     return 12 * len(triplet_terms(M, "T3")) + 4 * fir_len + mlp_hidden * (4 * window + 11)
+
+
+class DBPTriplets(nn.Module):
+    """E038: y = PhysDBP_Ns(x) + sum_{j in selected} C_j T_j(x); the K triplet terms (m, n) come from a file
+    (closed-form ranking), their coefficients start at zero, so the model starts equal to the DBP."""
+
+    def __init__(self, window: int, fir_len: int, n_alpha: int, sym: bool, n_steps: int, terms_file: str | None, k: int):
+        super().__init__()
+        from .phys_models import PhysDBP
+
+        self.window, self.centre = window, window // 2
+        self.phys = PhysDBP(window, fir_len, n_alpha, sym, n_steps)
+        terms = [tuple(t) for t in np.load(terms_file)["terms"][:k]] if (terms_file and k) else []
+        c = self.centre
+        if any(max(abs(m), abs(n), abs(m + n)) > c for m, n in terms):
+            raise ValueError("triplet terms reach outside the window")
+        self.k = len(terms)
+        self.register_buffer("i_m", torch.tensor([c + m for m, _ in terms], dtype=torch.long))
+        self.register_buffer("i_mn", torch.tensor([c + m + n for m, n in terms], dtype=torch.long))
+        self.register_buffer("i_n", torch.tensor([c + n for _, n in terms], dtype=torch.long))
+        self.coef_re = nn.Parameter(torch.zeros(self.k))
+        self.coef_im = nn.Parameter(torch.zeros(self.k))
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        y = self.phys(x)
+        if self.k:
+            z = torch.complex(x[..., 0], x[..., 1]).reshape(x.shape[0], self.window)
+            feats = z[:, self.i_m] * torch.conj(z[:, self.i_mn]) * z[:, self.i_n]
+            y = y + feats @ torch.complex(self.coef_re, self.coef_im)
+        return y
+
+
+def rank_terms(train, val, M: int, fir_len: int, lambdas: list[float], block: int) -> list[tuple[int, int]]:
+    """Triplet terms of the closed-form T3 + FIR fit on all train files, strongest first (|C| * rms feature)."""
+    terms = triplet_terms(M, "T3")
+    grams = [FileGram(train.rx_c[f], train.tx_c[f], terms, fir_len, False, block) for f in range(train.n_files)]
+    gram = sum(g.gram for g in grams)
+    coef, _ = closed_form_coefficients(train, val, M, fir_len, lambdas, block)
+    score = importance(gram, coef, train.n_files * (train.length - 2 * EDGE))[:len(terms)]
+    return [terms[i] for i in np.argsort(score)[::-1]]

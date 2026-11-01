@@ -1,0 +1,93 @@
+{
+ "experiment_id": "E038",
+ "title": "DBP + selected triplet terms in the low-complexity range",
+ "question": "Do a few strongest triplet terms added to the tuned DBP improve it at 600-2 500 RM, beyond triplets alone?",
+ "date": "not run",
+ "base_git_commit": "1ca1acb (branch exp/E024-E033)",
+ "git_commit": "recorded per run in results/runs/*.json (field git_commit); rule commit: see LOG.md",
+ "data_manifest_sha256": "cb5f2de47145c02d6485969ce116df2253a271c979a927452ea454551a48c0a8",
+ "data_audit_sha256": "a9c35fb7839e85c39f7131373418a6f3a04c731e9c4e55385347a1eabbdedbe4",
+ "split_source": "experiments/E004_training_file_curve/config.json (train_pool_files[:30], validation 45, test 45), as E007-E019",
+ "split_source_sha256": "04c0b2a5775d8fae1acdc348967c6fb976ef5d90e76a8334484242cc9707025a",
+ "dataset_root": "data/raw/archive",
+ "n_train_files": 30,
+ "base_lr": {
+  "peak_lr": 0.001,
+  "schedule": "const",
+  "warmup": 0,
+  "c_mult": 1.0,
+  "floor_frac": 0.1,
+  "optimizer": "adam",
+  "weight_decay": 0.0
+ },
+ "seeds": [
+  17,
+  29,
+  43,
+  57,
+  71
+ ],
+ "ckpt_every": 10000,
+ "eval_rule": "validation and (report-only) test every max(500, steps/40) steps; selection only by validation",
+ "control": {
+  "runs": {
+   "a_const_1e-3_20k": {
+    "spec": {
+     "model": "complex_a",
+     "window": 31,
+     "hidden": 48,
+     "name": "complex_a"
+    },
+    "n_train_files": 30,
+    "steps": 20000
+   }
+  },
+  "targets": {
+   "a_const_1e-3_20k": {
+    "target": 62.191,
+    "tol": 0.7,
+    "seeds": [
+     17,
+     29
+    ],
+    "metric": "test_reduction_valbest_select",
+    "source": "experiments/E009_kerr_ablation/results/complex_mlp_ablation_summary.csv (variant a); reproduced in E010-E019 (62.19)"
+   }
+  }
+ },
+ "model": "triplets_ext.DBPTriplets: y = PhysDBP_Ns(x) + sum over the K strongest T3 terms C_j T_j(x), C = 0 at start",
+ "select_M": 15,
+ "select_fir_len": 7,
+ "lambda_grid": [
+  1e-08,
+  1e-06,
+  0.0001,
+  0.001,
+  0.01,
+  0.1
+ ],
+ "selection": "stage select: closed-form T3 + FIR7 (M = 15) on all 30 train files, lambda by validation; terms ranked by |C| * rms(feature) -> results/terms.npz",
+ "dbp_spec": {
+  "fir_len": 31,
+  "n_alpha": 7,
+  "sym": true
+ },
+ "dbp": {
+  "8": "F6",
+  "16": "F7"
+ },
+ "k": [
+  16,
+  32,
+  64
+ ],
+ "rm": "macs_phys(R7, L31, sym) * Ns + 12 K",
+ "n_seeds": 5,
+ "steps": 200000,
+ "rule_draft": {
+  "status": "DRAFT: to be confirmed by the user before the first run; must not change after results are seen",
+  "adds_to_dbp": "K triplets add to the DBP if (DBP + K) - DBP alone (same Ns, same recipe) >= 1 p.p., intervals do not overlap",
+  "beats_triplets": "DBP + K beats triplets alone (E031/E034, best by validation with RM <= its RM) by >= 0.1 dB, non-overlapping intervals",
+  "otherwise": "не доказано"
+ }
+}

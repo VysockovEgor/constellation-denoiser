@@ -51,3 +51,6 @@ fig_no,experiment_id,file,caption,source_csv
 50,E033,experiments/E033_pareto_final/figures/E033_physics_ladder.png,Physical ladder (not run),experiments/E033_pareto_final/results/level_best.csv
 51,E034,experiments/E034_triplets_extended/figures/E034_triplets_pruned_vs_rm.png,Perturbation triplets: memory M and pruning to K terms vs RM (not run),experiments/E034_triplets_extended/results/triplet_ext_summary.csv
 52,E035,experiments/E035_triplet_hybrid/figures/E035_triplet_net.png,Triplets by gradient and triplets + Kerr MLP (not run),experiments/E035_triplet_hybrid/results/triplet_net_summary.csv
+53,E036,experiments/E036_triplets_ceiling/figures/E036_triplets_ceiling.png,Triplets: memory M up to 51 and pruning (not run),experiments/E036_triplets_ceiling/results/triplet_ext_summary.csv
+54,E037,experiments/E037_triplets_splits/figures/E037_triplets_by_split.png,Triplets vs networks on three file splits (not run),experiments/E037_triplets_splits/results/split_summary.csv
+55,E038,experiments/E038_dbp_triplets/figures/E038_dbp_triplets.png,DBP + selected triplet terms at low complexity (not run),experiments/E038_dbp_triplets/results/dbp_triplets_summary.csv

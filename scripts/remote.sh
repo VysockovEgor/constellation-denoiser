@@ -48,7 +48,7 @@ BRANCH="${BRANCH:-$(git rev-parse --abbrev-ref HEAD)}"
 REGISTRY=".remote_sessions"
 SSH_OPTS=(-o ControlMaster=auto -o "ControlPath=$HOME/.ssh/cm-%C" -o ControlPersist=10m -o BatchMode=yes
           -o ServerAliveInterval=30)
-SESSION_RE='^(part1|part2|all|e020_(part1|part2|part3|all)|q_(p0|p1|p2|p3|p4|p5|conv|all)|E0[0-9][0-9])_[0-9]{4}_[0-9]{4}$'
+SESSION_RE='^(part1|part2|all|e020_(part1|part2|part3|all)|q_(p0|p1|p2|p3|p4|p5|conv|all|y)|E0[0-9][0-9])_[0-9]{4}_[0-9]{4}$'
 
 # Server update = fast-forward that never loses server data (expects $BRANCH set before it):
 #  stop if tracked files changed or the server branch has its own commits; untracked files the update
@@ -114,12 +114,15 @@ resolve_job() {
       JOB_CMD="bash scripts/overnight_e020_e023.sh $2"
       ;;
     q)
-      [[ $# -eq 2 && "$2" =~ ^(p0|p1|p2|p3|p4|p5|conv|all|x)$ ]] || die "использование: go q p0|p1|p2|p3|p4|p5|conv|all|x"
+      [[ $# -eq 2 && "$2" =~ ^(p0|p1|p2|p3|p4|p5|conv|all|x|y)$ ]] || die "использование: go q p0|p1|p2|p3|p4|p5|conv|all|x|y"
       JOB_STEM="q_$2"
       JOB_CMD="bash scripts/overnight_e024_e033.sh $2"
       if [[ "$2" == x ]]; then    # E034 + E035; session q_conv_*: the main queue reserves 16 cores, E033 waits for it
         JOB_STEM="q_conv"
         JOB_CMD="bash scripts/overnight_e034_e035.sh"
+      fi
+      if [[ "$2" == y ]]; then    # E036 + E037 (closed form) and E038 (DBP + triplets)
+        JOB_CMD="bash scripts/overnight_e036_e038.sh"
       fi
       ;;
     E0[0-9][0-9])

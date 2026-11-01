@@ -1,0 +1,78 @@
+{
+ "experiment_id": "E037",
+ "title": "Robustness of the triplets to the file split (three E023 splits)",
+ "question": "Do the triplets beat the networks on every file split, and is their result stable across splits?",
+ "date": "not run",
+ "base_git_commit": "1ca1acb (branch exp/E024-E033)",
+ "git_commit": "recorded per run in results/runs/*.json (field git_commit); rule commit: see LOG.md",
+ "data_manifest_sha256": "cb5f2de47145c02d6485969ce116df2253a271c979a927452ea454551a48c0a8",
+ "data_audit_sha256": "a9c35fb7839e85c39f7131373418a6f3a04c731e9c4e55385347a1eabbdedbe4",
+ "split_source": "experiments/E004_training_file_curve/config.json (train_pool_files[:30], validation 45, test 45), as E007-E019",
+ "split_source_sha256": "04c0b2a5775d8fae1acdc348967c6fb976ef5d90e76a8334484242cc9707025a",
+ "dataset_root": "data/raw/archive",
+ "n_train_files": 30,
+ "base_lr": {
+  "peak_lr": 0.001,
+  "schedule": "const",
+  "warmup": 0,
+  "c_mult": 1.0,
+  "floor_frac": 0.1,
+  "optimizer": "adam",
+  "weight_decay": 0.0
+ },
+ "seeds": [
+  17,
+  29,
+  43,
+  57,
+  71
+ ],
+ "ckpt_every": 10000,
+ "eval_rule": "validation and (report-only) test every max(500, steps/40) steps; selection only by validation",
+ "model": "T3 + FIR7 closed form (E031/E034)",
+ "M": [
+  15,
+  21,
+  25
+ ],
+ "rule_M": 21,
+ "fir_len": 7,
+ "split_seeds": [
+  101,
+  202,
+  303
+ ],
+ "split_rule": "grids.e023_split: the same 300 files permuted by the split seed; test 45, validation 45, train 30 (as E023)",
+ "networks": "E023 results/runs_table.csv: per split the member with the best mean validation (5 seeds, 100k)",
+ "lambda_grid": [
+  1e-08,
+  1e-06,
+  0.0001,
+  0.001,
+  0.01,
+  0.1
+ ],
+ "max_block": 4096,
+ "bootstrap": {
+  "replicas": [
+   17,
+   29,
+   43,
+   57,
+   71
+  ],
+  "rule": "as E031, within each split"
+ },
+ "smoke_M": [
+  5
+ ],
+ "smoke_prune_M": 5,
+ "prune_M": 25,
+ "K": [],
+ "rule_draft": {
+  "status": "DRAFT: to be confirmed by the user before the first run; must not change after results are seen",
+  "beats_networks": "T3 + FIR7 at M = 21 beats the best E023 network of every split (min of triplets > max of network)",
+  "stable": "spread of the T3 + FIR7 M = 21 test means across the three splits < 2 p.p.",
+  "otherwise": "не доказано"
+ }
+}
