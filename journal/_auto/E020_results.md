@@ -61,6 +61,6 @@
 | hyb_h48_joint_A3 (cos_1e-3_cm1, 40k) восстанавливает уровень ≥ 61.039 % | 63.01 | подтверждено |
 | hyb_h48_joint_A3 (cos_1e-3_cm1, 200k) восстанавливает уровень ≥ 61.039 % | 64.42 | подтверждено |
 
-Рисунки (клик — крупно, листание стрелками):
+Рисунки:
 
 ![E020_val_test_vs_steps.png](../figs/experiments/E020_e017_anomaly/figures/E020_val_test_vs_steps.png){group="E020"}

@@ -62,6 +62,6 @@
 | разброс средних между разбиениями < 2 п.п. у каждого участника | DBP: dbp_E018_dbp_Ns8_L31_R7_joint_from_scratch: 1.95; KAN: kan_E014_k4_cascade_staged: 0.49; Phys + MLP: phys_E021_hyb_h118: 1.31; PhysKerr: physkerr_E016_phys_R31_L7_sym: 0.46; complex Kerr MLP: complex_E021_kerr_oh_h296: 1.19; real tanh MLP: real_E011_real_tanh: 1.89; transformer: transformer_E021_tr_w7_d8_L2: 0.39 | подтверждено |
 | вывод устойчив к смене разбиения | все три условия | подтверждено |
 
-Рисунки (клик — крупно, листание стрелками):
+Рисунки:
 
 ![E023_split_robustness.png](../figs/experiments/E023_split_robustness/figures/E023_split_robustness.png){group="E023"}

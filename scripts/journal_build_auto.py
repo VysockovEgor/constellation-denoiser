@@ -484,7 +484,7 @@ def build_experiment(exp: str) -> None:
             if len(frame):
                 parts.append(f"{caption} (`{rel}`):\n\n" + table(frame.head(40), columns))
     parts.append(verdict_block(exp))
-    parts.append("Рисунки (клик — крупно, листание стрелками):\n\n" + figures(exp, depth=1))
+    parts.append("Рисунки:\n\n" + figures(exp, depth=1))
     write(f"{exp}_results.md", "\n".join(parts))
 
     control_text, control_mean = control_block(exp)

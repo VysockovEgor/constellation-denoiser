@@ -75,7 +75,7 @@
 | диагноз: b_e_layerwise_then_joint поднимает послойное до ≥ 90 % от joint | 90.80 | подтверждено | тест 44.50 против joint 49.01 |
 | диагноз: b_g_identity_all_trainable_recipe поднимает послойное до ≥ 90 % от joint | 75.81 | не доказано | тест 37.15 против joint 49.01 |
 
-Рисунки (клик — крупно, листание стрелками):
+Рисунки:
 
 ![E028_layerwise_phases.png](../figs/experiments/E028_dbp_depth_layerwise/figures/E028_layerwise_phases.png){group="E028"}
 

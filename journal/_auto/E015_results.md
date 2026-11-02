@@ -46,7 +46,7 @@
 - условие (б): нет
 - тест согласуется (в): да
 
-Рисунки (клик — крупно, листание стрелками):
+Рисунки:
 
 ![E015_alpha_profile.png](../figs/experiments/E015_physics_diagnostics/figures/E015_alpha_profile.png){group="E015"}
 

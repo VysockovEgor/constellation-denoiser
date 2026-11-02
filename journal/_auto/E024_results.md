@@ -42,7 +42,7 @@
 | RM всех таблиц E010–E023 совпадает с независимыми формулами | 0.00 | подтверждено | проверено 162 конфигураций |
 | минимально различимая разница при 5 seeds (MDD), п.п. | 1.70 | справочно | MDD = t_{0.975, 2n-2} * s_pooled * sqrt(2/n), n = 5 seeds per arm, s_pooled = sqrt(mean s_i^2) over configurations with 5 seeds (E019) |
 
-Рисунки (клик — крупно, листание стрелками):
+Рисунки:
 
 ![E024_pareto_v2.png](../figs/experiments/E024_data_audit/figures/E024_pareto_v2.png){group="E024"}
 

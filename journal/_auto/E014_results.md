@@ -39,7 +39,7 @@
 | k4_cascade_staged | 5.00 | k0b_kerr_continued | -0.78 | 2.33 | 3912 | 1608 | 60.37 | 24.81 | не доказано |
 | k4_cascade_staged | 8.00 | k0b_kerr_continued | -0.45 | 1.94 | 5208 | 1608 | 80.37 | 24.81 | не доказано |
 
-Рисунки (клик — крупно, листание стрелками):
+Рисунки:
 
 ![E014_kan_tradeoff.png](../figs/experiments/E014_kerr_kan_hybrid/figures/E014_kan_tradeoff.png){group="E014"}
 

@@ -322,7 +322,7 @@
 
 ::: {layout-ncol=3}
 
-![E036 · E036_triplets_ceiling.png · 2026-11-01](figs/experiments/E036_triplets_ceiling/figures/E036_triplets_ceiling.png){group="gallery"}
+![E036 · E036_triplets_ceiling.png · 2026-11-02](figs/experiments/E036_triplets_ceiling/figures/E036_triplets_ceiling.png){group="gallery"}
 
 :::
 
@@ -330,7 +330,7 @@
 
 ::: {layout-ncol=3}
 
-![E037 · E037_triplets_by_split.png · 2026-11-01](figs/experiments/E037_triplets_splits/figures/E037_triplets_by_split.png){group="gallery"}
+![E037 · E037_triplets_by_split.png · 2026-11-02](figs/experiments/E037_triplets_splits/figures/E037_triplets_by_split.png){group="gallery"}
 
 :::
 
@@ -338,6 +338,6 @@
 
 ::: {layout-ncol=3}
 
-![E038 · E038_dbp_triplets.png · 2026-11-01](figs/experiments/E038_dbp_triplets/figures/E038_dbp_triplets.png){group="gallery"}
+![E038 · E038_dbp_triplets.png · 2026-11-02](figs/experiments/E038_dbp_triplets/figures/E038_dbp_triplets.png){group="gallery"}
 
 :::

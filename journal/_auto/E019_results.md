@@ -38,6 +38,6 @@
 | control_complex_both | const_1e-3 | 100000 | 5 | 65.93 | 64.70 | 66.79 | 1.40 | 16032 | плато не достигнуто за 100000 шагов |
 | control_complex_both | const_1e-3 | 200000 | 5 | 67.27 | 67.00 | 67.57 | 1.44 | 16032 | плато не достигнуто за 200000 шагов |
 
-Рисунки (клик — крупно, листание стрелками):
+Рисунки:
 
 ![E019_long_curves.png](../figs/experiments/E019_confirm_long_runs/figures/E019_long_curves.png){group="E019"}

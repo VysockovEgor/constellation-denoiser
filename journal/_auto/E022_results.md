@@ -85,6 +85,6 @@
 | обучение нелинейности нужно (DBP Ns=4) | dbp_train_Ns4 | 0.33 | подтверждено |
 | обучение нелинейности нужно (DBP Ns=8) | dbp_train_Ns8 | 0.51 | подтверждено |
 
-Рисунки (клик — крупно, листание стрелками):
+Рисунки:
 
 ![E022_baselines_vs_macs.png](../figs/experiments/E022_baselines/figures/E022_baselines_vs_macs.png){group="E022"}

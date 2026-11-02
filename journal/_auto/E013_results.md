@@ -34,6 +34,6 @@
 | transformer_d64_L2 | 31 | 210 | 20000 | 2285824 | complex_both | 16032 | -24.74 | 1.06 | не доказано |
 | transformer_d64_L2 | 31 | 210 | 100000 | 2285824 | complex_both | 16032 | -10.65 | 8.46 | не доказано |
 
-Рисунки (клик — крупно, листание стрелками):
+Рисунки:
 
 ![E013_transformer_vs_macs.png](../figs/experiments/E013_transformer_scaling/figures/E013_transformer_vs_macs.png){group="E013"}

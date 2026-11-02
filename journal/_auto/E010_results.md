@@ -53,7 +53,7 @@
 | both | cosine_to_floor_lr0.003_wu0_cm10 | 20000 | 10583.33 | 64.56 |
 | both | cosine_to_floor_lr0.003_wu0_cm30 | 20000 | 10000 | 64.35 |
 
-Рисунки (клик — крупно, листание стрелками):
+Рисунки:
 
 ![E010_t95_vs_peak_lr.png](../figs/experiments/E010_lr_schedule_study/figures/E010_t95_vs_peak_lr.png){group="E010"}
 

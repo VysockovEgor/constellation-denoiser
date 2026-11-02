@@ -32,7 +32,7 @@
 | глубина помогает | dbp_Ns8_L7_R7_layerwise | 208 | Ns=1, L=7, R=7, layerwise | 1.45 | 1.06 | 5 | подтверждено |
 | послойная инициализация нужна | dbp_Ns8_L7_R7_layerwise | 208 | joint_from_scratch, Ns=8, L=7, R=7 | -6.17 | 1.65 | 5 | не доказано |
 
-Рисунки (клик — крупно, листание стрелками):
+Рисунки:
 
 ![E018_quality_vs_macs.png](../figs/experiments/E018_dbp_depth/figures/E018_quality_vs_macs.png){group="E018"}
 

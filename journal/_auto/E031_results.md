@@ -79,6 +79,6 @@
 | T1 ≈ PhysKerr (\|T1 − 9.3\| < 3 п.п.; M = 21 по валидации) | 0.14 | не доказано |
 | наш подход лучше PB-NLC при равных RM (≥ 0.1 дБ, интервалы не пересекаются) | — | проверяется в E033 |
 
-Рисунки (клик — крупно, листание стрелками):
+Рисунки:
 
 ![E031_triplets_vs_rm.png](../figs/experiments/E031_perturbation_triplets/figures/E031_triplets_vs_rm.png){group="E031"}

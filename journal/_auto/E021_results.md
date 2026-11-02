@@ -127,7 +127,7 @@
 | 40000 | 40000: KAN лучше transformer | 26.08 | нет | подтверждено |
 | 40000 | 40000: real tanh MLP лучше transformer | 22.19 | нет | подтверждено |
 
-Рисунки (клик — крупно, листание стрелками):
+Рисунки:
 
 ![E021_pareto_ber.png](../figs/experiments/E021_pareto/figures/E021_pareto_ber.png){group="E021"}
 

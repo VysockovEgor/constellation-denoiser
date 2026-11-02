@@ -78,7 +78,7 @@
 | обучаемость c нужна (kerr_c_train − kerr_c_fixed ≥ 0.5 п.п., S3) | 0.15 | не доказано | trainability of c is needed if kerr_c_train - kerr_c_fixed >= 0.5 p.p. |
 | нелинейность нужна (лучшая по валидации kerr_taylor1 − identity ≥ 20 п.п.) | 70.08 | подтверждено | nonlinearity is needed if the best non-linear activation - identity >= 20 p.p. |
 
-Рисунки (клик — крупно, листание стрелками):
+Рисунки:
 
 ![E027_activations_200k.png](../figs/experiments/E027_activation_ablation/figures/E027_activations_200k.png){group="E027"}
 

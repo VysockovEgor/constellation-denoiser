@@ -32,7 +32,7 @@
 | физика достаточна | phys_R31_L7_sym / const_1e-3 | 38 | complex_a const 1e-3 20k | 6480 | -52.46 | 1.59 | 5 | разница ≥ −2 п.п. | не доказано |
 | физика полезна | phys_R31_L7_sym / const_1e-3 | 38 | phys_R1_L31_sym / const_1e-3 | 71 | 14.24 | 0.94 | 5 | ≥ 1 п.п. и больше разброса seeds | подтверждено |
 
-Рисунки (клик — крупно, листание стрелками):
+Рисунки:
 
 ![E016_quality_vs_R.png](../figs/experiments/E016_phys_kerr_only/figures/E016_quality_vs_R.png){group="E016"}
 
