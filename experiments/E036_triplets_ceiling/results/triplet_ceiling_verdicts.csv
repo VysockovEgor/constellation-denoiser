@@ -1,0 +1,3 @@
+hypothesis,value,verdict,detail,rule_status
+рост с M продолжается (M=51 − M=31 ≥ 1 п.п.),4.922113948360476,подтверждено,E034 M=31 против E036,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+K=2048 членов сохраняют ≥ 95 % снижения полной модели M=51,99.78818247921343,подтверждено,,DRAFT: to be confirmed by the user before the first run; must not change after results are seen

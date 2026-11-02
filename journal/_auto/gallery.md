@@ -317,3 +317,27 @@
 ![E035 · E035_triplet_net.png · 2026-10-31](figs/experiments/E035_triplet_hybrid/figures/E035_triplet_net.png){group="gallery"}
 
 :::
+
+## E036
+
+::: {layout-ncol=3}
+
+![E036 · E036_triplets_ceiling.png · 2026-11-01](figs/experiments/E036_triplets_ceiling/figures/E036_triplets_ceiling.png){group="gallery"}
+
+:::
+
+## E037
+
+::: {layout-ncol=3}
+
+![E037 · E037_triplets_by_split.png · 2026-11-01](figs/experiments/E037_triplets_splits/figures/E037_triplets_by_split.png){group="gallery"}
+
+:::
+
+## E038
+
+::: {layout-ncol=3}
+
+![E038 · E038_dbp_triplets.png · 2026-11-01](figs/experiments/E038_dbp_triplets/figures/E038_dbp_triplets.png){group="gallery"}
+
+:::

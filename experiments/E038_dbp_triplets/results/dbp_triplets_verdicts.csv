@@ -1,0 +1,13 @@
+hypothesis,value,verdict,detail,rule_status
+"Ns=8, K=16: триплеты добавляют к DBP ≥ 1 п.п. (интервалы не пересекаются)",-0.734049363397105,не доказано,RM 784 против 592,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"Ns=8, K=16: лучше триплетов при равных RM (≥ 0.1 дБ)",0.38323207031405754,подтверждено,E031 T3+FIR15_M5 (636 RM),DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"Ns=8, K=32: триплеты добавляют к DBP ≥ 1 п.п. (интервалы не пересекаются)",-1.842947578063871,не доказано,RM 976 против 592,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"Ns=8, K=32: лучше триплетов при равных RM (≥ 0.1 дБ)",0.2623576711038804,подтверждено,E034 T3FIR7_M25_K64 (796 RM),DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"Ns=8, K=64: триплеты добавляют к DBP ≥ 1 п.п. (интервалы не пересекаются)",4.272707873959746,подтверждено,RM 1360 против 592,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"Ns=8, K=64: лучше триплетов при равных RM (≥ 0.1 дБ)",0.2496114183155591,подтверждено,E031 T3+FIR15_M7 (1116 RM),DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"Ns=16, K=16: триплеты добавляют к DBP ≥ 1 п.п. (интервалы не пересекаются)",6.197453588448674,подтверждено,RM 1376 против 1184,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"Ns=16, K=16: лучше триплетов при равных RM (≥ 0.1 дБ)",0.37797533437551456,подтверждено,E031 T3+FIR15_M7 (1116 RM),DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"Ns=16, K=32: триплеты добавляют к DBP ≥ 1 п.п. (интервалы не пересекаются)",5.373070630912586,подтверждено,RM 1568 против 1184,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"Ns=16, K=32: лучше триплетов при равных RM (≥ 0.1 дБ)",0.05236383835627012,не доказано,E034 T3FIR7_M25_K128 (1564 RM),DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"Ns=16, K=64: триплеты добавляют к DBP ≥ 1 п.п. (интервалы не пересекаются)",6.035279891884208,подтверждено,RM 1952 против 1184,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"Ns=16, K=64: лучше триплетов при равных RM (≥ 0.1 дБ)",0.07035778392422132,не доказано,E034 T3FIR7_M25_K128 (1564 RM),DRAFT: to be confirmed by the user before the first run; must not change after results are seen

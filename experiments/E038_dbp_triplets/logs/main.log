@@ -1,0 +1,46 @@
+=== 2026-11-01T13:51:22+07:00 E038 main: .venv/bin/python -u -m constellation_denoiser.runner --exp E038 --stage main ===
+JOBS=30 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+[2026-11-01 13:51:24] running 40 tasks with JOBS=30, THREADS=1, DEVICE=cpu
+[2026-11-01 13:51:24] polite mode: foreign load 38.4 > 25.0; waiting (checked every 30 s)
+[2026-11-01 16:12:39] [ok 1/40] dbp_Ns8_K0_const_0.001_cm1_200k_seed57: val=43.44% test=44.01% diverged=False time=8381s; ETA ~5508 min
+[2026-11-01 16:17:02] [ok 2/40] dbp_Ns8_K0_const_0.001_cm1_200k_seed71: val=46.84% test=47.38% diverged=False time=8644s; ETA ~2767 min
+[2026-11-01 16:20:11] [ok 3/40] dbp_Ns8_K16_const_0.001_cm1_200k_seed71: val=46.18% test=47.37% diverged=False time=8833s; ETA ~1835 min
+[2026-11-01 16:21:48] [ok 4/40] dbp_Ns8_K16_const_0.001_cm1_200k_seed17: val=43.89% test=44.89% diverged=False time=8931s; ETA ~1354 min
+[2026-11-01 16:22:30] [ok 5/40] dbp_Ns8_K0_const_0.001_cm1_200k_seed43: val=46.36% test=47.52% diverged=False time=8972s; ETA ~1058 min
+[2026-11-01 16:22:51] [ok 6/40] dbp_Ns8_K32_const_0.001_cm1_200k_seed43: val=42.88% test=43.43% diverged=False time=8993s; ETA ~858 min
+[2026-11-01 16:24:45] [ok 7/40] dbp_Ns8_K16_const_0.001_cm1_200k_seed29: val=45.28% test=45.78% diverged=False time=9108s; ETA ~723 min
+[2026-11-01 16:24:47] [ok 8/40] dbp_Ns8_K32_const_0.001_cm1_200k_seed17: val=44.74% test=45.77% diverged=False time=9110s; ETA ~614 min
+[2026-11-01 16:25:11] [ok 9/40] dbp_Ns8_K0_const_0.001_cm1_200k_seed29: val=47.68% test=48.61% diverged=False time=9134s; ETA ~530 min
+[2026-11-01 16:25:50] [ok 10/40] dbp_Ns8_K32_const_0.001_cm1_200k_seed57: val=41.06% test=42.11% diverged=False time=9172s; ETA ~463 min
+[2026-11-01 16:27:59] [ok 11/40] dbp_Ns8_K0_const_0.001_cm1_200k_seed17: val=42.19% test=43.60% diverged=False time=9302s; ETA ~413 min
+[2026-11-01 16:28:04] [ok 12/40] dbp_Ns8_K32_const_0.001_cm1_200k_seed29: val=45.19% test=46.09% diverged=False time=9306s; ETA ~366 min
+[2026-11-01 16:28:18] [ok 13/40] dbp_Ns8_K16_const_0.001_cm1_200k_seed43: val=46.77% test=47.10% diverged=False time=9321s; ETA ~326 min
+[2026-11-01 16:29:25] [ok 14/40] dbp_Ns8_K32_const_0.001_cm1_200k_seed71: val=44.48% test=45.09% diverged=False time=9388s; ETA ~293 min
+[2026-11-01 16:34:07] [ok 15/40] dbp_Ns8_K16_const_0.001_cm1_200k_seed57: val=42.84% test=43.08% diverged=False time=9670s; ETA ~271 min
+[2026-11-01 16:35:00] [ok 16/40] dbp_Ns8_K64_const_0.001_cm1_200k_seed43: val=49.94% test=50.69% diverged=False time=9722s; ETA ~245 min
+[2026-11-01 16:35:49] [ok 17/40] dbp_Ns8_K64_const_0.001_cm1_200k_seed71: val=49.78% test=50.81% diverged=False time=9771s; ETA ~222 min
+[2026-11-01 16:36:20] [ok 18/40] dbp_Ns8_K64_const_0.001_cm1_200k_seed17: val=49.37% test=50.07% diverged=False time=9802s; ETA ~202 min
+[2026-11-01 16:38:49] [ok 19/40] dbp_Ns8_K64_const_0.001_cm1_200k_seed29: val=49.77% test=50.51% diverged=False time=9951s; ETA ~185 min
+[2026-11-01 16:46:46] [ok 20/40] dbp_Ns8_K64_const_0.001_cm1_200k_seed57: val=49.03% test=49.35% diverged=False time=10429s; ETA ~175 min
+[2026-11-01 18:19:34] [ok 21/40] dbp_Ns16_K0_const_0.001_cm1_200k_seed29: val=51.97% test=52.23% diverged=False time=15996s; ETA ~243 min
+[2026-11-01 18:20:44] [ok 22/40] dbp_Ns16_K0_const_0.001_cm1_200k_seed71: val=46.45% test=47.27% diverged=False time=16066s; ETA ~220 min
+[2026-11-01 18:25:17] [ok 23/40] dbp_Ns16_K0_const_0.001_cm1_200k_seed57: val=48.59% test=49.84% diverged=False time=16340s; ETA ~202 min
+[2026-11-01 18:25:20] [ok 24/40] dbp_Ns16_K16_const_0.001_cm1_200k_seed57: val=52.15% test=52.84% diverged=False time=16342s; ETA ~183 min
+[2026-11-01 18:27:42] [ok 25/40] dbp_Ns16_K0_const_0.001_cm1_200k_seed17: val=47.05% test=47.63% diverged=False time=16484s; ETA ~166 min
+[2026-11-01 18:30:45] [ok 26/40] dbp_Ns16_K16_const_0.001_cm1_200k_seed29: val=55.54% test=56.40% diverged=False time=16667s; ETA ~150 min
+[2026-11-01 18:31:25] [ok 27/40] dbp_Ns16_K16_const_0.001_cm1_200k_seed17: val=55.14% test=55.39% diverged=False time=16707s; ETA ~135 min
+[2026-11-01 18:38:01] [ok 28/40] dbp_Ns16_K16_const_0.001_cm1_200k_seed71: val=53.17% test=54.64% diverged=False time=17103s; ETA ~123 min
+[2026-11-01 18:43:25] [ok 29/40] dbp_Ns16_K16_const_0.001_cm1_200k_seed43: val=56.83% test=57.40% diverged=False time=17426s; ETA ~111 min
+[2026-11-01 18:50:18] [ok 30/40] dbp_Ns16_K0_const_0.001_cm1_200k_seed43: val=47.07% test=47.68% diverged=False time=17840s; ETA ~100 min
+[2026-11-01 20:10:53] [ok 31/40] dbp_Ns16_K32_const_0.001_cm1_200k_seed29: val=54.57% test=55.40% diverged=False time=14032s; ETA ~110 min
+[2026-11-01 20:11:27] [ok 32/40] dbp_Ns16_K32_const_0.001_cm1_200k_seed17: val=54.55% test=55.47% diverged=False time=14328s; ETA ~95 min
+[2026-11-01 20:14:35] [ok 33/40] dbp_Ns16_K32_const_0.001_cm1_200k_seed57: val=52.99% test=53.87% diverged=False time=13967s; ETA ~81 min
+[2026-11-01 20:15:14] [ok 34/40] dbp_Ns16_K32_const_0.001_cm1_200k_seed43: val=56.65% test=57.26% diverged=False time=14103s; ETA ~68 min
+[2026-11-01 20:18:03] [ok 35/40] dbp_Ns16_K32_const_0.001_cm1_200k_seed71: val=51.56% test=52.77% diverged=False time=14134s; ETA ~55 min
+[2026-11-01 20:18:55] [ok 36/40] dbp_Ns16_K64_const_0.001_cm1_200k_seed17: val=54.48% test=54.46% diverged=False time=14164s; ETA ~43 min
+[2026-11-01 20:22:30] [ok 37/40] dbp_Ns16_K64_const_0.001_cm1_200k_seed29: val=55.10% test=56.43% diverged=False time=14265s; ETA ~32 min
+[2026-11-01 20:24:16] [ok 38/40] dbp_Ns16_K64_const_0.001_cm1_200k_seed43: val=56.46% test=58.03% diverged=False time=14368s; ETA ~21 min
+[2026-11-01 20:38:30] [ok 39/40] dbp_Ns16_K64_const_0.001_cm1_200k_seed57: val=54.04% test=54.81% diverged=False time=15199s; ETA ~10 min
+[2026-11-01 20:43:00] [ok 40/40] dbp_Ns16_K64_const_0.001_cm1_200k_seed71: val=56.20% test=57.35% diverged=False time=15430s; ETA ~0 min
+[2026-11-01 20:43:02] finished: 40 ok, 0 failed
+=== 2026-11-01T20:43:02+07:00 E038 main exit=0 ===

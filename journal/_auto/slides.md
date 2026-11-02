@@ -207,3 +207,15 @@
 ---
 
 ![](figs/experiments/E035_triplet_hybrid/figures/E035_triplet_net.png)
+
+---
+
+![](figs/experiments/E036_triplets_ceiling/figures/E036_triplets_ceiling.png)
+
+---
+
+![](figs/experiments/E037_triplets_splits/figures/E037_triplets_by_split.png)
+
+---
+
+![](figs/experiments/E038_dbp_triplets/figures/E038_dbp_triplets.png)

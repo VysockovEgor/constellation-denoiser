@@ -1,0 +1,13 @@
+=== 2026-11-01T13:45:07+07:00 E037 main: .venv/bin/python -u -m constellation_denoiser.summarize_E037 all ===
+JOBS=1 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+T3+FIR7 M=15: done
+T3+FIR7 M=21: done
+T3+FIR7 M=25: done
+T3+FIR7 M=15: done
+T3+FIR7 M=21: done
+T3+FIR7 M=25: done
+T3+FIR7 M=15: done
+T3+FIR7 M=21: done
+T3+FIR7 M=25: done
+E037: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E037_triplets_splits/results/split_summary.csv
+=== 2026-11-01T14:16:20+07:00 E037 main exit=0 ===

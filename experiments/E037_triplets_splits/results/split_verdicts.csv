@@ -1,0 +1,3 @@
+hypothesis,value,verdict,detail,rule_status
+триплеты T3FIR7_M21_full лучше лучшей сети E023 на каждом разбиении (интервалы не пересекаются),3.0,подтверждено,101.0: 78.07 против 72.89 (complex_E021_kerr_oh_h296); 202.0: 77.16 против 72.11 (complex_E021_kerr_oh_h296); 303.0: 77.77 против 73.30 (complex_E021_kerr_oh_h296),DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+разброс средних T3FIR7_M21_full между разбиениями < 2 п.п.,0.9166201906602254,подтверждено,,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
