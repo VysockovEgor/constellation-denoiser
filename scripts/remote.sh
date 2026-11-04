@@ -46,7 +46,7 @@ BRANCH="${BRANCH:-$(git rev-parse --abbrev-ref HEAD)}"
 [[ "$BRANCH" =~ ^[A-Za-z0-9._/-]+$ ]] || die "недопустимое имя ветки: $BRANCH"
 
 REGISTRY=".remote_sessions"
-SSH_OPTS=(-o ControlMaster=auto -o "ControlPath=$HOME/.ssh/cm-%C" -o ControlPersist=10m -o BatchMode=yes
+SSH_OPTS=(-o ControlMaster=auto -o "ControlPath=$HOME/.ssh/cm-%C" -o ControlPersist=1h -o BatchMode=yes
           -o ServerAliveInterval=30)
 SESSION_RE='^(part1|part2|all|e020_(part1|part2|part3|all)|q_(p0|p1|p2|p3|p4|p5|conv|all|y)|q_e039_(p0|p1|p2|p3|p4|all)|E0[0-9][0-9])_[0-9]{4}_[0-9]{4}$'
 
@@ -88,8 +88,26 @@ remote() {
   elif [[ "${REMOTE_LOCAL_TEST:-0}" == "1" ]]; then   # test only: the "server" is a local clone
     bash -c "$command"
   else
-    ssh "${SSH_OPTS[@]}" "$SERVER" "$command"
+    ssh_retry "$command"
   fi
+}
+
+# the server sometimes resets new connections before authentication (sshd rate limits); retry such resets
+ssh_retry() {
+  local attempt rc err
+  err="$(mktemp)"
+  for attempt in 1 2 3; do
+    ssh "${SSH_OPTS[@]}" "$SERVER" "$1" 2> >(tee "$err" >&2)
+    rc=$?
+    if [[ "$rc" == 255 ]] && grep -qE 'kex_exchange_identification|Connection reset|Connection closed by' "$err" && [[ "$attempt" -lt 3 ]]; then
+      echo "remote.sh: сервер сбросил соединение до входа; повтор через 60 с (попытка $((attempt + 1)) из 3)" >&2
+      sleep 60
+      continue
+    fi
+    break
+  done
+  rm -f "$err"
+  return "$rc"
 }
 
 local_do() {
