@@ -1,0 +1,10 @@
+{
+  "rule": "the structure is exploitable if substituting a parametric form with <= 5 % of the free real parameters keeps >= 95 % of the gain of the free coefficients (gain = BER reduction in p.p. above M0 = FIR7 only, no triplets), evaluated at M = 31 on validation (test reported); otherwise E042 is closed",
+  "M": 31,
+  "best_form_by_validation": "poly4",
+  "param_share": 0.0099734042553191,
+  "val_gain_retained": -19.18395404120444,
+  "test_gain_retained": -19.1225079113924,
+  "passed": false,
+  "e042": "closed"
+}

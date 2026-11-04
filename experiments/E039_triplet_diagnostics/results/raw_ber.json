@@ -1,0 +1,23 @@
+{
+  "train": {
+    "files": 30,
+    "raw_ber_window31": 0.00947525579878521,
+    "raw_ber_all_symbols": 0.009491984049479167
+  },
+  "validation": {
+    "files": 45,
+    "raw_ber_window31": 0.009620140502493444,
+    "raw_ber_all_symbols": 0.009640842013888888
+  },
+  "test": {
+    "files": 45,
+    "raw_ber_window31": 0.009551859551859552,
+    "raw_ber_all_symbols": 0.009569973415798612
+  },
+  "all_300_files": {
+    "files": 300,
+    "raw_ber_window31": 0.00966455709102768
+  },
+  "q2_raw_db_test": 13.972039971471064,
+  "plan_value": "about 9.58e-3"
+}

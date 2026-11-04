@@ -1,0 +1,3 @@
+<!-- Сгенерировано scripts/journal_build_auto.py из файлов результатов. Не править вручную. -->
+
+Нет `results/control_check.json`: контроль не запускался.

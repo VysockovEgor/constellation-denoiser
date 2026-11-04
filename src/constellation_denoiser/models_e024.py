@@ -20,7 +20,7 @@ from torch import nn
 
 from .paper_complex_mlp import ComplexDense, NonlinearPhase
 
-KINDS = ("act_mlp", "real_mlp", "dbp_shared", "dbp_mlp", "dbp_noise", "triplet_net", "dbp_triplets")
+KINDS = ("act_mlp", "real_mlp", "dbp_shared", "dbp_mlp", "dbp_noise", "triplet_net", "dbp_triplets", "cascade")
 
 # real multiplies per hidden neuron of each activation (|z|^2 = 2, real x complex = 2, complex x complex = 4,
 # a division counts as 1, exp/cos/sin/sqrt/sigmoid/tanh/ReLU from lookup or comparison = 0)
@@ -216,6 +216,10 @@ def build(spec: dict) -> nn.Module:
     if kind == "dbp_mlp":
         return DBPPlusMLP(window, int(spec["fir_len"]), int(spec["n_alpha"]), bool(spec["sym"]), int(spec["n_steps"]),
                           int(spec["mlp_hidden"]))
+    if kind == "cascade":                # E040/E041: triplet / Kerr-phase stages (cascade_e040)
+        from .cascade_e040 import Cascade
+
+        return Cascade(window, spec["stages"], bool(spec.get("shared", False)))
     if kind == "dbp_triplets":           # E038: DBP + K selected triplet terms
         from .paths import PROJECT_ROOT
         from .triplets_ext import DBPTriplets
@@ -261,6 +265,11 @@ def macs(spec: dict) -> tuple[int, int]:
         return m, merged
     if kind == "real_mlp":
         m = real_mlp_macs(window, int(spec["hidden"]), int(spec["layers"]))
+        return m, m
+    if kind == "cascade":
+        from .cascade_e040 import cascade_rm
+
+        m = cascade_rm(spec["stages"])
         return m, m
     if kind == "dbp_triplets":
         total = macs_phys(int(spec["n_alpha"]), int(spec["fir_len"]), bool(spec["sym"])) * int(spec["n_steps"])

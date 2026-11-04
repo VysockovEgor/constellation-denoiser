@@ -48,7 +48,7 @@ BRANCH="${BRANCH:-$(git rev-parse --abbrev-ref HEAD)}"
 REGISTRY=".remote_sessions"
 SSH_OPTS=(-o ControlMaster=auto -o "ControlPath=$HOME/.ssh/cm-%C" -o ControlPersist=10m -o BatchMode=yes
           -o ServerAliveInterval=30)
-SESSION_RE='^(part1|part2|all|e020_(part1|part2|part3|all)|q_(p0|p1|p2|p3|p4|p5|conv|all|y)|E0[0-9][0-9])_[0-9]{4}_[0-9]{4}$'
+SESSION_RE='^(part1|part2|all|e020_(part1|part2|part3|all)|q_(p0|p1|p2|p3|p4|p5|conv|all|y)|q_e039_(p0|p1|p2|p3|p4|all)|E0[0-9][0-9])_[0-9]{4}_[0-9]{4}$'
 
 # Server update = fast-forward that never loses server data (expects $BRANCH set before it):
 #  stop if tracked files changed or the server branch has its own commits; untracked files the update
@@ -125,6 +125,11 @@ resolve_job() {
         JOB_CMD="bash scripts/overnight_e036_e038.sh"
       fi
       ;;
+    e039)
+      [[ $# -eq 2 && "$2" =~ ^(p0|p1|p2|p3|p4|all)$ ]] || die "использование: go e039 p0|p1|p2|p3|p4|all"
+      JOB_STEM="q_e039_$2"
+      JOB_CMD="bash scripts/overnight_e039_e043.sh $2"
+      ;;
     E0[0-9][0-9])
       [[ $# -eq 2 ]] || die "использование: go <E0NN> <стадия>"
       [[ "$2" =~ ^[a-z0-9-]+$ ]] || die "недопустимая стадия: $2"
@@ -199,6 +204,17 @@ cmd_estimate() {
         p4) targets=("${p4[@]}") ;; p5) targets=("${p5[@]}") ;; conv) targets=("${conv[@]}") ;;
         all) targets=("${p0[@]}" "${p1[@]}" "${p2[@]}" "${p3[@]}" "${p4[@]}" "${p5[@]}" "${conv[@]}") ;;
         *) die "использование: estimate q p0|p1|p2|p3|p4|p5|conv|all" ;;
+      esac
+      ;;
+    e039)
+      case "${2:-}" in
+        p0) targets=("E039_triplet_diagnostics estimate") ;;
+        p1) targets=("E040_triplet_cascade all") ;;
+        p2) targets=("E041_mixed_stages all") ;;
+        p3) targets=("$(basename "$(ls -d experiments/E042_* 2>/dev/null | head -1)" 2>/dev/null) all") ;;
+        p4) targets=("E043_triplet_summary estimate") ;;
+        all) targets=("E040_triplet_cascade all" "E041_mixed_stages all" "E043_triplet_summary estimate") ;;
+        *) die "использование: estimate e039 p0|p1|p2|p3|p4|all" ;;
       esac
       ;;
     E0[0-9][0-9])

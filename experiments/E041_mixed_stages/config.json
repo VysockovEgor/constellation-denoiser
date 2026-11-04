@@ -1,0 +1,178 @@
+{
+ "experiment_id": "E041",
+ "title": "Mixed stage types and RM allocation under a budget",
+ "question": "If the stage types are chosen per stage (Kerr phase, triplets, both, skip) under a common RM budget, is it better than the uniform cascade of E040 at the same RM?",
+ "date": "not run",
+ "base_git_commit": "a026f5f (branch exp/E039-E043)",
+ "git_commit": "recorded per run in results/runs/*.json",
+ "data_manifest_sha256": "cb5f2de47145c02d6485969ce116df2253a271c979a927452ea454551a48c0a8",
+ "data_audit_sha256": "a9c35fb7839e85c39f7131373418a6f3a04c731e9c4e55385347a1eabbdedbe4",
+ "split_source": "experiments/E004_training_file_curve/config.json (train_pool_files[:30], validation 45, test 45), as E007-E019",
+ "split_source_sha256": "04c0b2a5775d8fae1acdc348967c6fb976ef5d90e76a8334484242cc9707025a",
+ "dataset_root": "data/raw/archive",
+ "n_train_files": 30,
+ "base_lr": {
+  "peak_lr": 0.001,
+  "schedule": "const",
+  "warmup": 0,
+  "c_mult": 1.0,
+  "floor_frac": 0.1,
+  "optimizer": "adam",
+  "weight_decay": 0.0
+ },
+ "seeds": [
+  17,
+  29,
+  43,
+  57,
+  71
+ ],
+ "ckpt_every": 10000,
+ "eval_rule": "validation and (report-only) test every max(500, steps/40) steps; selection only by validation",
+ "control": {
+  "runs": {
+   "a_const_1e-3_20k": {
+    "spec": {
+     "model": "complex_a",
+     "window": 31,
+     "hidden": 48,
+     "name": "complex_a"
+    },
+    "n_train_files": 30,
+    "steps": 20000
+   }
+  },
+  "targets": {
+   "a_const_1e-3_20k": {
+    "target": 62.191,
+    "tol": 0.7,
+    "seeds": [
+     17,
+     29
+    ],
+    "metric": "test_reduction_valbest_select",
+    "source": "experiments/E009_kerr_ablation/results/complex_mlp_ablation_summary.csv (variant a); reproduced in E010-E019 (62.19)"
+   }
+  }
+ },
+ "value_filter": {
+  "changes_next_step": "yes: positive makes the mixed cascade the reference at that RM; negative closes candidate A",
+  "answered_in_literature": "no in explicit form (docs/literature_check.md, level: abstracts)",
+  "needed_for_main_claim": "no for the main claim; it is a candidate improvement",
+  "cheaper_without_training": "no"
+ },
+ "decision_if_positive": "report the mixed cascade and the map of stage types by position; it enters E043",
+ "decision_if_negative": "close candidate A",
+ "gate": "runs only if results/gate_e040.json says the cascade beat the one-step triplets, or if results/gate_e040_decision.json has run_e041: true (the author's decision)",
+ "levels": [
+  3000,
+  8000,
+  16000
+ ],
+ "level_tol": 0.05,
+ "max_window": 301,
+ "n_configs": 60,
+ "max_draws": 200000,
+ "sample_seed": 2041,
+ "arms": [
+  "mixed",
+  "uniform"
+ ],
+ "spaces": {
+  "mixed": {
+   "n_stages": [
+    2,
+    8
+   ],
+   "types": [
+    "K",
+    "T",
+    "KT",
+    "skip"
+   ],
+   "R": [
+    1,
+    3,
+    7,
+    15
+   ],
+   "M": [
+    2,
+    4,
+    8,
+    16
+   ],
+   "K_th": [
+    "M2/4",
+    "M2"
+   ],
+   "L": [
+    1,
+    7,
+    15
+   ]
+  },
+  "uniform": {
+   "n_stages": [
+    1,
+    8
+   ],
+   "M": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16
+   ],
+   "K_th": "any",
+   "L": [
+    1,
+    7,
+    15
+   ],
+   "note": "the E040 family (identical T stages) with any integer K_th in 1 .. M^2 and M in 2 .. 16, so that it reaches the same 60 configurations per level as the mixed arm (with the planned K_th set only 14-16 distinct configurations fall in a level window)"
+  }
+ },
+ "lr": {
+  "peak_lr": 0.001,
+  "schedule": "cosine_to_zero",
+  "warmup": 0,
+  "c_mult": 1.0,
+  "floor_frac": 0.1,
+  "optimizer": "adam",
+  "weight_decay": 0.0
+ },
+ "stages": {
+  "s1": {
+   "seeds": 2,
+   "steps": 20000
+  },
+  "s2": {
+   "top": 4,
+   "seeds": 3,
+   "steps": 60000
+  },
+  "s3": {
+   "top": 2,
+   "seeds": 5,
+   "steps": 200000
+  }
+ },
+ "budget_note": "equal tuning budget: both arms get 60 configurations x 2 seeds x 20k, top 4 x 3 x 60k, top 2 x 5 x 200k per level; the uniform arm is the control of the mixed one",
+ "rule_draft": {
+  "status": "DRAFT: to be confirmed by the user before the first run; must not change after results are seen",
+  "mixed_better": "A (mixed) beats the uniform cascade at level K if its S3 best by validation is higher in test by >= max(1.5 p.p., 2 x the seed spread of this experiment's control) with non-overlapping seed intervals, on at least 2 of 3 levels; otherwise A is closed",
+  "report": "map of stage type by position for the top 10 configurations of S1 per level",
+  "otherwise": "не доказано"
+ }
+}

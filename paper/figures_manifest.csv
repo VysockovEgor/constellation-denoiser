@@ -54,3 +54,7 @@ fig_no,experiment_id,file,caption,source_csv
 53,E036,experiments/E036_triplets_ceiling/figures/E036_triplets_ceiling.png,Triplets: memory M up to 51 and pruning (not run),experiments/E036_triplets_ceiling/results/triplet_ext_summary.csv
 54,E037,experiments/E037_triplets_splits/figures/E037_triplets_by_split.png,Triplets vs networks on three file splits (not run),experiments/E037_triplets_splits/results/split_summary.csv
 55,E038,experiments/E038_dbp_triplets/figures/E038_dbp_triplets.png,DBP + selected triplet terms at low complexity (not run),experiments/E038_dbp_triplets/results/dbp_triplets_summary.csv
+56,E039,experiments/E039_triplet_diagnostics/figures/E039_coef_map_M31.png,Closed-form triplet coefficients |C_mn| (M = 31) with SPM / XPM / IFWM,experiments/E039_triplet_diagnostics/results/coef_M31.csv
+57,E040,experiments/E040_triplet_cascade/figures/E040_cascade_vs_one_step.png,Cascade of triplet stages vs one-step triplets (not run),experiments/E040_triplet_cascade/results/cascade_summary.csv
+58,E041,experiments/E041_mixed_stages/figures/E041_mixed_vs_uniform.png,Mixed stage types vs uniform cascade (not run),experiments/E041_mixed_stages/results/mixed_summary.csv
+59,E043,experiments/E043_triplet_summary/figures/E043_pareto_three_rm.png,Triplet families vs RM under three counting conventions (not run),experiments/E043_triplet_summary/results/points.csv

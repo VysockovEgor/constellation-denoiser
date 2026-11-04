@@ -1,0 +1,38 @@
+{
+ "experiment_id": "E043",
+ "title": "Summary and fair comparison of the triplet families (three RM conventions)",
+ "question": "How do one-step triplets, the E040 cascade, the E041 mixed stages, Kerr MLPs and DBP compare on one 'Delta Q2 / BER reduction vs RM' picture, and does it change with the RM counting convention?",
+ "date": "not run",
+ "base_git_commit": "a026f5f (branch exp/E039-E043)",
+ "data_manifest_sha256": "cb5f2de47145c02d6485969ce116df2253a271c979a927452ea454551a48c0a8",
+ "split_source": "experiments/E004_training_file_curve/config.json (train_pool_files[:30], validation 45, test 45), as E007-E019",
+ "dataset_root": "data/raw/archive",
+ "n_train_files": 30,
+ "seeds": [
+  17,
+  29,
+  43,
+  57,
+  71
+ ],
+ "value_filter": {
+  "changes_next_step": "yes: decides which family is reported as the reference at each RM level",
+  "answered_in_literature": "no (our data)",
+  "needed_for_main_claim": "yes",
+  "cheaper_without_training": "yes: no training"
+ },
+ "decision_if_positive": "the family that leads at a level under all three conventions is reported as robustly best there",
+ "decision_if_negative": "if the leader changes with the convention, the claim is stated per convention",
+ "levels": [
+  3000,
+  8000,
+  16000,
+  25000
+ ],
+ "level_factor": 1.25,
+ "rule_draft": {
+  "status": "DRAFT: to be confirmed by the user before the first run; must not change after results are seen",
+  "robust_leader": "a family is the robust leader at a level if its best-by-validation point has the highest test mean under all three RM conventions and its interval does not overlap the next family's",
+  "otherwise": "не доказано"
+ }
+}

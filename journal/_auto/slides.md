@@ -219,3 +219,7 @@
 ---
 
 ![](figs/experiments/E038_dbp_triplets/figures/E038_dbp_triplets.png)
+
+---
+
+![](figs/experiments/E039_triplet_diagnostics/figures/E039_coef_map_M31.png)

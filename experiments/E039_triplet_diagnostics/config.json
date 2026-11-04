@@ -1,0 +1,53 @@
+{
+ "experiment_id": "E039",
+ "title": "Diagnostics of the triplet models without training",
+ "question": "What can be learned about the triplets from existing results and counts (definitions, RM conventions, structure of C, raw BER) before spending server hours?",
+ "date": "not run",
+ "base_git_commit": "a026f5f (branch exp/E039-E043)",
+ "git_commit": "recorded in results (git_commit fields) and LOG.md",
+ "data_manifest_sha256": "cb5f2de47145c02d6485969ce116df2253a271c979a927452ea454551a48c0a8",
+ "data_audit_sha256": "a9c35fb7839e85c39f7131373418a6f3a04c731e9c4e55385347a1eabbdedbe4",
+ "split_source": "experiments/E004_training_file_curve/config.json (train_pool_files[:30], validation 45, test 45), as E007-E019",
+ "split_source_sha256": "04c0b2a5775d8fae1acdc348967c6fb976ef5d90e76a8334484242cc9707025a",
+ "dataset_root": "data/raw/archive",
+ "n_train_files": 30,
+ "seeds": [
+  17,
+  29,
+  43,
+  57,
+  71
+ ],
+ "value_filter": {
+  "changes_next_step": "yes: the structure rule opens or closes E042; the RM conventions decide the RM axis of E040-E043",
+  "answered_in_literature": "no (docs/literature_check.md: parametric form not found, level: abstracts)",
+  "needed_for_main_claim": "yes: the main claim compares RM; the counting convention must be stated",
+  "cheaper_without_training": "this experiment is the cheap path: closed-form fits and existing results only"
+ },
+ "decision_if_positive": "open E042 (parametric generator of C) with the form chosen here",
+ "decision_if_negative": "do not create E042; E040/E041 use free coefficients",
+ "coefficients": {
+  "M15_M21": "E035 warm starts (closed form T3 + FIR7, all 30 train files, lambda by validation)",
+  "M31_M51": "closed form here, the same procedure (one normal matrix in memory), saved as results/coef_M<M>.csv",
+  "K2048": "the pruned term set of E036 was not saved per replica; analysed through the full M = 51 fit"
+ },
+ "forms": [
+  "poly2",
+  "poly3",
+  "poly4",
+  "rbf5x5"
+ ],
+ "form_notes": "u = mn / M^2, v = (m - n)^2 / (4 M^2); polynomial degree d: monomials u^a v^b, a + b <= d, complex coefficients; rbf5x5: 25 Gaussians on a 5 x 5 grid over the (u, v) range, width = grid step",
+ "structure_rule": {
+  "M": 31,
+  "max_param_share": 0.05,
+  "min_gain_retained": 0.95,
+  "metric": "validation (test reported)"
+ },
+ "rule_draft": {
+  "status": "DRAFT: to be confirmed by the user before the first run; must not change after results are seen",
+  "structure": "the structure is exploitable if substituting a parametric form with <= 5 % of the free real parameters keeps >= 95 % of the gain of the free coefficients (gain = BER reduction in p.p. above M0 = FIR7 only, no triplets), evaluated at M = 31 on validation (test reported); otherwise E042 is closed",
+  "raw_ber": "the raw test BER of the window-31 centres must equal 0.009551859551859552 (E024); the plan value 9.58e-3 is checked against all splits",
+  "otherwise": "не доказано"
+ }
+}

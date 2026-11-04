@@ -61,6 +61,8 @@ RUNS = {
     "E035": ("results/runs_table.csv", ["e035_config", "lr_id", "budget"]),
     "E036": ("results/runs_table.csv", ["variant"]),
     "E038": ("results/runs_table.csv", ["n_steps", "k"]),
+    "E040": ("results/runs_table.csv", ["variant", "stage", "budget"]),
+    "E041": ("results/runs_table.csv", ["arm", "level", "e041_config", "stage"]),
 }
 VERDICTS = {
     "E012": "results/depth_window_verdicts.csv", "E013": "results/transformer_verdicts.csv",
@@ -74,6 +76,8 @@ VERDICTS = {
     "E033": "results/pareto_verdicts.csv", "E034": "results/triplet_ext_verdicts.csv",
     "E035": "results/triplet_net_verdicts.csv", "E036": "results/triplet_ceiling_verdicts.csv",
     "E037": "results/split_verdicts.csv", "E038": "results/dbp_triplets_verdicts.csv",
+    "E039": "results/e039_verdicts.csv", "E040": "results/cascade_verdicts.csv", "E041": "results/mixed_verdicts.csv",
+    "E043": "results/summary_verdicts.csv",
 }
 # extra tables shown on the experiment page: (file, {column: header}, title)
 EXTRA_TABLES = {
@@ -92,6 +96,19 @@ EXTRA_TABLES = {
               "Базовые методы")],
     "E023": [("results/split_summary.csv", {"member": "участник", "split_seed": "разбиение", "n_seeds": "запусков (seeds)",
               "test_mean": "тест, %", "test_min": "мин", "test_max": "макс", "macs": "умножений"}, "Результаты по разбиениям")],
+    "E039": [("results/definitions.csv", {"name": "модель", "inside": "что внутри", "rm": "RM", "test_reduction": "тест, %",
+              "test_min": "мин", "test_max": "макс", "seeds": "seeds"}, "Что такое E038 и K2048"),
+             ("results/rm_conventions.csv", {"source": "эксп.", "model": "модель", "n_terms": "членов", "rm_repo": "RM (репозиторий)",
+              "rm_buffered_my_estimate": "RM (буфер, моя оценка)", "rm_arxiv_2409_20023": "RM (arXiv 2409.20023)",
+              "test_reduction": "тест, %"}, "Три конвенции подсчёта RM"),
+             ("results/structure_parametric.csv", {"M": "M", "variant": "форма", "real_params": "параметров",
+              "explained_variance": "объяснённая дисперсия", "val_reduction": "валидация, %", "test_reduction": "тест, %",
+              "val_gain_retained": "доля выигрыша (вал.)"}, "Параметрическая форма C"),
+             ("results/q2_table.csv", {"reduction_pct": "снижение BER, %", "ber": "BER", "delta_q2_db": "ΔQ², дБ"},
+              "Пересчёт снижения BER в ΔQ²")],
+    "E043": [("results/level_best.csv", {"level": "уровень", "family": "семейство", "label": "точка", "rm_repo": "RM",
+              "rm_buffered_my_estimate": "RM буфер", "rm_arxiv_2409_20023": "RM arXiv", "test_mean": "тест, %",
+              "test_min": "мин", "test_max": "макс", "q2_mean": "Q², дБ"}, "Лучшие по валидации на уровнях RM")],
     "E024": [("results/e021_before_after.csv", {"level": "уровень RM", "old_best": "было (E021)", "old_test": "тест, %",
               "new_best": "стало (агрегатор v2)", "new_family": "семейство", "new_rm": "RM", "new_test": "тест, %"},
               "Было → стало: лучшая по валидации точка уровня"),
@@ -117,7 +134,8 @@ EXTRA_TABLES = {
 TEST, VAL = "test_reduction_valbest_select", "best_val_reduction"
 # the control is a different model (complex_a vs physics models): "worse than control" is not an anomaly there
 CONTROL_IS_OTHER_MODEL = {"E016", "E017", "E018", "E020", "E021", "E022", "E023", "E024", "E025", "E026", "E027",
-                          "E028", "E029", "E030", "E031", "E032", "E033", "E034", "E035", "E036", "E037", "E038"}
+                          "E028", "E029", "E030", "E031", "E032", "E033", "E034", "E035", "E036", "E037", "E038",
+                          "E039", "E040", "E041", "E043"}
 COLUMN_RU = {
     "hypothesis": "гипотеза", "candidate": "кандидат", "candidate_macs": "умножений (кандидат)",
     "reference": "эталон", "reference_macs": "умножений (эталон)", "diff_pp": "разница, п.п.",

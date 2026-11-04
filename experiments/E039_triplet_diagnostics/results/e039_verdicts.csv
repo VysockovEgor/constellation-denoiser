@@ -1,0 +1,2 @@
+hypothesis,value,verdict,detail,rule_status
+"структура C эксплуатируема (M = 31: ≤ 5 % параметров, ≥ 95 % выигрыша, валидация)",-19.18395404120444,не доказано,"poly4, доля параметров 0.0099734042553191",DRAFT: to be confirmed by the user before the first run; must not change after results are seen

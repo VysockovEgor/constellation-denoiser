@@ -908,6 +908,7 @@ POST_HOOKS: dict = {"merge_check": merge_check_hook, "kan_costs": kan_costs_hook
 
 
 from . import grids_e024  # noqa: E402,F401  E024-E033 builders; the module registers itself into the tables above
+from . import grids_e039  # noqa: E402,F401  E040-E042 builders, registered the same way
 
 
 def build_tasks(exp: str, stage: str, options: Options) -> list[dict]:

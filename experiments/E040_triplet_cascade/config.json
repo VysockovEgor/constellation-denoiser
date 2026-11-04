@@ -1,0 +1,150 @@
+{
+ "experiment_id": "E040",
+ "title": "PB-DBP-like cascade of small triplet stages in our coordinates",
+ "question": "Does a cascade of small triplet stages beat the one-step triplets (M31, K2048, M51) at equal RM on our data?",
+ "date": "not run",
+ "base_git_commit": "a026f5f (branch exp/E039-E043)",
+ "git_commit": "recorded per run in results/runs/*.json",
+ "data_manifest_sha256": "cb5f2de47145c02d6485969ce116df2253a271c979a927452ea454551a48c0a8",
+ "data_audit_sha256": "a9c35fb7839e85c39f7131373418a6f3a04c731e9c4e55385347a1eabbdedbe4",
+ "split_source": "experiments/E004_training_file_curve/config.json (train_pool_files[:30], validation 45, test 45), as E007-E019",
+ "split_source_sha256": "04c0b2a5775d8fae1acdc348967c6fb976ef5d90e76a8334484242cc9707025a",
+ "dataset_root": "data/raw/archive",
+ "n_train_files": 30,
+ "base_lr": {
+  "peak_lr": 0.001,
+  "schedule": "const",
+  "warmup": 0,
+  "c_mult": 1.0,
+  "floor_frac": 0.1,
+  "optimizer": "adam",
+  "weight_decay": 0.0
+ },
+ "seeds": [
+  17,
+  29,
+  43,
+  57,
+  71
+ ],
+ "ckpt_every": 10000,
+ "eval_rule": "validation and (report-only) test every max(500, steps/40) steps; selection only by validation",
+ "control": {
+  "runs": {
+   "a_const_1e-3_20k": {
+    "spec": {
+     "model": "complex_a",
+     "window": 31,
+     "hidden": 48,
+     "name": "complex_a"
+    },
+    "n_train_files": 30,
+    "steps": 20000
+   }
+  },
+  "targets": {
+   "a_const_1e-3_20k": {
+    "target": 62.191,
+    "tol": 0.7,
+    "seeds": [
+     17,
+     29
+    ],
+    "metric": "test_reduction_valbest_select",
+    "source": "experiments/E009_kerr_ablation/results/complex_mlp_ablation_summary.csv (variant a); reproduced in E010-E019 (62.19)"
+   }
+  }
+ },
+ "value_filter": {
+  "changes_next_step": "yes: positive opens E041 (mixed stages need a working cascade); negative means multi-step is not needed for single-polarization data with linear effects removed, E041 only after the author's decision",
+  "answered_in_literature": "partly: PB-DBP (Redyuk et al., Optics Continuum 4(12) 2896, 2025) shows the cascade for their data; not for ours",
+  "needed_for_main_claim": "yes: the main claim is 'one-step triplets lead above ~4k RM'; a cascade is the natural stronger rival",
+  "cheaper_without_training": "no: the cascade has no closed form"
+ },
+ "decision_if_positive": "cascade becomes the reference triplet family in E043; run E041 against it",
+ "decision_if_negative": "one-step closed-form triplets stay the reference; write that multi-step is not needed here; E041 only after the author's decision (results/gate_e040.json)",
+ "model": "cascade_e040.Cascade, stages of type T: x_s = FIR_s(x_{s-1} + T_s(x_{s-1})); C_mn = C_nm = C_{-m,-n} = -C*_{-m,n}, |m|,|n| <= M, |mn| <= K_th; C = 0 and FIR = unit impulse at start; end to end, Adam, MSE",
+ "grid": {
+  "n_stages": [
+   1,
+   2,
+   4,
+   8
+  ],
+  "M": [
+   2,
+   4,
+   8,
+   16
+  ],
+  "K_th": [
+   "M2/4",
+   "M2"
+  ],
+  "L": [
+   1,
+   7,
+   15
+  ],
+  "rm_min": 1000,
+  "rm_max": 30000,
+  "max_window": 301,
+  "filter_note": "RM (repository convention) within 1 000 - 30 000 and receptive field <= 301 symbols (cost per step grows with it); every n_stages > 1 point also with shared C"
+ },
+ "lr": {
+  "peak_lr": 0.001,
+  "schedule": "cosine_to_zero",
+  "warmup": 0,
+  "c_mult": 1.0,
+  "floor_frac": 0.1,
+  "optimizer": "adam",
+  "weight_decay": 0.0
+ },
+ "lr_note": "one fixed lr (cosine_to_zero 1e-3, the E035 choice for triplets by gradient); the one-step references are closed form (no tuning)",
+ "main": {
+  "seeds": 2,
+  "steps": 20000
+ },
+ "confirm": {
+  "top_per_level": 2,
+  "seeds": 5,
+  "steps": 200000,
+  "rule": "per level, the 2 best grid points by mean validation with RM within +-5 % (and their shared / independent twin)"
+ },
+ "levels": [
+  6000,
+  12000,
+  18000
+ ],
+ "level_tol": 0.05,
+ "references": {
+  "one_step": "E031 / E034 / E036 summaries: the best by validation with RM <= 1.05 x level (closed form, 5 bootstrap replicas)",
+  "anchors": "M31 85.07 % at 18 076 RM; K2048 89.80 % at 24 604; M51 90.00 % at 48 076; T3 M21 68.24 % at 8 448; T3 + FIR7 M21 77.84 % at 8 476; DBP Ns32 (L31, R15) 61.75 % at 2 496"
+ },
+ "rm_conventions": "every point also with the two E039 conventions (cascade_e040.rm_variants)",
+ "rule_draft": {
+  "status": "DRAFT: to be confirmed by the user before the first run; must not change after results are seen",
+  "cascade_better": "the cascade beats the one-step triplets at RM level K (6k, 12k, 18k; RM within +-5 %) if its test BER reduction is higher by >= max(1.5 p.p., 2 x the seed spread of this experiment's control) and the min-max intervals over seeds do not overlap, on at least 2 of 3 levels; otherwise not distinguishable",
+  "shared": "reported: shared minus independent C at the same configuration (5 seeds, confirm)",
+  "otherwise": "не доказано"
+ },
+ "level_matched": {
+  "n_stages": [
+   1,
+   2,
+   4,
+   8
+  ],
+  "M": [
+   4,
+   8,
+   16
+  ],
+  "L": [
+   1,
+   7,
+   15
+  ],
+  "note": "the planned grid has no point within +-5 % of 6k, 12k, 18k RM; added before the run: for every (n_stages, M, L) the integer K_th (1 .. M^2) whose RM is closest to the level, if within +-5 % and the receptive field <= 301 (with its shared twin)"
+ }
+}
