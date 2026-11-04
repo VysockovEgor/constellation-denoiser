@@ -223,3 +223,11 @@
 ---
 
 ![](figs/experiments/E039_triplet_diagnostics/figures/E039_coef_map_M31.png)
+
+---
+
+![](figs/experiments/E044_triplet_audit/figures/E044_coef_map_M31.png)
+
+---
+
+![](figs/experiments/E045_reference_families/figures/E045_references_vs_rm.png)

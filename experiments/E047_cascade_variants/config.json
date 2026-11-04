@@ -1,0 +1,103 @@
+{
+ "experiment_id": "E047",
+ "title": "Phase 3: cascade of triplet stages, training variants one factor at a time",
+ "question": "For a small cascade (2 stages, M = 4, K_th = 16, FIR7; 1 136 RM), what do shared C, stage-wise training, ridge initialization and dropping the symmetries change?",
+ "date": "not run",
+ "base_git_commit": "ad42e43 (branch exp/E044-E047)",
+ "data_manifest_sha256": "cb5f2de47145c02d6485969ce116df2253a271c979a927452ea454551a48c0a8",
+ "data_audit_sha256": "a9c35fb7839e85c39f7131373418a6f3a04c731e9c4e55385347a1eabbdedbe4",
+ "split_source": "experiments/E004_training_file_curve/config.json (train_pool_files[:30], validation 45, test 45), as E007-E019",
+ "split_source_sha256": "04c0b2a5775d8fae1acdc348967c6fb976ef5d90e76a8334484242cc9707025a",
+ "dataset_root": "data/raw/archive",
+ "n_train_files": 30,
+ "base_lr": {
+  "peak_lr": 0.001,
+  "schedule": "const",
+  "warmup": 0,
+  "c_mult": 1.0,
+  "floor_frac": 0.1,
+  "optimizer": "adam",
+  "weight_decay": 0.0
+ },
+ "seeds": [
+  17,
+  29,
+  43,
+  57,
+  71
+ ],
+ "ckpt_every": 10000,
+ "eval_rule": "validation and (report-only) test every max(500, steps/40) steps; selection only by validation",
+ "control": {
+  "runs": {
+   "a_const_1e-3_20k": {
+    "spec": {
+     "model": "complex_a",
+     "window": 31,
+     "hidden": 48,
+     "name": "complex_a"
+    },
+    "n_train_files": 30,
+    "steps": 20000
+   }
+  },
+  "targets": {
+   "a_const_1e-3_20k": {
+    "target": 62.191,
+    "tol": 0.7,
+    "seeds": [
+     17,
+     29
+    ],
+    "metric": "test_reduction_valbest_select",
+    "source": "experiments/E009_kerr_ablation/results/complex_mlp_ablation_summary.csv (variant a); reproduced in E010-E019 (62.19)"
+   }
+  }
+ },
+ "value_filter": {
+  "changes_next_step": "yes: the winning factor is used in any further cascade runs (E040 confirm results, E041)",
+  "answered_in_literature": "partly: PB-DBP reports +0.04-0.1 dB for independent vs shared C on their data; not on ours",
+  "needed_for_main_claim": "no; it tunes the cascade family",
+  "cheaper_without_training": "no"
+ },
+ "decision_if_positive": "use the factor that wins by > 2 std in later cascade experiments",
+ "decision_if_negative": "keep the E040 setting (independent, joint, zero init, symmetric)",
+ "n_stages": 2,
+ "base_stage": {
+  "type": "T",
+  "M": 4,
+  "K_th": 16,
+  "L": 7
+ },
+ "steps": 200000,
+ "n_seeds": 5,
+ "lr": {
+  "peak_lr": 0.001,
+  "schedule": "cosine_to_zero",
+  "warmup": 0,
+  "c_mult": 1.0,
+  "floor_frac": 0.1,
+  "optimizer": "adam",
+  "weight_decay": 0.0
+ },
+ "lambda_grid": [
+  1e-08,
+  1e-06,
+  0.0001,
+  0.001,
+  0.01,
+  0.1
+ ],
+ "variants": {
+  "v1_independent_joint": "reference (as E040)",
+  "v2_shared_joint": "one C for both stages",
+  "v3_stagewise_freeze": "stage 1 trained alone (100k), then stage 2 alone with stage 1 frozen (100k), fresh Adam",
+  "v4_ridge_init_stage0": "stage 1 starts from the closed-form ridge solution (stage init; symmetric projection = orbit average), stage 2 at zero",
+  "v5_free_no_symmetry": "merged weights as free complex numbers (no C_{-m,-n} = C_mn = -C*_{-m,n})"
+ },
+ "rule_draft": {
+  "status": "DRAFT: to be confirmed by the user before the first run; must not change after results are seen",
+  "factor": "a variant differs from v1 if |test mean difference| > 2 std over 5 seeds (std = the larger of the two); sign as measured",
+  "otherwise": "не доказано"
+ }
+}

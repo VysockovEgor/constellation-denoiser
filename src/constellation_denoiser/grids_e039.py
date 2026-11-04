@@ -196,10 +196,78 @@ def e041_tasks(stage: str, options: Options) -> list[dict]:
 BUILDERS = {"E040": e040_tasks, "E041": e041_tasks}
 
 
+# --------------------------------------------------------------------------- E047 (cascade variants, one factor at a time)
+
+def e047_init(options: Options) -> int:
+    """Ridge solution of the first stage (T terms on x, target s - x, all train files, lambda by validation)."""
+    from .cascade_e040 import stage_terms
+    from .paths import PROJECT_ROOT
+    from .runner import atomic_write_json, default_files, log
+    from .triplets import EDGE, FileGram, ber_columns, predict, solve
+    from .window_data import load_fileset, resolve_paths
+
+    directory, config = load_config("E047")
+    st = config["base_stage"]
+    terms = stage_terms(st["M"], st["K_th"])
+    files = default_files(30, options.smoke)
+    train, val = (load_fileset(resolve_paths(files[k])) for k in ("train", "validation"))
+    gram = rhs = None
+    for f in range(train.n_files):
+        g = FileGram(train.rx_c[f], train.tx_c[f], terms, 0, False, 4096)
+        gram = g.gram if gram is None else gram + g.gram
+        rhs = g.rhs if rhs is None else rhs + g.rhs
+    lams = config["lambda_grid"]
+    coefs = np.stack([solve(gram, rhs, lam) for lam in lams], axis=1)
+    val_tx = np.concatenate([val.tx_c[f][EDGE:-EDGE] for f in range(val.n_files)])
+    pv = np.concatenate([predict(val.rx_c[f], coefs, terms, 0, False, 4096) for f in range(val.n_files)])
+    best = int(np.argmin(ber_columns(pv, val_tx)))
+    out = g24.results_dir(directory, options.smoke)
+    out.mkdir(parents=True, exist_ok=True)
+    np.savez(out / "init_stage0.npz", weights=coefs[:, best])
+    atomic_write_json(out / "init_stage0.json", {"lambda": lams[best], "n_terms": len(terms)})
+    log(f"E047: ridge init of stage 0, {len(terms)} terms, lambda {lams[best]:g}")
+    return 0
+
+
+def e047_tasks(stage: str, options: Options) -> list[dict]:
+    exp = "E047"
+    directory, config = load_config(exp)
+    if stage == "control":
+        return control_tasks(exp, directory, config, options)
+    if stage != "main":
+        raise SystemExit(f"E047: неизвестная стадия {stage!r}")
+    from .paths import PROJECT_ROOT
+
+    stages = [dict(config["base_stage"]) for _ in range(config["n_stages"])]
+    init = str((g24.results_dir(directory, options.smoke) / "init_stage0.npz").relative_to(PROJECT_ROOT))
+    steps = config["steps"]
+    half = steps // 2
+    variants = {
+        "v1_independent_joint": ({}, None),
+        "v2_shared_joint": ({"shared": True}, None),
+        "v3_stagewise_freeze": ({}, [{"steps": half, "trainable": ["stages.0."]},
+                                     {"steps": steps - half, "trainable": ["stages.1."], "reset_optimizer": True}]),
+        "v4_ridge_init_stage0": ({"init_first": init}, None),
+        "v5_free_no_symmetry": ({"free": True}, None),
+    }
+    tasks = []
+    for name, (extra, phases) in variants.items():
+        spec = dict(cascade_spec(stages), **extra)
+        for seed in g24.first_seeds(config, options, config["n_seeds"]):
+            tasks.append(g24.run(exp, stage, directory, config, options, name=name, spec=spec, lr=config["lr"],
+                                 lr_name="cos1e-3", steps=steps, seed=seed, phases=phases,
+                                 meta={"variant_factor": name, "rm_repo": cascade_rm(stages)}))
+    return tasks
+
+
+BUILDERS["E047"] = e047_tasks
+
+
 def _register() -> None:
     from . import grids
 
     grids.BUILDERS.update(BUILDERS)
+    grids.SPECIAL_STAGES[("E047", "init")] = e047_init
 
 
 _register()

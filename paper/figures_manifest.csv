@@ -58,3 +58,7 @@ fig_no,experiment_id,file,caption,source_csv
 57,E040,experiments/E040_triplet_cascade/figures/E040_cascade_vs_one_step.png,Cascade of triplet stages vs one-step triplets (not run),experiments/E040_triplet_cascade/results/cascade_summary.csv
 58,E041,experiments/E041_mixed_stages/figures/E041_mixed_vs_uniform.png,Mixed stage types vs uniform cascade (not run),experiments/E041_mixed_stages/results/mixed_summary.csv
 59,E043,experiments/E043_triplet_summary/figures/E043_pareto_three_rm.png,Triplet families vs RM under three counting conventions (not run),experiments/E043_triplet_summary/results/points.csv
+60,E044,experiments/E044_triplet_audit/figures/E044_coef_map_M31.png,|C_mn| relative to |C_00| with |mn| = K_th boundaries (ridge M = 31),experiments/E044_triplet_audit/results/symmetry.csv
+61,E045,experiments/E045_reference_families/figures/E045_references_vs_rm.png,Reference families on one RM scale (mean +- std),experiments/E045_reference_families/results/references_pareto.csv
+62,E046,experiments/E046_kerr_offaxis/figures/E046_gain_vs_offaxis_terms.png,Architecture A: gain vs number of off-axis terms at fixed Kerr (not run),experiments/E046_kerr_offaxis/results/a_summary.csv
+63,E047,experiments/E047_cascade_variants/figures/E047_cascade_variants.png,Cascade training variants (not run),experiments/E047_cascade_variants/results/variants_summary.csv

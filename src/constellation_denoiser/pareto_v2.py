@@ -191,6 +191,7 @@ def points(runs: pd.DataFrame, min_seeds: int = MIN_SEEDS) -> pd.DataFrame:
     out = grouped.agg(rm=("macs_per_symbol_merged", "first"), n_seeds=("seed", "nunique"), val_mean=(VAL, "mean"),
                       val_min=(VAL, "min"), val_max=(VAL, "max"), test_mean=(TEST, "mean"), test_min=(TEST, "min"),
                       test_max=(TEST, "max"), q2_mean=("q2", "mean"), q2_min=("q2", "min"), q2_max=("q2", "max"),
+                      test_std=(TEST, "std"), q2_std=("q2", "std"),
                       lr_name=("lr_name", "first"), model=("model", "first")).reset_index()
     out = out[out.n_seeds >= min_seeds]
     out["label"] = out.source + " · " + out.variant.astype(str) + " · " + out.lr_name.astype(str) + " · " + \

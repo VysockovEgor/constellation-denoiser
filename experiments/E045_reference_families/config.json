@@ -1,0 +1,36 @@
+{
+ "experiment_id": "E045",
+ "title": "Phase 1: reference families on one RM scale (existing runs, no training)",
+ "question": "How do linear FIR, DBP, Kerr with memory (PhysKerr), one-step full triplets, DBP + triplets and the cascade compare on one RM scale (mean +- std over seeds)?",
+ "date": "2026-11-04 (local, no training)",
+ "base_git_commit": "ad42e43 (branch exp/E044-E047)",
+ "data_manifest_sha256": "cb5f2de47145c02d6485969ce116df2253a271c979a927452ea454551a48c0a8",
+ "split_source": "experiments/E004_training_file_curve/config.json (train_pool_files[:30], validation 45, test 45), as E007-E019",
+ "dataset_root": "data/raw/archive",
+ "n_train_files": 30,
+ "seeds": [
+  17,
+  29,
+  43,
+  57,
+  71
+ ],
+ "value_filter": {
+  "changes_next_step": "no new decision; it is the reference curve for E046/E047",
+  "answered_in_literature": "no (our data)",
+  "needed_for_main_claim": "yes",
+  "cheaper_without_training": "yes: existing runs only"
+ },
+ "decision_if_positive": "—",
+ "decision_if_negative": "—",
+ "notes": {
+  "dbp_one_step_per_span": "not run: 20 steps (one per span) are between the E028 Ns16 and Ns32 points",
+  "cascade": "E040 points appear after its summary (running)",
+  "std": "over training seeds; closed form: over 5 bootstrap replicas"
+ },
+ "rule_draft": {
+  "status": "DRAFT: to be confirmed by the user before the first run; must not change after results are seen",
+  "report": "reference table and Pareto points by validation; no pass/fail rule",
+  "otherwise": "не доказано"
+ }
+}

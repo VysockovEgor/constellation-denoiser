@@ -355,3 +355,21 @@
 ![E039 · E039_coef_map_M51.png · 2026-11-04](figs/experiments/E039_triplet_diagnostics/figures/E039_coef_map_M51.png){group="gallery"}
 
 :::
+
+## E044
+
+::: {layout-ncol=3}
+
+![E044 · E044_coef_map_M31.png · 2026-11-04](figs/experiments/E044_triplet_audit/figures/E044_coef_map_M31.png){group="gallery"}
+
+![E044 · E044_coef_map_M21.png · 2026-11-04](figs/experiments/E044_triplet_audit/figures/E044_coef_map_M21.png){group="gallery"}
+
+:::
+
+## E045
+
+::: {layout-ncol=3}
+
+![E045 · E045_references_vs_rm.png · 2026-11-04](figs/experiments/E045_reference_families/figures/E045_references_vs_rm.png){group="gallery"}
+
+:::

@@ -1,0 +1,3 @@
+selection,definition
+E034/E036 K strongest,из кода (triplets_ext.prune_replica): per bootstrap replica the full T3 + FIR7 ridge fit (lambda by validation) ranks the merged triplet terms by |C_j| * rms(feature_j) on train; the K strongest + the 7 FIR taps are refitted from the sub-matrix of the same normal equations; the selected sets were not saved
+E038 K strongest,"из кода (triplets_ext.rank_terms, grids_e024.e038_select): the same ranking on all 30 train files, M = 15; the first 64 terms are saved in experiments/E038_dbp_triplets/results/terms.npz"

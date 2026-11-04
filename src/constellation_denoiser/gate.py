@@ -94,13 +94,16 @@ def foreign_busy(samples: int = 10, pause_s: float = 0.5) -> float:
     return float(np.mean(values))
 
 
-def jobs_now(reserve: int = 0) -> tuple[int, dict]:
+def jobs_now(reserve: int = 0, total: bool = False) -> tuple[int, dict]:
+    """total=True: count the running threads of this user too (a second queue next to a running one)."""
     cores = os.cpu_count() or 1
     try:
         load = float(Path("/proc/loadavg").read_text().split()[0])
     except (OSError, ValueError):
         load = 0.0
     foreign = foreign_busy()
+    if total:
+        foreign += float(np.mean([running_threads()[0] for _ in range(5)]))
     jobs = min(MAX_JOBS, int(cores - math.ceil(foreign) - 2 - reserve))
     free = mem_available_gb()
     if free != float("inf"):
@@ -134,6 +137,7 @@ def main(argv: list[str] | None = None) -> int:
     jobs = sub.add_parser("jobs")
     jobs.add_argument("--reserve", type=int, default=0)
     jobs.add_argument("--max", type=int, default=MAX_JOBS)
+    jobs.add_argument("--total", action="store_true", help="also subtract this user's running threads")
     memory = sub.add_parser("memory")
     memory.add_argument("--wait-s", type=int, default=1800)
     stage = sub.add_parser("stage")
@@ -153,7 +157,7 @@ def main(argv: list[str] | None = None) -> int:
             return 1
         return 0
     if args.cmd == "jobs":
-        n, info = jobs_now(args.reserve)
+        n, info = jobs_now(args.reserve, args.total)
         n = min(n, args.max)
         print(n)
         print(f"JOBS={n}: {info}", file=sys.stderr)

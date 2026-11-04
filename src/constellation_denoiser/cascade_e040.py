@@ -103,6 +103,37 @@ class TripletCoefficients(nn.Module):
         return torch.complex(re, im) * self.weight
 
 
+class FreeCoefficients(nn.Module):
+    """E047 variant: merged weights as free complex numbers (no PB-DBP symmetries)."""
+
+    def __init__(self, M: int, k_th: int):
+        super().__init__()
+        n = len(stage_terms(M, k_th))
+        self.re = nn.Parameter(torch.zeros(n))
+        self.im = nn.Parameter(torch.zeros(n))
+
+    def forward(self) -> torch.Tensor:
+        return torch.complex(self.re, self.im)
+
+
+def load_init(coef: nn.Module, weights) -> None:
+    """Set the coefficients from merged weights (ridge solution); symmetric form: orbit average of the base values."""
+    w = torch.as_tensor(weights, dtype=torch.complex64)
+    with torch.no_grad():
+        if isinstance(coef, FreeCoefficients):
+            coef.re.copy_(w.real)
+            coef.im.copy_(w.imag)
+            return
+        c = w / coef.weight
+        c = torch.where(coef.flip, -torch.conj(c), c)                 # back to the base value b
+        n = len(coef.base_re)
+        total = torch.zeros(n, dtype=torch.complex64).index_add_(0, coef.base_index, c)
+        count = torch.zeros(n).index_add_(0, coef.base_index, torch.ones(len(c)))
+        b = total / count
+        coef.base_re.copy_(b.real * coef.real_allowed)
+        coef.base_im.copy_(b.imag)
+
+
 class Stage(nn.Module):
     def __init__(self, stage: dict, coef: TripletCoefficients | None, kerr: nn.Parameter | None):
         super().__init__()
@@ -155,8 +186,10 @@ class Stage(nn.Module):
 
 
 class Cascade(nn.Module):
-    def __init__(self, window: int, stages: list[dict], shared: bool = False):
+    def __init__(self, window: int, stages: list[dict], shared: bool = False, free: bool = False,
+                 init_first: str | None = None):
         super().__init__()
+        coef_class = FreeCoefficients if free else TripletCoefficients
         active = [s for s in stages if s["type"] != "skip"]
         if window < window_for(active):
             raise ValueError(f"window {window} < receptive field {window_for(active)}")
@@ -167,16 +200,20 @@ class Cascade(nn.Module):
             if any((s["type"], s.get("M"), s.get("K_th"), s.get("R")) != (first["type"], first.get("M"), first.get("K_th"),
                                                                           first.get("R")) for s in active):
                 raise ValueError("shared coefficients need identical stages")
-            shared_coef = TripletCoefficients(first["M"], first["K_th"]) if first["type"] in ("T", "KT") else None
+            shared_coef = coef_class(first["M"], first["K_th"]) if first["type"] in ("T", "KT") else None
             shared_kerr = nn.Parameter(torch.zeros(first.get("R", 1) // 2 + 1)) if first["type"] in ("K", "KT") else None
         self.shared_coef, self.shared_kerr = shared_coef, shared_kerr
         mods = []
         for s in active:
-            coef = shared_coef if shared else (TripletCoefficients(s["M"], s["K_th"]) if s["type"] in ("T", "KT") else None)
+            coef = shared_coef if shared else (coef_class(s["M"], s["K_th"]) if s["type"] in ("T", "KT") else None)
             kerr = shared_kerr if shared else (nn.Parameter(torch.zeros(s.get("R", 1) // 2 + 1))
                                                if s["type"] in ("K", "KT") else None)
             mods.append(Stage(s, coef, kerr))
         self.stages = nn.ModuleList(mods)
+        if init_first:                                   # E047: ridge initialization of the first triplet stage
+            import numpy as np
+
+            load_init(mods[0].coef, np.load(init_first)["weights"])
         outs, h = [], 0
         for st in reversed(mods):                    # half-span each stage must output
             outs.append(h)

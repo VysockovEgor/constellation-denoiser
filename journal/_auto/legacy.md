@@ -1,6 +1,6 @@
 <!-- Сгенерировано scripts/journal_build_auto.py из файлов результатов. Не править вручную. -->
 
-Строки «Вопрос» и «Вывод» из `LOG.md` дословно ([LOG.md на GitHub](https://github.com/VysockovEgor/constellation-denoiser/blob/exp/E039-E043/LOG.md)).
+Строки «Вопрос» и «Вывод» из `LOG.md` дословно ([LOG.md на GitHub](https://github.com/VysockovEgor/constellation-denoiser/blob/exp/E044-E047/LOG.md)).
 
 | эксп. | название | вопрос | вывод |
 |---|---|---|---|

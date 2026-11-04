@@ -99,3 +99,32 @@ class CascadeTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class CascadeInitTests(unittest.TestCase):
+    def test_ridge_init_reproduces_closed_form_stage(self):
+        import tempfile
+
+        stages = [{"type": "T", "M": 2, "K_th": 4, "L": 1}]
+        terms = cascade_e040.stage_terms(2, 4)
+        rng = np.random.default_rng(4)
+        sym = cascade_e040.TripletCoefficients(2, 4)
+        with torch.no_grad():
+            sym.base_re.normal_(0, 0.01)
+            sym.base_im.normal_(0, 0.01)
+        weights = sym().detach().numpy().astype(complex)          # weights that satisfy the symmetries
+        W = cascade_e040.window_for(stages)
+        for free in (False, True):
+            with tempfile.NamedTemporaryFile(suffix=".npz") as handle:
+                np.savez(handle.name, weights=weights)
+                model = cascade_e040.Cascade(W, stages, free=free, init_first=handle.name)
+            got = model.stages[0].coef().detach().numpy()
+            self.assertLess(np.abs(got - weights).max(), 1e-6)
+        rx = (rng.normal(size=60) + 1j * rng.normal(size=60)) / np.sqrt(2)
+        ref = triplets.predict(rx, weights, terms, 0, False, 4096)[:, 0]
+        windows = np.lib.stride_tricks.sliding_window_view(rx, W)
+        x = torch.tensor(np.stack([windows.real, windows.imag], -1), dtype=torch.float32)
+        with torch.no_grad():
+            out = model(x).numpy()
+        start = 15 - W // 2
+        self.assertLess(np.abs(out[start: start + 10] - ref[:10]).max(), 1e-5)

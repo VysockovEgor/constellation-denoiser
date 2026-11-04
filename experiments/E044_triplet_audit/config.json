@@ -1,0 +1,32 @@
+{
+ "experiment_id": "E044",
+ "title": "Phase 0: audit of the triplet definitions and of the ridge coefficients (no training)",
+ "question": "What exactly are T1, T2, T3 and the 'K strongest' sets, do the ridge coefficients follow C_mn = C_nm = C_{-m,-n} = -C*_{-m,n}, and how much of |C| sits on the axes?",
+ "date": "2026-11-04 (local, no training)",
+ "base_git_commit": "ad42e43 (branch exp/E044-E047)",
+ "data_manifest_sha256": "cb5f2de47145c02d6485969ce116df2253a271c979a927452ea454551a48c0a8",
+ "split_source": "experiments/E004_training_file_curve/config.json (train_pool_files[:30], validation 45, test 45), as E007-E019",
+ "dataset_root": "data/raw/archive",
+ "n_train_files": 30,
+ "seeds": [
+  17,
+  29,
+  43,
+  57,
+  71
+ ],
+ "value_filter": {
+  "changes_next_step": "no change of the plan (the plan says phase 2 always follows); it fixes the definitions used by E046",
+  "answered_in_literature": "symmetries known (PB-DBP, arXiv 2409.20023); their validity on our ridge fit is not",
+  "needed_for_main_claim": "yes: definitions",
+  "cheaper_without_training": "this is the no-training step"
+ },
+ "decision_if_positive": "axes carry a phase-like share -> architecture A (Kerr with memory + off-axis triplets) is motivated",
+ "decision_if_negative": "phase 2 still runs (plan), the motivation is weaker",
+ "coefficients": "experiments/E039_triplet_diagnostics/results/coef_M{15,21,31,51}.csv (closed-form T3 + FIR7 on all 30 train files)",
+ "rule_draft": {
+  "status": "DRAFT: to be confirmed by the user before the first run; must not change after results are seen",
+  "symmetry": "reported, not a pass/fail rule: median and max relative deviations of each equality and |Re C|/|C| on the axes",
+  "otherwise": "не доказано"
+ }
+}

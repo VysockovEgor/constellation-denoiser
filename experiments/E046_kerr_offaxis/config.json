@@ -1,0 +1,87 @@
+{
+ "experiment_id": "E046",
+ "title": "Phase 2, architecture A: Kerr with memory + off-axis (IFWM) triplets",
+ "question": "Does a Kerr stage with memory (covering the axial triplets in first order) plus off-axis triplets beat triplets only and Kerr only at equal RM, and how many off-axis terms are worth keeping?",
+ "date": "not run",
+ "base_git_commit": "ad42e43 (branch exp/E044-E047)",
+ "data_manifest_sha256": "cb5f2de47145c02d6485969ce116df2253a271c979a927452ea454551a48c0a8",
+ "split_source": "experiments/E004_training_file_curve/config.json (train_pool_files[:30], validation 45, test 45), as E007-E019",
+ "dataset_root": "data/raw/archive",
+ "n_train_files": 30,
+ "seeds": [
+  17,
+  29,
+  43,
+  57,
+  71
+ ],
+ "replicas": [
+  17,
+  29,
+  43,
+  57,
+  71
+ ],
+ "replica_rule": "replica r: numpy default_rng(r) bootstrap of the 30 train files (counts in the closed form; theta on the first n_sub distinct drawn files); validation and test fixed",
+ "value_filter": {
+  "changes_next_step": "yes: positive makes A the reference above the DBP range and opens phase 4; negative keeps one-step triplets",
+  "answered_in_literature": "no exact scheme found (PA-LDBP excludes IFWM, PB-DBP has full triplets per step; search incomplete)",
+  "needed_for_main_claim": "yes: it tests whether the triplet advantage is IFWM",
+  "cheaper_without_training": "yes: closed form + L-BFGS on a subsample"
+ },
+ "decision_if_positive": "report A as the best architecture at its RM; joint fine-tuning (Adam) of the best A per arch; phase 4 (E041) may run",
+ "decision_if_negative": "negative result as is: the Kerr split does not help over plain triplets at equal RM",
+ "fir_len": 7,
+ "M": [
+  3,
+  5,
+  8
+ ],
+ "n_c": [
+  7,
+  15,
+  31
+ ],
+ "smoke_M": [
+  3
+ ],
+ "smoke_nc": [
+  7
+ ],
+ "n_sub": 4,
+ "lbfgs_iters": 60,
+ "theta_lambda": 0.0001,
+ "K": [
+  8,
+  16,
+  32,
+  64,
+  128
+ ],
+ "K_th": [
+  1,
+  2,
+  4,
+  8,
+  16
+ ],
+ "modes": {
+  "varpro": "A1, A3, A3full: theta by L-BFGS with C eliminated (variable projection) on the subsample",
+  "seq": "Kerr alone first, then ridge on the residual (A2: ridge first, then Kerr)",
+  "closed": "T: T3 + FIR7 closed form (as E031)"
+ },
+ "joint_adam": "not in this stage: joint fine-tuning from the closed-form solution is a follow-up if A is positive",
+ "rm": "Kerr 4 L + 2 + (N_c + 1)/2 + 4 (FIR7 non-symmetric, symmetric alpha), 12 per off-axis merged term; T: 12 per term + 28",
+ "rule_draft": {
+  "status": "DRAFT: to be confirmed by the user before the first run; must not change after results are seen",
+  "a_wins": "architecture A wins if, at equal RM (rival RM <= 1.05 x RM of A), its best configuration by validation is better in test than both the best triplets-only (T) and the best Kerr-only (K) by more than 2 std over replicas (std = the largest of the compared); otherwise negative",
+  "double_count": "reported: (Kerr + T3 with axes) - (Kerr + off-axis), same M and N_c",
+  "otherwise": "не доказано"
+ },
+ "split_seeds": [
+  101,
+  202,
+  303
+ ],
+ "splits_stage": "the best configuration by validation of each arch (A1, A2, A3, A3full, T, K; full sets) on the three E023 file splits x 5 replicas (protocol: 5 training seeds x 3 split seeds)"
+}

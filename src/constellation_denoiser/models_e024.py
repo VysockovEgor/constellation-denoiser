@@ -219,7 +219,11 @@ def build(spec: dict) -> nn.Module:
     if kind == "cascade":                # E040/E041: triplet / Kerr-phase stages (cascade_e040)
         from .cascade_e040 import Cascade
 
-        return Cascade(window, spec["stages"], bool(spec.get("shared", False)))
+        from .paths import PROJECT_ROOT
+
+        init = spec.get("init_first")
+        return Cascade(window, spec["stages"], bool(spec.get("shared", False)), bool(spec.get("free", False)),
+                       str(PROJECT_ROOT / init) if init else None)
     if kind == "dbp_triplets":           # E038: DBP + K selected triplet terms
         from .paths import PROJECT_ROOT
         from .triplets_ext import DBPTriplets
