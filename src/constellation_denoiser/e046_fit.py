@@ -229,6 +229,31 @@ def _one(j, config, smoke, split=None):
     return job_id(j), "ok"
 
 
+def pool_run(todo: list, config: dict, smoke: bool, label: str) -> int:
+    """Run jobs in processes; with JOBS_ADAPTIVE=1 the number in flight follows the free cores."""
+    from .gate import MAX_JOBS, adaptive_limit
+    from .runner import env_flag
+
+    adaptive = env_flag("JOBS_ADAPTIVE")
+    fixed = int(os.environ["JOBS"]) if os.environ.get("JOBS", "auto").isdigit() else 1
+    pending, running, done = list(todo), {}, 0
+    with cf.ProcessPoolExecutor(max_workers=MAX_JOBS if adaptive else max(1, fixed)) as pool:
+        while pending or running:
+            limit = adaptive_limit(len(running)) if adaptive else max(1, fixed)
+            while pending and len(running) < limit:
+                j, seed = pending.pop(0)
+                running[pool.submit(_one, j, config, smoke, seed)] = j
+            finished, _ = cf.wait(running, timeout=60, return_when=cf.FIRST_COMPLETED)
+            for fut in finished:
+                running.pop(fut)
+                done += 1
+                try:
+                    print(f"[{done}/{len(todo)}] {label}: {fut.result()} (в работе {len(running)}, предел {limit})", flush=True)
+                except Exception as exc:          # keep going; the summary reports missing jobs
+                    print(f"[{done}/{len(todo)}] ОШИБКА: {exc!r}", flush=True)
+    return 0
+
+
 def main(argv: list[str]) -> int:
     smoke = os.environ.get("SMOKE", "0") == "1"
     config = json.loads((exp_dir("E046") / "config.json").read_text(encoding="utf-8"))
@@ -240,32 +265,14 @@ def main(argv: list[str]) -> int:
         print(_one((arch, mode, M, nc, r), config, smoke))
         return 0
     if action == "all":
-        todo = jobs(config, smoke)
-        workers = int(os.environ.get("JOBS", "1")) if os.environ.get("JOBS", "auto") != "auto" else 1
-        with cf.ProcessPoolExecutor(max_workers=max(1, workers)) as pool:
-            futures = [pool.submit(_one, j, config, smoke) for j in todo]
-            for i, fut in enumerate(cf.as_completed(futures), 1):
-                try:
-                    name, status = fut.result()
-                    print(f"[{i}/{len(todo)}] {name}: {status}", flush=True)
-                except Exception as exc:          # keep going; the summary reports missing jobs
-                    print(f"[{i}/{len(todo)}] ОШИБКА: {exc!r}", flush=True)
-        return 0
+        return pool_run([(j, None) for j in jobs(config, smoke)], config, smoke, "fit")
     if action == "splits":           # best configuration by validation of each arch on the three E023 splits
         summary = pd.read_csv(out / "a_summary.csv")
         best = summary[summary.set == "full"].loc[lambda f: f.groupby("arch").val_mean.idxmax()]
         reps = config["replicas"][:1] if smoke else config["replicas"]
         todo = [((r.arch, r["mode"], int(r.M), int(r.n_c), rep), seed) for _, r in best.iterrows() for rep in reps
                 for seed in (config["split_seeds"][:1] if smoke else config["split_seeds"])]
-        workers = int(os.environ.get("JOBS", "1")) if os.environ.get("JOBS", "auto") != "auto" else 1
-        with cf.ProcessPoolExecutor(max_workers=max(1, workers)) as pool:
-            futures = [pool.submit(_one, j, config, smoke, seed) for j, seed in todo]
-            for i, fut in enumerate(cf.as_completed(futures), 1):
-                try:
-                    print(f"[{i}/{len(todo)}] split: {fut.result()}", flush=True)
-                except Exception as exc:
-                    print(f"[{i}/{len(todo)}] ОШИБКА: {exc!r}", flush=True)
-        return 0
+        return pool_run(todo, config, smoke, "split")
     if action == "summarize":
         from .summarize_E046 import summarize
 

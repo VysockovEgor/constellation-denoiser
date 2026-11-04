@@ -487,11 +487,18 @@ def execute(tasks: list[dict], jobs: int, threads: int, device: str, resources: 
     started = time.perf_counter()
     done_count = 0
     context = mp.get_context("spawn")
-    with cf.ProcessPoolExecutor(max_workers=jobs, mp_context=context, initializer=_worker_init,
+    adaptive = env_flag("JOBS_ADAPTIVE")
+    if adaptive:
+        from .gate import MAX_JOBS, adaptive_limit
+
+        log(f"JOBS_ADAPTIVE: число процессов по свободным ядрам, до {MAX_JOBS}")
+    with cf.ProcessPoolExecutor(max_workers=MAX_JOBS if adaptive else jobs, mp_context=context, initializer=_worker_init,
                                 initargs=(threads,)) as pool:
         running: dict[cf.Future, dict] = {}
         try:
             while pending or running:
+                if adaptive:                                  # JOBS_ADAPTIVE=1: follow the free cores
+                    jobs = adaptive_limit(len(running))
                 while pending and len(running) < jobs:
                     polite_wait(len(running), jobs, threads, resources)
                     task = pending.pop(0)

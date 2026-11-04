@@ -29,7 +29,7 @@ import numpy as np
 from .paths import PROJECT_ROOT
 
 GATE_PATH = PROJECT_ROOT / "results" / "gate_status.json"
-MAX_JOBS = 40
+MAX_JOBS = os.cpu_count() or 1          # no cap beyond the machine: free cores decide
 MIN_FREE_GB = float(os.environ.get("GATE_MIN_FREE_GB", "16"))   # override only for local tests of the queue
 MAX_BAD_SHARE = 0.15
 MEM_PER_JOB_GB = 1.5
@@ -83,6 +83,12 @@ def running_threads() -> tuple[int, int]:
     return own, other
 
 
+def adaptive_limit(in_flight: int) -> int:
+    """Processes allowed now: the ones already running plus the free cores (all running threads counted)."""
+    free, _ = jobs_now(total=True)
+    return max(1, min(MAX_JOBS, in_flight + free - 1 if in_flight else free))
+
+
 def foreign_busy(samples: int = 10, pause_s: float = 0.5) -> float:
     """Mean number of running threads of other users (instantaneous, unlike the 1-min load average, which
     still contains our own processes of the stage that has just finished)."""
@@ -101,9 +107,9 @@ def jobs_now(reserve: int = 0, total: bool = False) -> tuple[int, dict]:
         load = float(Path("/proc/loadavg").read_text().split()[0])
     except (OSError, ValueError):
         load = 0.0
-    foreign = foreign_busy()
+    foreign = foreign_busy(samples=3, pause_s=0.3)
     if total:
-        foreign += float(np.mean([running_threads()[0] for _ in range(5)]))
+        foreign += float(np.mean([running_threads()[0] for _ in range(3)]))
     jobs = min(MAX_JOBS, int(cores - math.ceil(foreign) - 2 - reserve))
     free = mem_available_gb()
     if free != float("inf"):

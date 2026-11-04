@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
 # E046 (architecture A, closed form + L-BFGS) then E047 (cascade variants), next to the running E039-E043 queue.
-# Usage: bash scripts/remote.sh go e044 all. JOBS = free cores counting all running threads (ours included), at most 16.
+# Usage: bash scripts/remote.sh go e044 all. JOBS_ADAPTIVE=1: the number of processes follows the free cores
+# (all running threads counted, ours included), no upper cap beyond the machine.
 set -uo pipefail
 set +H
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT_DIR"
 mkdir -p logs
 LOG="logs/queue_e044_$(date +%Y%m%d_%H%M%S).log"
-export THREADS=1 DEVICE=cpu
+export THREADS=1 DEVICE=cpu JOBS_ADAPTIVE=1
 PYTHON="${PYTHON:-}"
 if [[ -z "$PYTHON" ]]; then
   if [[ -x .venv/bin/python ]]; then PYTHON=.venv/bin/python; else PYTHON=python3; fi
@@ -18,7 +19,7 @@ stage() {   # stage <folder> <stage> <kind>
   local folder="$1" name="$2" kind="$3" rc
   gate halted || return 1
   gate memory || return 1
-  JOBS="$(gate jobs --total --max 16)"; export JOBS
+  JOBS="$(gate jobs --total)"; export JOBS
   echo "=== $(date -Is) $folder: stage $name ($kind) JOBS=$JOBS ==="
   bash "experiments/$folder/run.sh" "$name"; rc=$?
   case "$kind" in
