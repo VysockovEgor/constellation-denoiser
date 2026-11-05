@@ -1,0 +1,103 @@
+{
+ "data_manifest_sha256": "cb5f2de47145c02d6485969ce116df2253a271c979a927452ea454551a48c0a8",
+ "split_source": "experiments/E004_training_file_curve/config.json (train_pool_files[:30], validation 45, test 45), as E007-E019",
+ "dataset_root": "data/raw/archive",
+ "n_train_files": 30,
+ "replicas": [
+  17,
+  29,
+  43,
+  57,
+  71
+ ],
+ "replica_rule": "replica r: numpy default_rng(r) bootstrap of the 30 train files (counts in the closed form; theta on the first n_sub distinct drawn files); validation and test fixed",
+ "base_lr": {
+  "peak_lr": 0.001,
+  "schedule": "const",
+  "warmup": 0,
+  "c_mult": 1.0,
+  "floor_frac": 0.1,
+  "optimizer": "adam",
+  "weight_decay": 0.0
+ },
+ "ckpt_every": 10000,
+ "eval_rule": "validation and (report-only) test every max(500, steps/40) steps; selection only by validation",
+ "control": {
+  "runs": {
+   "a_const_1e-3_20k": {
+    "spec": {
+     "model": "complex_a",
+     "window": 31,
+     "hidden": 48,
+     "name": "complex_a"
+    },
+    "n_train_files": 30,
+    "steps": 20000
+   }
+  },
+  "targets": {
+   "a_const_1e-3_20k": {
+    "target": 62.191,
+    "tol": 0.7,
+    "seeds": [
+     17,
+     29
+    ],
+    "metric": "test_reduction_valbest_select",
+    "source": "experiments/E009_kerr_ablation/results/complex_mlp_ablation_summary.csv (variant a); reproduced in E010-E019 (62.19)"
+   }
+  }
+ },
+ "lambda_grid": [
+  1e-08,
+  1e-06,
+  0.0001,
+  0.001,
+  0.01,
+  0.1
+ ],
+ "experiment_id": "E052",
+ "title": "DBP-X at small Ns + external off-axis triplets (cross rule, closed form)",
+ "date": "not run",
+ "base_git_commit": "(this commit; branch exp/E044-E047)",
+ "seeds": [
+  17,
+  29,
+  43,
+  57,
+  71
+ ],
+ "question": "Does DBP-X with Ns = 8 followed by off-axis triplets (cross min(|m|,|n|) <= K, K = 1..3) reach the level of DBP-X Ns = 40 without triplets at the same or lower RM? Also Ns = 4, 10, 20.",
+ "dbpx": "no training: configuration of E050 start chosen on validation (start_best.csv: sign per Ns from the classical rows, kernel classical or ridge by the lower validation MSE, g, multiplier, complex gain); exact circular filters; DBP-X RM with the honest FIR lengths of E050",
+ "triplets": {
+  "domain": "box max(|m|,|n|) <= M, M in (8, 15), cross min(|m|,|n|) <= K, K in (1, 2, 3), merged m <= n, off-axis",
+  "fit": "ridge on 30 train files of the DBP-X output, bootstrap counts per replica (5), lambda (6 values) by validation BER",
+  "rm": "12 RM per merged term in both conventions"
+ },
+ "n_steps": [
+  4,
+  8,
+  10,
+  20
+ ],
+ "reference_n_steps": [
+  40,
+  80
+ ],
+ "rm": {
+  "main": "both columns are main: direct convolution (repository convention, model_zoo.macs_phys, symmetric FIR 2(L+1)) and FFT / overlap-save (Xiao 2025 C_conv); the choice of convention is pending (advisor)",
+  "note": "the linear part of DBP-X replaces CDC in a real receiver; whether it is charged in full is open (author's remark, not decided)"
+ },
+ "rule_draft": {
+  "reached": "in a given convention: Ns 8 + triplets (mean over 5 replicas) >= DBP-X Ns 40 test value at RM <= RM(Ns 40)",
+  "not_worse": "gap (Ns40 - Ns8+T) < 2 std and < 2 SE of the replicas (Ns 40 is one deterministic value: no seeds)",
+  "otherwise": "not reached",
+  "limits": "no training of DBP-X; one channel, one polarization, 1 sps; files close to periodic (circular filters); spread only from the ridge replicas"
+ },
+ "value_filter": {
+  "changes_next_step": "yes: decides whether a cheap DBP-X needs triplets or more steps",
+  "answered_in_literature": "Xiao 2025: K = 0 or 1 best on their data (hypothesis here)",
+  "needed_for_main_claim": "yes",
+  "cheaper_without_training": "closed form"
+ }
+}

@@ -570,6 +570,39 @@ def train(smoke: bool) -> int:
     return 0
 
 
+PROBE = [  # parameters of the probes in README (classical kernel, sign +1), chosen on 2 validation files
+    (1, 0.02, 1.0), (2, 0.06, 1.0), (8, 0.15, 1.0), (8, 0.15, 0.9), (20, 0.25, 1.0), (20, 0.30, 1.1), (20, 0.30, 0.9),
+    (40, 0.45, 1.0), (40, 0.45, 1.1), (40, 0.40, 0.9)]
+
+
+def probe_test(smoke: bool) -> int:
+    """The probe settings on the test files without any new selection: the complex gain is fitted on the same 2
+    validation files as in the probe; exact filters and the honest lengths (255 step, 401 D_total)."""
+    from .runner import default_files
+    from .window_data import load_fileset, resolve_paths, split_files
+
+    probe_files = split_files()["validation"][:2]
+    pr = load_fileset(resolve_paths(probe_files))
+    test = load(smoke, ("test",))["test"]
+    power = float(np.mean(np.abs(pr.rx_c) ** 2))       # the probe normalized by its own files
+    rows = []
+    for ns, g, mult in PROBE[:2] if smoke else PROBE:
+        for step_len, total_len in ((None, None), (255, 401)):
+            zp = dbpx(pr.rx_c, ns, g, mult, 1.0, None, power, step_len, total_len)
+            a = gain(zp, pr.tx_c)
+            mp = metrics(zp, pr.tx_c, pr.rx_c, a)
+            zt = dbpx(test.rx_c, ns, g, mult, 1.0, None, power, step_len, total_len)
+            mt = metrics(zt, test.tx_c, test.rx_c, a)
+            rows.append({"n_steps": ns, "g": g, "mult": mult, "filters": "exact" if step_len is None else "FIR 255 / 401",
+                         "probe_files": ";".join(probe_files), "probe_reduction_trim": mp["reduction_trim"],
+                         "test_reduction_trim": mt["reduction_trim"], "test_reduction_c31": mt["reduction_c31"],
+                         "test_q2_gain_trim": mt["q2_gain_trim"], "test_ber_trim": mt["ber_trim"],
+                         "test_raw_trim": mt["raw_trim"], "n_test_files": test.n_files})
+            print(rows[-1], flush=True)
+    pd.DataFrame(rows).to_csv(results_dir(smoke) / "probe_test.csv", index=False)
+    return 0
+
+
 def env_int(name: str, default: int) -> int:
     value = os.environ.get(name, "")
     return int(value) if value.isdigit() else default
@@ -590,6 +623,8 @@ def main(argv: list[str]) -> int:
         from .gate import jobs_now
 
         return start(smoke, env_int("JOBS", 1 if smoke else jobs_now(total=True)[0]))
+    if action == "probe_test":
+        return probe_test(smoke)
     if action == "plan":
         tasks = plan_train(smoke)
         print(f"{len(tasks)} прогонов")

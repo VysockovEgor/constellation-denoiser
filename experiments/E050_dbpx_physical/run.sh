@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # E050: DBP-X (whole-line dispersion added back, then Ns x [linear step, Kerr phase]). Usage: bash experiments/E050_dbpx_physical/run.sh <stage>
-# Stages: unittest | start | control | train | ref | summarize | all | smoke | plan | estimate
+# Stages: unittest | start | probe-test | control | train | ref | summarize | all | smoke | plan | estimate
 set -euo pipefail
 EXP=E050
 EXP_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -14,6 +14,7 @@ if rc_is_common "$stage"; then rc_common "$@"; exit 0; fi
 case "$stage" in
   unittest) dbpx unittest ;;
   start) dbpx start ;;
+  probe-test) dbpx probe_test ;;
   control) rc_runner control --no-control-gate; rc_common check-control ;;
   train) dbpx train ;;
   ref) rc_runner ref ;;

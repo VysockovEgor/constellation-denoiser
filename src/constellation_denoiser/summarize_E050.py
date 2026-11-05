@@ -89,6 +89,21 @@ def main() -> int:
                    .groupby("n_steps")}
         st = start[start.sign == start.n_steps.map(sign_of)].copy()
         st.to_csv(res / "start_table.csv", index=False)
+        sat = []                                   # saturation over Ns: empirical ceiling, not a measured limit
+        for kind, part in st.groupby("alpha_kind"):
+            part = part.sort_values("n_steps")
+            col = "test_honest_reduction_trim" if "test_honest_reduction_trim" in part else "test_reduction_trim"
+            for _, r in part[part.n_steps.isin([10, 16, 20, 40, 80])].iterrows():
+                prev = part[part.n_steps < r.n_steps]
+                sat.append({"alpha_kind": kind, "n_steps": int(r.n_steps), "test_exact": r.test_reduction_trim,
+                            "test_honest": r.get("test_honest_reduction_trim"), "rm_project": r.get("rm_project"),
+                            "rm_xiao": r.get("rm_xiao"),
+                            "gain_over_previous_pp": r[col] - prev.iloc[-1][col] if len(prev) else np.nan})
+            best = part.loc[part.val_mse_trim.idxmin()]
+            sat.append({"alpha_kind": kind, "n_steps": "best by validation", "test_exact": best.test_reduction_trim,
+                        "test_honest": best.get("test_honest_reduction_trim"),
+                        "note": "эмпирический потолок по сетке Ns <= 80 (без обучения), не измеренный предел"})
+        pd.DataFrame(sat).to_csv(res / "saturation.csv", index=False)
         for _, r in st.iterrows():
             if "rm_xiao" not in r or pd.isna(r.get("rm_xiao")) or not len(win_g):
                 continue
