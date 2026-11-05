@@ -29,6 +29,12 @@ def offaxis_terms(M: int) -> list[tuple[int, int]]:
     return [(m, n) for m, n in triplet_terms(M, "T3") if m != 0 and n != 0]
 
 
+def offaxis_box(M: int) -> list[tuple[int, int]]:
+    """E051: off-axis merged terms (m <= n, m, n != 0) of the box max(|m|, |n|) <= M (the domain of the cross rule
+    S = {min(|m|, |n|) <= K, max(|m|, |n|) <= L} of Xiao 2025); T_mn = T_nm, so m <= n."""
+    return [(m, n) for m in range(-M, M + 1) for n in range(m, M + 1) if m != 0 and n != 0]
+
+
 def kerr_rm(n_c: int, L: int) -> float:
     return 4 * L + 2 + (n_c + 1) / 2 + 4
 
@@ -76,6 +82,15 @@ class Kerr:
         phi = F.conv1d(power, alpha, padding=self.r).squeeze(1)
         return u, u * torch.exp(-1j * phi)
 
+    def rotation(self, theta: torch.Tensor, x: torch.Tensor) -> tuple[torch.Tensor, torch.Tensor]:
+        """(u, exp(-i phi)): E051 A-M form v = (u + T(u) C) exp(-i phi(u)) (Liang, Kumar 2014)."""
+        u, y = self.apply(theta, x)
+        half = theta[2 * self.L:]
+        alpha = torch.cat((half[1:].flip(0), half)).view(1, 1, -1)
+        power = (u.real.square() + u.imag.square()).unsqueeze(1)
+        phi = F.conv1d(power, alpha, padding=self.r).squeeze(1)
+        return u, torch.exp(-1j * phi)
+
 
 def ridge(A: torch.Tensor, r: torch.Tensor, lam: float) -> torch.Tensor:
     G = A.conj().T @ A
@@ -88,12 +103,14 @@ def centre_mask(n: int, length: int) -> slice:
 
 
 def fit_theta(arch: str, mode: str, x: torch.Tensor, s: torch.Tensor, M: int, L: int, n_c: int, iters: int = 60,
-              lam: float = 1e-4) -> tuple[torch.Tensor, np.ndarray | None]:
-    """theta on the subsample (F files); for A2/seq also the closed-form C on the subsample."""
+              lam: float = 1e-4, terms=None) -> tuple[torch.Tensor, np.ndarray | None]:
+    """theta on the subsample (F files); for A2/seq also the closed-form C on the subsample.
+    arch LK (E051): v = (u + T(u) C) exp(-i phi(u)); varpro: C by ridge on the rotated features."""
     kerr = Kerr(L, n_c)
     theta = kerr.init().requires_grad_(True)
     sl = slice(EDGE + M, x.shape[1] - EDGE - M)
-    terms = offaxis_terms(M) if arch != "A3full" else triplet_terms(M, "T3")
+    if terms is None:
+        terms = offaxis_terms(M) if arch != "A3full" else triplet_terms(M, "T3")
     c_fixed = None
     if arch == "A2":                                   # ridge on the raw residual first (seq only)
         A = features(x, terms)[:, sl].reshape(-1, len(terms))
@@ -104,6 +121,11 @@ def fit_theta(arch: str, mode: str, x: torch.Tensor, s: torch.Tensor, M: int, L:
     A_fixed = features(x, terms)[:, sl].reshape(-1, len(terms)) if arch in ("A3", "A3full") else None
 
     def loss_fn():
+        if arch == "LK" and mode == "varpro":
+            u, rot = kerr.rotation(theta, x_in)
+            A = (features(u, terms) * rot.unsqueeze(-1))[:, sl].reshape(-1, len(terms))
+            r = (s - u * rot)[:, sl].reshape(-1)
+            return (r - A @ ridge(A, r, lam)).abs().square().mean()
         u, y = kerr.apply(theta, x_in)
         if arch in ("A1", "A3", "A3full") and mode == "varpro":
             if arch == "A1":

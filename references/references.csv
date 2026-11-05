@@ -1,0 +1,11 @@
+key,authors,year,venue,id,read_status,used_for,notes
+bogdanov2021,"Bogdanov, Sidelnikov et al.",2021,unknown,source_papers/Bogdanov_341.pdf,full text,"complex MLP equalizer (E005-E019); Rs = 32 GBd, beta2 = -21 ps^2/km (E049, E050)",link parameters из литературы; на генераторе не проверены (E050: multiplier of c_total chosen on validation)
+liang_kumar2014,"Liang, Kumar",2014,"Opt. Express 22(24), 29733",unknown,full text (по пересказу задания E050),"strict A-M one-stage model (E051), multi-stage A-M; reference numbers only for order of magnitude","1 ch, 1 pol, 28 GBd, 32-QAM, 40x80 km SSMF; eq. 24-32: phi from X_{0,n}, da_IFWM from X_{m,n}, m,n != 0; v = (h - da(h)) exp(-i phi(h))"
+xiao2025,"Xiao et al.",2025,"Opt. Express 33(12), 24448",unknown,full text (по пересказу задания E050),"DBP-X form (D_total + Ns x [linear, SNSE]), cross rule, two-stage training with L_D, RM formulas C_conv(k) (E050, E051)","3 WDM ch, 80 GBd, 2 pol, 16QAM, 25x80 km; best K = 0 or 1; two stages: Q 8.29 vs 8.03 dB"
+luo_soman_lampe2023,"Luo, Soman, Lampe",2023,arXiv:2211.10789,arXiv:2211.10789,partly (section III AM model),A-M model background,unknown
+liang_downie_hurley2017,"Liang, Downie, Hurley",2017,unknown,unknown,abstract only,background,unknown
+fan2012,Fan et al.,2012,unknown,unknown,summary only,purely imaginary axial coefficients (cited by Xiao 2025),"checked on our data in E044: |Re C|/|C| on the axes median 1.0-1.6 %"
+shulkind_nazarathy2012,"Shulkind, Nazarathy",2012,unknown,unknown,summary only,background,unknown
+han2025,Han et al.,2025,unknown,unknown,summary only,background,unknown
+meng2025,Meng et al.,2025,unknown,unknown,summary only,background,unknown
+srivallapanondh2025,Srivallapanondh et al.,2025,unknown,unknown,summary only,background,unknown

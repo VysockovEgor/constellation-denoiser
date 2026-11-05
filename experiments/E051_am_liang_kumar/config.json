@@ -1,0 +1,160 @@
+{
+ "data_manifest_sha256": "cb5f2de47145c02d6485969ce116df2253a271c979a927452ea454551a48c0a8",
+ "split_source": "experiments/E004_training_file_curve/config.json (train_pool_files[:30], validation 45, test 45), as E007-E019",
+ "dataset_root": "data/raw/archive",
+ "n_train_files": 30,
+ "seeds": [
+  17,
+  29,
+  43,
+  57,
+  71
+ ],
+ "replicas": [
+  17,
+  29,
+  43,
+  57,
+  71
+ ],
+ "replica_rule": "replica r: numpy default_rng(r) bootstrap of the 30 train files (counts in the closed form; theta on the first n_sub distinct drawn files); validation and test fixed",
+ "fir_len": 7,
+ "n_sub": 4,
+ "lbfgs_iters": 60,
+ "theta_lambda": 0.0001,
+ "K": [
+  8,
+  16,
+  32,
+  64,
+  128
+ ],
+ "K_th": [
+  1,
+  2,
+  4,
+  8,
+  16
+ ],
+ "split_seeds": [
+  101,
+  202,
+  303
+ ],
+ "base_lr": {
+  "peak_lr": 0.001,
+  "schedule": "const",
+  "warmup": 0,
+  "c_mult": 1.0,
+  "floor_frac": 0.1,
+  "optimizer": "adam",
+  "weight_decay": 0.0
+ },
+ "ckpt_every": 10000,
+ "eval_rule": "validation and (report-only) test every max(500, steps/40) steps; selection only by validation",
+ "control": {
+  "runs": {
+   "a_const_1e-3_20k": {
+    "spec": {
+     "model": "complex_a",
+     "window": 31,
+     "hidden": 48,
+     "name": "complex_a"
+    },
+    "n_train_files": 30,
+    "steps": 20000
+   }
+  },
+  "targets": {
+   "a_const_1e-3_20k": {
+    "target": 62.191,
+    "tol": 0.7,
+    "seeds": [
+     17,
+     29
+    ],
+    "metric": "test_reduction_valbest_select",
+    "source": "experiments/E009_kerr_ablation/results/complex_mlp_ablation_summary.csv (variant a); reproduced in E010-E019 (62.19)"
+   }
+  }
+ },
+ "lambda_grid": [
+  1e-08,
+  1e-06,
+  0.0001,
+  0.001,
+  0.01,
+  0.1
+ ],
+ "experiment_id": "E051",
+ "title": "Strict additive-multiplicative (A-M) one-stage reference of Liang, Kumar 2014 against A1 / A3 of E046",
+ "date": "not run",
+ "base_git_commit": "(this commit; branch exp/E044-E047)",
+ "question": "Does the strict A-M form v = (u + T(u) C) exp(-i phi(u)) (phase and off-axis sum from the same u, in parallel) give more than A1 (Kerr, then triplets of the Kerr output) and A3 (Kerr + triplets of x) at the same RM and the same off-axis terms? Which pruning is better at a fixed Kerr: the cross min(|m|,|n|) <= K or the hyperbola |mn| <= K_th (and magnitude)?",
+ "model": {
+  "LK": "u = FIR7(x); v = (u + T(u) C) exp(-i phi(u)), phi = sum_j alpha_j |u_{k+j}|^2 (alpha symmetric, N_c taps); C over off-axis merged terms (m <= n, m, n != 0) of the box max(|m|,|n|) <= M (из литературы: Liang, Kumar 2014 eq. 24-32; cross rule: Xiao 2025)",
+  "A1": "y = Kerr(x); y + T(y) C (E046)",
+  "A3": "Kerr(x) + T(x) C (E046)",
+  "controls": "T (all T3 terms + FIR7, closed form), K (Kerr alone)",
+  "fir_note": "Liang's stage input h is the signal after the stage dispersion removal (here: after CDC); FIR7 as in E046 for every arch, so the comparison is at the same linear part"
+ },
+ "domain": "box",
+ "M": [
+  5,
+  8
+ ],
+ "n_c": [
+  7,
+  31
+ ],
+ "smoke_M": [
+  3
+ ],
+ "smoke_nc": [
+  7
+ ],
+ "cross_K": [
+  1,
+  2,
+  3,
+  5
+ ],
+ "arch_modes": [
+  [
+   "LK",
+   "varpro"
+  ],
+  [
+   "LK",
+   "seq"
+  ],
+  [
+   "A1",
+   "varpro"
+  ],
+  [
+   "A3",
+   "varpro"
+  ]
+ ],
+ "coef_ways": {
+  "varpro": "theta (FIR, alpha) by L-BFGS on 4 files with C eliminated by ridge (variable projection, as E046), then C in closed form on 30 files",
+  "seq": "Kerr alone by L-BFGS, then ridge for C on the rotated features (the 'ridge' way of the task)"
+ },
+ "rm": "repository convention: Kerr 4L + 2 + (N_c+1)/2 + 4, 12 per off-axis term; LK computes (u + T(u) C) first and rotates once, so it costs the same as A1 (no extra product)",
+ "axial_imag_check": "E044: |Re C|/|C| on the axes median 1.0-1.6 % (experiments/E044_triplet_audit); LK has real alpha by construction",
+ "rule_draft": {
+  "lk_vs_a1": "LK beats A1 (or A3) if, at the same (M, N_c, set) and the same or lower RM, mean test difference over 5 replicas > 2 SE AND > 2 std (larger of the two); on the best configuration by validation also on the 3 E023 splits (same sign on all 3)",
+  "pruning": "cross beats the hyperbola if at equal number of terms (nearest K) the test reduction is higher by > 2 SE and > 2 std; otherwise 'не доказано'",
+  "otherwise": "не доказано",
+  "limits": "one channel, one polarization, 1 sps, 5 bootstrap replicas of the train files (closed form, not training seeds), one stage only"
+ },
+ "value_filter": {
+  "changes_next_step": "yes: a signal makes LK the one-stage form in task 4 (DBP-X + off-axis per step)",
+  "answered_in_literature": "structure yes (Liang, Kumar 2014; Xiao 2025), not on our data",
+  "needed_for_main_claim": "yes: novelty is not claimed; the question is which form to use",
+  "cheaper_without_training": "closed form + L-BFGS on 4 files"
+ },
+ "decision_if_positive": "LK replaces A1 as the one-stage reference",
+ "decision_if_negative": "A1 stays; LK is reported as equivalent"
+}

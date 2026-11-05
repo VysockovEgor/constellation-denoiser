@@ -23,7 +23,7 @@ import pandas as pd
 import torch
 
 from .core import BIT_TABLE, CONSTELLATION
-from .kerr_offaxis import EDGE, LAMBDAS, Kerr, features, fit_theta, kerr_rm, offaxis_terms
+from .kerr_offaxis import EDGE, LAMBDAS, Kerr, features, fit_theta, kerr_rm, offaxis_box, offaxis_terms
 from .q2 import q2_db
 from .runner import atomic_write_json, default_files, exp_dir, git_commit, results_root
 from .triplets import triplet_terms
@@ -67,7 +67,10 @@ def linear_features(x: torch.Tensor, L: int) -> torch.Tensor:
     return torch.stack([shift(x, l) for l in range(-half, half + 1)], dim=-1)
 
 
-def job_terms(arch: str, M: int) -> list[tuple[int, int]]:
+def job_terms(arch: str, M: int, domain: str = "T3") -> list[tuple[int, int]]:
+    """domain "box" (E051): off-axis terms of max(|m|, |n|) <= M for A1 / A3 / LK (the cross rule domain)."""
+    if domain == "box" and arch in ("A1", "A3", "LK"):
+        return offaxis_box(M)
     if arch == "K":
         return []
     return triplet_terms(M, "T3") if arch in ("T", "A3full") else offaxis_terms(M)
@@ -82,7 +85,7 @@ def run_job(arch: str, mode: str, M: int, n_c: int, replica: int, config: dict, 
     draw = rng.integers(0, n_files, n_files)
     counts = np.bincount(draw, minlength=n_files)
     sub = list(dict.fromkeys(draw.tolist()))[: config["n_sub"]]
-    terms = job_terms(arch, M)
+    terms = job_terms(arch, M, config.get("domain", "T3"))
     kerr = Kerr(config["fir_len"], n_c)
     theta, c_a2 = (None, None)
     lam_fit = config["theta_lambda"]
@@ -93,7 +96,8 @@ def run_job(arch: str, mode: str, M: int, n_c: int, replica: int, config: dict, 
             theta, c_a2 = fit_theta("A2", "seq", x_sub, s_sub, M, config["fir_len"], n_c, config["lbfgs_iters"], lam_fit)
         else:
             theta, _ = fit_theta(arch if arch != "K" else "A3", mode if arch != "K" else "seq", x_sub, s_sub, M,
-                                 config["fir_len"], n_c, config["lbfgs_iters"], lam_fit)
+                                 config["fir_len"], n_c, config["lbfgs_iters"], lam_fit,
+                                 terms if arch in ("A1", "A3", "LK") else None)
     sl = slice(EDGE + M, xtr.shape[1] - EDGE - M)
 
     def parts(x):
@@ -108,6 +112,9 @@ def run_job(arch: str, mode: str, M: int, n_c: int, replica: int, config: dict, 
             return y, features(y, terms)
         if arch in ("A3", "A3full"):
             return kerr.apply(theta, x)[1], features(x, terms)
+        if arch == "LK":                                      # E051: (u + T(u) C) exp(-i phi(u))
+            u, rot = kerr.rotation(theta, x)
+            return u * rot, features(u, terms) * rot.unsqueeze(-1)
         return x, features(x, terms)                          # A2: correction first, Kerr later
 
     p = len(terms) + (FIR if arch == "T" else 0)
@@ -153,6 +160,10 @@ def run_job(arch: str, mode: str, M: int, n_c: int, replica: int, config: dict, 
             sel = [i for i, (m, n) in enumerate(terms) if abs(m * n) <= k_th]
             if 0 < len(sel) < len(terms):
                 sets.append((f"geo_Kth{k_th}", len(sel), sel + extra))
+        for k in config.get("cross_K", []):                   # E051: Xiao cross min(|m|, |n|) <= K inside the box
+            sel = [i for i, (m, n) in enumerate(terms) if min(abs(m), abs(n)) <= k]
+            if sel:
+                sets.append((f"cross_K{k}", len(sel), sel + extra))
     sets.append(("none", 0, extra))                            # K = 0: Kerr alone (or FIR alone for T)
     coefs = torch.stack([solve(idx, lam) for _, _, idx in sets for lam in LAMBDAS], dim=1)
     result = {}
