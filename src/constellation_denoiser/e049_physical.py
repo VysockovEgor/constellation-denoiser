@@ -44,18 +44,24 @@ def physical_taps(c: float, L: int, n_fft: int = N_FFT) -> tuple[np.ndarray, flo
     return window, float(np.sum(np.abs(window) ** 2) / np.sum(np.abs(h) ** 2))
 
 
+_BANK: dict = {}
+
+
+def bank(L: int, grid: np.ndarray) -> np.ndarray:
+    """Physical taps for every c of the grid, shape (len(grid), L); cached per (L, grid)."""
+    key = (L, len(grid), float(grid[0]), float(grid[-1]))
+    if key not in _BANK:
+        _BANK[key] = np.stack([physical_taps(c, L, 2048)[0] for c in grid])
+    return _BANK[key]
+
+
 def fit_c(h: np.ndarray, grid: np.ndarray) -> tuple[float, float]:
-    """Best c on the grid and r2 = 1 - residual share (complex scale a fitted for every c)."""
-    L = len(h)
-    norm = np.vdot(h, h).real
-    best = (np.nan, -np.inf)
-    for c in grid:
-        p, _ = physical_taps(c, L, 2048)
-        a = np.vdot(p, h) / np.vdot(p, p)
-        r2 = 1 - np.vdot(h - a * p, h - a * p).real / norm
-        if r2 > best[1]:
-            best = (float(c), float(r2))
-    return best
+    """Best c on the grid and r2 = 1 - residual share (complex scale a fitted for every c), vectorized."""
+    P = bank(len(h), grid)
+    a = (P.conj() @ h) / np.sum(np.abs(P) ** 2, axis=1)
+    resid = np.sum(np.abs(h[None, :] - a[:, None] * P) ** 2, axis=1) / np.vdot(h, h).real
+    i = int(np.argmin(resid))
+    return float(grid[i]), float(1 - resid[i])
 
 
 def full_taps(state: dict, k: int, sym: bool) -> np.ndarray | None:
