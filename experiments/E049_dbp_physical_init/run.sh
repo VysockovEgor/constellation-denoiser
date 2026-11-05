@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # E049: DBP physical initialization. Usage: bash experiments/E049_dbp_physical_init/run.sh <stage>
-# Stages: calib (fit c on trained DBP checkpoints) | control | main | summarize | all | smoke | plan | estimate
+# Stages: calib (fit c on trained DBP checkpoints) | alpha_width | start_ber | control | main | summarize | all | smoke | plan | estimate
 set -euo pipefail
 EXP=E049
 EXP_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -11,6 +11,8 @@ stage="${1:-}"
 if rc_is_common "$stage"; then export PLACEHOLDER_SELECTION=1; rc_common "$@"; exit 0; fi
 case "$stage" in
   calib) rc_run calib "$PYTHON" -u -m constellation_denoiser.e049_physical calib ;;
+  alpha_width) rc_run alpha_width "$PYTHON" -u -m constellation_denoiser.e049_physical alpha_width ;;
+  start_ber) rc_run start_ber "$PYTHON" -u -m constellation_denoiser.e049_physical start_ber ;;
   control) rc_runner control --no-control-gate; rc_common check-control ;;
   main) rc_runner main ;;
   summarize) rc_run summarize "$PYTHON" -m constellation_denoiser.summarize_E049 ;;
