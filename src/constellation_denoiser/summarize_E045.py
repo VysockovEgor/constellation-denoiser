@@ -3,7 +3,9 @@
     PYTHONPATH=src python -m constellation_denoiser.summarize_E045
 
 Families: linear FIR (E022), DBP (E018/E025/E028), Kerr with memory = PhysKerr (E016/E025), full one-step triplets
-(E031/E034/E036, closed form), DBP + selected triplets (E038), cascade of triplet stages (E040, if summarized).
+(E031/E034/E036, closed form), DBP + selected triplets (E038), cascade of triplet stages (E040: stopped incomplete, not included),
+real tanh MLP (E025 F10: window 31, one hidden layer of 100, 200k steps; E032 F11: window 31, two hidden layers of 96,
+1M steps).
 Points: mean and std over training seeds (bootstrap replicas for closed form) on the E004 split; for each family the
 Pareto points chosen by validation. Writes results/references.csv, results/references_pareto.csv and
 figures/E045_references_vs_rm.png. Repository RM convention only (other conventions: E039/E043, not mixed here).
@@ -14,6 +16,7 @@ from __future__ import annotations
 import os
 import sys
 
+import numpy as np
 import pandas as pd
 
 from .pareto_v2 import envelope, load_tables, points
@@ -22,7 +25,13 @@ from .runner import exp_dir, results_root
 
 FAMILIES = {"linear FIR": "1 linear (FIR)", "DBP": "2 DBP", "PhysKerr": "3 Kerr with memory (PhysKerr)",
             "PB-NLC (triplets)": "4 full triplets (one step)", "cascade": "5 cascade of triplet stages",
-            "DBP + triplets": "DBP + selected triplets (E038)"}
+            "DBP + triplets": "DBP + selected triplets (E038)", "real MLP (tanh)": "6 real MLP, tanh (E025 F10, E032 F11)"}
+
+# real-valued tanh MLP references on [Re, Im] of the window (repository RM: 2 W h (+ h^2) + 2 h, tanh 0 RM)
+REAL_MLP = [("E025", {"e025_config": "F10_ref_current", "steps": 200000},
+             "E025 · F10 · окно 31 (62 входа), 1 скрытый слой × 100, tanh · 200k шагов"),
+            ("E032", {"variant": "real_F11", "steps": 1000000},
+             "E032 · F11 · окно 31 (62 входа), 2 скрытых слоя × 96, tanh · 1M шагов")]
 
 
 def triplet_points() -> pd.DataFrame:
@@ -67,6 +76,27 @@ def table_points(exp: str, family: str, keys: list[str]) -> pd.DataFrame:
     return g.assign(family=family, source=exp)
 
 
+def real_mlp_points() -> pd.DataFrame:
+    rows = []
+    for exp, where, label in REAL_MLP:
+        path = exp_dir(exp) / "results" / "runs_table.csv"
+        if not path.is_file():
+            continue
+        r = pd.read_csv(path)
+        for key, value in where.items():
+            r = r[r[key] == value]
+        if r.empty:
+            continue
+        raw = r.raw_ber.median()
+        q2 = [q2_db(raw * (1 - t / 100)) - q2_db(raw) for t in r.test_reduction_valbest_select]
+        t = r.test_reduction_valbest_select
+        rows.append({"family": "real MLP (tanh)", "source": exp, "label": label, "rm": r.macs_per_symbol_merged.iloc[0],
+                     "n_seeds": r.seed.nunique(), "val_mean": r.best_val_reduction.mean(), "test_mean": t.mean(),
+                     "test_std": t.std(), "test_min": t.min(), "test_max": t.max(), "q2_mean": float(np.mean(q2)),
+                     "q2_std": float(np.std(q2, ddof=1))})
+    return pd.DataFrame(rows)
+
+
 def main(argv: list[str]) -> int:
     smoke = os.environ.get("SMOKE", "0") == "1"
     directory = exp_dir("E045")
@@ -77,7 +107,8 @@ def main(argv: list[str]) -> int:
     pts = points(load_tables())
     pts = pts[pts.family.isin(["linear FIR", "DBP", "PhysKerr"])]
     frames = [pts.assign(label=pts.label), triplet_points(), table_points("E038", "DBP + triplets", ["variant"]),
-              table_points("E040", "cascade", ["variant", "stage"])]
+              real_mlp_points()]
+    # E040 (cascade) was stopped at 79 of 322 runs (1-2 seeds, LOG 2026-11-05): not part of the reference table
     refs = pd.concat([f for f in frames if len(f)], ignore_index=True, sort=False)
     refs["reference"] = refs.family.map(FAMILIES)
     cols = ["reference", "family", "label", "rm", "n_seeds", "val_mean", "test_mean", "test_std", "test_min", "test_max",
@@ -105,6 +136,10 @@ def plot(pareto: pd.DataFrame, figures) -> None:
             ax.set_xscale("log")
             ax.set_xlabel("real multiplies per symbol (repository convention)")
             ax.set_ylabel(label + " (mean +- std over seeds)")
+    real = pareto[pareto.family == "real MLP (tanh)"]
+    for _, r in real.iterrows():              # sizes of the window and the layers on the plot
+        axes[0].annotate(r.label.split(" · ")[2].replace(" (62 входа)", ""), (r.rm, r.test_mean), fontsize=6,
+                         xytext=(4, -10), textcoords="offset points")
     axes[0].legend(fontsize=7)
     fig.suptitle("Phase 1: reference families, Pareto points by validation")
     fig.tight_layout()
