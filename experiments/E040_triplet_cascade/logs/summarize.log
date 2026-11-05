@@ -1,0 +1,4 @@
+=== 2026-11-05T19:11:37+07:00 E040 summarize: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/.venv/bin/python -m constellation_denoiser.summarize_E040 ===
+JOBS=auto THREADS=auto DEVICE=auto SEEDS=default SMOKE=0 FORCE=0
+E040: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E040_triplet_cascade/results/cascade_summary.csv; каскад лучше: False
+=== 2026-11-05T19:11:53+07:00 E040 summarize exit=0 ===

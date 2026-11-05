@@ -1,0 +1,5 @@
+hypothesis,value,verdict,detail,rule_status
+6000 RM: каскад лучше одношаговых триплетов,,не доказано,нет точки каскада или одношаговой в окне уровня,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+12000 RM: каскад лучше одношаговых триплетов,,не доказано,нет точки каскада или одношаговой в окне уровня,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+18000 RM: каскад лучше одношаговых триплетов,,не доказано,нет точки каскада или одношаговой в окне уровня,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+каскад лучше одношаговых на 2 из 3 уровней,0.0,не доказано,"порог max(1.5, 2 × разброс контроля 0.35)",DRAFT: to be confirmed by the user before the first run; must not change after results are seen

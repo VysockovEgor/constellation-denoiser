@@ -1,0 +1,7 @@
+{
+  "cascade_better": false,
+  "levels_won": 0,
+  "threshold_pp": 1.5,
+  "rule": "the cascade beats the one-step triplets at RM level K (6k, 12k, 18k; RM within +-5 %) if its test BER reduction is higher by >= max(1.5 p.p., 2 x the seed spread of this experiment's control) and the min-max intervals over seeds do not overlap, on at least 2 of 3 levels; otherwise not distinguishable",
+  "next": "E041 waits for the author's decision (results/gate_e040_decision.json)"
+}
