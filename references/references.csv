@@ -9,3 +9,6 @@ shulkind_nazarathy2012,"Shulkind, Nazarathy",2012,unknown,unknown,summary only,b
 han2025,Han et al.,2025,unknown,unknown,summary only,background,unknown
 meng2025,Meng et al.,2025,unknown,unknown,summary only,background,unknown
 srivallapanondh2025,Srivallapanondh et al.,2025,unknown,unknown,summary only,background,unknown
+xiao2025_property7,"Xiao et al.",2025,"Opt. Express 33(12), 24448",unknown,Property 7 (по пересказу задания E053),"one-stage chirp form C_mn ~ exp(i m n / eta) / eta * max(1 - (|m|+|n|)/(2 pi eta), 0) (E053 H1)","units of eta and the triangle width not checked (E053: fitted W/(2 pi |eta|) = 0.17-0.5)"
+kozulin_redyuk2021,"Kozulin, Redyuk",2021,unknown,unknown,summary only,background (E053),unknown
+redyuk2025_pbdbp,"Redyuk et al.",2025,"Optics Continuum 4(12), 2896",source_papers/optcon-4-12-2896.pdf,"full text (sec. 3.3.3, 4.4 read for E053)","PB-DBP; reuse of double products (sec. 3.3.3, eq. 12-13); 'potential for further optimization ... through efficient computation of triplets' (sec. 4.4, p. 2908) without an algorithm","2000 km, 31.6 GBaud DP-QPSK experiment"

@@ -1,0 +1,131 @@
+{
+ "data_manifest_sha256": "cb5f2de47145c02d6485969ce116df2253a271c979a927452ea454551a48c0a8",
+ "split_source": "experiments/E004_training_file_curve/config.json (train_pool_files[:30], validation 45, test 45), as E007-E019",
+ "dataset_root": "data/raw/archive",
+ "n_train_files": 30,
+ "replicas": [
+  17,
+  29,
+  43,
+  57,
+  71
+ ],
+ "replica_rule": "replica r: numpy default_rng(r) bootstrap of the 30 train files (counts in the closed form; theta on the first n_sub distinct drawn files); validation and test fixed",
+ "split_seeds": [
+  101,
+  202,
+  303
+ ],
+ "base_lr": {
+  "peak_lr": 0.001,
+  "schedule": "const",
+  "warmup": 0,
+  "c_mult": 1.0,
+  "floor_frac": 0.1,
+  "optimizer": "adam",
+  "weight_decay": 0.0
+ },
+ "ckpt_every": 10000,
+ "eval_rule": "validation and (report-only) test every max(500, steps/40) steps; selection only by validation",
+ "control": {
+  "runs": {
+   "a_const_1e-3_20k": {
+    "spec": {
+     "model": "complex_a",
+     "window": 31,
+     "hidden": 48,
+     "name": "complex_a"
+    },
+    "n_train_files": 30,
+    "steps": 20000
+   }
+  },
+  "targets": {
+   "a_const_1e-3_20k": {
+    "target": 62.191,
+    "tol": 0.7,
+    "seeds": [
+     17,
+     29
+    ],
+    "metric": "test_reduction_valbest_select",
+    "source": "experiments/E009_kerr_ablation/results/complex_mlp_ablation_summary.csv (variant a); reproduced in E010-E019 (62.19)"
+   }
+  }
+ },
+ "lambda_grid": [
+  1e-08,
+  1e-06,
+  0.0001,
+  0.001,
+  0.01,
+  0.1
+ ],
+ "experiment_id": "E053",
+ "title": "Off-axis triplet table as a sum of S chirps (H1) and its fast evaluation by recurrences (H2)",
+ "date": "not run",
+ "base_git_commit": "(this commit; branch exp/E044-E047)",
+ "seeds": [
+  17,
+  29,
+  43,
+  57,
+  71
+ ],
+ "question": "H1: can the off-axis coefficient table of A1 be replaced by S <= 5 chirps C(m,n) = sum A_s exp(i m n / eta_s) T_s(|m|+|n|) (<= 20 parameters) without losing BER? H2: how many RM does the recurrence evaluation of one chirp cost versus the table?",
+ "bases": {
+  "A1_M8_nc31": "E046 A1 varpro M8 N_c31 (saved theta per replica)",
+  "A1_M11_nc63": "E048 A1 varpro M11 N_c63 (saved theta per replica)"
+ },
+ "variants": {
+  "full": "(i) full table, ridge (reproduces E046/E048)",
+  "none": "(ii) Kerr alone",
+  "chirp_complex": "A_s complex (4 real parameters per chirp with free W)",
+  "chirp_imag": "A_s = i a_s (3 per chirp)",
+  "chirp_joint_imag": "S in (3,5): FIR, alpha, eta, W jointly by L-BFGS on 4 files, A on 30",
+  "random_imag": "(iv) random eta (log-uniform |eta| in [1,50], random sign), W uniform in [2, 4M]",
+  "radial": "(iii) K hat functions of sqrt(m^2+n^2), K in (2,3,5,8,12), 2K real parameters",
+  "lowrank": "(iii) ordered C = sum_{j<=r} u_j v_j^T symmetrized, r in (1,2,3), 4 Q r real parameters (Q = 2M index values; far more than 3S, reported as is)"
+ },
+ "S": [
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  8
+ ],
+ "tuning": {
+  "chirp": "greedy grid eta (60 values, both signs, |eta| in [0.5, 63]) x W (12 values in [2, 50]) per added chirp, then joint L-BFGS-B over all (eta, log W) on the Gram matrix of the 4 theta files; evaluations counted in tuning_evals",
+  "lambda": "6 values (E046 grid) by validation BER for every variant, the same for all",
+  "full": "6 lambda values only (as E046)"
+ },
+ "unit_checks": {
+  "unfold_identity": "random complex data: relative error 2e-16 ... 5e-14 (chirp_triplets.check)",
+  "recurrence": "quadrants A, A' (recurrence) + B (pair table, prefix sums) equal to the direct sum: 3e-16 ... 5e-14, domains T3 and box"
+ },
+ "table_fit_1a": "e053_table_fit on saved tables (middle lambda 1e-4, replica r17): results/table_fit.csv, figures/E053_heatmap_*.png (run locally before the rule: no data, existing coefficients)",
+ "rm": {
+  "project": "table: 12 RM per merged off-axis term + Kerr 4L + 2 + (N_c+1)/2 + 4",
+  "oc_reuse": "Optics Continuum 4(12) 2896 sec. 3.3.3 adapted to one polarization: 8 RM per term + 4 RM per new double product (2M lags)",
+  "fast": "chirp_triplets.rm_fast_chirp: unfold 4, quadrants A/A' 4(K+1) + 6(K-1) each, B 6(2M-1) + 4(2M-1), refold 4, amplitude 4; exp from a table 0 RM (column with the exp computed by a running phasor: +8); additions reported separately"
+ },
+ "rule_draft": {
+  "h1_confirmed": "for one of chirp_complex / chirp_imag / chirp_joint_imag with S <= 5 and <= 20 real parameters: mean test (5 replicas) lower than (i) by less than std(i); both significance rules (2 SE, 2 std) reported",
+  "h1_rejected": "at S = 8 every chirp variant is worse than (i) by more than 2 SE AND more than 2 std",
+  "h1_not_proven": "otherwise",
+  "physical_uniqueness": "chirp_imag beats radial (iii) at the nearest number of parameters by > 2 SE and > 2 std; otherwise the chirp form is only a small-parameter form, not unique",
+  "splits": "the best chirp configuration (by validation) on the 3 E023 splits: the same sign of (chirp - full) on all 3",
+  "stop": "H1 rejected -> task 3 is not run; task 2A is done anyway; 2B only if H1 confirmed or within 2 std of (i)",
+  "limits": "one channel, one polarization, 1 sps, one stage (A1), spread over bootstrap replicas of the train files"
+ },
+ "value_filter": {
+  "changes_next_step": "yes: H1 + H2 make the triplet layer O(S M) instead of O(M^2)",
+  "answered_in_literature": "chirp form: Xiao 2025 Property 7 (one stage); fast evaluation: Optics Continuum 2025 mentions only the potential",
+  "needed_for_main_claim": "yes",
+  "cheaper_without_training": "closed form only"
+ },
+ "decision_if_positive": "2B: recurrence in the best model, RM comparison at 430/820/1200 with DBP (E028), DBP-X (E050), A1",
+ "decision_if_negative": "report as is; the table stays"
+}
