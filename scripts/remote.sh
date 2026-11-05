@@ -48,7 +48,7 @@ BRANCH="${BRANCH:-$(git rev-parse --abbrev-ref HEAD)}"
 REGISTRY=".remote_sessions"
 SSH_OPTS=(-o ControlMaster=auto -o "ControlPath=$HOME/.ssh/cm-%C" -o ControlPersist=1h -o BatchMode=yes
           -o ServerAliveInterval=30)
-SESSION_RE='^(part1|part2|all|e020_(part1|part2|part3|all)|q_(p0|p1|p2|p3|p4|p5|conv|all|y)|q_e039_(p0|p1|p2|p3|p4|all)|q_e044_all|q_e048_all|E0[0-9][0-9])_[0-9]{4}_[0-9]{4}$'
+SESSION_RE='^(part1|part2|all|e020_(part1|part2|part3|all)|q_(p0|p1|p2|p3|p4|p5|conv|all|y)|q_e039_(p0|p1|p2|p3|p4|all)|q_e044_all|q_e048_all|q_e050_all|E0[0-9][0-9])_[0-9]{4}_[0-9]{4}$'
 
 # Server update = fast-forward that never loses server data (expects $BRANCH set before it):
 #  stop if tracked files changed or the server branch has its own commits; untracked files the update
@@ -142,6 +142,11 @@ resolve_job() {
       if [[ "$2" == y ]]; then    # E036 + E037 (closed form) and E038 (DBP + triplets)
         JOB_CMD="bash scripts/overnight_e036_e038.sh"
       fi
+      ;;
+    e050)
+      [[ $# -eq 2 && "$2" == all ]] || die "использование: go e050 all"
+      JOB_STEM="q_e050_all"
+      JOB_CMD="bash scripts/overnight_e050.sh"
       ;;
     e048)
       [[ $# -eq 2 && "$2" == all ]] || die "использование: go e048 all"

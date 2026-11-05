@@ -1,0 +1,192 @@
+{
+ "experiment_id": "E050",
+ "title": "DBP-X: classical DBP with the whole-line dispersion added back (Xiao 2025 form) vs the windowed DBP of E028",
+ "date": "not run",
+ "base_git_commit": "(this commit; branch exp/E044-E047)",
+ "data_manifest_sha256": "cb5f2de47145c02d6485969ce116df2253a271c979a927452ea454551a48c0a8",
+ "data_audit_sha256": "a9c35fb7839e85c39f7131373418a6f3a04c731e9c4e55385347a1eabbdedbe4",
+ "split_source": "experiments/E004_training_file_curve/config.json (train_pool_files[:30], validation 45, test 45), as E007-E019",
+ "split_source_sha256": "04c0b2a5775d8fae1acdc348967c6fb976ef5d90e76a8334484242cc9707025a",
+ "dataset_root": "data/raw/archive",
+ "n_train_files": 30,
+ "question": "(1) Is the DBP of E018/E028 a classical DBP (does the first Kerr see the dispersed signal)? (2) Does DBP-X (D_total, then Ns x [linear step, Kerr phase]) beat the E028 DBP at the same RM: at the start without training and after training (one stage vs two stages of Xiao), with 10 seeds?",
+ "link": {
+  "Rs_GBd": 32,
+  "beta2_ps2_per_km": -21,
+  "length_km": 2000,
+  "source": "из литературы (Bogdanov, Sidelnikov 2021), не проверено на генераторе",
+  "c_step": "c = s * beta2 * (2000 km / Ns) * Rs^2 / 2 (c_total = -21.5 rad); dz = 2000 km / Ns, Ns is defined for the whole link",
+  "c_total_rad": -21.504,
+  "memory_total_symbols": "4 pi |c_total| = 270 (the task text estimated about 135; the formula 2 pi |beta2| Rs^2 L gives 270)",
+  "note": "the multiplier of c_total (0.8-1.2) and the sign are chosen on validation (stage start)"
+ },
+ "edge": {
+  "trim_symbols": 512,
+  "why": "filters act on a whole file as circular convolutions; the files are close to periodic (probe on 8 validation files: 74-85 % at the first/last 256 symbols vs 87 % in the middle, Ns = 40); the main metric uses [512, T-512) and raw BER on the same region; centres of window 31 are reported too"
+ },
+ "gain": "complex output gain a = <tx,tx>/<tx,z> (unbiased); start: fitted on validation (one complex number; selection only by validation), training: least squares on train at the start, then learned",
+ "unit_test": {
+  "exact": "alpha = 0, exact FFT filters: max |out - rx| < 1e-9 and BER equal to raw for Ns in {1, 8, 20, 40, 80}, both signs; hard: no training if it fails",
+  "truncated": "alpha = 0, symmetric FIR(L) steps from the physical taps, then L_D pretraining (Adam 1e-3, 3000 iterations, the state with the lowest L_D kept): trainable only if |BER reduction| <= 2 pp; configs (Ns, L) = (10,31),(20,31),(40,31),(20,15),(40,15),(20,127),(40,127),(20,255),(40,255),(80,255)",
+  "smoke_result": "exact identity holds; L = 31 and 15 fail by -500 ... -3000 % (truncation: the periodic response exp(i c nu^2) has a kink at nu = +-pi, taps decay as 1/n^2 and the error of the Ns equal steps adds coherently - моё предположение, consistent with the probe); L = 255 passes at Ns = 20, 40"
+ },
+ "start": {
+  "n_steps": [
+   1,
+   2,
+   4,
+   8,
+   10,
+   16,
+   20,
+   40,
+   80
+  ],
+  "sign": [
+   1,
+   -1
+  ],
+  "mult": [
+   0.8,
+   0.85,
+   0.9,
+   0.95,
+   1.0,
+   1.05,
+   1.1,
+   1.15,
+   1.2
+  ],
+  "g_coarse": "25 values in [-1.2, 1.2], then 9 around the best",
+  "g": "total nonlinear phase scale: alpha per step = g * shape / (Ns * mean |rx|^2)",
+  "alpha_kinds": {
+   "classical": "delta (classical SPM, R = 1)",
+   "ridge": "R = 7, shape of the symmetrized -Im C_{0,j} of E039 coef_M15 (ridge on the 30 train files), sum normalized to 1"
+  },
+  "choice": "per (Ns, sign, kernel) the minimum validation MSE (trimmed region); test reported at the choice",
+  "honest_length": "at the choice, FIR of a step in {31,63,127,255,511,1023} and D_total in {271,301,351,401,511,1023} (inverse DTFT truncated); honest length = the shortest within 0.5 pp of the exact filter on validation; test with both honest lengths; RM uses them",
+  "zero_alpha": "(a) alpha = 0 is the identity: BER = raw (unit test)"
+ },
+ "train": {
+  "n_steps": [
+   20,
+   40
+  ],
+  "fir_len": [
+   127,
+   255
+  ],
+  "n_alpha": 7,
+  "alpha_init": [
+   "zero",
+   "ridge",
+   "classical"
+  ],
+  "training": {
+   "one": "physical taps, MSE, Adam 1e-3",
+   "two": "physical taps, L_D pretraining (Adam 1e-3, 3000), then MSE with Adam 1e-4 (Xiao)",
+   "delta": "FIR delta, alpha 0 (the E028 initialization in the DBP-X chain), Ns = 20, L = 255 only"
+  },
+  "gate": "only (Ns, L) that pass the truncated unit test",
+  "iters": 5000,
+  "batch": "4 whole train files per iteration, random circular shift, MSE on all symbols",
+  "eval_every": 100,
+  "selection": "checkpoint with the minimum validation MSE (trimmed); test reported there (test_reduction_valbest_select)",
+  "plateau": "first evaluation within 0.5 pp of the best validation reduction",
+  "seeds": [
+   17,
+   29,
+   43,
+   57,
+   71,
+   83,
+   97,
+   101,
+   113,
+   127
+  ],
+  "sign_mult": "per Ns from the classical row of start_best (validation)"
+ },
+ "ref": {
+  "what": "windowed DBP of E028 (window 31, FIR delta, alpha 0, sym), the same recipe as E028 grid a",
+  "n_steps": [
+   20,
+   32
+  ],
+  "fir_len": 31,
+  "n_alpha": 7,
+  "recipe": "F7",
+  "steps": 100000,
+  "n_seeds": 10
+ },
+ "rm": {
+  "project": "direct symmetric FIR 2(L+1) (model_zoo.macs_phys) for D_total and every step, Kerr phase 2 + (R+1)/2 + 4",
+  "xiao": "Xiao 2025: C_conv(k) = 4 min_T T(log2 T + 1)/(T - k + 1); C_conv(D_total) + Ns (C_conv(L) + 2) for R = 1, Ns (C_conv(L) + C_conv(R)/4 + 6) for R > 1",
+  "merged": "xiao with D_total and the first linear step merged (one filter of length k_total + L - 1)",
+  "e028": "project: Ns * macs_phys(R, L, sym) (E028); xiao column for E028: Ns (C_conv(L) + C_conv(R)/4 + 6)"
+ },
+ "control": {
+  "runs": {
+   "a_const_1e-3_20k": {
+    "spec": {
+     "model": "complex_a",
+     "window": 31,
+     "hidden": 48,
+     "name": "complex_a"
+    },
+    "n_train_files": 30,
+    "steps": 20000
+   }
+  },
+  "targets": {
+   "a_const_1e-3_20k": {
+    "target": 62.191,
+    "tol": 0.7,
+    "seeds": [
+     17,
+     29
+    ],
+    "metric": "test_reduction_valbest_select",
+    "source": "experiments/E009_kerr_ablation/results/complex_mlp_ablation_summary.csv (variant a); reproduced in E010-E019 (62.19)"
+   }
+  }
+ },
+ "seeds": [
+  17,
+  29,
+  43,
+  57,
+  71,
+  83,
+  97,
+  101,
+  113,
+  127
+ ],
+ "rule_draft": {
+  "audit": "if the first Kerr of E018/E028/E046 acts on the CDC signal without a dispersion block, write 'DBP E028 это не классический DBP'",
+  "start_signal": "DBP-X at the start (no training) shows a signal against the E028 DBP if its test reduction (honest lengths) exceeds the E028 mean at the nearest RM (xiao column for both) by more than 2 std of E028 (and 2 SE); one start value per config (no seeds), so only the E028 spread enters",
+  "train_signal": "a trained DBP-X arm beats the E028 reference at the same or lower RM if mean test difference > 2 SE (SE = sqrt(s1^2/n1 + s2^2/n2), 10 seeds each) AND > 2 std (max of the two std); one stage vs two stages: the same rule; convergence: plateau iteration, mean over seeds",
+  "not_proven": "otherwise 'не доказано'; literature statements (Xiao: two stages better, K = 0/1 optimum) are only hypotheses on our data",
+  "limits": "one channel, one polarization, 1 sps simulation; files close to periodic, so circular processing is a property of the data; Rs and beta2 from literature (the multiplier is fitted on validation)"
+ },
+ "value_filter": {
+  "changes_next_step": "yes: a signal opens task 4 (DBP-X + off-axis triplets) and replaces E028 as the DBP reference",
+  "answered_in_literature": "structure yes (Xiao 2025, Liang-Kumar 2014); not on our data",
+  "needed_for_main_claim": "yes: the DBP reference of all RM comparisons",
+  "cheaper_without_training": "stage start answers the main question without training"
+ },
+ "decision_if_positive": "E028 is replaced by DBP-X as the DBP reference; task 4 after E051 (A_LK)",
+ "decision_if_negative": "report 'не доказано', keep E028 as the reference",
+ "base_lr": {
+  "peak_lr": 0.001,
+  "schedule": "const",
+  "warmup": 0,
+  "c_mult": 1.0,
+  "floor_frac": 0.1,
+  "optimizer": "adam",
+  "weight_decay": 0.0
+ },
+ "ckpt_every": 10000,
+ "eval_rule": "validation and (report-only) test every max(500, steps/40) steps; selection only by validation"
+}

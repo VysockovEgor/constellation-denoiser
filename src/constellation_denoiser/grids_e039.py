@@ -345,6 +345,31 @@ def e049_tasks(stage: str, options: Options) -> list[dict]:
 BUILDERS["E049"] = e049_tasks
 
 
+# --------------------------------------------------------------------------- E050 (reference: windowed DBP of E028, 10 seeds)
+
+def e050_tasks(stage: str, options: Options) -> list[dict]:
+    """Stage ref: the E028 DBP (window 31, FIR delta, alpha 0, recipe F7) at the Ns of config["ref"], 10 seeds.
+    DBP-X itself is trained by constellation_denoiser.dbpx (not by the runner)."""
+    exp = "E050"
+    directory, config = load_config(exp)
+    if stage == "control":
+        return control_tasks(exp, directory, config, options)
+    if stage != "ref":
+        raise SystemExit(f"E050: неизвестная стадия {stage!r}")
+    ref = config["ref"]
+    lr, _, source = g24.recipe_lr(ref["recipe"], options)
+    tasks = []
+    for ns in ref["n_steps"]:
+        spec = g24.dbp_spec(ns, ref["fir_len"], ref["n_alpha"])
+        for seed in g24.first_seeds(config, options, ref["n_seeds"]):
+            tasks.append(g24.run(exp, stage, directory, config, options, name=spec["name"], spec=spec, lr=lr,
+                                 steps=ref["steps"], seed=seed, meta={"n_steps": ns, "recipe_source": source}))
+    return tasks
+
+
+BUILDERS["E050"] = e050_tasks
+
+
 def _register() -> None:
     from . import grids
 
