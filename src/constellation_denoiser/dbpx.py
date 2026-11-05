@@ -578,6 +578,12 @@ def env_int(name: str, default: int) -> int:
 def main(argv: list[str]) -> int:
     smoke = os.environ.get("SMOKE", "0") == "1"
     action = argv[0] if argv else ""
+    force = os.environ.get("FORCE", "0") == "1"
+    if action in ("unittest", "start") and not force:      # stages run once: the queue does not overwrite results
+        done = results_dir(smoke) / ("unit_test.json" if action == "unittest" else "start_best.csv")
+        if done.is_file():
+            print(f"{done} уже есть: стадия {action} пропущена (FORCE=1 для пересчёта)")
+            return 0
     if action == "unittest":
         return unittest(smoke)
     if action == "start":
