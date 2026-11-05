@@ -32,3 +32,9 @@ JOBS=5 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
 [2026-11-05 10:06:17] polite mode: foreign load 40.1 > 25.0; waiting (checked every 30 s)
 [2026-11-05 10:16:17] polite mode: foreign load 40.0 > 25.0; waiting (checked every 30 s)
 [2026-11-05 10:26:17] polite mode: foreign load 40.1 > 25.0; waiting (checked every 30 s)
+=== 2026-11-05T10:36:49+07:00 E047 main: .venv/bin/python -u -m constellation_denoiser.runner --exp E047 --stage main ===
+JOBS=4 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+[2026-11-05 10:36:53] running 25 tasks with JOBS=4, THREADS=1, DEVICE=cpu
+[2026-11-05 10:36:53] JOBS_ADAPTIVE: число процессов по свободным ядрам, до 48
+[2026-11-05 10:37:02] v1_independent_joint_cos1e-3_200k_seed17: resumed at step 70000
+[2026-11-05 10:37:03] v1_independent_joint_cos1e-3_200k_seed29: resumed at step 10000

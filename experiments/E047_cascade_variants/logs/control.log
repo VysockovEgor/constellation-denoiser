@@ -32,3 +32,7 @@ JOBS=4 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
 [2026-11-05 05:55:43] [ok 2/2] control_complex_a_w31_h48_N30_20k_seed29: val=60.74% test=62.37% diverged=False time=407s; ETA ~0 min
 [2026-11-05 05:55:44] finished: 2 ok, 0 failed
 === 2026-11-05T05:55:45+07:00 E047 control exit=0 ===
+=== 2026-11-05T10:36:20+07:00 E047 control: .venv/bin/python -u -m constellation_denoiser.runner --exp E047 --stage control --no-control-gate ===
+JOBS=5 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+[2026-11-05 10:36:24] nothing to run: all results exist (use FORCE=1 to recompute)
+=== 2026-11-05T10:36:24+07:00 E047 control exit=0 ===

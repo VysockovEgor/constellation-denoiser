@@ -1,0 +1,25 @@
+=== 2026-11-05T10:36:17+07:00 queue e044: host=hocalhost commit=6e445a9 ===
+JOBS=5: {'cores': 48, 'load_1min': 41.8, 'foreign_running_threads': 41.0, 'reserve': 0, 'mem_available_gb': 304.0}
+=== 2026-11-05T10:36:20+07:00 E047_cascade_variants: stage control (control) JOBS=5 ===
+=== 2026-11-05T10:36:20+07:00 E047 control: .venv/bin/python -u -m constellation_denoiser.runner --exp E047 --stage control --no-control-gate ===
+JOBS=5 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+[2026-11-05 10:36:24] nothing to run: all results exist (use FORCE=1 to recompute)
+=== 2026-11-05T10:36:24+07:00 E047 control exit=0 ===
+=== 2026-11-05T10:36:24+07:00 E047 check-control: .venv/bin/python -m constellation_denoiser.runner --exp E047 --stage control --check-control ===
+JOBS=5 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+[2026-11-05 10:36:28] control a_const_1e-3_20k: mean test_reduction_valbest_select = 62.19% по 2 seed; цель 62.191±0.7 п.п. -> OK
+=== 2026-11-05T10:36:29+07:00 E047 check-control exit=0 ===
+JOBS=4: {'cores': 48, 'load_1min': 41.62, 'foreign_running_threads': 41.3, 'reserve': 0, 'mem_available_gb': 300.4}
+=== 2026-11-05T10:36:33+07:00 E047_cascade_variants: stage init (critical) JOBS=4 ===
+=== 2026-11-05T10:36:33+07:00 E047 init: .venv/bin/python -m constellation_denoiser.runner --exp E047 --stage init ===
+JOBS=4 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+[2026-11-05 10:36:45] E047: ridge init of stage 0, 45 terms, lambda 0.1
+=== 2026-11-05T10:36:46+07:00 E047 init exit=0 ===
+JOBS=4: {'cores': 48, 'load_1min': 43.84, 'foreign_running_threads': 41.3, 'reserve': 0, 'mem_available_gb': 301.9}
+=== 2026-11-05T10:36:49+07:00 E047_cascade_variants: stage main (train) JOBS=4 ===
+=== 2026-11-05T10:36:49+07:00 E047 main: .venv/bin/python -u -m constellation_denoiser.runner --exp E047 --stage main ===
+JOBS=4 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+[2026-11-05 10:36:53] running 25 tasks with JOBS=4, THREADS=1, DEVICE=cpu
+[2026-11-05 10:36:53] JOBS_ADAPTIVE: число процессов по свободным ядрам, до 48
+[2026-11-05 10:37:02] v1_independent_joint_cos1e-3_200k_seed17: resumed at step 70000
+[2026-11-05 10:37:03] v1_independent_joint_cos1e-3_200k_seed29: resumed at step 10000
