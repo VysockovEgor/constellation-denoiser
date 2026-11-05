@@ -1,0 +1,8 @@
+=== 2026-11-05T10:55:29+07:00 E048 fit: .venv/bin/python -u -m constellation_denoiser.e046_fit all ===
+JOBS=1 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+[1/60] fit: ('T_closed_M11_nc0_r17', 'ok') (в работе 0, предел 1)
+[2/60] fit: ('A1_varpro_M11_nc31_r17', 'ok') (в работе 0, предел 1)
+[3/60] fit: ('A3_seq_M11_nc31_r17', 'ok') (в работе 0, предел 1)
+[4/60] fit: ('A1_varpro_M11_nc63_r17', 'ok') (в работе 0, предел 1)
+[5/60] fit: ('A3_seq_M11_nc63_r17', 'ok') (в работе 0, предел 1)
+[6/60] fit: ('T_closed_M15_nc0_r17', 'ok') (в работе 0, предел 1)

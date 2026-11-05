@@ -1,0 +1,37 @@
+=== 2026-11-05T10:55:25+07:00 queue e048: host=hocalhost commit=89051de ===
+JOBS=1: {'cores': 48, 'load_1min': 45.3, 'foreign_running_threads': 47.0, 'reserve': 0, 'mem_available_gb': 295.7}
+=== 2026-11-05T10:55:29+07:00 E048_kerr_offaxis_dbp: stage fit (other) JOBS=1 ===
+JOBS=1: {'cores': 48, 'load_1min': 45.3, 'foreign_running_threads': 47.7, 'reserve': 0, 'mem_available_gb': 295.9}
+=== 2026-11-05T10:55:29+07:00 E048 fit: .venv/bin/python -u -m constellation_denoiser.e046_fit all ===
+JOBS=1 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+=== 2026-11-05T10:55:29+07:00 E048_kerr_offaxis_dbp: stage control (control) JOBS=1 ===
+=== 2026-11-05T10:55:29+07:00 E048 control: .venv/bin/python -u -m constellation_denoiser.runner --exp E048 --stage control --no-control-gate ===
+JOBS=1 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+[2026-11-05 10:55:33] running 2 tasks with JOBS=1, THREADS=1, DEVICE=cpu
+[2026-11-05 10:55:33] JOBS_ADAPTIVE: число процессов по свободным ядрам, до 48
+[1/60] fit: ('T_closed_M11_nc0_r17', 'ok') (в работе 0, предел 1)
+[2/60] fit: ('A1_varpro_M11_nc31_r17', 'ok') (в работе 0, предел 1)
+[2026-11-05 11:02:41] [ok 1/2] control_complex_a_w31_h48_N30_20k_seed17: val=59.43% test=60.40% diverged=False time=422s; ETA ~7 min
+[3/60] fit: ('A3_seq_M11_nc31_r17', 'ok') (в работе 0, предел 1)
+[2026-11-05 11:09:48] [ok 2/2] control_complex_a_w31_h48_N30_20k_seed29: val=60.74% test=62.37% diverged=False time=426s; ETA ~0 min
+[2026-11-05 11:09:50] finished: 2 ok, 0 failed
+=== 2026-11-05T11:09:50+07:00 E048 control exit=0 ===
+=== 2026-11-05T11:09:50+07:00 E048 check-control: .venv/bin/python -m constellation_denoiser.runner --exp E048 --stage control --check-control ===
+JOBS=1 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+[2026-11-05 11:09:54] control a_const_1e-3_20k: mean test_reduction_valbest_select = 62.19% по 2 seed; цель 62.191±0.7 п.п. -> OK
+=== 2026-11-05T11:09:55+07:00 E048 check-control exit=0 ===
+JOBS=1: {'cores': 48, 'load_1min': 47.26, 'foreign_running_threads': 47.0, 'reserve': 0, 'mem_available_gb': 294.8}
+=== 2026-11-05T11:09:58+07:00 E048_kerr_offaxis_dbp: stage select (critical) JOBS=1 ===
+=== 2026-11-05T11:09:58+07:00 E048 select: .venv/bin/python -m constellation_denoiser.runner --exp E048 --stage select ===
+JOBS=1 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+[4/60] fit: ('A1_varpro_M11_nc63_r17', 'ok') (в работе 0, предел 1)
+[2026-11-05 11:11:14] E048: 128 внеосевых членов сохранены
+=== 2026-11-05T11:11:15+07:00 E048 select exit=0 ===
+JOBS=1: {'cores': 48, 'load_1min': 47.05, 'foreign_running_threads': 47.0, 'reserve': 0, 'mem_available_gb': 292.4}
+=== 2026-11-05T11:11:19+07:00 E048_kerr_offaxis_dbp: stage main (train) JOBS=1 ===
+=== 2026-11-05T11:11:19+07:00 E048 main: .venv/bin/python -u -m constellation_denoiser.runner --exp E048 --stage main ===
+JOBS=1 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+[2026-11-05 11:11:22] running 50 tasks with JOBS=1, THREADS=1, DEVICE=cpu
+[2026-11-05 11:11:22] JOBS_ADAPTIVE: число процессов по свободным ядрам, до 48
+[5/60] fit: ('A3_seq_M11_nc63_r17', 'ok') (в работе 0, предел 1)
+[6/60] fit: ('T_closed_M15_nc0_r17', 'ok') (в работе 0, предел 1)

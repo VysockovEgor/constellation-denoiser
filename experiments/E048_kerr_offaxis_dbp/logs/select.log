@@ -1,0 +1,4 @@
+=== 2026-11-05T11:09:58+07:00 E048 select: .venv/bin/python -m constellation_denoiser.runner --exp E048 --stage select ===
+JOBS=1 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+[2026-11-05 11:11:14] E048: 128 внеосевых членов сохранены
+=== 2026-11-05T11:11:15+07:00 E048 select exit=0 ===

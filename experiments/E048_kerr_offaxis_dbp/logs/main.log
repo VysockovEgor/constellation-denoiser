@@ -1,0 +1,4 @@
+=== 2026-11-05T11:11:19+07:00 E048 main: .venv/bin/python -u -m constellation_denoiser.runner --exp E048 --stage main ===
+JOBS=1 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+[2026-11-05 11:11:22] running 50 tasks with JOBS=1, THREADS=1, DEVICE=cpu
+[2026-11-05 11:11:22] JOBS_ADAPTIVE: число процессов по свободным ядрам, до 48
