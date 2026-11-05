@@ -9,3 +9,9 @@
 2026-11-05T18:38:25+07:00 E048 идёт и свободных ядер меньше 4: жду
 2026-11-05T18:48:27+07:00 E048 идёт и свободных ядер меньше 4: жду
 2026-11-05T18:58:29+07:00 E048 идёт и свободных ядер меньше 4: жду
+JOBS=24: {'cores': 48, 'load_1min': 52.57, 'foreign_running_threads': 22.0, 'reserve': 0, 'mem_available_gb': 358.4}
+=== 2026-11-05T19:08:34+07:00 E053_chirp_triplets: stage control (control) JOBS=24 ===
+=== 2026-11-05T19:08:34+07:00 E053 control: .venv/bin/python -u -m constellation_denoiser.runner --exp E053 --stage control --no-control-gate ===
+JOBS=24 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+[2026-11-05 19:08:36] running 2 tasks with JOBS=24, THREADS=1, DEVICE=cpu
+[2026-11-05 19:08:36] JOBS_ADAPTIVE: число процессов по свободным ядрам, до 48
