@@ -1,0 +1,122 @@
+{
+ "data_manifest_sha256": "cb5f2de47145c02d6485969ce116df2253a271c979a927452ea454551a48c0a8",
+ "data_audit_sha256": "a9c35fb7839e85c39f7131373418a6f3a04c731e9c4e55385347a1eabbdedbe4",
+ "split_source": "experiments/E004_training_file_curve/config.json (train_pool_files[:30], validation 45, test 45), as E007-E019",
+ "split_source_sha256": "04c0b2a5775d8fae1acdc348967c6fb976ef5d90e76a8334484242cc9707025a",
+ "dataset_root": "data/raw/archive",
+ "n_train_files": 30,
+ "base_lr": {
+  "peak_lr": 0.001,
+  "schedule": "const",
+  "warmup": 0,
+  "c_mult": 1.0,
+  "floor_frac": 0.1,
+  "optimizer": "adam",
+  "weight_decay": 0.0
+ },
+ "ckpt_every": 10000,
+ "eval_rule": "validation and (report-only) test every max(500, steps/40) steps; selection only by validation",
+ "control": {
+  "runs": {
+   "a_const_1e-3_20k": {
+    "spec": {
+     "model": "complex_a",
+     "window": 31,
+     "hidden": 48,
+     "name": "complex_a"
+    },
+    "n_train_files": 30,
+    "steps": 20000
+   }
+  },
+  "targets": {
+   "a_const_1e-3_20k": {
+    "target": 62.191,
+    "tol": 0.7,
+    "seeds": [
+     17,
+     29
+    ],
+    "metric": "test_reduction_valbest_select",
+    "source": "experiments/E009_kerr_ablation/results/complex_mlp_ablation_summary.csv (variant a); reproduced in E010-E019 (62.19)"
+   }
+  }
+ },
+ "experiment_id": "E055",
+ "title": "Small real tanh MLP (~1-2k parameters): does it reach 55 % BER reduction?",
+ "date": "not run",
+ "base_git_commit": "(this commit; branch exp/E044-E047)",
+ "question": "Does a real-valued MLP on [Re, Im] of the window with one tanh hidden layer and about 1.8k parameters (window 15 or 17) reach 55 % BER reduction on test (external reference: 4.3e-3 at 9.71e-3 raw, about 1.8k parameters)? Also windows 21-31 with 16-32 neurons.",
+ "protocol": "as E025 F10 ref_current: model real_mlp (layers 1, tanh, Xavier normal x 1, zero bias), Adam constant lr 1e-3, 200k steps, 5 seeds, selection by validation (test_reduction_valbest_select)",
+ "lr": {
+  "peak_lr": 0.001,
+  "schedule": "const",
+  "warmup": 0,
+  "c_mult": 1.0,
+  "floor_frac": 0.1,
+  "optimizer": "adam",
+  "weight_decay": 0.0
+ },
+ "steps": 200000,
+ "seeds": [
+  17,
+  29,
+  43,
+  57,
+  71
+ ],
+ "grid": [
+  {
+   "window": 15,
+   "hidden": 54,
+   "params": 1784,
+   "rm": 1728
+  },
+  {
+   "window": 17,
+   "hidden": 48,
+   "params": 1778,
+   "rm": 1728
+  },
+  {
+   "window": 21,
+   "hidden": 32,
+   "params": 1442,
+   "rm": 1408
+  },
+  {
+   "window": 25,
+   "hidden": 24,
+   "params": 1274,
+   "rm": 1248
+  },
+  {
+   "window": 31,
+   "hidden": 16,
+   "params": 1042,
+   "rm": 1024
+  },
+  {
+   "window": 31,
+   "hidden": 32,
+   "params": 2082,
+   "rm": 2048
+  }
+ ],
+ "rm": "repository convention 2 W h + 2 h (tanh, biases 0 RM), as F10 (6400 RM)",
+ "metric_note": "BER reduction against raw on the window centres of each window (edge W//2), as in all runner experiments",
+ "reference": {
+  "F10": "E025: window 31, 1 x 100 tanh, 6502 parameters, 42.0 +- 1.6 % (5 seeds, 200k)",
+  "external": "colleagues: raw 9.71e-3, compact models 4.3e-3 (~1.8k parameters, ~55.7 %), 11k parameters 2.41e-3 (~75.2 %) (сообщено автором, не проверено)"
+ },
+ "rule_draft": {
+  "reached": "a configuration reaches 55 % if its mean test reduction (5 seeds) >= 55 %; 'close' if 55 % is within 2 std of the mean; otherwise not reached",
+  "limits": "one recipe (no tuning: the F10 recipe), 200k steps; the external number is on other test files"
+ },
+ "value_filter": {
+  "changes_next_step": "yes: tells whether the external compact result is reproducible with a plain real MLP on our data",
+  "answered_in_literature": "no",
+  "needed_for_main_claim": "reference for the MLP family at ~1-2k RM",
+  "cheaper_without_training": "no"
+ }
+}

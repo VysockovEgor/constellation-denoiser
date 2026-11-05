@@ -418,6 +418,28 @@ def e054_tasks(stage: str, options: Options) -> list[dict]:
 BUILDERS["E054"] = e054_tasks
 
 
+def e055_tasks(stage: str, options: Options) -> list[dict]:
+    """Small real tanh MLP (one hidden layer) with the E025 F10 recipe, 5 seeds per (window, hidden)."""
+    exp = "E055"
+    directory, config = load_config(exp)
+    if stage == "control":
+        return control_tasks(exp, directory, config, options)
+    if stage != "main":
+        raise SystemExit(f"E055: неизвестная стадия {stage!r}")
+    tasks = []
+    for item in config["grid"]:
+        w, h = item["window"], item["hidden"]
+        spec = {"model": "real_mlp", "window": w, "hidden": h, "layers": 1, "activation": "tanh", "init_scale": 1.0}
+        for seed in g24.first_seeds(config, options, len(config["seeds"])):
+            tasks.append(g24.run(exp, stage, directory, config, options, name=f"real_W{w}_h{h}", spec=spec,
+                                 lr=config["lr"], steps=config["steps"], seed=seed,
+                                 meta={"params": item["params"], "window": w, "hidden": h}))
+    return tasks
+
+
+BUILDERS["E055"] = e055_tasks
+
+
 def _register() -> None:
     from . import grids
 
