@@ -8,5 +8,5 @@
 
 Последняя проверка (`logs/check-control.log`):
 
-    2026-11-05T05:55:45+07:00 E047 check-control: .venv/bin/python -m constellation_denoiser.runner --exp E047 --stage control --check-control ===
-    [2026-11-05 05:55:48] control a_const_1e-3_20k: mean test_reduction_valbest_select = 62.19% по 2 seed; цель 62.191±0.7 п.п. -> OK
+    2026-11-05T10:36:24+07:00 E047 check-control: .venv/bin/python -m constellation_denoiser.runner --exp E047 --stage control --check-control ===
+    [2026-11-05 10:36:28] control a_const_1e-3_20k: mean test_reduction_valbest_select = 62.19% по 2 seed; цель 62.191±0.7 п.п. -> OK
