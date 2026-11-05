@@ -8,7 +8,7 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT_DIR"
 mkdir -p logs
 LOG="logs/queue_e044_$(date +%Y%m%d_%H%M%S).log"
-export THREADS=1 DEVICE=cpu JOBS_ADAPTIVE=1
+export THREADS=1 DEVICE=cpu JOBS_ADAPTIVE=1 POLITE_EXCLUDE_OWN=1
 PYTHON="${PYTHON:-}"
 if [[ -z "$PYTHON" ]]; then
   if [[ -x .venv/bin/python ]]; then PYTHON=.venv/bin/python; else PYTHON=python3; fi
@@ -31,7 +31,9 @@ stage() {   # stage <folder> <stage> <kind>
 }
 {
   echo "=== $(date -Is) queue e044: host=$(hostname) commit=$(git rev-parse --short HEAD) ==="
-  for item in main:other summarize:other splits:other summarize:other; do stage E046_kerr_offaxis "${item%%:*}" "${item##*:}"; done
+  if [[ ! -f experiments/E046_kerr_offaxis/results/a_splits.csv ]]; then
+    for item in main:other summarize:other splits:other summarize:other; do stage E046_kerr_offaxis "${item%%:*}" "${item##*:}"; done
+  fi
   for item in control:control init:critical main:train summarize:other; do
     stage E047_cascade_variants "${item%%:*}" "${item##*:}" || { echo "ОШИБКА: E047 прерван на ${item%%:*}"; break; }
   done

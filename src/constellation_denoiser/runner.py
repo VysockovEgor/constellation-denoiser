@@ -464,8 +464,14 @@ def polite_wait(running: int, jobs: int, threads: int, resources: dict | None) -
         return
     max_wait = float(os.environ.get("POLITE_MAX_WAIT_S", rec.get("polite_max_wait_s", 7200)))
     waited = 0.0
+    exclude_own = env_flag("POLITE_EXCLUDE_OWN")      # count every process of this user as own (parallel queues)
     while True:
-        foreign = loadavg() - running * threads
+        if exclude_own:
+            from .gate import running_threads
+
+            foreign = float(running_threads()[1])
+        else:
+            foreign = loadavg() - running * threads
         if foreign <= threshold:
             return
         if waited >= max_wait:
