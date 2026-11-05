@@ -1,0 +1,111 @@
+{
+ "experiment_id": "E049",
+ "title": "DBP: physical FIR initialization vs identity (delta, alpha = 0), with calibration on trained DBP",
+ "question": "(1) Do the trained DBP FIR steps of E018/E025/E028 follow H = exp(j c nu^2) with c * Ns close to the literature value? (2) Does a physical initialization of the DBP FIR (and alpha) speed up convergence, reduce the seed spread or improve BER at the same RM?",
+ "date": "not run",
+ "base_git_commit": "(this commit; branch exp/E044-E047)",
+ "data_manifest_sha256": "cb5f2de47145c02d6485969ce116df2253a271c979a927452ea454551a48c0a8",
+ "data_audit_sha256": "a9c35fb7839e85c39f7131373418a6f3a04c731e9c4e55385347a1eabbdedbe4",
+ "split_source": "experiments/E004_training_file_curve/config.json (train_pool_files[:30], validation 45, test 45), as E007-E019",
+ "split_source_sha256": "04c0b2a5775d8fae1acdc348967c6fb976ef5d90e76a8334484242cc9707025a",
+ "dataset_root": "data/raw/archive",
+ "n_train_files": 30,
+ "base_lr": {
+  "peak_lr": 0.001,
+  "schedule": "const",
+  "warmup": 0,
+  "c_mult": 1.0,
+  "floor_frac": 0.1,
+  "optimizer": "adam",
+  "weight_decay": 0.0
+ },
+ "ckpt_every": 10000,
+ "eval_rule": "validation and (report-only) test every max(500, steps/40) steps; selection only by validation",
+ "control": {
+  "runs": {
+   "a_const_1e-3_20k": {
+    "spec": {
+     "model": "complex_a",
+     "window": 31,
+     "hidden": 48,
+     "name": "complex_a"
+    },
+    "n_train_files": 30,
+    "steps": 20000
+   }
+  },
+  "targets": {
+   "a_const_1e-3_20k": {
+    "target": 62.191,
+    "tol": 0.7,
+    "seeds": [
+     17,
+     29
+    ],
+    "metric": "test_reduction_valbest_select",
+    "source": "experiments/E009_kerr_ablation/results/complex_mlp_ablation_summary.csv (variant a); reproduced in E010-E019 (62.19)"
+   }
+  }
+ },
+ "seeds": [
+  17,
+  29,
+  43,
+  57,
+  71,
+  83,
+  97,
+  101,
+  113,
+  127
+ ],
+ "link": {
+  "Rs_GBd": 32,
+  "beta2_ps2_per_km": -21,
+  "length_km": 2000,
+  "source": "из литературы (Bogdanov, Sidelnikov 2021), не проверено на генераторе",
+  "c_step": "c = s * beta2 * (2000 km / Ns) * Rs^2 / 2 (c_total = -21.5 rad); dz = 2000 km / Ns, Ns is defined for the whole link"
+ },
+ "physical_init_allowed": "Ns >= 8 with L = 31 (94 % of the response energy in the window), Ns >= 16 with L = 15 (93 %); A1 (one Kerr, FIR7) has no physical filter by design",
+ "sign_rule": "s = sign of the median fitted c of the trained steps with r2 >= 0.5 (stage calib); sign_fallback if no step fits",
+ "sign_fallback": 1.0,
+ "alpha_centre_total": -0.001889754933160358,
+ "alpha_source": "E015 alpha_fit_R1.csv (direct fit, R = 1), split equally over Ns steps (as E022 dbp_fixed)",
+ "configs": [
+  {
+   "n_steps": 8,
+   "fir_len": 31,
+   "n_alpha": 7,
+   "recipe": "F6",
+   "rm": 592
+  },
+  {
+   "n_steps": 16,
+   "fir_len": 31,
+   "n_alpha": 15,
+   "recipe": "F7",
+   "rm": 1248
+  }
+ ],
+ "arms": {
+  "delta": "current: FIR = unit impulse, alpha = 0",
+  "phys_fir": "FIR = physical taps of c_step, alpha = 0",
+  "phys_fir_alpha": "physical FIR + alpha_centre / Ns on the centre coefficient"
+ },
+ "n_seeds": 10,
+ "steps": 200000,
+ "value_filter": {
+  "changes_next_step": "yes: a signal opens the rest of E049 (physical CNN P1); no signal stops it",
+  "answered_in_literature": "partly (physical DBP initialization is standard); not on our CD-compensated single-polarization data",
+  "needed_for_main_claim": "yes: DBP is the strongest rival below ~2.5k RM",
+  "cheaper_without_training": "part (1) yes (checkpoints)"
+ },
+ "decision_if_positive": "rest of E049 (physical CNN P1 with F1-F4 FIR modes) after E048",
+ "decision_if_negative": "stop E049; report which tricks contributed",
+ "rule_draft": {
+  "status": "DRAFT: to be confirmed by the user before the first run; must not change after results are seen",
+  "calibration": "reported: median c_fit * Ns per (Ns, L) against c_total = -21.5 rad, fit quality r2; agreement if |c_fit * Ns| is within a factor 1.5 of 21.5 with r2 >= 0.5",
+  "signal": "a physical arm shows a signal if, at the same RM, it beats delta in test by > 2 SE (SE = s / sqrt(10)), or reaches 90 % of the final validation of delta in at most half the steps (mean over seeds), or halves the seed std; 2 std is reported as well",
+  "otherwise": "не доказано"
+ }
+}

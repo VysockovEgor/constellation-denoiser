@@ -309,6 +309,42 @@ def e048_tasks(stage: str, options: Options) -> list[dict]:
 BUILDERS["E048"] = e048_tasks
 
 
+# --------------------------------------------------------------------------- E049 (DBP: physical vs identity initialization)
+
+def e049_tasks(stage: str, options: Options) -> list[dict]:
+    exp = "E049"
+    directory, config = load_config(exp)
+    if stage == "control":
+        return control_tasks(exp, directory, config, options)
+    if stage != "main":
+        raise SystemExit(f"E049: неизвестная стадия {stage!r}")
+    calib = g24.results_dir(directory, False) / "calib_summary.json"
+    if calib.is_file():
+        sign = json.loads(calib.read_text())["sign_of_learned_c"] or config["sign_fallback"]
+    elif options.smoke or g24.placeholder():
+        sign = config["sign_fallback"]
+    else:
+        raise SystemExit("E049: нет results/calib_summary.json: сначала стадия calib")
+    alpha = config["alpha_centre_total"]
+    tasks = []
+    for item in config["configs"]:
+        base = {"window": 31, "fir_len": item["fir_len"], "n_alpha": item["n_alpha"], "sym": True, "n_steps": item["n_steps"]}
+        lr, _, source = g24.recipe_lr(item["recipe"], options)
+        arms = {"delta": dict(base, model="phys_dbp"),
+                "phys_fir": dict(base, model="dbp_phys", c_sign=sign, fir_init="physical"),
+                "phys_fir_alpha": dict(base, model="dbp_phys", c_sign=sign, fir_init="physical", alpha_centre=alpha)}
+        for arm, spec in arms.items():
+            name = f"dbp_Ns{item['n_steps']}_L{item['fir_len']}_R{item['n_alpha']}_{arm}"
+            for seed in g24.first_seeds(config, options, config["n_seeds"]):
+                tasks.append(g24.run(exp, stage, directory, config, options, name=name, spec=spec, lr=lr,
+                                     steps=config["steps"], seed=seed,
+                                     meta={"arm": arm, "n_steps": item["n_steps"], "c_sign": sign, "recipe_source": source}))
+    return tasks
+
+
+BUILDERS["E049"] = e049_tasks
+
+
 def _register() -> None:
     from . import grids
 

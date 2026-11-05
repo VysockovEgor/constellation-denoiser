@@ -128,3 +128,22 @@ class CascadeInitTests(unittest.TestCase):
             out = model(x).numpy()
         start = 15 - W // 2
         self.assertLess(np.abs(out[start: start + 10] - ref[:10]).max(), 1e-5)
+
+
+class PhysicalInitTests(unittest.TestCase):
+    def test_physical_taps_and_model(self):
+        from constellation_denoiser import e049_physical as ep
+
+        self.assertAlmostEqual(ep.c_step(1), -21.504, places=2)
+        taps, energy = ep.physical_taps(ep.c_step(8), 31)
+        self.assertGreater(energy, 0.9)
+        self.assertLess(np.abs(taps - taps[::-1]).max(), 1e-12)               # h[n] = h[-n]
+        c, r2 = ep.fit_c(taps * (0.8 + 0.3j), np.arange(-5, 5, 0.02))
+        self.assertAlmostEqual(c, ep.c_step(8), delta=0.03)
+        spec = {"model": "dbp_phys", "window": 31, "fir_len": 31, "n_alpha": 7, "sym": True, "n_steps": 8, "c_sign": 1.0,
+                "alpha_centre": -0.0019}
+        model = model_zoo.build(spec, seed=1)
+        full = np.r_[model.steps[0].fir_re.detach().numpy()[1:][::-1], model.steps[0].fir_re.detach().numpy()]
+        self.assertLess(np.abs(full - taps.real).max(), 1e-6)
+        self.assertEqual(model_zoo.cost(spec).macs, 592)
+        self.assertAlmostEqual(float(model.steps[0].alpha[0]), -0.0019 / 8, places=8)
