@@ -1,0 +1,7 @@
+{
+  "sign_of_learned_c": 0.0,
+  "steps_with_r2_ge_0.5": 2438,
+  "steps_total": 4288,
+  "c_total_literature_rad": -21.504,
+  "note": "Rs 32 GBd, beta2 -21 ps^2/km: из литературы, не проверено на генераторе"
+}

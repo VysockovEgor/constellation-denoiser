@@ -1,0 +1,2 @@
+=== 2026-11-05T11:47:25+07:00 E049 calib: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/.venv/bin/python -u -m constellation_denoiser.e049_physical calib ===
+JOBS=auto THREADS=auto DEVICE=auto SEEDS=default SMOKE=0 FORCE=0
