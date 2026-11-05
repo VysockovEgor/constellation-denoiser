@@ -41,10 +41,10 @@
   }
  },
  "experiment_id": "E054",
- "title": "DBP-X with trainable FIR: physical start at 255 taps, progressive pruning to 127, 63, 31, 15, 7 during training",
+ "title": "DBP-X with trainable FIR: least-squares start, pruning during training to 31 / 15 / 7 versus direct initialization at the target length",
  "date": "not run",
  "base_git_commit": "(this commit; branch exp/E044-E047)",
- "question": "How much BER reduction does DBP-X keep when its trainable step FIR is pruned during training from 255 to 31, 15, 7 taps, and at what RM (both conventions)? Ns = 20 is the main reference; Ns = 40 secondary.",
+ "question": "How much BER reduction does DBP-X keep at step FIR lengths 31, 15, 7 when (a) started at 255 by the full-band LS fit and pruned progressively during training, (b) started directly at the target length by the same LS fit (= truncation at 1 sps), (c) started at the target length by the joint LS fit of the cascade (L_D, L-BFGS), (d) cut abruptly from the trained 255? RM in both conventions with 4 and 3 RM per complex product. Ns = 20 (one span per step, as Lin 2021) is the reference.",
  "model": "dbpx.DBPX with a tap mask (e054_prune.Masked): D_total exact and fixed, Ns steps [symmetric FIR(255) circular FFT, Kerr phase R = 7], complex gain; start = physical taps + alpha of the E050 start choice (validation)",
  "schedule": {
   "lengths": [
@@ -66,7 +66,7 @@
   "selection": "per length: checkpoint with the minimum validation MSE during its fine part; test reported there"
  },
  "seeds": {
-  "Ns20": [
+  "Ns20 progressive, direct": [
    17,
    29,
    43,
@@ -78,27 +78,42 @@
    113,
    127
   ],
-  "Ns40": [
+  "Ns20 direct_ld, abrupt": [
    17,
    29,
    43,
    57,
    71
   ],
-  "abrupt": "first 5 seeds of each Ns"
+  "Ns40 progressive, direct": [
+   17,
+   29,
+   43,
+   57,
+   71
+  ]
  },
  "rm": {
-  "main": "both columns are main: direct convolution (repository convention) and FFT / overlap-save (Xiao C_conv); D_total 401 taps; the convention choice is pending (advisor)"
+  "columns": "rm_direct_4, rm_direct_3 (direct symmetric FIR), rm_fft_4, rm_fft_3 (Xiao C_conv, scaled by 3/4 for 3 RM); 3 RM per complex product: Civelli 2025 (из литературы); all four are reported, the choice is pending (advisor)",
+  "d_total": "401 taps",
+  "filters": "sum of filter lengths Ns L and cascade support Ns (L - 1) + 1 against the accumulated dispersion memory 4 pi |c_total| = 270 symbols"
  },
  "rule_draft": {
   "report": "per (Ns, length): mean, std, SE, range over seeds; share of the L = 255 level kept; RM in both conventions",
-  "progressive_vs_abrupt": "progressive better than abrupt at a length if the difference > 2 SE and > 2 std (5 seeds each)",
-  "limits": "one schedule (no tuning of the schedule); circular files; one channel, one polarization, 1 sps"
+  "limits": "one schedule (no tuning of the schedule); circular files; one channel, one polarization, 1 sps",
+  "progressive_vs_others": "progressive better than direct / direct_ld / abrupt at a length if the difference > 2 SE and > 2 std (reverse also reported)"
  },
  "value_filter": {
   "changes_next_step": "yes: decides whether DBP-X can be cheap in the direct-convolution convention",
   "answered_in_literature": "learned short filters in DBP are standard (Xiao 2025 uses filters of the step memory); not on our 1 sps data",
   "needed_for_main_claim": "yes",
   "cheaper_without_training": "no (E050 unit test: truncation without training fails)"
+ },
+ "ls_note": "checked numerically: at 1 sps the uniform full-band LS fit of an L-tap FIR to exp(i c nu^2) equals the truncated inverse DTFT (relative difference <= 1.4e-6, grid limited) for L = 7 ... 255, Ns = 20, 40; the advice against truncation (Hager, Pfister 2020, footnote 1, из литературы) concerns oversampled signals with an out-of-band region, which does not exist here",
+ "arms": {
+  "progressive": "LS(=truncation) at 255, warm 3000, then per length 1000 shrink + 2000 fine",
+  "direct": "LS(=truncation) at the target length, trained for the same number of iterations the progressive arm spent to reach it",
+  "direct_ld": "joint cascade LS (Xiao L_D, L-BFGS 300 from the truncation, lowest L_D kept) at the target length, same budget",
+  "abrupt": "cut from the trained 255 at once, then 3000 per length"
  }
 }

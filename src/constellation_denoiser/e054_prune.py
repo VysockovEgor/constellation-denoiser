@@ -1,4 +1,9 @@
-"""E054: DBP-X with trainable FIR steps, physical start at 255 taps, pruning during training to 127, 63, 31, 15, 7.
+"""E054: DBP-X with trainable FIR steps: least-squares start and pruning during training to 31, 15, 7 taps.
+
+Note (checked numerically, E054 README): at 1 sample per symbol the band is the whole circle [-pi, pi], so the
+least-squares fit of an L-tap FIR to exp(i c nu^2) with uniform weight over the full band equals the truncated
+inverse DTFT (the exponentials are orthogonal); "LS init" of a single filter is the truncation. The non-trivial LS
+init is the joint fit of the cascade (Xiao's L_D, here by L-BFGS): arm direct_ld.
 
     PYTHONPATH=src python -m constellation_denoiser.e054_prune all | summarize      (SMOKE=1: tiny)
 
@@ -33,7 +38,34 @@ from .runner import results_root
 LENGTHS = (255, 127, 63, 31, 15, 7)
 SCHEDULE = {"warm": 3000, "shrink": 1000, "fine": 2000, "eval_every": 100, "batch_files": 4, "lr": 1e-3}
 SMOKE_SCHEDULE = {"warm": 20, "shrink": 10, "fine": 20, "eval_every": 10, "batch_files": 2, "lr": 1e-3}
-ARMS = {20: (17, 29, 43, 57, 71, 83, 97, 101, 113, 127), 40: (17, 29, 43, 57, 71)}
+SEEDS10 = (17, 29, 43, 57, 71, 83, 97, 101, 113, 127)
+TARGETS = (31, 15, 7)
+MEMORY_TOTAL = 4 * np.pi * abs(C_TOTAL)          # ~270 symbols
+
+
+def iters_to(L: int, sch: dict) -> int:
+    """Iterations the progressive arm has spent when it reaches length L (equal budget for the direct arms)."""
+    return sch["warm"] + LENGTHS.index(L) * (sch["shrink"] + sch["fine"])
+
+
+def rm_both(ns: int, L: int, R: int = 7, total_len: int = 401) -> dict:
+    """RM per symbol with 4 and with 3 real multiplications per complex product (3: Civelli 2025, из литературы).
+    direct: symmetric FIR (L + 1)/2 complex products per output (D_total and every step), Kerr |u|^2 2 + (R + 1)/2 +
+    one complex product; fft: Xiao C_conv (its factor 4 = one complex product per bin) scaled by 3/4 for the
+    3-RM column, nonlinear part C_conv(R)/4 + 2 + one complex product."""
+    from .dbpx import c_conv
+
+    out = {}
+    for cm in (4, 3):
+        direct = cm * (total_len + 1) / 2 + ns * (cm * (L + 1) / 2 + 2 + (R + 1) / 2 + cm)
+        fft = cm / 4 * c_conv(total_len) + ns * (cm / 4 * c_conv(L) + cm / 4 * c_conv(R) / 4 + 2 + cm)
+        out[f"rm_direct_{cm}"] = round(direct, 1)
+        out[f"rm_fft_{cm}"] = round(fft, 1)
+    out["sum_filter_len"] = ns * L
+    out["cascade_support"] = ns * (L - 1) + 1
+    out["memory_total"] = round(MEMORY_TOTAL, 1)
+    out["support_covers_memory"] = bool(ns * (L - 1) + 1 >= MEMORY_TOTAL)
+    return out
 
 
 def disperse(z: np.ndarray, c: float) -> np.ndarray:
@@ -63,7 +95,30 @@ def chosen(ns: int, smoke: bool) -> pd.Series:
     return part.loc[part.val_mse_trim.idxmin()]
 
 
-def run(ns: int, seed: int, mode: str, smoke: bool) -> dict:
+def fit_ld_lbfgs(model: DBPX, iters: int) -> tuple[float, float]:
+    """Joint least squares of the cascade (Xiao L_D) by L-BFGS from the truncated taps; the lowest L_D is kept."""
+    before = float(model.ld_loss().detach())
+    opt = torch.optim.LBFGS([model.fir_re, model.fir_im], lr=1.0, max_iter=iters, history_size=20,
+                            line_search_fn="strong_wolfe")
+    keep = (model.fir_re.detach().clone(), model.fir_im.detach().clone())
+
+    def closure():
+        opt.zero_grad()
+        loss = model.ld_loss()
+        loss.backward()
+        return loss
+
+    opt.step(closure)
+    after = float(model.ld_loss().detach())
+    if not np.isfinite(after) or after > before:
+        with torch.no_grad():
+            model.fir_re.copy_(keep[0])
+            model.fir_im.copy_(keep[1])
+        after = before
+    return before, after
+
+
+def run(ns: int, seed: int, mode: str, smoke: bool, target: int | None = None) -> dict:
     sch = SMOKE_SCHEDULE if smoke else SCHEDULE
     torch.set_num_threads(1)
     torch.manual_seed(seed)
@@ -73,8 +128,12 @@ def run(ns: int, seed: int, mode: str, smoke: bool) -> dict:
     c = float(row.sign) * float(row["mult"]) * C_TOTAL
     zd = {k: disperse(d.rx_c, c) for k, d in data.items()}
     power = float(np.mean(np.abs(data["validation"].rx_c) ** 2))
-    model = Masked(ns, LENGTHS[0], 7, -c / ns)
-    model.init_physical()
+    L0 = LENGTHS[0] if mode in ("progressive", "abrupt") else target
+    model = Masked(ns, L0, 7, -c / ns)
+    model.init_physical()                                   # = full-band LS fit of every step (see the docstring)
+    ld = (None, None)
+    if mode == "direct_ld":
+        ld = fit_ld_lbfgs(model, 20 if smoke else 300)
     model.set_alpha(float(row.g) * alpha_shape(row.alpha_kind, 7) / (ns * power))
     a = gain(run_model(model, zd["train"]), data["train"].tx_c)
     with torch.no_grad():
@@ -116,10 +175,16 @@ def run(ns: int, seed: int, mode: str, smoke: bool) -> dict:
         t = metrics(run_model(model, zd["test"]), test.tx_c, test.rx_c)
         levels.append(dict(L=L, best_iter=best[1], val_reduction=v["reduction_trim"], test_reduction=t["reduction_trim"],
                            test_q2_gain=t["q2_gain_trim"], test_reduction_c31=t["reduction_c31"],
-                           **rm_columns(ns, L, 401, 7)))
+                           **rm_columns(ns, L, 401, 7), **rm_both(ns, L)))
 
     m0 = evaluate()
     start_val = m0["reduction_trim"]
+    if mode in ("direct", "direct_ld"):
+        level(target, iters_to(target, sch))
+        return {"n_steps": ns, "seed": seed, "mode": mode, "target": target, "alpha_kind": row.alpha_kind,
+                "g": float(row.g), "mult": float(row["mult"]), "sign": float(row.sign), "start_val_reduction": start_val,
+                "ld_before": ld[0], "ld_after": ld[1], "levels": levels, "history": history, "schedule": sch,
+                "time_s": time.time() - t0}
     level(LENGTHS[0], sch["warm"])
     for L in LENGTHS[1:]:
         r_new, r_old = L // 2, model.r_active
@@ -138,13 +203,14 @@ def run(ns: int, seed: int, mode: str, smoke: bool) -> dict:
 
 
 def _job(args):
-    ns, seed, mode, smoke = args
-    out = results_root("E054", smoke) / "runs" / f"Ns{ns}_{mode}_seed{seed}.json"
+    ns, seed, mode, smoke, target = args
+    tag = f"Ns{ns}_{mode}" + (f"_L{target}" if target else "")
+    out = results_root("E054", smoke) / "runs" / f"{tag}_seed{seed}.json"
     if out.is_file():
         return f"{out.name}: exists"
     out.parent.mkdir(parents=True, exist_ok=True)
     try:
-        r = run(ns, seed, mode, smoke)
+        r = run(ns, seed, mode, smoke, target)
     except Exception as exc:
         return f"ОШИБКА {out.name}: {exc!r}"
     out.write_text(json.dumps(r, ensure_ascii=False, default=float), encoding="utf-8")
@@ -153,14 +219,16 @@ def _job(args):
 
 
 def tasks(smoke: bool) -> list[tuple]:
+    """Ns 20 (main, as Lin 2021: one span per step): progressive and direct 10 seeds, direct_ld and abrupt 5 seeds;
+    Ns 40: progressive and direct 5 seeds."""
     if smoke:
-        return [(8, 17, "progressive", True), (8, 17, "abrupt", True)]
+        return [(8, 17, "progressive", True, None), (8, 17, "direct", True, 31), (8, 17, "direct_ld", True, 31)]
     out = []
-    for ns, seeds in ARMS.items():
-        for seed in seeds:
-            out.append((ns, seed, "progressive", False))
-        for seed in seeds[:5]:
-            out.append((ns, seed, "abrupt", False))
+    for ns, seeds in ((20, SEEDS10), (40, SEEDS10[:5])):
+        out += [(ns, s, "progressive", False, None) for s in seeds]
+        out += [(ns, s, "direct", False, L) for L in TARGETS for s in seeds]
+    out += [(20, s, "direct_ld", False, L) for L in TARGETS for s in SEEDS10[:5]]
+    out += [(20, s, "abrupt", False, None) for s in SEEDS10[:5]]
     return out
 
 
@@ -170,19 +238,24 @@ def summarize(smoke: bool) -> int:
     for p in sorted((res / "runs").glob("*.json")):
         r = json.loads(p.read_text(encoding="utf-8"))
         for l in r["levels"]:
-            rows.append(dict({k: r[k] for k in ("n_steps", "seed", "mode", "alpha_kind", "start_val_reduction")}, **l))
+            rows.append(dict({k: r.get(k) for k in ("n_steps", "seed", "mode", "alpha_kind", "start_val_reduction",
+                                                    "ld_before", "ld_after")}, **l))
     t = pd.DataFrame(rows)
     t.to_csv(res / "levels_table.csv", index=False)
     g = t.groupby(["n_steps", "mode", "L"])
     s = g.agg(n=("seed", "size"), test_mean=("test_reduction", "mean"), test_std=("test_reduction", "std"),
               val_mean=("val_reduction", "mean"), q2_mean=("test_q2_gain", "mean"), rm_project=("rm_project", "first"),
-              rm_xiao=("rm_xiao", "first"), rm_merged=("rm_merged", "first")).reset_index()
+              rm_xiao=("rm_xiao", "first"), rm_direct_4=("rm_direct_4", "first"), rm_direct_3=("rm_direct_3", "first"),
+              rm_fft_4=("rm_fft_4", "first"), rm_fft_3=("rm_fft_3", "first"), sum_filter_len=("sum_filter_len", "first"),
+              cascade_support=("cascade_support", "first"), support_covers_memory=("support_covers_memory", "first"),
+              start_val=("start_val_reduction", "mean")).reset_index()
     s["test_se"] = s.test_std / np.sqrt(s.n)
     s["test_range"] = g.test_reduction.agg(lambda x: x.max() - x.min()).values
     s.to_csv(res / "summary.csv", index=False)
     rows = []
     for (ns, mode), part in s.groupby(["n_steps", "mode"]):
-        top = part[part.L == LENGTHS[0]].iloc[0]
+        ref = s[(s.n_steps == ns) & (s["mode"] == "progressive") & (s.L == LENGTHS[0])]
+        top = ref.iloc[0] if len(ref) else part.iloc[0]          # the L = 255 level of the progressive arm
         for _, r in part.iterrows():
             rows.append({"n_steps": ns, "mode": mode, "L": r.L, "test_mean": r.test_mean, "test_std": r.test_std,
                          "kept_share_of_L255": r.test_mean / top.test_mean if top.test_mean else np.nan,
@@ -190,14 +263,17 @@ def summarize(smoke: bool) -> int:
     for ns in s.n_steps.unique():
         for L in LENGTHS[1:]:
             pr = s[(s.n_steps == ns) & (s["mode"] == "progressive") & (s.L == L)]
-            ab = s[(s.n_steps == ns) & (s["mode"] == "abrupt") & (s.L == L)]
-            if len(pr) and len(ab):
+            for other in ("abrupt", "direct", "direct_ld"):
+                ab = s[(s.n_steps == ns) & (s["mode"] == other) & (s.L == L)]
+                if not (len(pr) and len(ab)):
+                    continue
                 a, b = pr.iloc[0], ab.iloc[0]
                 diff = a.test_mean - b.test_mean
                 se = np.sqrt(a.test_std ** 2 / a.n + b.test_std ** 2 / b.n)
                 std = max(a.test_std, b.test_std)
-                rows.append({"n_steps": ns, "mode": "progressive - abrupt", "L": L, "diff_pp": diff, "two_se": 2 * se,
-                             "two_std": 2 * std, "signal": bool(diff > 2 * se and diff > 2 * std)})
+                rows.append({"n_steps": ns, "mode": f"progressive - {other}", "L": L, "diff_pp": diff, "two_se": 2 * se,
+                             "two_std": 2 * std, "signal": bool(diff > 2 * se and diff > 2 * std),
+                             "reverse_signal": bool(-diff > 2 * se and -diff > 2 * std)})
     pd.DataFrame(rows).to_csv(res / "verdicts.csv", index=False)
     plot(s, Path(str(res).replace("results_smoke", "results_smoke")) if smoke else res.parent / "figures")
     print(s.to_string(index=False))
@@ -211,15 +287,17 @@ def plot(s, figs) -> None:
     import matplotlib.pyplot as plt
 
     figs.mkdir(parents=True, exist_ok=True)
-    fig, axes = plt.subplots(1, 3, figsize=(16, 4.6))
+    fig, axes = plt.subplots(1, 5, figsize=(26, 4.6))
     for (ns, mode), p in s.groupby(["n_steps", "mode"]):
         p = p.sort_values("L")
-        ls = "-" if mode == "progressive" else ":"
+        ls = {"progressive": "-", "abrupt": ":", "direct": "--", "direct_ld": "-."}[mode]
         lab = f"Ns={ns}, {mode}"
         axes[0].errorbar(p.L, p.test_mean, yerr=p.test_std, ls=ls, marker="o", capsize=2, label=lab)
-        axes[1].errorbar(p.rm_project, p.test_mean, yerr=p.test_std, ls=ls, marker="o", capsize=2, label=lab)
-        axes[2].errorbar(p.rm_xiao, p.test_mean, yerr=p.test_std, ls=ls, marker="o", capsize=2, label=lab)
-    for ax, xl in zip(axes, ("длина КИХ шага L", "RM, прямая свёртка (конвенция проекта)", "RM, БПФ / overlap-save (Xiao)")):
+        for ax, col in zip(axes[1:], ("rm_direct_4", "rm_direct_3", "rm_fft_4", "rm_fft_3")):
+            ax.errorbar(p[col], p.test_mean, yerr=p.test_std, ls=ls, marker="o", capsize=2, label=lab)
+    for ax, xl in zip(axes, ("длина КИХ шага L", "RM, прямая свёртка, 4 RM / компл. умн.",
+                             "RM, прямая свёртка, 3 RM / компл. умн. (Civelli 2025)", "RM, БПФ (Xiao), 4 RM",
+                             "RM, БПФ (Xiao), 3 RM")):
         ax.set_xscale("log")
         ax.set_xlabel(xl)
         ax.grid(alpha=0.3)
