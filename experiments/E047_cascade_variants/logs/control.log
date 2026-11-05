@@ -1,0 +1,34 @@
+=== 2026-11-05T01:48:51+07:00 E047 control: .venv/bin/python -u -m constellation_denoiser.runner --exp E047 --stage control --no-control-gate ===
+JOBS=4 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+[2026-11-05 01:48:55] running 2 tasks with JOBS=4, THREADS=1, DEVICE=cpu
+[2026-11-05 01:48:55] JOBS_ADAPTIVE: число процессов по свободным ядрам, до 48
+[2026-11-05 01:48:56] polite mode: foreign load 44.4 > 25.0; waiting (checked every 30 s)
+[2026-11-05 01:58:56] polite mode: foreign load 40.1 > 25.0; waiting (checked every 30 s)
+[2026-11-05 02:08:56] polite mode: foreign load 40.0 > 25.0; waiting (checked every 30 s)
+[2026-11-05 02:18:56] polite mode: foreign load 40.1 > 25.0; waiting (checked every 30 s)
+[2026-11-05 02:28:56] polite mode: foreign load 40.0 > 25.0; waiting (checked every 30 s)
+[2026-11-05 02:38:56] polite mode: foreign load 40.0 > 25.0; waiting (checked every 30 s)
+[2026-11-05 02:48:56] polite mode: foreign load 40.0 > 25.0; waiting (checked every 30 s)
+[2026-11-05 02:58:56] polite mode: foreign load 40.1 > 25.0; waiting (checked every 30 s)
+[2026-11-05 03:08:56] polite mode: foreign load 40.0 > 25.0; waiting (checked every 30 s)
+[2026-11-05 03:18:56] polite mode: foreign load 40.0 > 25.0; waiting (checked every 30 s)
+[2026-11-05 03:28:56] polite mode: foreign load 40.1 > 25.0; waiting (checked every 30 s)
+[2026-11-05 03:38:56] polite mode: foreign load 40.1 > 25.0; waiting (checked every 30 s)
+[2026-11-05 03:48:56] polite mode: foreign load 40.1 > 25.0 for 7200s; starting anyway
+[2026-11-05 03:48:56] polite mode: foreign load 39.1 > 25.0; waiting (checked every 30 s)
+[2026-11-05 03:58:56] polite mode: foreign load 39.1 > 25.0; waiting (checked every 30 s)
+[2026-11-05 04:08:56] polite mode: foreign load 39.1 > 25.0; waiting (checked every 30 s)
+[2026-11-05 04:18:56] polite mode: foreign load 39.1 > 25.0; waiting (checked every 30 s)
+[2026-11-05 04:28:56] polite mode: foreign load 39.1 > 25.0; waiting (checked every 30 s)
+[2026-11-05 04:38:56] polite mode: foreign load 39.1 > 25.0; waiting (checked every 30 s)
+[2026-11-05 04:48:56] polite mode: foreign load 39.1 > 25.0; waiting (checked every 30 s)
+[2026-11-05 04:58:56] polite mode: foreign load 39.2 > 25.0; waiting (checked every 30 s)
+[2026-11-05 05:08:56] polite mode: foreign load 39.1 > 25.0; waiting (checked every 30 s)
+[2026-11-05 05:18:56] polite mode: foreign load 39.1 > 25.0; waiting (checked every 30 s)
+[2026-11-05 05:28:56] polite mode: foreign load 39.0 > 25.0; waiting (checked every 30 s)
+[2026-11-05 05:38:56] polite mode: foreign load 39.1 > 25.0; waiting (checked every 30 s)
+[2026-11-05 05:48:56] polite mode: foreign load 39.1 > 25.0 for 7200s; starting anyway
+[2026-11-05 05:48:56] [ok 1/2] control_complex_a_w31_h48_N30_20k_seed17: val=59.43% test=60.40% diverged=False time=316s; ETA ~240 min
+[2026-11-05 05:55:43] [ok 2/2] control_complex_a_w31_h48_N30_20k_seed29: val=60.74% test=62.37% diverged=False time=407s; ETA ~0 min
+[2026-11-05 05:55:44] finished: 2 ok, 0 failed
+=== 2026-11-05T05:55:45+07:00 E047 control exit=0 ===

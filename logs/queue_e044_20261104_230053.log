@@ -1,0 +1,27 @@
+=== 2026-11-04T23:00:53+07:00 queue e044: host=hocalhost commit=2341e10 ===
+JOBS=4: {'cores': 48, 'load_1min': 40.23, 'foreign_running_threads': 41.4, 'reserve': 0, 'mem_available_gb': 301.9}
+=== 2026-11-04T23:01:02+07:00 E046_kerr_offaxis: stage main (other) JOBS=4 ===
+=== 2026-11-04T23:01:02+07:00 E046 main: .venv/bin/python -u -m constellation_denoiser.e046_fit all ===
+JOBS=4 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+[1/300] K_seq_M3_nc7_r17: ok
+[2/300] A1_seq_M3_nc7_r17: ok
+[3/300] T_closed_M3_nc0_r17: ok
+[4/300] A1_varpro_M3_nc7_r17: ok
+[5/300] A3_varpro_M3_nc7_r17: ok
+[6/300] K_seq_M3_nc15_r17: ok
+[7/300] A3_seq_M3_nc7_r17: ok
+[8/300] A3full_varpro_M3_nc7_r17: ok
+[9/300] A2_seq_M3_nc7_r17: ok
+[10/300] A1_varpro_M3_nc15_r17: ok
+[11/300] A1_seq_M3_nc15_r17: ok
+[12/300] A3_varpro_M3_nc15_r17: ok
+[13/300] A3_seq_M3_nc15_r17: ok
+[14/300] A2_seq_M3_nc15_r17: ok
+[15/300] K_seq_M3_nc31_r17: ok
+[16/300] A3full_varpro_M3_nc15_r17: ok
+[17/300] A1_varpro_M3_nc31_r17: ok
+[18/300] A1_seq_M3_nc31_r17: ok
+[19/300] A3_varpro_M3_nc31_r17: ok
+[20/300] A3_seq_M3_nc31_r17: ok
+[21/300] A2_seq_M3_nc31_r17: ok
+[22/300] A3full_varpro_M3_nc31_r17: ok

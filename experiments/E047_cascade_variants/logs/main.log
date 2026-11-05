@@ -1,0 +1,34 @@
+=== 2026-11-05T05:56:11+07:00 E047 main: .venv/bin/python -u -m constellation_denoiser.runner --exp E047 --stage main ===
+JOBS=5 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+[2026-11-05 05:56:15] running 25 tasks with JOBS=5, THREADS=1, DEVICE=cpu
+[2026-11-05 05:56:15] JOBS_ADAPTIVE: число процессов по свободным ядрам, до 48
+[2026-11-05 05:56:17] polite mode: foreign load 41.9 > 25.0; waiting (checked every 30 s)
+[2026-11-05 06:06:17] polite mode: foreign load 40.1 > 25.0; waiting (checked every 30 s)
+[2026-11-05 06:16:17] polite mode: foreign load 40.0 > 25.0; waiting (checked every 30 s)
+[2026-11-05 06:26:17] polite mode: foreign load 40.1 > 25.0; waiting (checked every 30 s)
+[2026-11-05 06:36:17] polite mode: foreign load 40.0 > 25.0; waiting (checked every 30 s)
+[2026-11-05 06:46:17] polite mode: foreign load 40.1 > 25.0; waiting (checked every 30 s)
+[2026-11-05 06:56:17] polite mode: foreign load 40.0 > 25.0; waiting (checked every 30 s)
+[2026-11-05 07:06:17] polite mode: foreign load 40.0 > 25.0; waiting (checked every 30 s)
+[2026-11-05 07:16:17] polite mode: foreign load 40.0 > 25.0; waiting (checked every 30 s)
+[2026-11-05 07:26:17] polite mode: foreign load 40.0 > 25.0; waiting (checked every 30 s)
+[2026-11-05 07:36:17] polite mode: foreign load 40.1 > 25.0; waiting (checked every 30 s)
+[2026-11-05 07:46:17] polite mode: foreign load 40.1 > 25.0; waiting (checked every 30 s)
+[2026-11-05 07:56:17] polite mode: foreign load 40.1 > 25.0 for 7200s; starting anyway
+[2026-11-05 07:56:17] polite mode: foreign load 39.1 > 25.0; waiting (checked every 30 s)
+[2026-11-05 08:06:17] polite mode: foreign load 40.0 > 25.0; waiting (checked every 30 s)
+[2026-11-05 08:16:17] polite mode: foreign load 40.1 > 25.0; waiting (checked every 30 s)
+[2026-11-05 08:26:17] polite mode: foreign load 40.2 > 25.0; waiting (checked every 30 s)
+[2026-11-05 08:36:17] polite mode: foreign load 40.0 > 25.0; waiting (checked every 30 s)
+[2026-11-05 08:46:17] polite mode: foreign load 40.1 > 25.0; waiting (checked every 30 s)
+[2026-11-05 08:56:17] polite mode: foreign load 40.0 > 25.0; waiting (checked every 30 s)
+[2026-11-05 09:06:17] polite mode: foreign load 40.1 > 25.0; waiting (checked every 30 s)
+[2026-11-05 09:16:17] polite mode: foreign load 40.1 > 25.0; waiting (checked every 30 s)
+[2026-11-05 09:26:17] polite mode: foreign load 40.0 > 25.0; waiting (checked every 30 s)
+[2026-11-05 09:36:17] polite mode: foreign load 40.0 > 25.0; waiting (checked every 30 s)
+[2026-11-05 09:46:17] polite mode: foreign load 40.1 > 25.0; waiting (checked every 30 s)
+[2026-11-05 09:56:17] polite mode: foreign load 40.0 > 25.0 for 7200s; starting anyway
+[2026-11-05 09:56:17] polite mode: foreign load 39.0 > 25.0; waiting (checked every 30 s)
+[2026-11-05 10:06:17] polite mode: foreign load 40.1 > 25.0; waiting (checked every 30 s)
+[2026-11-05 10:16:17] polite mode: foreign load 40.0 > 25.0; waiting (checked every 30 s)
+[2026-11-05 10:26:17] polite mode: foreign load 40.1 > 25.0; waiting (checked every 30 s)

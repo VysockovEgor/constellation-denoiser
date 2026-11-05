@@ -373,3 +373,13 @@
 ![E045 · E045_references_vs_rm.png · 2026-11-04](figs/experiments/E045_reference_families/figures/E045_references_vs_rm.png){group="gallery"}
 
 :::
+
+## E046
+
+::: {layout-ncol=3}
+
+![E046 · E046_gain_vs_offaxis_terms.png · 2026-11-05](figs/experiments/E046_kerr_offaxis/figures/E046_gain_vs_offaxis_terms.png){group="gallery"}
+
+![E046 · E046_a_vs_controls_rm.png · 2026-11-05](figs/experiments/E046_kerr_offaxis/figures/E046_a_vs_controls_rm.png){group="gallery"}
+
+:::

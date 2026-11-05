@@ -231,3 +231,7 @@
 ---
 
 ![](figs/experiments/E045_reference_families/figures/E045_references_vs_rm.png)
+
+---
+
+![](figs/experiments/E046_kerr_offaxis/figures/E046_gain_vs_offaxis_terms.png)

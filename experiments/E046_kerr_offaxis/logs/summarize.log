@@ -1,0 +1,8 @@
+=== 2026-11-05T01:06:02+07:00 E046 summarize: .venv/bin/python -u -m constellation_denoiser.e046_fit summarize ===
+JOBS=5 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+E046: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E046_kerr_offaxis/results/a_summary.csv; вердикты: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E046_kerr_offaxis/results/a_verdicts.csv
+=== 2026-11-05T01:06:09+07:00 E046 summarize exit=0 ===
+=== 2026-11-05T01:48:40+07:00 E046 summarize: .venv/bin/python -u -m constellation_denoiser.e046_fit summarize ===
+JOBS=5 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+E046: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E046_kerr_offaxis/results/a_summary.csv; вердикты: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E046_kerr_offaxis/results/a_verdicts.csv
+=== 2026-11-05T01:48:47+07:00 E046 summarize exit=0 ===
