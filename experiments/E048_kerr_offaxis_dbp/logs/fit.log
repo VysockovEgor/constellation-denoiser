@@ -6,3 +6,12 @@ JOBS=1 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
 [4/60] fit: ('A1_varpro_M11_nc63_r17', 'ok') (в работе 0, предел 1)
 [5/60] fit: ('A3_seq_M11_nc63_r17', 'ok') (в работе 0, предел 1)
 [6/60] fit: ('T_closed_M15_nc0_r17', 'ok') (в работе 0, предел 1)
+=== 2026-11-05T14:12:13+07:00 E048 fit exit=0 ===
+=== 2026-11-05T14:12:17+07:00 E048 fit: .venv/bin/python -u -m constellation_denoiser.e046_fit summarize ===
+JOBS=2 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+E046: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E048_kerr_offaxis_dbp/results/a_summary.csv; вердикты: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E048_kerr_offaxis_dbp/results/a_verdicts.csv
+=== 2026-11-05T14:12:24+07:00 E048 fit exit=0 ===
+=== 2026-11-05T16:34:38+07:00 E048 fit: .venv/bin/python -u -m constellation_denoiser.e046_fit summarize ===
+JOBS=2 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+E046: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E048_kerr_offaxis_dbp/results/a_summary.csv; вердикты: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E048_kerr_offaxis_dbp/results/a_verdicts.csv
+=== 2026-11-05T16:34:46+07:00 E048 fit exit=0 ===
