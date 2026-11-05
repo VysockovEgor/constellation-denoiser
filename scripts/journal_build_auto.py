@@ -79,6 +79,7 @@ VERDICTS = {
     "E037": "results/split_verdicts.csv", "E038": "results/dbp_triplets_verdicts.csv",
     "E039": "results/e039_verdicts.csv", "E040": "results/cascade_verdicts.csv", "E041": "results/mixed_verdicts.csv",
     "E043": "results/summary_verdicts.csv", "E046": "results/a_verdicts.csv", "E047": "results/variants_verdicts.csv",
+    "E048": "results/dbp_offaxis_verdicts.csv",
 }
 # extra tables shown on the experiment page: (file, {column: header}, title)
 EXTRA_TABLES = {
@@ -148,7 +149,7 @@ TEST, VAL = "test_reduction_valbest_select", "best_val_reduction"
 # the control is a different model (complex_a vs physics models): "worse than control" is not an anomaly there
 CONTROL_IS_OTHER_MODEL = {"E016", "E017", "E018", "E020", "E021", "E022", "E023", "E024", "E025", "E026", "E027",
                           "E028", "E029", "E030", "E031", "E032", "E033", "E034", "E035", "E036", "E037", "E038",
-                          "E039", "E040", "E041", "E043", "E044", "E045", "E046", "E047"}
+                          "E039", "E040", "E041", "E043", "E044", "E045", "E046", "E047", "E048"}
 COLUMN_RU = {
     "hypothesis": "гипотеза", "candidate": "кандидат", "candidate_macs": "умножений (кандидат)",
     "reference": "эталон", "reference_macs": "умножений (эталон)", "diff_pp": "разница, п.п.",

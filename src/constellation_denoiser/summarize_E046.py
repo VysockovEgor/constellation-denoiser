@@ -14,8 +14,9 @@ from .summary_e024 import write_verdicts
 
 
 def summarize(config: dict, smoke: bool) -> int:
-    out = results_root("E046", smoke)
-    figures = out / "figures" if smoke else exp_dir("E046") / "figures"
+    exp = config["experiment_id"]
+    out = results_root(exp, smoke)
+    figures = out / "figures" if smoke else exp_dir(exp) / "figures"
     figures.mkdir(parents=True, exist_ok=True)
     files = sorted((out / "fits").glob("*.csv"))
     if not files:
@@ -70,12 +71,12 @@ def summarize(config: dict, smoke: bool) -> int:
                                  "value": float(r.test_mean - t.test_mean.iloc[0]), "verdict": "справочно",
                                  "detail": f"{r.test_mean:.2f} ± {r.test_std:.2f} при {int(r.rm)} RM против {t.test_mean.iloc[0]:.2f} при {int(t.rm.iloc[0])}"})
     write_verdicts(rows, config, out / "a_verdicts.csv")
-    plot(s, figures)
+    plot(s, figures, exp)
     print(f"E046: {out / 'a_summary.csv'}; вердикты: {out / 'a_verdicts.csv'}")
     return 0
 
 
-def plot(s: pd.DataFrame, figures) -> None:
+def plot(s: pd.DataFrame, figures, exp: str = "E046") -> None:
     import matplotlib.pyplot as plt
 
     from . import plot_style
@@ -97,7 +98,7 @@ def plot(s: pd.DataFrame, figures) -> None:
     ax.set_title("Architecture A: gain vs number of off-axis (IFWM) terms at fixed Kerr")
     ax.legend(fontsize=7)
     fig.tight_layout()
-    fig.savefig(figures / "E046_gain_vs_offaxis_terms.png", dpi=160)
+    fig.savefig(figures / f"{exp}_gain_vs_offaxis_terms.png", dpi=160)
     plt.close(fig)
     fig, ax = plt.subplots(figsize=(9, 5))
     for index, (arch, part) in enumerate(s.groupby("arch")):
@@ -109,5 +110,5 @@ def plot(s: pd.DataFrame, figures) -> None:
     ax.set_title("Architecture A vs triplets only (T) and Kerr only (K)")
     ax.legend(fontsize=8)
     fig.tight_layout()
-    fig.savefig(figures / "E046_a_vs_controls_rm.png", dpi=160)
+    fig.savefig(figures / f"{exp}_a_vs_controls_rm.png", dpi=160)
     plt.close(fig)

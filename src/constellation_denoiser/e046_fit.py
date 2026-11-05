@@ -34,6 +34,7 @@ POINTS = torch.tensor(CONSTELLATION, dtype=torch.complex128)
 BITS = torch.tensor(BIT_TABLE, dtype=torch.int64)
 
 
+EXP = {"id": os.environ.get("TRIPLET_KERR_EXP", "E046")}   # E048 reuses this module with its own config
 SPLIT = {"seed": None}          # set by the "splits" action: E023 file split seed (None = the E004 split)
 
 
@@ -187,12 +188,23 @@ def run_job(arch: str, mode: str, M: int, n_c: int, replica: int, config: dict, 
                      "val_reduction": 100 * (raw["validation"] - vb) / raw["validation"],
                      "test_reduction": 100 * (raw["test"] - tb) / raw["test"], "q2_gain_db": q2_db(tb) - q2_db(raw["test"])})
     if theta is not None and SPLIT["seed"] is None:
-        np.savez(results_root("E046", smoke) / "fits" / f"theta_{arch}_{mode}_M{M}_nc{n_c}_r{replica}.npz",
+        np.savez(results_root(EXP["id"], smoke) / "fits" / f"theta_{arch}_{mode}_M{M}_nc{n_c}_r{replica}.npz",
                  theta=theta.numpy(), coef=coefs[:, 2].numpy(), terms=np.array(terms))
     return pd.DataFrame(rows)
 
 
 def jobs(config: dict, smoke: bool) -> list[tuple]:
+    if "arch_modes" in config:                       # E048: explicit (arch, mode) list and controls
+        Ms = config["smoke_M"] if smoke else config["M"]
+        ncs = config["smoke_nc"] if smoke else config["n_c"]
+        out = []
+        for r in (config["replicas"][:1] if smoke else config["replicas"]):
+            for M in Ms:
+                out.append(("T", "closed", M, 0, r))
+                for nc in ncs:
+                    out += [(arch, mode, M, nc, r) for arch, mode in config["arch_modes"]]
+            out += [("K", "seq", Ms[0], nc, r) for nc in ncs]
+        return out
     Ms = config["smoke_M"] if smoke else config["M"]
     ncs = config["smoke_nc"] if smoke else config["n_c"]
     reps = config["replicas"][:1] if smoke else config["replicas"]
@@ -215,10 +227,12 @@ def job_id(j) -> str:
     return "{}_{}_M{}_nc{}_r{}".format(*j)
 
 
-def _one(j, config, smoke, split=None):
+def _one(j, config, smoke, split=None, exp=None):
+    if exp:
+        EXP["id"] = exp
     SPLIT["seed"] = split
     folder = "fits" if split is None else f"fits_split{split}"
-    out = results_root("E046", smoke) / folder / f"{job_id(j)}.csv"
+    out = results_root(EXP["id"], smoke) / folder / f"{job_id(j)}.csv"
     out.parent.mkdir(parents=True, exist_ok=True)
     if out.is_file():
         return job_id(j), "exists"
@@ -242,7 +256,7 @@ def pool_run(todo: list, config: dict, smoke: bool, label: str) -> int:
             limit = adaptive_limit(len(running)) if adaptive else max(1, fixed)
             while pending and len(running) < limit:
                 j, seed = pending.pop(0)
-                running[pool.submit(_one, j, config, smoke, seed)] = j
+                running[pool.submit(_one, j, config, smoke, seed, EXP["id"])] = j
             finished, _ = cf.wait(running, timeout=60, return_when=cf.FIRST_COMPLETED)
             for fut in finished:
                 running.pop(fut)
@@ -256,8 +270,8 @@ def pool_run(todo: list, config: dict, smoke: bool, label: str) -> int:
 
 def main(argv: list[str]) -> int:
     smoke = os.environ.get("SMOKE", "0") == "1"
-    config = json.loads((exp_dir("E046") / "config.json").read_text(encoding="utf-8"))
-    out = results_root("E046", smoke)
+    config = json.loads((exp_dir(EXP["id"]) / "config.json").read_text(encoding="utf-8"))
+    out = results_root(EXP["id"], smoke)
     (out / "fits").mkdir(parents=True, exist_ok=True)
     action = argv[0] if argv else "all"
     if action == "one":

@@ -1,0 +1,161 @@
+{
+ "data_manifest_sha256": "cb5f2de47145c02d6485969ce116df2253a271c979a927452ea454551a48c0a8",
+ "split_source": "experiments/E004_training_file_curve/config.json (train_pool_files[:30], validation 45, test 45), as E007-E019",
+ "dataset_root": "data/raw/archive",
+ "n_train_files": 30,
+ "seeds": [
+  17,
+  29,
+  43,
+  57,
+  71
+ ],
+ "replicas": [
+  17,
+  29,
+  43,
+  57,
+  71
+ ],
+ "replica_rule": "replica r: numpy default_rng(r) bootstrap of the 30 train files (counts in the closed form; theta on the first n_sub distinct drawn files); validation and test fixed",
+ "fir_len": 7,
+ "n_sub": 4,
+ "lbfgs_iters": 60,
+ "theta_lambda": 0.0001,
+ "K": [
+  8,
+  16,
+  32,
+  64,
+  128
+ ],
+ "K_th": [
+  1,
+  2,
+  4,
+  8,
+  16
+ ],
+ "split_seeds": [
+  101,
+  202,
+  303
+ ],
+ "experiment_id": "E048",
+ "title": "Architecture A at larger memory and DBP + off-axis triplets",
+ "question": "Does architecture A close the gap to DBP with larger memory (M = 11, 15; N_c = 31, 63), and do off-axis triplets added to DBP help where the axial ones of E038 duplicated its Kerr phase?",
+ "date": "not run",
+ "base_git_commit": "(this commit; branch exp/E044-E047)",
+ "value_filter": {
+  "changes_next_step": "yes: decides between A and DBP + off-axis as the reference below ~2.5k RM",
+  "answered_in_literature": "no for our data",
+  "needed_for_main_claim": "yes",
+  "cheaper_without_training": "part 1 yes (closed form); part 2 needs training"
+ },
+ "decision_if_positive": "the winner becomes the reference in E043-type summaries at its RM",
+ "decision_if_negative": "DBP stays the reference below ~2.5k RM; A is reported as better than plain triplets only",
+ "M": [
+  11,
+  15
+ ],
+ "n_c": [
+  31,
+  63
+ ],
+ "smoke_M": [
+  3
+ ],
+ "smoke_nc": [
+  7
+ ],
+ "arch_modes": [
+  [
+   "A1",
+   "varpro"
+  ],
+  [
+   "A3",
+   "seq"
+  ]
+ ],
+ "kerr_rm_note": "N_c is the total number of phase taps (j = -(N_c - 1)/2 .. (N_c - 1)/2), symmetric alpha: (N_c + 1)/2 distinct weights; Kerr RM = 4 L + 2 + (N_c + 1)/2 + 4 (N_c = 31: 50 RM, N_c = 63: 66 RM); exp from a table (repository convention, as macs_phys)",
+ "select_M": 15,
+ "select_fir_len": 7,
+ "lambda_grid": [
+  1e-08,
+  1e-06,
+  0.0001,
+  0.001,
+  0.01,
+  0.1
+ ],
+ "dbp_spec": {
+  "fir_len": 31,
+  "n_alpha": 7,
+  "sym": true
+ },
+ "dbp": {
+  "8": "F6",
+  "16": "F7"
+ },
+ "dbp_k": [
+  16,
+  32,
+  64,
+  128
+ ],
+ "n_seeds": 5,
+ "steps": 200000,
+ "base_lr": {
+  "peak_lr": 0.001,
+  "schedule": "const",
+  "warmup": 0,
+  "c_mult": 1.0,
+  "floor_frac": 0.1,
+  "optimizer": "adam",
+  "weight_decay": 0.0
+ },
+ "ckpt_every": 10000,
+ "eval_rule": "validation and (report-only) test every max(500, steps/40) steps; selection only by validation",
+ "control": {
+  "runs": {
+   "a_const_1e-3_20k": {
+    "spec": {
+     "model": "complex_a",
+     "window": 31,
+     "hidden": 48,
+     "name": "complex_a"
+    },
+    "n_train_files": 30,
+    "steps": 20000
+   }
+  },
+  "targets": {
+   "a_const_1e-3_20k": {
+    "target": 62.191,
+    "tol": 0.7,
+    "seeds": [
+     17,
+     29
+    ],
+    "metric": "test_reduction_valbest_select",
+    "source": "experiments/E009_kerr_ablation/results/complex_mlp_ablation_summary.csv (variant a); reproduced in E010-E019 (62.19)"
+   }
+  }
+ },
+ "compare_rm": [
+  430,
+  820,
+  1200,
+  2000,
+  2500
+ ],
+ "tuning_budget_note": "A and triplets-only: closed form, the same 6 lambda values and the same K / K_th sweeps (A has more (M, N_c) combinations); DBP + off-axis: the E025 recipes F6 / F7 as E038 (same budget as E038)",
+ "rule_draft": {
+  "status": "DRAFT: to be confirmed by the user before the first run; must not change after results are seen",
+  "a_wins": "as E046: A beats triplets-only and Kerr-only at equal RM by > 2 std",
+  "offaxis_adds": "off-axis triplets add to DBP if (DBP + K off-axis) - DBP alone >= 1 p.p. with non-overlapping intervals (as E038)",
+  "a_vs_dbp": "A beats DBP + off-axis at an RM level if its test mean is higher by > 2 std (the larger std of the two)",
+  "otherwise": "не доказано"
+ }
+}

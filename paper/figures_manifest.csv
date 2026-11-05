@@ -62,3 +62,4 @@ fig_no,experiment_id,file,caption,source_csv
 61,E045,experiments/E045_reference_families/figures/E045_references_vs_rm.png,Reference families on one RM scale (mean +- std),experiments/E045_reference_families/results/references_pareto.csv
 62,E046,experiments/E046_kerr_offaxis/figures/E046_gain_vs_offaxis_terms.png,Architecture A: gain vs number of off-axis terms at fixed Kerr (not run),experiments/E046_kerr_offaxis/results/a_summary.csv
 63,E047,experiments/E047_cascade_variants/figures/E047_cascade_variants.png,Cascade training variants (not run),experiments/E047_cascade_variants/results/variants_summary.csv
+64,E048,experiments/E048_kerr_offaxis_dbp/figures/E048_gain_vs_offaxis_terms.png,Architecture A at larger memory: gain vs off-axis terms (not run),experiments/E048_kerr_offaxis_dbp/results/a_summary.csv

@@ -263,11 +263,58 @@ def e047_tasks(stage: str, options: Options) -> list[dict]:
 BUILDERS["E047"] = e047_tasks
 
 
+# --------------------------------------------------------------------------- E048 (DBP + off-axis triplets)
+
+def e048_select(options: Options) -> int:
+    """Off-axis T3 terms (m != 0, n != 0) of the closed-form M fit, strongest first -> results/terms_offaxis.npz."""
+    from .runner import atomic_write_json, default_files, log
+    from .triplets_ext import rank_terms
+    from .window_data import load_fileset, resolve_paths
+
+    directory, config = load_config("E048")
+    files = default_files(30, options.smoke)
+    train, val = (load_fileset(resolve_paths(files[k])) for k in ("train", "validation"))
+    ranked = rank_terms(train, val, config["select_M"], config["select_fir_len"], config["lambda_grid"], 4096)
+    off = [t for t in ranked if t[0] != 0 and t[1] != 0][: max(config["dbp_k"])]
+    out = g24.results_dir(directory, options.smoke)
+    out.mkdir(parents=True, exist_ok=True)
+    np.savez(out / "terms_offaxis.npz", terms=np.array(off))
+    atomic_write_json(out / "terms_offaxis.json", {"M": config["select_M"], "top": [list(t) for t in off]})
+    log(f"E048: {len(off)} внеосевых членов сохранены")
+    return 0
+
+
+def e048_tasks(stage: str, options: Options) -> list[dict]:
+    exp = "E048"
+    directory, config = load_config(exp)
+    if stage == "control":
+        return control_tasks(exp, directory, config, options)
+    if stage != "main":
+        raise SystemExit(f"E048: неизвестная стадия {stage!r}")
+    from .paths import PROJECT_ROOT
+
+    terms = str((g24.results_dir(directory, options.smoke) / "terms_offaxis.npz").relative_to(PROJECT_ROOT))
+    tasks = []
+    for ns, key in config["dbp"].items():
+        lr, _, source = g24.recipe_lr(key, options)
+        for k in [0] + list(config["dbp_k"]):
+            spec = dict(config["dbp_spec"], model="dbp_triplets", window=31, n_steps=int(ns), k=k, terms=terms if k else None)
+            for seed in g24.first_seeds(config, options, config["n_seeds"]):
+                tasks.append(g24.run(exp, stage, directory, config, options, name=f"dbpoff_Ns{ns}_K{k}", spec=spec, lr=lr,
+                                     steps=config["steps"], seed=seed,
+                                     meta={"n_steps": int(ns), "k": k, "recipe": key, "recipe_source": source}))
+    return tasks
+
+
+BUILDERS["E048"] = e048_tasks
+
+
 def _register() -> None:
     from . import grids
 
     grids.BUILDERS.update(BUILDERS)
     grids.SPECIAL_STAGES[("E047", "init")] = e047_init
+    grids.SPECIAL_STAGES[("E048", "select")] = e048_select
 
 
 _register()
