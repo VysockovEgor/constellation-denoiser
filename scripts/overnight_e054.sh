@@ -34,7 +34,13 @@ stage() {
     echo "$(date -Is) жду E050 start (start_best.csv)"; sleep 300
   done
   if stage control control; then
-    for s in fit:other summarize:other; do stage "${s%%:*}" "${s##*:}"; done
+    stage phase1 other
+    if bash experiments/E054_dbpx_pruning/run.sh gate; then
+      echo "$(date -Is) E054: сигнал фазы 1, запускаю фазу 2"; stage phase2 other
+    else
+      echo "$(date -Is) E054: сигнала фазы 1 нет (results/phase1_gate.json), фаза 2 не запускается"
+    fi
+    stage summarize other
   else
     echo "ОШИБКА: E054 прерван на control"
   fi

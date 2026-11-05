@@ -101,7 +101,8 @@
  "rule_draft": {
   "report": "per (Ns, length): mean, std, SE, range over seeds; share of the L = 255 level kept; RM in both conventions",
   "limits": "one schedule (no tuning of the schedule); circular files; one channel, one polarization, 1 sps",
-  "progressive_vs_others": "progressive better than direct / direct_ld / abrupt at a length if the difference > 2 SE and > 2 std (reverse also reported)"
+  "progressive_vs_others": "progressive better than direct / direct_ld / abrupt at a length if the difference > 2 SE and > 2 std (reverse also reported)",
+  "phase_gate": "signal: progressive or direct_ld keeps, at some L <= 31, a mean test reduction (5 seeds) > 0 and >= 0.5 of the progressive L = 255 level; otherwise phase 2 is not run"
  },
  "value_filter": {
   "changes_next_step": "yes: decides whether DBP-X can be cheap in the direct-convolution convention",
@@ -115,5 +116,10 @@
   "direct": "LS(=truncation) at the target length, trained for the same number of iterations the progressive arm spent to reach it",
   "direct_ld": "joint cascade LS (Xiao L_D, L-BFGS 300 from the truncation, lowest L_D kept) at the target length, same budget",
   "abrupt": "cut from the trained 255 at once, then 3000 per length"
+ },
+ "phases": {
+  "phase1": "Ns 20: progressive and direct_ld (L = 31, 15, 7), seeds 17, 29, 43, 57, 71 (author's decision 2026-11-05)",
+  "phase2": "only with a phase-1 signal: direct (Ns 20, 10 seeds), abrupt, progressive and direct_ld up to 10 seeds where planned, Ns 40",
+  "order_on_server": "after E050 unittest and start"
  }
 }

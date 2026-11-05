@@ -218,6 +218,36 @@ def _job(args):
         f" ({r['time_s']:.0f} s)"
 
 
+GATE_SHARE = 0.5
+
+
+def phase1_tasks() -> list[tuple]:
+    """Phase 1: Ns 20, progressive and direct_ld (L = 31, 15, 7), 5 seeds each."""
+    seeds = SEEDS10[:5]
+    return [(20, s, "progressive", False, None) for s in seeds] + \
+        [(20, s, "direct_ld", False, L) for L in TARGETS for s in seeds]
+
+
+def gate(smoke: bool) -> int:
+    """Signal of phase 1 (config rule_draft.phase_gate): progressive or direct_ld keeps, at some L <= 31, a mean test
+    reduction (5 seeds) > 0 and >= GATE_SHARE of the progressive L = 255 level. Exit 0 = signal, 3 = no signal."""
+    res = results_root("E054", smoke)
+    rows = []
+    for p in sorted((res / "runs").glob("Ns20_*.json")):
+        r = json.loads(p.read_text(encoding="utf-8"))
+        rows += [dict(mode=r["mode"], seed=r["seed"], **l) for l in r["levels"]]
+    t = pd.DataFrame(rows)
+    top = t[(t["mode"] == "progressive") & (t.L == LENGTHS[0])].test_reduction.mean()
+    m = t[t.L <= 31].groupby(["mode", "L"]).test_reduction.agg(["mean", "std", "size"]).reset_index()
+    m["share_of_255"] = m["mean"] / top
+    m["passes"] = (m["mean"] > 0) & (m.share_of_255 >= GATE_SHARE)
+    signal = bool(m.passes.any())
+    out = {"level_255": top, "share_required": GATE_SHARE, "signal": signal, "rows": m.to_dict("records")}
+    (res / "phase1_gate.json").write_text(json.dumps(out, ensure_ascii=False, indent=1, default=float), encoding="utf-8")
+    print(json.dumps(out, ensure_ascii=False, default=float))
+    return 0 if signal else 3
+
+
 def tasks(smoke: bool) -> list[tuple]:
     """Ns 20 (main, as Lin 2021: one span per step): progressive and direct 10 seeds, direct_ld and abrupt 5 seeds;
     Ns 40: progressive and direct 5 seeds."""
@@ -311,12 +341,21 @@ def plot(s, figs) -> None:
 def main(argv) -> int:
     smoke = os.environ.get("SMOKE", "0") == "1"
     action = argv[0] if argv else ""
-    if action == "all":
+    if action == "gate":
+        return gate(smoke)
+    if action in ("all", "phase1", "phase2"):
         from concurrent.futures import FIRST_COMPLETED, ProcessPoolExecutor, wait
 
         from .gate import MAX_JOBS, adaptive_limit
 
-        pending, running, done, todo = tasks(smoke), set(), 0, None
+        if action == "all" or smoke:
+            chosen_tasks = tasks(smoke)
+        elif action == "phase1":
+            chosen_tasks = phase1_tasks()
+        else:
+            first = set(phase1_tasks())
+            chosen_tasks = [t for t in tasks(False) if t not in first]
+        pending, running, done, todo = chosen_tasks, set(), 0, None
         todo = len(pending)
         with ProcessPoolExecutor(max_workers=1 if smoke else MAX_JOBS) as ex:
             while pending or running:
