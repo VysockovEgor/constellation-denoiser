@@ -1,0 +1,4 @@
+=== 2026-11-05T20:20:17+07:00 E053 splits: .venv/bin/python -u -m constellation_denoiser.e053_data splits ===
+JOBS=1 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+[2026-11-05 20:26:36] [1/15] A1_M8_nc31_r17_split101.csv: ok (33 rows) (в работе 0, предел 1)
+[2026-11-05 20:33:29] [2/15] A1_M8_nc31_r17_split202.csv: ok (33 rows) (в работе 0, предел 1)
