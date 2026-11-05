@@ -204,6 +204,16 @@ def rm_oc_reuse(M: int, kind: str = "T3") -> dict:
             "adds_real": d["adds_real"]}
 
 
+def rm_xiao_offaxis(K: int, M: int, nf: str = "2M+1") -> float:
+    """Xiao 2025 (из литературы, по пересказу задания): iFWM part of one SNSE step, K (2 C_conv(N_f) + 12) RM per
+    symbol for the cross rule min(|m|,|n|) <= K, max(|m|,|n|) <= L, arbitrary coefficients along the cross lines.
+    N_f is not defined in the task text: "2M+1" (full filter over -L..L) or "M+1" (one side); both reported."""
+    from .dbpx import c_conv
+
+    n_f = 2 * M + 1 if nf == "2M+1" else M + 1
+    return K * (2 * c_conv(n_f) + 12)
+
+
 def check(seed: int = 0, P: int = 120) -> list[dict]:
     """Identity and fast evaluation on random complex data, several (M, eta, W, domain)."""
     rng = np.random.default_rng(seed)

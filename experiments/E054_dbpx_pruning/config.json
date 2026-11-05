@@ -1,0 +1,104 @@
+{
+ "data_manifest_sha256": "cb5f2de47145c02d6485969ce116df2253a271c979a927452ea454551a48c0a8",
+ "split_source": "experiments/E004_training_file_curve/config.json (train_pool_files[:30], validation 45, test 45), as E007-E019",
+ "dataset_root": "data/raw/archive",
+ "n_train_files": 30,
+ "base_lr": {
+  "peak_lr": 0.001,
+  "schedule": "const",
+  "warmup": 0,
+  "c_mult": 1.0,
+  "floor_frac": 0.1,
+  "optimizer": "adam",
+  "weight_decay": 0.0
+ },
+ "ckpt_every": 10000,
+ "eval_rule": "validation and (report-only) test every max(500, steps/40) steps; selection only by validation",
+ "control": {
+  "runs": {
+   "a_const_1e-3_20k": {
+    "spec": {
+     "model": "complex_a",
+     "window": 31,
+     "hidden": 48,
+     "name": "complex_a"
+    },
+    "n_train_files": 30,
+    "steps": 20000
+   }
+  },
+  "targets": {
+   "a_const_1e-3_20k": {
+    "target": 62.191,
+    "tol": 0.7,
+    "seeds": [
+     17,
+     29
+    ],
+    "metric": "test_reduction_valbest_select",
+    "source": "experiments/E009_kerr_ablation/results/complex_mlp_ablation_summary.csv (variant a); reproduced in E010-E019 (62.19)"
+   }
+  }
+ },
+ "experiment_id": "E054",
+ "title": "DBP-X with trainable FIR: physical start at 255 taps, progressive pruning to 127, 63, 31, 15, 7 during training",
+ "date": "not run",
+ "base_git_commit": "(this commit; branch exp/E044-E047)",
+ "question": "How much BER reduction does DBP-X keep when its trainable step FIR is pruned during training from 255 to 31, 15, 7 taps, and at what RM (both conventions)? Ns = 20 is the main reference; Ns = 40 secondary.",
+ "model": "dbpx.DBPX with a tap mask (e054_prune.Masked): D_total exact and fixed, Ns steps [symmetric FIR(255) circular FFT, Kerr phase R = 7], complex gain; start = physical taps + alpha of the E050 start choice (validation)",
+ "schedule": {
+  "lengths": [
+   255,
+   127,
+   63,
+   31,
+   15,
+   7
+  ],
+  "warm": 3000,
+  "shrink": 1000,
+  "fine": 2000,
+  "eval_every": 100,
+  "batch": "4 whole train files, circular shift",
+  "optimizer": "Adam 1e-3 (one stage)",
+  "progressive": "active half-length shrinks linearly from the previous to the new length over 'shrink' iterations, then 'fine' iterations",
+  "abrupt": "control: cut at once, then shrink + fine iterations (same budget)",
+  "selection": "per length: checkpoint with the minimum validation MSE during its fine part; test reported there"
+ },
+ "seeds": {
+  "Ns20": [
+   17,
+   29,
+   43,
+   57,
+   71,
+   83,
+   97,
+   101,
+   113,
+   127
+  ],
+  "Ns40": [
+   17,
+   29,
+   43,
+   57,
+   71
+  ],
+  "abrupt": "first 5 seeds of each Ns"
+ },
+ "rm": {
+  "main": "both columns are main: direct convolution (repository convention) and FFT / overlap-save (Xiao C_conv); D_total 401 taps; the convention choice is pending (advisor)"
+ },
+ "rule_draft": {
+  "report": "per (Ns, length): mean, std, SE, range over seeds; share of the L = 255 level kept; RM in both conventions",
+  "progressive_vs_abrupt": "progressive better than abrupt at a length if the difference > 2 SE and > 2 std (5 seeds each)",
+  "limits": "one schedule (no tuning of the schedule); circular files; one channel, one polarization, 1 sps"
+ },
+ "value_filter": {
+  "changes_next_step": "yes: decides whether DBP-X can be cheap in the direct-convolution convention",
+  "answered_in_literature": "learned short filters in DBP are standard (Xiao 2025 uses filters of the step memory); not on our 1 sps data",
+  "needed_for_main_claim": "yes",
+  "cheaper_without_training": "no (E050 unit test: truncation without training fails)"
+ }
+}

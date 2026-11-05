@@ -16,7 +16,7 @@ import sys
 import numpy as np
 import pandas as pd
 
-from .chirp_triplets import check, rm_direct, rm_fast_chirp, rm_oc_reuse
+from .chirp_triplets import check, rm_direct, rm_fast_chirp, rm_oc_reuse, rm_xiao_offaxis
 from .runner import exp_dir, results_root
 
 KERR_RM = {"A1_M8_nc31": 4 * 7 + 2 + 16 + 4, "A1_M11_nc63": 4 * 7 + 2 + 32 + 4}
@@ -61,6 +61,10 @@ def main(smoke: bool | None = None) -> int:
             row[f"rm_chirp_S{S}"] = S * f["rm"]
             row[f"rm_chirp_S{S}_exp_computed"] = S * f["rm_exp_computed"]
             row[f"adds_chirp_S{S}"] = S * f["adds_real"]
+        for K in (1, 2, 3):
+            row[f"rm_xiao_K{K}"] = round(rm_xiao_offaxis(K, M), 1)
+        row["rm_xiao_K=M"] = round(rm_xiao_offaxis(M, M), 1)
+        row["rm_xiao_K=M_nf_M+1"] = round(rm_xiao_offaxis(M, M, "M+1"), 1)
         rm_rows.append(row)
     rm = pd.DataFrame(rm_rows)
     rm.to_csv(res / "rm_vs_M.csv", index=False)
@@ -170,6 +174,8 @@ def plot_rm(rm, figs) -> None:
     ax.plot(rm.M, rm.rm_grouped, ls="--", label="(2b) то же + группировка по m")
     for S in (1, 3, 5):
         ax.plot(rm.M, rm[f"rm_chirp_S{S}"], label=f"(3) рекурсия, S = {S} чирп(ов)")
+    ax.plot(rm.M, rm["rm_xiao_K=M"], "k:", label="Xiao: K (2 C_conv(2M+1) + 12), K = M (весь домен)")
+    ax.plot(rm.M, rm["rm_xiao_K1"], "k-.", label="Xiao: K = 1")
     ax.set_yscale("log")
     ax.set_xlabel("M (домен T3, внеосевые члены)")
     ax.set_ylabel("RM на символ (без Керра)")
