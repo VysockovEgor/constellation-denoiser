@@ -1,0 +1,144 @@
+{
+ "data_manifest_sha256": "cb5f2de47145c02d6485969ce116df2253a271c979a927452ea454551a48c0a8",
+ "split_source": "experiments/E004_training_file_curve/config.json (train_pool_files[:30], validation 45, test 45), as E007-E019",
+ "dataset_root": "data/raw/archive",
+ "n_train_files": 30,
+ "seeds": [
+  17,
+  29,
+  43,
+  57,
+  71
+ ],
+ "replicas": [
+  17,
+  29,
+  43,
+  57,
+  71
+ ],
+ "replica_rule": "replica r: numpy default_rng(r) bootstrap of the 30 train files (counts in the closed form; theta on the first n_sub distinct drawn files); validation and test fixed",
+ "fir_len": 7,
+ "n_sub": 4,
+ "lbfgs_iters": 60,
+ "theta_lambda": 0.0001,
+ "K": [
+  8,
+  16,
+  32,
+  64,
+  128
+ ],
+ "K_th": [
+  1,
+  2,
+  4,
+  8,
+  16
+ ],
+ "base_lr": {
+  "peak_lr": 0.001,
+  "schedule": "const",
+  "warmup": 0,
+  "c_mult": 1.0,
+  "floor_frac": 0.1,
+  "optimizer": "adam",
+  "weight_decay": 0.0
+ },
+ "ckpt_every": 10000,
+ "eval_rule": "validation and (report-only) test every max(500, steps/40) steps; selection only by validation",
+ "control": {
+  "runs": {
+   "a_const_1e-3_20k": {
+    "spec": {
+     "model": "complex_a",
+     "window": 31,
+     "hidden": 48,
+     "name": "complex_a"
+    },
+    "n_train_files": 30,
+    "steps": 20000
+   }
+  },
+  "targets": {
+   "a_const_1e-3_20k": {
+    "target": 62.191,
+    "tol": 0.7,
+    "seeds": [
+     17,
+     29
+    ],
+    "metric": "test_reduction_valbest_select",
+    "source": "experiments/E009_kerr_ablation/results/complex_mlp_ablation_summary.csv (variant a); reproduced in E010-E019 (62.19)"
+   }
+  }
+ },
+ "lambda_grid": [
+  1e-08,
+  1e-06,
+  0.0001,
+  0.001,
+  0.01,
+  0.1
+ ],
+ "experiment_id": "E056",
+ "title": "Ablation: why Kerr with memory + off-axis triplets beats triplets alone",
+ "date": "not run",
+ "base_git_commit": "(this commit; branch exp/E044-E047)",
+ "question": "At equal RM (about 430, 1200, 2200), which part gives the gain of A1 over the full triplet table: the memory of the Kerr phase, the off-axis triplets, or the exponential (all-order, constrained) form of the axial terms?",
+ "code_facts": {
+  "T": "e046_fit.job_terms('T') = triplet_terms(M, 'T3') + FIR7: all merged terms m <= n with |m+n| <= M, INCLUDING the axial ones (m = 0 or n = 0: x_k |x_{k+j}|^2, j = -M..M, 2M+1 terms) and the centre (0,0), free complex coefficients",
+  "Kerr": "kerr_offaxis.Kerr: u = FIR7(x), y = u exp(-i sum_{j=-r..r} alpha_j |u_{k+j}|^2), alpha real and symmetric (alpha_j = alpha_-j), N_c = 2r + 1 taps; first order: the axial terms x_k |x_{k+j}|^2 for |j| <= r with purely imaginary coefficients symmetric in j, plus all higher orders of the same phase",
+  "offaxis": "kerr_offaxis.offaxis_terms(M) = T3 terms with m != 0 and n != 0; m + n = 0 IS included (e.g. (-1, 1): x_{k-1} x_{k+1} conj(x_k))"
+ },
+ "arms": {
+  "1": "all triplets (T, E046 M3/5/8 and E048 M11/15; existing)",
+  "2": "Kerr without memory (N_c = 1) + off-axis (A1 varpro N_c = 1; NEW in E056)",
+  "3": "Kerr with memory, no off-axis (K seq N_c 7/15/31 E046, 31/63 E048; existing)",
+  "4": "Kerr with memory + off-axis (A1 varpro E046/E048; existing)",
+  "5": "control: Kerr without memory, no off-axis (K seq N_c = 1; NEW in E056)"
+ },
+ "M": [
+  3,
+  5,
+  8,
+  11,
+  15
+ ],
+ "n_c": [
+  1
+ ],
+ "smoke_M": [
+  3
+ ],
+ "smoke_nc": [
+  1
+ ],
+ "arch_modes": [
+  [
+   "A1",
+   "varpro"
+  ]
+ ],
+ "skip_T": true,
+ "rm_levels": [
+  430,
+  1200,
+  2200
+ ],
+ "rm_tolerance": 0.05,
+ "rule_draft": {
+  "level_choice": "per arm and RM level: the configuration (M, N_c, pruning set, lambda) with RM <= level * 1.05 and the best mean validation over 5 replicas; test reported (mean, SE, std)",
+  "memory_effect": "arm 4 - arm 2 at the same level > 2 SE and > 2 std: memory of the Kerr phase matters",
+  "offaxis_effect": "arm 4 - arm 3 (best Kerr-only, any RM <= level) > 2 SE and > 2 std: off-axis terms matter",
+  "form_effect": "arm 2 - arm 1 at the same level > 2 SE and > 2 std: the exponential instantaneous Kerr + off-axis beats free axial coefficients",
+  "otherwise": "не доказано",
+  "limits": "5 bootstrap replicas of the train files (closed form), one split (E004); Kerr-only arms have one fixed RM each (35-66), they cannot be placed at higher levels"
+ },
+ "value_filter": {
+  "changes_next_step": "yes: explains the A1 gain",
+  "answered_in_literature": "partly (Liang, Kumar 2014: A-M form keeps energy); not on our data",
+  "needed_for_main_claim": "yes",
+  "cheaper_without_training": "closed form only"
+ }
+}

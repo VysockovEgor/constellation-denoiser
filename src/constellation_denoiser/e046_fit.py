@@ -211,7 +211,8 @@ def jobs(config: dict, smoke: bool) -> list[tuple]:
         out = []
         for r in (config["replicas"][:1] if smoke else config["replicas"]):
             for M in Ms:
-                out.append(("T", "closed", M, 0, r))
+                if not config.get("skip_T"):          # E056: T already fitted in E046 / E048
+                    out.append(("T", "closed", M, 0, r))
                 for nc in ncs:
                     out += [(arch, mode, M, nc, r) for arch, mode in config["arch_modes"]]
             out += [("K", "seq", Ms[0], nc, r) for nc in ncs]

@@ -440,6 +440,18 @@ def e055_tasks(stage: str, options: Options) -> list[dict]:
 BUILDERS["E055"] = e055_tasks
 
 
+def e056_tasks(stage: str, options: Options) -> list[dict]:
+    """E056 is closed form (e046_fit); the runner only trains the control."""
+    exp = "E056"
+    directory, config = load_config(exp)
+    if stage == "control":
+        return control_tasks(exp, directory, config, options)
+    raise SystemExit(f"E056: неизвестная стадия {stage!r}")
+
+
+BUILDERS["E056"] = e056_tasks
+
+
 def _register() -> None:
     from . import grids
 
