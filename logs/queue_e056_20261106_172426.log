@@ -1,0 +1,89 @@
+=== 2026-11-06T17:24:26+07:00 queue e056: host=hocalhost commit=f655fa3 ===
+JOBS=1: {'cores': 48, 'load_1min': 43.27, 'foreign_running_threads': 45.3, 'reserve': 0, 'mem_available_gb': 312.3}
+=== 2026-11-06T17:24:31+07:00 E056_kerr_offaxis_ablation: stage control (control) JOBS=1 ===
+=== 2026-11-06T17:24:31+07:00 E056 control: .venv/bin/python -u -m constellation_denoiser.runner --exp E056 --stage control --no-control-gate ===
+JOBS=1 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+[2026-11-06 17:24:36] running 2 tasks with JOBS=1, THREADS=1, DEVICE=cpu
+[2026-11-06 17:24:36] JOBS_ADAPTIVE: число процессов по свободным ядрам, до 48
+[2026-11-06 17:32:13] [ok 1/2] control_complex_a_w31_h48_N30_20k_seed17: val=59.43% test=60.40% diverged=False time=449s; ETA ~8 min
+[2026-11-06 17:40:02] [ok 2/2] control_complex_a_w31_h48_N30_20k_seed29: val=60.74% test=62.37% diverged=False time=464s; ETA ~0 min
+[2026-11-06 17:40:04] finished: 2 ok, 0 failed
+=== 2026-11-06T17:40:05+07:00 E056 control exit=0 ===
+=== 2026-11-06T17:40:05+07:00 E056 check-control: .venv/bin/python -m constellation_denoiser.runner --exp E056 --stage control --check-control ===
+JOBS=1 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+[2026-11-06 17:40:09] control a_const_1e-3_20k: mean test_reduction_valbest_select = 62.19% по 2 seed; цель 62.191±0.7 п.п. -> OK
+=== 2026-11-06T17:40:10+07:00 E056 check-control exit=0 ===
+JOBS=2: {'cores': 48, 'load_1min': 43.14, 'foreign_running_threads': 44.0, 'reserve': 0, 'mem_available_gb': 313.0}
+=== 2026-11-06T17:40:15+07:00 E056_kerr_offaxis_ablation: stage fit (other) JOBS=2 ===
+=== 2026-11-06T17:40:15+07:00 E056 fit: .venv/bin/python -u -m constellation_denoiser.e046_fit all ===
+JOBS=2 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+[1/30] fit: ('A1_varpro_M3_nc1_r17', 'ok') (в работе 2, предел 3)
+[2/30] fit: ('A1_varpro_M5_nc1_r17', 'ok') (в работе 1, предел 2)
+[3/30] fit: ('A1_varpro_M8_nc1_r17', 'ok') (в работе 1, предел 2)
+[4/30] fit: ('A1_varpro_M11_nc1_r17', 'ok') (в работе 0, предел 1)
+[5/30] fit: ('K_seq_M3_nc1_r17', 'ok') (в работе 1, предел 2)
+[6/30] fit: ('A1_varpro_M3_nc1_r29', 'ok') (в работе 1, предел 2)
+[7/30] fit: ('A1_varpro_M5_nc1_r29', 'ok') (в работе 2, предел 3)
+[8/30] fit: ('A1_varpro_M8_nc1_r29', 'ok') (в работе 1, предел 2)
+[9/30] fit: ('A1_varpro_M15_nc1_r17', 'ok') (в работе 2, предел 3)
+[10/30] fit: ('K_seq_M3_nc1_r29', 'ok') (в работе 4, предел 5)
+[11/30] fit: ('A1_varpro_M11_nc1_r29', 'ok') (в работе 4, предел 5)
+[12/30] fit: ('A1_varpro_M3_nc1_r43', 'ok') (в работе 4, предел 5)
+[13/30] fit: ('A1_varpro_M5_nc1_r43', 'ok') (в работе 4, предел 5)
+[14/30] fit: ('K_seq_M3_nc1_r43', 'ok') (в работе 5, предел 6)
+[15/30] fit: ('A1_varpro_M8_nc1_r43', 'ok') (в работе 5, предел 6)
+[16/30] fit: ('A1_varpro_M15_nc1_r29', 'ok') (в работе 5, предел 6)
+[17/30] fit: ('A1_varpro_M3_nc1_r57', 'ok') (в работе 4, предел 5)
+[18/30] fit: ('A1_varpro_M5_nc1_r57', 'ok') (в работе 5, предел 6)
+[19/30] fit: ('A1_varpro_M8_nc1_r57', 'ok') (в работе 5, предел 6)
+[20/30] fit: ('K_seq_M3_nc1_r57', 'ok') (в работе 6, предел 7)
+[21/30] fit: ('A1_varpro_M11_nc1_r43', 'ok') (в работе 5, предел 6)
+[22/30] fit: ('A1_varpro_M3_nc1_r71', 'ok') (в работе 6, предел 7)
+[23/30] fit: ('A1_varpro_M11_nc1_r57', 'ok') (в работе 6, предел 7)
+[24/30] fit: ('A1_varpro_M15_nc1_r43', 'ok') (в работе 6, предел 8)
+[25/30] fit: ('K_seq_M3_nc1_r71', 'ok') (в работе 5, предел 7)
+[26/30] fit: ('A1_varpro_M5_nc1_r71', 'ok') (в работе 4, предел 7)
+[27/30] fit: ('A1_varpro_M8_nc1_r71', 'ok') (в работе 3, предел 7)
+[28/30] fit: ('A1_varpro_M11_nc1_r71', 'ok') (в работе 2, предел 7)
+[29/30] fit: ('A1_varpro_M15_nc1_r57', 'ok') (в работе 1, предел 7)
+[30/30] fit: ('A1_varpro_M15_nc1_r71', 'ok') (в работе 0, предел 7)
+=== 2026-11-06T18:00:08+07:00 E056 fit exit=0 ===
+JOBS=8: {'cores': 48, 'load_1min': 38.21, 'foreign_running_threads': 38.0, 'reserve': 0, 'mem_available_gb': 313.1}
+=== 2026-11-06T18:00:13+07:00 E056_kerr_offaxis_ablation: stage summarize (other) JOBS=8 ===
+=== 2026-11-06T18:00:13+07:00 E056 summarize: .venv/bin/python -m constellation_denoiser.summarize_E056 ===
+JOBS=8 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+ level  arm                              name source  M  n_c       set  n_terms     rm  n  val_mean  test_mean  test_std  test_se                        note
+   430    1                1 все триплеты (T)   E046  5    0   mag_K32       32  412.0  5     23.49      24.27      0.06     0.03                            
+   430    2     2 Керр без памяти + внеосевые   E056  8    1   mag_K32       32  419.0  5     25.24      25.44      0.29     0.13                            
+   430    3   3 Керр с памятью, без внеосевых   E048 11   63      full        0   66.0  5     11.76      12.37      0.33     0.15 RM фиксирован (только Керр)
+   430    4 4 Керр с памятью + внеосевые (A1)   E048 15   63   mag_K32       32  450.0  5     40.44      41.49      0.35     0.16                            
+   430    5  5 Керр без памяти, без внеосевых   E056  3    1      full        0   35.0  5     -5.37      -5.26      0.40     0.18 RM фиксирован (только Керр)
+  1200    1                1 все триплеты (T)   E046  8    0 geo_Kth16       83 1024.0  5     42.68      44.38      0.15     0.07                            
+  1200    2     2 Керр без памяти + внеосевые   E056 15    1 geo_Kth16       98 1211.0  5     45.59      45.76      0.25     0.11                            
+  1200    3   3 Керр с памятью, без внеосевых   E048 11   63      full        0   66.0  5     11.76      12.37      0.33     0.15 RM фиксирован (только Керр)
+  1200    4 4 Керр с памятью + внеосевые (A1)   E048 15   63 geo_Kth16       98 1242.0  5     59.19      60.43      0.22     0.10                            
+  1200    5  5 Керр без памяти, без внеосевых   E056  3    1      full        0   35.0  5     -5.37      -5.26      0.40     0.18 RM фиксирован (только Керр)
+  2200    1                1 все триплеты (T)   E048 15    0  mag_K128      128 1564.0  5     55.01      56.53      0.20     0.09                            
+  2200    2     2 Керр без памяти + внеосевые   E056 15    1  mag_K128      128 1571.0  5     50.83      51.22      0.34     0.15                            
+  2200    3   3 Керр с памятью, без внеосевых   E048 11   63      full        0   66.0  5     11.76      12.37      0.33     0.15 RM фиксирован (только Керр)
+  2200    4 4 Керр с памятью + внеосевые (A1)   E048 15   63  mag_K128      128 1602.0  5     64.06      65.28      0.25     0.11                            
+  2200    5  5 Керр без памяти, без внеосевых   E056  3    1      full        0   35.0  5     -5.37      -5.26      0.40     0.18 RM фиксирован (только Керр)
+ level                                                          question  diff_pp  two_se  two_std  signal  reverse_signal
+   430                                           память Керра: (4) - (2)    16.06    0.40     0.69    True           False
+   430                                              внеосевые: (4) - (3)    29.12    0.43     0.69    True           False
+   430 форма (Керр N_c=1 + внеосевые) против свободных осевых: (2) - (1)     1.16    0.26     0.58    True           False
+   430                               A1 против всех триплетов: (4) - (1)    17.22    0.32     0.69    True           False
+   430                                   память без внеосевых: (3) - (5)    17.64    0.46     0.80    True           False
+  1200                                           память Керра: (4) - (2)    14.67    0.30     0.50    True           False
+  1200                                              внеосевые: (4) - (3)    48.05    0.36     0.66    True           False
+  1200 форма (Керр N_c=1 + внеосевые) против свободных осевых: (2) - (1)     1.38    0.26     0.50    True           False
+  1200                               A1 против всех триплетов: (4) - (1)    16.05    0.24     0.44    True           False
+  1200                                   память без внеосевых: (3) - (5)    17.64    0.46     0.80    True           False
+  2200                                           память Керра: (4) - (2)    14.06    0.38     0.68    True           False
+  2200                                              внеосевые: (4) - (3)    52.90    0.37     0.66    True           False
+  2200 форма (Керр N_c=1 + внеосевые) против свободных осевых: (2) - (1)    -5.31    0.35     0.68   False            True
+  2200                               A1 против всех триплетов: (4) - (1)     8.75    0.29     0.51    True           False
+  2200                                   память без внеосевых: (3) - (5)    17.64    0.46     0.80    True           False
+=== 2026-11-06T18:00:22+07:00 E056 summarize exit=0 ===
+=== 2026-11-06T18:00:22+07:00 queue e056 завершена; строк ОШИБКА: 0
+0 ===

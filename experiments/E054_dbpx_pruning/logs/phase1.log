@@ -13,3 +13,4 @@ JOBS=1 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
 [2026-11-06 16:53:57] [11/20] Ns20_direct_ld_L15_seed17.json: ok, L15 -144.5 (5698 s) (в работе 9, предел 10)
 [2026-11-06 17:07:12] [12/20] Ns20_direct_ld_L15_seed29.json: ok, L15 -145.0 (6492 s) (в работе 8, предел 9)
 [2026-11-06 17:11:48] [13/20] Ns20_direct_ld_L15_seed43.json: ok, L15 -133.7 (6259 s) (в работе 7, предел 8)
+=== 2026-11-06T18:15:26+07:00 E054 phase1 exit=0 ===

@@ -1,0 +1,2 @@
+=== 2026-11-06T18:15:31+07:00 E054 phase2: .venv/bin/python -u -m constellation_denoiser.e054_prune phase2 ===
+JOBS=26 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
