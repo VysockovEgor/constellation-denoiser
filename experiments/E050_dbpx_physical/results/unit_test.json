@@ -1,0 +1,178 @@
+{
+ "exact": [
+  {
+   "n_steps": 1,
+   "sign": 1.0,
+   "max_abs_err": 2.482534153247273e-15,
+   "ber_equal_raw": true
+  },
+  {
+   "n_steps": 1,
+   "sign": -1.0,
+   "max_abs_err": 2.220446049250313e-15,
+   "ber_equal_raw": true
+  },
+  {
+   "n_steps": 8,
+   "sign": 1.0,
+   "max_abs_err": 6.915539919559704e-15,
+   "ber_equal_raw": true
+  },
+  {
+   "n_steps": 8,
+   "sign": -1.0,
+   "max_abs_err": 6.500258628385523e-15,
+   "ber_equal_raw": true
+  },
+  {
+   "n_steps": 20,
+   "sign": 1.0,
+   "max_abs_err": 3.5704330589399866e-14,
+   "ber_equal_raw": true
+  },
+  {
+   "n_steps": 20,
+   "sign": -1.0,
+   "max_abs_err": 3.571554857053185e-14,
+   "ber_equal_raw": true
+  },
+  {
+   "n_steps": 40,
+   "sign": 1.0,
+   "max_abs_err": 4.1522934818888635e-14,
+   "ber_equal_raw": true
+  },
+  {
+   "n_steps": 40,
+   "sign": -1.0,
+   "max_abs_err": 4.196717377716402e-14,
+   "ber_equal_raw": true
+  },
+  {
+   "n_steps": 80,
+   "sign": 1.0,
+   "max_abs_err": 5.889165450048232e-14,
+   "ber_equal_raw": true
+  },
+  {
+   "n_steps": 80,
+   "sign": -1.0,
+   "max_abs_err": 5.604416385093645e-14,
+   "ber_equal_raw": true
+  }
+ ],
+ "truncated": [
+  {
+   "n_steps": 10,
+   "fir_len": 31,
+   "step_memory": 27.02272336911797,
+   "energy_in_window": 0.9871683823989051,
+   "ld_before": 3.776083469390869,
+   "ld_after": 0.5899462699890137,
+   "reduction_trim_physical_taps": -3059.8287066601556,
+   "reduction_trim_after_ld": -574.1970624694789,
+   "trainable": false
+  },
+  {
+   "n_steps": 20,
+   "fir_len": 31,
+   "step_memory": 13.511361684558985,
+   "energy_in_window": 0.9989425759396494,
+   "ld_before": 2.317516326904297,
+   "ld_after": 0.29213976860046387,
+   "reduction_trim_physical_taps": -1720.2471732842491,
+   "reduction_trim_after_ld": -106.95315728184518,
+   "trainable": false
+  },
+  {
+   "n_steps": 40,
+   "fir_len": 31,
+   "step_memory": 6.755680842279492,
+   "energy_in_window": 0.9997815449477615,
+   "ld_before": 3.514692544937134,
+   "ld_after": 0.3417036235332489,
+   "reduction_trim_physical_taps": -1471.6577138349423,
+   "reduction_trim_after_ld": -73.8852785394989,
+   "trainable": false
+  },
+  {
+   "n_steps": 20,
+   "fir_len": 15,
+   "step_memory": 13.511361684558985,
+   "energy_in_window": 0.9757410346891122,
+   "ld_before": 70.9662857055664,
+   "ld_after": 4.203842639923096,
+   "reduction_trim_physical_taps": -4928.796814544908,
+   "reduction_trim_after_ld": -1972.934901017993,
+   "trainable": false
+  },
+  {
+   "n_steps": 40,
+   "fir_len": 15,
+   "step_memory": 6.755680842279492,
+   "energy_in_window": 0.9976623191287366,
+   "ld_before": 48.02163314819336,
+   "ld_after": 1.7505006790161133,
+   "reduction_trim_physical_taps": -3922.0389917734115,
+   "reduction_trim_after_ld": -487.2732053641861,
+   "trainable": false
+  },
+  {
+   "n_steps": 20,
+   "fir_len": 127,
+   "step_memory": 13.511361684558985,
+   "energy_in_window": 0.9999878069309882,
+   "ld_before": 0.03636050224304199,
+   "ld_after": 0.013378821313381195,
+   "reduction_trim_physical_taps": -30.79148041020246,
+   "reduction_trim_after_ld": -5.157582359791132,
+   "trainable": false
+  },
+  {
+   "n_steps": 40,
+   "fir_len": 127,
+   "step_memory": 6.755680842279492,
+   "energy_in_window": 0.9999969828584403,
+   "ld_before": 0.0693531185388565,
+   "ld_after": 0.020037099719047546,
+   "reduction_trim_physical_taps": -30.288118402764727,
+   "reduction_trim_after_ld": -4.038165358175864,
+   "trainable": false
+  },
+  {
+   "n_steps": 20,
+   "fir_len": 255,
+   "step_memory": 13.511361684558985,
+   "energy_in_window": 0.9999985036673777,
+   "ld_before": 0.005483089946210384,
+   "ld_after": 0.0029683264438062906,
+   "reduction_trim_physical_taps": -3.200480823410085,
+   "reduction_trim_after_ld": -0.9578903872882186,
+   "trainable": true
+  },
+  {
+   "n_steps": 40,
+   "fir_len": 255,
+   "step_memory": 6.755680842279492,
+   "energy_in_window": 0.9999996268610388,
+   "ld_before": 0.010543551295995712,
+   "ld_after": 0.00470326840877533,
+   "reduction_trim_physical_taps": -3.264340182562638,
+   "reduction_trim_after_ld": -0.7174786822433398,
+   "trainable": true
+  },
+  {
+   "n_steps": 80,
+   "fir_len": 255,
+   "step_memory": 3.377840421139746,
+   "energy_in_window": 0.9999999067741058,
+   "ld_before": 0.020682042464613914,
+   "ld_after": 0.020682042464613914,
+   "reduction_trim_physical_taps": -3.313173810149877,
+   "reduction_trim_after_ld": -3.313173810149877,
+   "trainable": false
+  }
+ ],
+ "tolerance_pp": 2.0,
+ "exact_identity_ok": true
+}

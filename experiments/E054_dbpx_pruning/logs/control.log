@@ -1,0 +1,8 @@
+=== 2026-11-06T12:23:36+07:00 E054 control: .venv/bin/python -u -m constellation_denoiser.runner --exp E054 --stage control --no-control-gate ===
+JOBS=41 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+[2026-11-06 12:23:37] running 2 tasks with JOBS=41, THREADS=1, DEVICE=cpu
+[2026-11-06 12:23:37] JOBS_ADAPTIVE: число процессов по свободным ядрам, до 48
+[2026-11-06 12:29:48] [ok 1/2] control_complex_a_w31_h48_N30_20k_seed17: val=59.43% test=60.40% diverged=False time=367s; ETA ~6 min
+[2026-11-06 12:30:55] [ok 2/2] control_complex_a_w31_h48_N30_20k_seed29: val=60.74% test=62.37% diverged=False time=435s; ETA ~0 min
+[2026-11-06 12:30:58] finished: 2 ok, 0 failed
+=== 2026-11-06T12:30:59+07:00 E054 control exit=0 ===

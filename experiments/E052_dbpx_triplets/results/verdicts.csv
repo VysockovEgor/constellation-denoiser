@@ -1,0 +1,13 @@
+question,convention,arm,arm_test,arm_std,arm_rm,ref_test,ref_rm,rm_not_higher,gap_pp,reached,within_2std_and_2se
+Ns 8 + triplets reaches DBP-X Ns 40 (no triplets),rm_project_total,Ns8 M8 K1,92.4413021286249,0.025559293404141165,9668.0,96.77870618926993,21684.0,True,4.337404060645028,False,False
+Ns 8 + triplets reaches DBP-X Ns 40 (no triplets),rm_fft_total,Ns8 M8 K1,92.4413021286249,0.025559293404141165,1013.6,96.77870618926993,2784.9,True,4.337404060645028,False,False
+Ns 8 + triplets reaches DBP-X Ns 40 (no triplets),rm_project_total,Ns8 M8 K2,92.62429581458656,0.019898971404498717,9992.0,96.77870618926993,21684.0,True,4.154410374683366,False,False
+Ns 8 + triplets reaches DBP-X Ns 40 (no triplets),rm_fft_total,Ns8 M8 K2,92.62429581458656,0.019898971404498717,1337.6,96.77870618926993,2784.9,True,4.154410374683366,False,False
+Ns 8 + triplets reaches DBP-X Ns 40 (no triplets),rm_project_total,Ns8 M8 K3,92.71428031305531,0.01982700382189011,10268.0,96.77870618926993,21684.0,True,4.064425876214614,False,False
+Ns 8 + triplets reaches DBP-X Ns 40 (no triplets),rm_fft_total,Ns8 M8 K3,92.71428031305531,0.01982700382189011,1613.6,96.77870618926993,2784.9,True,4.064425876214614,False,False
+Ns 8 + triplets reaches DBP-X Ns 40 (no triplets),rm_project_total,Ns8 M15 K1,92.58648720178456,0.015906600603400187,10004.0,96.77870618926993,21684.0,True,4.1922189874853615,False,False
+Ns 8 + triplets reaches DBP-X Ns 40 (no triplets),rm_fft_total,Ns8 M15 K1,92.58648720178456,0.015906600603400187,1349.6,96.77870618926993,2784.9,True,4.1922189874853615,False,False
+Ns 8 + triplets reaches DBP-X Ns 40 (no triplets),rm_project_total,Ns8 M15 K2,92.84207342432606,0.031790726317936065,10664.0,96.77870618926993,21684.0,True,3.936632764943866,False,False
+Ns 8 + triplets reaches DBP-X Ns 40 (no triplets),rm_fft_total,Ns8 M15 K2,92.84207342432606,0.031790726317936065,2009.6,96.77870618926993,2784.9,True,3.936632764943866,False,False
+Ns 8 + triplets reaches DBP-X Ns 40 (no triplets),rm_project_total,Ns8 M15 K3,92.94944988468373,0.03923725302014372,11276.0,96.77870618926993,21684.0,True,3.8292563045861954,False,False
+Ns 8 + triplets reaches DBP-X Ns 40 (no triplets),rm_fft_total,Ns8 M15 K3,92.94944988468373,0.03923725302014372,2621.6,96.77870618926993,2784.9,True,3.8292563045861954,False,False

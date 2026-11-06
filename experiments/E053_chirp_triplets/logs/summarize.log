@@ -1,0 +1,17 @@
+=== 2026-11-05T21:51:50+07:00 E053 summarize: .venv/bin/python -m constellation_denoiser.summarize_E053 ===
+JOBS=1 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/src/constellation_denoiser/summarize_E053.py", line 190, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/src/constellation_denoiser/summarize_E053.py", line 119, in main
+    spg = sp.groupby(["split_seed", "variant", "size"]).test_reduction.agg(["mean", "std", "size"]).reset_index()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/.venv/lib/python3.12/site-packages/pandas/core/frame.py", line 7338, in reset_index
+    new_obj.insert(
+  File "/home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/.venv/lib/python3.12/site-packages/pandas/core/frame.py", line 5635, in insert
+    raise ValueError(f"cannot insert {column}, already exists")
+ValueError: cannot insert size, already exists
+=== 2026-11-05T21:51:59+07:00 E053 summarize exit=1 ===

@@ -1,0 +1,252 @@
+=== 2026-11-06T02:50:37+07:00 E051 fit_summary: .venv/bin/python -u -m constellation_denoiser.summarize_E051 ===
+JOBS=43 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+      diff_pp   two_se  two_std  signal  worse_signal                                              question   M  n_c                   set   n_terms     rm   lk_test  other_test other_mode
+ 1.579060e-01 0.474940 0.815246   False         False                       LK seq vs A1 (same M, N_c, set) 5.0  7.0              cross_K1        19  266.0 21.773241   21.615335     varpro
+ 3.983214e-02 0.414971 0.680599   False         False                       LK seq vs A3 (same M, N_c, set) 5.0  7.0              cross_K1        19  266.0 21.773241   21.733409     varpro
+-1.066932e-01 0.390158 0.679148   False         False                       LK seq vs A1 (same M, N_c, set) 5.0  7.0              cross_K2        34  446.0 29.661427   29.768120     varpro
+ 2.845153e-02 0.397545 0.679148   False         False                       LK seq vs A3 (same M, N_c, set) 5.0  7.0              cross_K2        34  446.0 29.661427   29.632975     varpro
+ 3.556441e-03 0.421913 0.714152   False         False                       LK seq vs A1 (same M, N_c, set) 5.0  7.0              cross_K3        45  578.0 33.059962   33.056405     varpro
+ 2.418380e-02 0.429699 0.714152   False         False                       LK seq vs A3 (same M, N_c, set) 5.0  7.0              cross_K3        45  578.0 33.059962   33.035778     varpro
+-1.209190e-01 0.368906 0.619650   False         False                       LK seq vs A1 (same M, N_c, set) 5.0  7.0              cross_K5        55  698.0 34.516680   34.637599     varpro
+ 3.556441e-03 0.373350 0.619650   False         False                       LK seq vs A3 (same M, N_c, set) 5.0  7.0              cross_K5        55  698.0 34.516680   34.513123     varpro
+-1.209190e-01 0.368906 0.619650   False         False                       LK seq vs A1 (same M, N_c, set) 5.0  7.0                  full        55  698.0 34.516680   34.637599     varpro
+ 3.556441e-03 0.373350 0.619650   False         False                       LK seq vs A3 (same M, N_c, set) 5.0  7.0                  full        55  698.0 34.516680   34.513123     varpro
+ 9.246746e-02 0.436396 0.772712   False         False                       LK seq vs A1 (same M, N_c, set) 5.0  7.0              geo_Kth1         3   74.0  3.214311    3.121844     varpro
+ 4.623373e-02 0.449542 0.772712   False         False                       LK seq vs A3 (same M, N_c, set) 5.0  7.0              geo_Kth1         3   74.0  3.214311    3.168077     varpro
+-1.066932e-02 0.417595 0.671491   False         False                       LK seq vs A1 (same M, N_c, set) 5.0  7.0             geo_Kth16        48  614.0 33.648908   33.659577     varpro
+ 7.966427e-02 0.385893 0.648865   False         False                       LK seq vs A3 (same M, N_c, set) 5.0  7.0             geo_Kth16        48  614.0 33.648908   33.569244     varpro
+ 7.397397e-02 0.388353 0.692281   False         False                       LK seq vs A1 (same M, N_c, set) 5.0  7.0              geo_Kth2         7  122.0  9.618750    9.544776     varpro
+-2.133864e-02 0.339778 0.549918   False         False                       LK seq vs A3 (same M, N_c, set) 5.0  7.0              geo_Kth2         7  122.0  9.618750    9.640088     varpro
+ 2.560637e-02 0.401844 0.673203   False         False                       LK seq vs A1 (same M, N_c, set) 5.0  7.0              geo_Kth4        18  254.0 20.192048   20.166441     varpro
+ 6.401593e-02 0.429256 0.684180   False         False                       LK seq vs A3 (same M, N_c, set) 5.0  7.0              geo_Kth4        18  254.0 20.192048   20.128032     varpro
+ 3.200797e-02 0.364130 0.623476   False         False                       LK seq vs A1 (same M, N_c, set) 5.0  7.0              geo_Kth8        30  398.0 28.499893   28.467885     varpro
+ 1.273206e-01 0.375113 0.623476   False         False                       LK seq vs A3 (same M, N_c, set) 5.0  7.0              geo_Kth8        30  398.0 28.499893   28.372573     varpro
+ 1.038481e-01 0.369151 0.584699   False         False                       LK seq vs A1 (same M, N_c, set) 5.0  7.0               mag_K16        16  230.0 19.255993   19.152145     varpro
+ 4.125471e-02 0.381764 0.621969   False         False                       LK seq vs A3 (same M, N_c, set) 5.0  7.0               mag_K16        16  230.0 19.255993   19.214738     varpro
+ 5.334661e-02 0.384463 0.680395   False         False                       LK seq vs A1 (same M, N_c, set) 5.0  7.0               mag_K32        32  422.0 29.194111   29.140764     varpro
+ 5.974820e-02 0.408452 0.680395   False         False                       LK seq vs A3 (same M, N_c, set) 5.0  7.0               mag_K32        32  422.0 29.194111   29.134362     varpro
+ 1.394125e-01 0.353414 0.589018   False         False                       LK seq vs A1 (same M, N_c, set) 5.0  7.0                mag_K8         8  134.0 11.704958   11.565545     varpro
+-1.635963e-02 0.352147 0.585213   False         False                       LK seq vs A3 (same M, N_c, set) 5.0  7.0                mag_K8         8  134.0 11.704958   11.721317     varpro
+ 7.255139e-02 0.449940 0.728117   False         False                       LK seq vs A1 (same M, N_c, set) 5.0  7.0                  none         0   38.0  0.595348    0.522797     varpro
+-1.066932e-02 0.446269 0.728117   False         False                       LK seq vs A3 (same M, N_c, set) 5.0  7.0                  none         0   38.0  0.595348    0.606017     varpro
+ 1.052706e-01 0.323928 0.569462   False         False                       LK seq vs A1 (same M, N_c, set) 5.0 31.0              cross_K1        19  278.0 29.446618   29.341347     varpro
+ 5.690305e-02 0.350477 0.569462   False         False                       LK seq vs A3 (same M, N_c, set) 5.0 31.0              cross_K1        19  278.0 29.446618   29.389715     varpro
+ 2.987410e-02 0.379408 0.609192   False         False                       LK seq vs A1 (same M, N_c, set) 5.0 31.0              cross_K2        34  458.0 36.997653   36.967779     varpro
+ 8.535458e-02 0.381770 0.616527   False         False                       LK seq vs A3 (same M, N_c, set) 5.0 31.0              cross_K2        34  458.0 36.997653   36.912298     varpro
+-3.414183e-02 0.300268 0.531266   False         False                       LK seq vs A1 (same M, N_c, set) 5.0 31.0              cross_K3        45  590.0 40.327193   40.361334     varpro
+ 6.117078e-02 0.290615 0.503711   False         False                       LK seq vs A3 (same M, N_c, set) 5.0 31.0              cross_K3        45  590.0 40.327193   40.266022     varpro
+ 7.105427e-15 0.264760 0.522121   False         False                       LK seq vs A1 (same M, N_c, set) 5.0 31.0              cross_K5        55  710.0 41.924746   41.924746     varpro
+ 1.045594e-01 0.302315 0.522121   False         False                       LK seq vs A3 (same M, N_c, set) 5.0 31.0              cross_K5        55  710.0 41.924746   41.820186     varpro
+ 7.105427e-15 0.264760 0.522121   False         False                       LK seq vs A1 (same M, N_c, set) 5.0 31.0                  full        55  710.0 41.924746   41.924746     varpro
+ 1.045594e-01 0.302315 0.522121   False         False                       LK seq vs A3 (same M, N_c, set) 5.0 31.0                  full        55  710.0 41.924746   41.820186     varpro
+ 4.409986e-02 0.502402 0.806621   False         False                       LK seq vs A1 (same M, N_c, set) 5.0 31.0              geo_Kth1         3   86.0 11.157266   11.113166     varpro
+-1.351447e-02 0.536857 0.889068   False         False                       LK seq vs A3 (same M, N_c, set) 5.0 31.0              geo_Kth1         3   86.0 11.157266   11.170780     varpro
+-4.694502e-02 0.433746 0.690818   False         False                       LK seq vs A1 (same M, N_c, set) 5.0 31.0             geo_Kth16        48  626.0 40.921118   40.968063     varpro
+ 6.401593e-02 0.414064 0.690818   False         False                       LK seq vs A3 (same M, N_c, set) 5.0 31.0             geo_Kth16        48  626.0 40.921118   40.857102     varpro
+-8.179814e-02 0.378996 0.640464   False         False                       LK seq vs A1 (same M, N_c, set) 5.0 31.0              geo_Kth2         7  134.0 17.159115   17.240913     varpro
+ 1.707092e-02 0.379347 0.640464   False         False                       LK seq vs A3 (same M, N_c, set) 5.0 31.0              geo_Kth2         7  134.0 17.159115   17.142044     varpro
+-3.414183e-02 0.337753 0.560010   False         False                       LK seq vs A1 (same M, N_c, set) 5.0 31.0              geo_Kth4        18  266.0 27.817057   27.851199     varpro
+ 7.824170e-02 0.358402 0.620873   False         False                       LK seq vs A3 (same M, N_c, set) 5.0 31.0              geo_Kth4        18  266.0 27.817057   27.738815     varpro
+-4.267729e-03 0.416308 0.689190   False         False                       LK seq vs A1 (same M, N_c, set) 5.0 31.0              geo_Kth8        30  410.0 35.768547   35.772815     varpro
+ 4.054342e-02 0.432213 0.689190   False         False                       LK seq vs A3 (same M, N_c, set) 5.0 31.0              geo_Kth8        30  410.0 35.768547   35.728003     varpro
+ 0.000000e+00 0.271995 0.454874   False         False                       LK seq vs A1 (same M, N_c, set) 5.0 31.0               mag_K16        16  242.0 26.949996   26.949996     varpro
+ 3.698698e-02 0.337274 0.601545   False         False                       LK seq vs A3 (same M, N_c, set) 5.0 31.0               mag_K16        16  242.0 26.949996   26.913009     varpro
+-7.539654e-02 0.421659 0.719569   False         False                       LK seq vs A1 (same M, N_c, set) 5.0 31.0               mag_K32        32  434.0 36.460630   36.536027     varpro
+ 3.058539e-02 0.384323 0.609263   False         False                       LK seq vs A3 (same M, N_c, set) 5.0 31.0               mag_K32        32  434.0 36.460630   36.430045     varpro
+-3.485312e-02 0.446615 0.714960   False         False                       LK seq vs A1 (same M, N_c, set) 5.0 31.0                mag_K8         8  146.0 19.283022   19.317875     varpro
+ 6.543851e-02 0.420206 0.714960   False         False                       LK seq vs A3 (same M, N_c, set) 5.0 31.0                mag_K8         8  146.0 19.283022   19.217583     varpro
+ 2.631766e-02 0.422014 0.718693   False         False                       LK seq vs A1 (same M, N_c, set) 5.0 31.0                  none         0   50.0  8.553240    8.526922     varpro
+-1.237641e-01 0.422899 0.721290   False         False                       LK seq vs A3 (same M, N_c, set) 5.0 31.0                  none         0   50.0  8.553240    8.677004     varpro
+ 4.694502e-02 0.461669 0.773350   False         False                       LK seq vs A1 (same M, N_c, set) 8.0  7.0              cross_K1        31  410.0 28.655665   28.608720     varpro
+ 2.916281e-02 0.430503 0.683829   False         False                       LK seq vs A3 (same M, N_c, set) 8.0  7.0              cross_K1        31  410.0 28.655665   28.626503     varpro
+ 3.769827e-02 0.374746 0.604942   False         False                       LK seq vs A1 (same M, N_c, set) 8.0  7.0              cross_K2        58  734.0 39.663561   39.625862     varpro
+ 7.041753e-02 0.388932 0.624809   False         False                       LK seq vs A3 (same M, N_c, set) 8.0  7.0              cross_K2        58  734.0 39.663561   39.593143     varpro
+ 2.560637e-02 0.388302 0.654860   False         False                       LK seq vs A1 (same M, N_c, set) 8.0  7.0              cross_K3        81 1010.0 44.873746   44.848140     varpro
+ 8.108685e-02 0.387779 0.654860   False         False                       LK seq vs A3 (same M, N_c, set) 8.0  7.0              cross_K3        81 1010.0 44.873746   44.792660     varpro
+ 1.778220e-02 0.309470 0.530623   False         False                       LK seq vs A1 (same M, N_c, set) 8.0  7.0              cross_K5       115 1418.0 48.176257   48.158475     varpro
+ 3.058539e-02 0.283428 0.452063   False         False                       LK seq vs A3 (same M, N_c, set) 8.0  7.0              cross_K5       115 1418.0 48.176257   48.145672     varpro
+-1.017142e-01 0.346388 0.594277   False         False                       LK seq vs A1 (same M, N_c, set) 8.0  7.0                  full       136 1670.0 49.221139   49.322854     varpro
+-7.539654e-02 0.362097 0.594277   False         False                       LK seq vs A3 (same M, N_c, set) 8.0  7.0                  full       136 1670.0 49.221139   49.296536     varpro
+ 1.095384e-01 0.410657 0.754693   False         False                       LK seq vs A1 (same M, N_c, set) 8.0  7.0              geo_Kth1         3   74.0  3.217868    3.108329     varpro
+ 6.330464e-02 0.454403 0.754693   False         False                       LK seq vs A3 (same M, N_c, set) 8.0  7.0              geo_Kth1         3   74.0  3.217868    3.154563     varpro
+-5.192403e-02 0.352730 0.611695   False         False                       LK seq vs A1 (same M, N_c, set) 8.0  7.0             geo_Kth16        72  902.0 43.330962   43.382886     varpro
+ 7.112881e-02 0.361757 0.611695   False         False                       LK seq vs A3 (same M, N_c, set) 8.0  7.0             geo_Kth16        72  902.0 43.330962   43.259834     varpro
+ 1.031368e-01 0.421331 0.788398   False         False                       LK seq vs A1 (same M, N_c, set) 8.0  7.0              geo_Kth2         7  122.0  9.626574    9.523437     varpro
+-1.991607e-02 0.332910 0.536766   False         False                       LK seq vs A3 (same M, N_c, set) 8.0  7.0              geo_Kth2         7  122.0  9.626574    9.646490     varpro
+ 7.966427e-02 0.412945 0.672429   False         False                       LK seq vs A1 (same M, N_c, set) 8.0  7.0              geo_Kth4        18  254.0 20.189203   20.109538     varpro
+ 5.192403e-02 0.424197 0.672429   False         False                       LK seq vs A3 (same M, N_c, set) 8.0  7.0              geo_Kth4        18  254.0 20.189203   20.137279     varpro
+ 1.593285e-01 0.354214 0.579885   False         False                       LK seq vs A1 (same M, N_c, set) 8.0  7.0              geo_Kth8        42  542.0 35.116296   34.956967     varpro
+ 1.223416e-01 0.353651 0.579885   False         False                       LK seq vs A3 (same M, N_c, set) 8.0  7.0              geo_Kth8        42  542.0 35.116296   34.993954     varpro
+-4.409986e-02 0.299840 0.538154   False         False                       LK seq vs A1 (same M, N_c, set) 8.0  7.0              mag_K128       128 1574.0 49.062522   49.106622     varpro
+ 8.535458e-03 0.303726 0.538154   False         False                       LK seq vs A3 (same M, N_c, set) 8.0  7.0              mag_K128       128 1574.0 49.062522   49.053987     varpro
+ 1.173625e-01 0.332448 0.574111   False         False                       LK seq vs A1 (same M, N_c, set) 8.0  7.0               mag_K16        16  230.0 19.245323   19.127961     varpro
+ 6.543851e-02 0.350894 0.574111   False         False                       LK seq vs A3 (same M, N_c, set) 8.0  7.0               mag_K16        16  230.0 19.245323   19.179885     varpro
+ 1.664414e-01 0.507968 0.825821   False         False                       LK seq vs A1 (same M, N_c, set) 8.0  7.0               mag_K32        32  422.0 30.712711   30.546269     varpro
+ 8.606587e-02 0.494077 0.825821   False         False                       LK seq vs A3 (same M, N_c, set) 8.0  7.0               mag_K32        32  422.0 30.712711   30.626645     varpro
+ 1.209190e-02 0.397193 0.767483   False         False                       LK seq vs A1 (same M, N_c, set) 8.0  7.0               mag_K64        64  806.0 41.553453   41.541361     varpro
+ 9.104488e-02 0.479055 0.767483   False         False                       LK seq vs A3 (same M, N_c, set) 8.0  7.0               mag_K64        64  806.0 41.553453   41.462408     varpro
+ 2.404154e-01 0.440066 0.759331   False         False                       LK seq vs A1 (same M, N_c, set) 8.0  7.0                mag_K8         8  134.0 11.660147   11.419731     varpro
+-2.987410e-02 0.377289 0.625865   False         False                       LK seq vs A3 (same M, N_c, set) 8.0  7.0                mag_K8         8  134.0 11.660147   11.690021     varpro
+ 1.920478e-01 0.420781 0.710587   False         False                       LK seq vs A1 (same M, N_c, set) 8.0  7.0                  none         0   38.0  0.588947    0.396899     varpro
+-1.564834e-02 0.445244 0.710587   False         False                       LK seq vs A3 (same M, N_c, set) 8.0  7.0                  none         0   38.0  0.588947    0.604595     varpro
+-7.112881e-03 0.322749 0.525068   False         False                       LK seq vs A1 (same M, N_c, set) 8.0 31.0              cross_K1        31  422.0 36.444271   36.451383     varpro
+-2.062736e-02 0.337843 0.543133   False         False                       LK seq vs A3 (same M, N_c, set) 8.0 31.0              cross_K1        31  422.0 36.444271   36.464898     varpro
+-1.138061e-01 0.283250 0.469154   False         False                       LK seq vs A1 (same M, N_c, set) 8.0 31.0              cross_K2        58  746.0 46.866776   46.980582     varpro
+ 5.690305e-02 0.324249 0.552795   False         False                       LK seq vs A3 (same M, N_c, set) 8.0 31.0              cross_K2        58  746.0 46.866776   46.809873     varpro
+-3.485312e-02 0.328175 0.530055   False         False                       LK seq vs A1 (same M, N_c, set) 8.0 31.0              cross_K3        81 1022.0 51.783911   51.818764     varpro
+ 8.962231e-02 0.341101 0.548444   False         False                       LK seq vs A3 (same M, N_c, set) 8.0 31.0              cross_K3        81 1022.0 51.783911   51.694288     varpro
+-6.401593e-03 0.339957 0.629813   False         False                       LK seq vs A1 (same M, N_c, set) 8.0 31.0              cross_K5       115 1430.0 55.290561   55.296963     varpro
+ 3.343054e-02 0.372663 0.629813   False         False                       LK seq vs A3 (same M, N_c, set) 8.0 31.0              cross_K5       115 1430.0 55.290561   55.257131     varpro
+-7.824170e-03 0.292373 0.486456   False         False                       LK seq vs A1 (same M, N_c, set) 8.0 31.0                  full       136 1682.0 56.188918   56.196742     varpro
+ 6.686109e-02 0.295523 0.495881   False         False                       LK seq vs A3 (same M, N_c, set) 8.0 31.0                  full       136 1682.0 56.188918   56.122057     varpro
+ 1.479479e-01 0.489685 0.828790   False         False                       LK seq vs A1 (same M, N_c, set) 8.0 31.0              geo_Kth1         3   86.0 11.165090   11.017142     varpro
+-2.774024e-02 0.547678 0.901590   False         False                       LK seq vs A3 (same M, N_c, set) 8.0 31.0              geo_Kth1         3   86.0 11.165090   11.192830     varpro
+-3.983214e-02 0.366862 0.601436   False         False                       LK seq vs A1 (same M, N_c, set) 8.0 31.0             geo_Kth16        72  914.0 50.475140   50.514973     varpro
+ 1.202077e-01 0.361688 0.585559   False         False                       LK seq vs A3 (same M, N_c, set) 8.0 31.0             geo_Kth16        72  914.0 50.475140   50.354933     varpro
+-2.062736e-02 0.320609 0.622294   False         False                       LK seq vs A1 (same M, N_c, set) 8.0 31.0              geo_Kth2         7  134.0 17.144889   17.165517     varpro
+ 1.564834e-02 0.398791 0.638688   False         False                       LK seq vs A3 (same M, N_c, set) 8.0 31.0              geo_Kth2         7  134.0 17.144889   17.129241     varpro
+-5.476919e-02 0.325728 0.538666   False         False                       LK seq vs A1 (same M, N_c, set) 8.0 31.0              geo_Kth4        18  266.0 27.815634   27.870403     varpro
+ 9.815776e-02 0.343700 0.548167   False         False                       LK seq vs A3 (same M, N_c, set) 8.0 31.0              geo_Kth4        18  266.0 27.815634   27.717476     varpro
+ 9.602390e-02 0.349945 0.554955   False         False                       LK seq vs A1 (same M, N_c, set) 8.0 31.0              geo_Kth8        42  554.0 42.611139   42.515115     varpro
+ 9.958034e-02 0.319234 0.551663   False         False                       LK seq vs A3 (same M, N_c, set) 8.0 31.0              geo_Kth8        42  554.0 42.611139   42.511558     varpro
+ 1.422576e-03 0.345125 0.547382   False         False                       LK seq vs A1 (same M, N_c, set) 8.0 31.0              mag_K128       128 1586.0 56.045238   56.043815     varpro
+ 8.322071e-02 0.344876 0.546596   False         False                       LK seq vs A3 (same M, N_c, set) 8.0 31.0              mag_K128       128 1586.0 56.045238   55.962017     varpro
+ 2.489508e-02 0.278614 0.445695   False         False                       LK seq vs A1 (same M, N_c, set) 8.0 31.0               mag_K16        16  242.0 26.959954   26.935059     varpro
+ 9.104488e-02 0.320456 0.561084   False         False                       LK seq vs A3 (same M, N_c, set) 8.0 31.0               mag_K16        16  242.0 26.959954   26.868910     varpro
+ 0.000000e+00 0.407710 0.672842   False         False                       LK seq vs A1 (same M, N_c, set) 8.0 31.0               mag_K32        32  434.0 38.142115   38.142115     varpro
+ 7.539654e-02 0.394967 0.633697   False         False                       LK seq vs A3 (same M, N_c, set) 8.0 31.0               mag_K32        32  434.0 38.142115   38.066719     varpro
+-6.543851e-02 0.310448 0.550755   False         False                       LK seq vs A1 (same M, N_c, set) 8.0 31.0               mag_K64        64  818.0 48.561775   48.627214     varpro
+ 1.721317e-01 0.341203 0.635248   False         False                       LK seq vs A3 (same M, N_c, set) 8.0 31.0               mag_K64        64  818.0 48.561775   48.389644     varpro
+-4.694502e-02 0.461343 0.788071   False         False                       LK seq vs A1 (same M, N_c, set) 8.0 31.0                mag_K8         8  146.0 19.240344   19.287289     varpro
+ 2.133864e-02 0.468101 0.788071   False         False                       LK seq vs A3 (same M, N_c, set) 8.0 31.0                mag_K8         8  146.0 19.240344   19.219006     varpro
+ 1.358560e-01 0.411340 0.687728   False         False                       LK seq vs A1 (same M, N_c, set) 8.0 31.0                  none         0   50.0  8.546838    8.410982     varpro
+-1.081158e-01 0.425806 0.730424   False         False                       LK seq vs A3 (same M, N_c, set) 8.0 31.0                  none         0   50.0  8.546838    8.654954     varpro
+ 1.771107e-01 0.487396 0.815246   False         False                    LK varpro vs A1 (same M, N_c, set) 5.0  7.0              cross_K1        19  266.0 21.792446   21.615335     varpro
+ 5.903692e-02 0.429170 0.723289   False         False                    LK varpro vs A3 (same M, N_c, set) 5.0  7.0              cross_K1        19  266.0 21.792446   21.733409     varpro
+-9.531261e-02 0.372935 0.628909   False         False                    LK varpro vs A1 (same M, N_c, set) 5.0  7.0              cross_K2        34  446.0 29.672807   29.768120     varpro
+ 3.983214e-02 0.380655 0.628909   False         False                    LK varpro vs A3 (same M, N_c, set) 5.0  7.0              cross_K2        34  446.0 29.672807   29.632975     varpro
+ 2.702895e-02 0.423853 0.719871   False         False                    LK varpro vs A1 (same M, N_c, set) 5.0  7.0              cross_K3        45  578.0 33.083434   33.056405     varpro
+ 4.765631e-02 0.431604 0.719871   False         False                    LK varpro vs A3 (same M, N_c, set) 5.0  7.0              cross_K3        45  578.0 33.083434   33.035778     varpro
+-5.974820e-02 0.383524 0.662541   False         False                    LK varpro vs A1 (same M, N_c, set) 5.0  7.0              cross_K5        55  698.0 34.577850   34.637599     varpro
+ 6.472722e-02 0.387800 0.662541   False         False                    LK varpro vs A3 (same M, N_c, set) 5.0  7.0              cross_K5        55  698.0 34.577850   34.513123     varpro
+-5.974820e-02 0.383524 0.662541   False         False                    LK varpro vs A1 (same M, N_c, set) 5.0  7.0                  full        55  698.0 34.577850   34.637599     varpro
+ 6.472722e-02 0.387800 0.662541   False         False                    LK varpro vs A3 (same M, N_c, set) 5.0  7.0                  full        55  698.0 34.577850   34.513123     varpro
+ 5.263532e-02 0.392274 0.643639   False         False                    LK varpro vs A1 (same M, N_c, set) 5.0  7.0              geo_Kth1         3   74.0  3.174479    3.121844     varpro
+ 6.401593e-03 0.406848 0.643639   False         False                    LK varpro vs A3 (same M, N_c, set) 5.0  7.0              geo_Kth1         3   74.0  3.174479    3.168077     varpro
+ 2.987410e-02 0.405983 0.671491   False         False                    LK varpro vs A1 (same M, N_c, set) 5.0  7.0             geo_Kth16        48  614.0 33.689452   33.659577     varpro
+ 1.202077e-01 0.373297 0.610909   False         False                    LK varpro vs A3 (same M, N_c, set) 5.0  7.0             geo_Kth16        48  614.0 33.689452   33.569244     varpro
+-3.058539e-02 0.477681 0.813413   False         False                    LK varpro vs A1 (same M, N_c, set) 5.0  7.0              geo_Kth2         7  122.0  9.514190    9.544776     varpro
+-1.258980e-01 0.439102 0.813413   False         False                    LK varpro vs A3 (same M, N_c, set) 5.0  7.0              geo_Kth2         7  122.0  9.514190    9.640088     varpro
+ 3.271925e-02 0.370213 0.595140   False         False                    LK varpro vs A1 (same M, N_c, set) 5.0  7.0              geo_Kth4        18  254.0 20.199161   20.166441     varpro
+ 7.112881e-02 0.399800 0.684180   False         False                    LK varpro vs A3 (same M, N_c, set) 5.0  7.0              geo_Kth4        18  254.0 20.199161   20.128032     varpro
+ 7.112881e-04 0.370574 0.642179   False         False                    LK varpro vs A1 (same M, N_c, set) 5.0  7.0              geo_Kth8        30  398.0 28.468597   28.467885     varpro
+ 9.602390e-02 0.381371 0.642179   False         False                    LK varpro vs A3 (same M, N_c, set) 5.0  7.0              geo_Kth8        30  398.0 28.468597   28.372573     varpro
+ 9.815776e-02 0.383956 0.630572   False         False                    LK varpro vs A1 (same M, N_c, set) 5.0  7.0               mag_K16        16  230.0 19.250302   19.152145     varpro
+ 3.556441e-02 0.396097 0.630572   False         False                    LK varpro vs A3 (same M, N_c, set) 5.0  7.0               mag_K16        16  230.0 19.250302   19.214738     varpro
+ 7.539654e-02 0.351166 0.583495   False         False                    LK varpro vs A1 (same M, N_c, set) 5.0  7.0               mag_K32        32  422.0 29.216160   29.140764     varpro
+ 8.179814e-02 0.377278 0.609284   False         False                    LK varpro vs A3 (same M, N_c, set) 5.0  7.0               mag_K32        32  422.0 29.216160   29.134362     varpro
+ 1.315883e-01 0.349271 0.589018   False         False                    LK varpro vs A1 (same M, N_c, set) 5.0  7.0                mag_K8         8  134.0 11.697134   11.565545     varpro
+-2.418380e-02 0.347989 0.585213   False         False                    LK varpro vs A3 (same M, N_c, set) 5.0  7.0                mag_K8         8  134.0 11.697134   11.721317     varpro
+ 1.066932e-02 0.407445 0.694317   False         False                    LK varpro vs A1 (same M, N_c, set) 5.0  7.0                  none         0   38.0  0.533466    0.522797     varpro
+-7.255139e-02 0.403386 0.682366   False         False                    LK varpro vs A3 (same M, N_c, set) 5.0  7.0                  none         0   38.0  0.533466    0.606017     varpro
+ 1.372786e-01 0.309094 0.526627   False         False                    LK varpro vs A1 (same M, N_c, set) 5.0 31.0              cross_K1        19  278.0 29.478626   29.341347     varpro
+ 8.891102e-02 0.336814 0.538408   False         False                    LK varpro vs A3 (same M, N_c, set) 5.0 31.0              cross_K1        19  278.0 29.478626   29.389715     varpro
+-2.204993e-02 0.393813 0.635869   False         False                    LK varpro vs A1 (same M, N_c, set) 5.0 31.0              cross_K2        34  458.0 36.945729   36.967779     varpro
+ 3.343054e-02 0.396090 0.635869   False         False                    LK varpro vs A3 (same M, N_c, set) 5.0 31.0              cross_K2        34  458.0 36.945729   36.912298     varpro
+ 0.000000e+00 0.363250 0.614419   False         False                    LK varpro vs A1 (same M, N_c, set) 5.0 31.0              cross_K3        45  590.0 40.361334   40.361334     varpro
+ 9.531261e-02 0.355312 0.614419   False         False                    LK varpro vs A3 (same M, N_c, set) 5.0 31.0              cross_K3        45  590.0 40.361334   40.266022     varpro
+-1.707092e-02 0.234846 0.444842   False         False                    LK varpro vs A1 (same M, N_c, set) 5.0 31.0              cross_K5        55  710.0 41.907675   41.924746     varpro
+ 8.748844e-02 0.276494 0.444842   False         False                    LK varpro vs A3 (same M, N_c, set) 5.0 31.0              cross_K5        55  710.0 41.907675   41.820186     varpro
+-1.707092e-02 0.234846 0.444842   False         False                    LK varpro vs A1 (same M, N_c, set) 5.0 31.0                  full        55  710.0 41.907675   41.924746     varpro
+ 8.748844e-02 0.276494 0.444842   False         False                    LK varpro vs A3 (same M, N_c, set) 5.0 31.0                  full        55  710.0 41.907675   41.820186     varpro
+ 5.192403e-02 0.520010 0.860609   False         False                    LK varpro vs A1 (same M, N_c, set) 5.0 31.0              geo_Kth1         3   86.0 11.165090   11.113166     varpro
+-5.690305e-03 0.553369 0.889068   False         False                    LK varpro vs A3 (same M, N_c, set) 5.0 31.0              geo_Kth1         3   86.0 11.165090   11.170780     varpro
+-7.105427e-15 0.417552 0.680770   False         False                    LK varpro vs A1 (same M, N_c, set) 5.0 31.0             geo_Kth16        48  626.0 40.968063   40.968063     varpro
+ 1.109610e-01 0.397068 0.638985   False         False                    LK varpro vs A3 (same M, N_c, set) 5.0 31.0             geo_Kth16        48  626.0 40.968063   40.857102     varpro
+-8.037556e-02 0.382907 0.651992   False         False                    LK varpro vs A1 (same M, N_c, set) 5.0 31.0              geo_Kth2         7  134.0 17.160538   17.240913     varpro
+ 1.849349e-02 0.383254 0.651992   False         False                    LK varpro vs A3 (same M, N_c, set) 5.0 31.0              geo_Kth2         7  134.0 17.160538   17.142044     varpro
+-1.635963e-02 0.377479 0.631538   False         False                    LK varpro vs A1 (same M, N_c, set) 5.0 31.0              geo_Kth4        18  266.0 27.834839   27.851199     varpro
+ 9.602390e-02 0.396062 0.631538   False         False                    LK varpro vs A3 (same M, N_c, set) 5.0 31.0              geo_Kth4        18  266.0 27.834839   27.738815     varpro
+ 3.556441e-02 0.391152 0.625764   False         False                    LK varpro vs A1 (same M, N_c, set) 5.0 31.0              geo_Kth8        30  410.0 35.808379   35.772815     varpro
+ 8.037556e-02 0.408038 0.677537   False         False                    LK varpro vs A3 (same M, N_c, set) 5.0 31.0              geo_Kth8        30  410.0 35.808379   35.728003     varpro
+ 2.987410e-02 0.308946 0.560574   False         False                    LK varpro vs A1 (same M, N_c, set) 5.0 31.0               mag_K16        16  242.0 26.979871   26.949996     varpro
+ 6.686109e-02 0.367723 0.601545   False         False                    LK varpro vs A3 (same M, N_c, set) 5.0 31.0               mag_K16        16  242.0 26.979871   26.913009     varpro
+-2.631766e-02 0.433931 0.719569   False         False                    LK varpro vs A1 (same M, N_c, set) 5.0 31.0               mag_K32        32  434.0 36.509709   36.536027     varpro
+ 7.966427e-02 0.397749 0.650924   False         False                    LK varpro vs A3 (same M, N_c, set) 5.0 31.0               mag_K32        32  434.0 36.509709   36.430045     varpro
+-2.560637e-02 0.441148 0.697781   False         False                    LK varpro vs A1 (same M, N_c, set) 5.0 31.0                mag_K8         8  146.0 19.292268   19.317875     varpro
+ 7.468525e-02 0.414390 0.697781   False         False                    LK varpro vs A3 (same M, N_c, set) 5.0 31.0                mag_K8         8  146.0 19.292268   19.217583     varpro
+ 1.045594e-01 0.478996 0.794146   False         False                    LK varpro vs A1 (same M, N_c, set) 5.0 31.0                  none         0   50.0  8.631482    8.526922     varpro
+-4.552244e-02 0.479776 0.794146   False         False                    LK varpro vs A3 (same M, N_c, set) 5.0 31.0                  none         0   50.0  8.631482    8.677004     varpro
+ 1.074045e-01 0.476398 0.773350   False         False                    LK varpro vs A1 (same M, N_c, set) 8.0  7.0              cross_K1        31  410.0 28.716125   28.608720     varpro
+ 8.962231e-02 0.446262 0.732603   False         False                    LK varpro vs A3 (same M, N_c, set) 8.0  7.0              cross_K1        31  410.0 28.716125   28.626503     varpro
+ 7.041753e-02 0.365808 0.579842   False         False                    LK varpro vs A1 (same M, N_c, set) 8.0  7.0              cross_K2        58  734.0 39.696280   39.625862     varpro
+ 1.031368e-01 0.380328 0.624809   False         False                    LK varpro vs A3 (same M, N_c, set) 8.0  7.0              cross_K2        58  734.0 39.696280   39.593143     varpro
+ 4.338858e-02 0.329075 0.570132   False         False                    LK varpro vs A1 (same M, N_c, set) 8.0  7.0              cross_K3        81 1010.0 44.891529   44.848140     varpro
+ 9.886905e-02 0.328458 0.568350   False         False                    LK varpro vs A3 (same M, N_c, set) 8.0  7.0              cross_K3        81 1010.0 44.891529   44.792660     varpro
+-1.351447e-02 0.331120 0.530623   False         False                    LK varpro vs A1 (same M, N_c, set) 8.0  7.0              cross_K5       115 1418.0 48.144961   48.158475     varpro
+-7.112881e-04 0.306921 0.516373   False         False                    LK varpro vs A3 (same M, N_c, set) 8.0  7.0              cross_K5       115 1418.0 48.144961   48.145672     varpro
+-6.686109e-02 0.310760 0.496747   False         False                    LK varpro vs A1 (same M, N_c, set) 8.0  7.0                  full       136 1670.0 49.255993   49.322854     varpro
+-4.054342e-02 0.328179 0.549914   False         False                    LK varpro vs A3 (same M, N_c, set) 8.0  7.0                  full       136 1670.0 49.255993   49.296536     varpro
+-1.351447e-02 0.373825 0.651992   False         False                    LK varpro vs A1 (same M, N_c, set) 8.0  7.0              geo_Kth1         3   74.0  3.094815    3.108329     varpro
+-5.974820e-02 0.421413 0.680331   False         False                    LK varpro vs A3 (same M, N_c, set) 8.0  7.0              geo_Kth1         3   74.0  3.094815    3.154563     varpro
+ 2.631766e-02 0.353038 0.612584   False         False                    LK varpro vs A1 (same M, N_c, set) 8.0  7.0             geo_Kth16        72  902.0 43.409204   43.382886     varpro
+ 1.493705e-01 0.362058 0.612584   False         False                    LK varpro vs A3 (same M, N_c, set) 8.0  7.0             geo_Kth16        72  902.0 43.409204   43.259834     varpro
+ 4.196600e-02 0.454284 0.788398   False         False                    LK varpro vs A1 (same M, N_c, set) 8.0  7.0              geo_Kth2         7  122.0  9.565403    9.523437     varpro
+-8.108685e-02 0.373742 0.640546   False         False                    LK varpro vs A3 (same M, N_c, set) 8.0  7.0              geo_Kth2         7  122.0  9.565403    9.646490     varpro
+ 1.315883e-01 0.401246 0.636028   False         False                    LK varpro vs A1 (same M, N_c, set) 8.0  7.0              geo_Kth4        18  254.0 20.241127   20.109538     varpro
+ 1.038481e-01 0.412817 0.668997   False         False                    LK varpro vs A3 (same M, N_c, set) 8.0  7.0              geo_Kth4        18  254.0 20.241127   20.137279     varpro
+ 1.429689e-01 0.353332 0.577187   False         False                    LK varpro vs A1 (same M, N_c, set) 8.0  7.0              geo_Kth8        42  542.0 35.099936   34.956967     varpro
+ 1.059819e-01 0.352767 0.577187   False         False                    LK varpro vs A3 (same M, N_c, set) 8.0  7.0              geo_Kth8        42  542.0 35.099936   34.993954     varpro
+-8.322071e-02 0.247565 0.399887   False         False                    LK varpro vs A1 (same M, N_c, set) 8.0  7.0              mag_K128       128 1574.0 49.023401   49.106622     varpro
+-3.058539e-02 0.252258 0.414291   False         False                    LK varpro vs A3 (same M, N_c, set) 8.0  7.0              mag_K128       128 1574.0 49.023401   49.053987     varpro
+ 5.690305e-02 0.305847 0.494680   False         False                    LK varpro vs A1 (same M, N_c, set) 8.0  7.0               mag_K16        16  230.0 19.184864   19.127961     varpro
+ 4.979017e-03 0.325803 0.534816   False         False                    LK varpro vs A3 (same M, N_c, set) 8.0  7.0               mag_K16        16  230.0 19.184864   19.179885     varpro
+ 1.202077e-01 0.499132 0.798425   False         False                    LK varpro vs A1 (same M, N_c, set) 8.0  7.0               mag_K32        32  422.0 30.666477   30.546269     varpro
+ 3.983214e-02 0.484987 0.798425   False         False                    LK varpro vs A3 (same M, N_c, set) 8.0  7.0               mag_K32        32  422.0 30.666477   30.626645     varpro
+ 2.133864e-03 0.354590 0.654895   False         False                    LK varpro vs A1 (same M, N_c, set) 8.0  7.0               mag_K64        64  806.0 41.543495   41.541361     varpro
+ 8.108685e-02 0.444370 0.747286   False         False                    LK varpro vs A3 (same M, N_c, set) 8.0  7.0               mag_K64        64  806.0 41.543495   41.462408     varpro
+ 1.778220e-01 0.455758 0.759331   False         False                    LK varpro vs A1 (same M, N_c, set) 8.0  7.0                mag_K8         8  134.0 11.597553   11.419731     varpro
+-9.246746e-02 0.395479 0.679699   False         False                    LK varpro vs A3 (same M, N_c, set) 8.0  7.0                mag_K8         8  134.0 11.597553   11.690021     varpro
+ 1.010029e-01 0.396218 0.636076   False         False                    LK varpro vs A1 (same M, N_c, set) 8.0  7.0                  none         0   38.0  0.497902    0.396899     varpro
+-1.066932e-01 0.422106 0.697335   False         False                    LK varpro vs A3 (same M, N_c, set) 8.0  7.0                  none         0   38.0  0.497902    0.604595     varpro
+ 6.543851e-02 0.302293 0.495115   False         False                    LK varpro vs A1 (same M, N_c, set) 8.0 31.0              cross_K1        31  422.0 36.516822   36.451383     varpro
+ 5.192403e-02 0.318358 0.543133   False         False                    LK varpro vs A3 (same M, N_c, set) 8.0 31.0              cross_K1        31  422.0 36.516822   36.464898     varpro
+-4.979017e-02 0.310158 0.547669   False         False                    LK varpro vs A1 (same M, N_c, set) 8.0 31.0              cross_K2        58  746.0 46.930792   46.980582     varpro
+ 1.209190e-01 0.348001 0.552795   False         False                    LK varpro vs A3 (same M, N_c, set) 8.0 31.0              cross_K2        58  746.0 46.930792   46.809873     varpro
+ 2.987410e-02 0.327857 0.529071   False         False                    LK varpro vs A1 (same M, N_c, set) 8.0 31.0              cross_K3        81 1022.0 51.848638   51.818764     varpro
+ 1.543495e-01 0.340795 0.548444   False         False                    LK varpro vs A3 (same M, N_c, set) 8.0 31.0              cross_K3        81 1022.0 51.848638   51.694288     varpro
+ 3.556441e-03 0.301566 0.522993   False         False                    LK varpro vs A1 (same M, N_c, set) 8.0 31.0              cross_K5       115 1430.0 55.300519   55.296963     varpro
+ 4.338858e-02 0.338008 0.545642   False         False                    LK varpro vs A3 (same M, N_c, set) 8.0 31.0              cross_K5       115 1430.0 55.300519   55.257131     varpro
+-2.133864e-02 0.289016 0.486456   False         False                    LK varpro vs A1 (same M, N_c, set) 8.0 31.0                  full       136 1682.0 56.175404   56.196742     varpro
+ 5.334661e-02 0.292202 0.495881   False         False                    LK varpro vs A3 (same M, N_c, set) 8.0 31.0                  full       136 1682.0 56.175404   56.122057     varpro
+ 1.664414e-01 0.462911 0.747912   False         False                    LK varpro vs A1 (same M, N_c, set) 8.0 31.0              geo_Kth1         3   86.0 11.183583   11.017142     varpro
+-9.246746e-03 0.523877 0.901590   False         False                    LK varpro vs A3 (same M, N_c, set) 8.0 31.0              geo_Kth1         3   86.0 11.183583   11.192830     varpro
+ 4.267729e-03 0.365282 0.601436   False         False                    LK varpro vs A1 (same M, N_c, set) 8.0 31.0             geo_Kth16        72  914.0 50.519240   50.514973     varpro
+ 1.643076e-01 0.360086 0.585559   False         False                    LK varpro vs A3 (same M, N_c, set) 8.0 31.0             geo_Kth16        72  914.0 50.519240   50.354933     varpro
+ 6.259336e-02 0.368355 0.742784   False         False                    LK varpro vs A1 (same M, N_c, set) 8.0 31.0              geo_Kth2         7  134.0 17.228110   17.165517     varpro
+ 9.886905e-02 0.438098 0.742784   False         False                    LK varpro vs A3 (same M, N_c, set) 8.0 31.0              geo_Kth2         7  134.0 17.228110   17.129241     varpro
+-4.907888e-02 0.340075 0.581310   False         False                    LK varpro vs A1 (same M, N_c, set) 8.0 31.0              geo_Kth4        18  266.0 27.821324   27.870403     varpro
+ 1.038481e-01 0.357326 0.581310   False         False                    LK varpro vs A3 (same M, N_c, set) 8.0 31.0              geo_Kth4        18  266.0 27.821324   27.717476     varpro
+ 1.635963e-02 0.347925 0.554955   False         False                    LK varpro vs A1 (same M, N_c, set) 8.0 31.0              geo_Kth8        42  554.0 42.531475   42.515115     varpro
+ 1.991607e-02 0.317019 0.545238   False         False                    LK varpro vs A3 (same M, N_c, set) 8.0 31.0              geo_Kth8        42  554.0 42.531475   42.511558     varpro
+ 2.347251e-02 0.311992 0.547382   False         False                    LK varpro vs A1 (same M, N_c, set) 8.0 31.0              mag_K128       128 1586.0 56.067288   56.043815     varpro
+ 1.052706e-01 0.311716 0.546596   False         False                    LK varpro vs A3 (same M, N_c, set) 8.0 31.0              mag_K128       128 1586.0 56.067288   55.962017     varpro
+-1.422576e-03 0.294296 0.493523   False         False                    LK varpro vs A1 (same M, N_c, set) 8.0 31.0               mag_K16        16  242.0 26.933637   26.935059     varpro
+ 6.472722e-02 0.334180 0.561084   False         False                    LK varpro vs A3 (same M, N_c, set) 8.0 31.0               mag_K16        16  242.0 26.933637   26.868910     varpro
+ 2.702895e-02 0.445899 0.735807   False         False                    LK varpro vs A1 (same M, N_c, set) 8.0 31.0               mag_K32        32  434.0 38.169144   38.142115     varpro
+ 1.024255e-01 0.434277 0.735807   False         False                    LK varpro vs A3 (same M, N_c, set) 8.0 31.0               mag_K32        32  434.0 38.169144   38.066719     varpro
+-4.196600e-02 0.329492 0.550755   False         False                    LK varpro vs A1 (same M, N_c, set) 8.0 31.0               mag_K64        64  818.0 48.585248   48.627214     varpro
+ 1.956042e-01 0.358618 0.635248   False         False                    LK varpro vs A3 (same M, N_c, set) 8.0 31.0               mag_K64        64  818.0 48.585248   48.389644     varpro
+-4.338858e-02 0.493166 0.879168   False         False                    LK varpro vs A1 (same M, N_c, set) 8.0 31.0                mag_K8         8  146.0 19.243901   19.287289     varpro
+ 2.489508e-02 0.499494 0.879168   False         False                    LK varpro vs A3 (same M, N_c, set) 8.0 31.0                mag_K8         8  146.0 19.243901   19.219006     varpro
+ 1.643076e-01 0.467314 0.786728   False         False                    LK varpro vs A1 (same M, N_c, set) 8.0 31.0                  none         0   50.0  8.575290    8.410982     varpro
+-7.966427e-02 0.480096 0.786728   False         False                    LK varpro vs A3 (same M, N_c, set) 8.0 31.0                  none         0   50.0  8.575290    8.654954     varpro
+-6.014653e+00 0.319078 0.545238   False          True LK: cross vs hyperbola at the nearest number of terms NaN  NaN  cross_K1 vs geo_Kth8  31 vs 42    NaN 36.516822   42.531475        NaN
+-3.588449e+00 0.347957 0.552658   False          True LK: cross vs hyperbola at the nearest number of terms NaN  NaN cross_K2 vs geo_Kth16  58 vs 72    NaN 46.930792   50.519240        NaN
+ 1.329398e+00 0.342154 0.552658    True         False LK: cross vs hyperbola at the nearest number of terms NaN  NaN cross_K3 vs geo_Kth16  81 vs 72    NaN 51.848638   50.519240        NaN
+ 4.781279e+00 0.340280 0.552658    True         False LK: cross vs hyperbola at the nearest number of terms NaN  NaN cross_K5 vs geo_Kth16 115 vs 72    NaN 55.300519   50.519240        NaN
+-6.063731e+00 0.332600 0.554955   False          True A1: cross vs hyperbola at the nearest number of terms NaN  NaN  cross_K1 vs geo_Kth8  31 vs 42    NaN 36.451383   42.515115        NaN
+-3.534391e+00 0.329476 0.601436   False          True A1: cross vs hyperbola at the nearest number of terms NaN  NaN cross_K2 vs geo_Kth16  58 vs 72    NaN 46.980582   50.514973        NaN
+ 1.303791e+00 0.351926 0.601436    True         False A1: cross vs hyperbola at the nearest number of terms NaN  NaN cross_K3 vs geo_Kth16  81 vs 72    NaN 51.818764   50.514973        NaN
+ 4.781990e+00 0.329519 0.601436    True         False A1: cross vs hyperbola at the nearest number of terms NaN  NaN cross_K5 vs geo_Kth16 115 vs 72    NaN 55.296963   50.514973        NaN
+=== 2026-11-06T02:50:41+07:00 E051 fit_summary exit=0 ===

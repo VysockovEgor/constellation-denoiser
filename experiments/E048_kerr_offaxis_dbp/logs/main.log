@@ -2,3 +2,4 @@
 JOBS=1 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
 [2026-11-05 11:11:22] running 50 tasks with JOBS=1, THREADS=1, DEVICE=cpu
 [2026-11-05 11:11:22] JOBS_ADAPTIVE: число процессов по свободным ядрам, до 48
+=== 2026-11-06T02:38:12+07:00 E048 main exit=0 ===

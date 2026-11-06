@@ -1,0 +1,4 @@
+=== 2026-11-06T02:38:16+07:00 E048 summarize: .venv/bin/python -m constellation_denoiser.summarize_E048 ===
+JOBS=45 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+E048: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E048_kerr_offaxis_dbp/results/dbp_offaxis_verdicts.csv
+=== 2026-11-06T02:38:18+07:00 E048 summarize exit=0 ===

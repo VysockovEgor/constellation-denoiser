@@ -1,0 +1,10 @@
+=== 2026-11-06T15:26:16+07:00 E055 summarize: .venv/bin/python -m constellation_denoiser.summarize_E055 ===
+JOBS=1 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+ window  hidden  n  params   rm  test_mean  test_std  test_min  test_max  val_mean  ber_mean  raw  diverged  test_se  reached_55  close_55
+     15      54  5    1784 1728     26.557     1.061    25.629    28.325    26.252     0.007 0.01         0    0.474       False     False
+     17      48  5    1778 1728     27.428     1.711    24.979    29.487    27.060     0.007 0.01         0    0.765       False     False
+     21      32  5    1442 1408     19.412     0.589    18.990    20.447    19.104     0.008 0.01         0    0.264       False     False
+     25      24  5    1274 1248     12.114     1.148    10.842    13.799    11.567     0.008 0.01         0    0.514       False     False
+     31      16  5    1042 1024      4.724     1.066     3.560     6.245     4.451     0.009 0.01         0    0.477       False     False
+     31      32  5    2082 2048     18.221     1.022    16.584    19.052    17.773     0.008 0.01         0    0.457       False     False
+=== 2026-11-06T15:26:21+07:00 E055 summarize exit=0 ===

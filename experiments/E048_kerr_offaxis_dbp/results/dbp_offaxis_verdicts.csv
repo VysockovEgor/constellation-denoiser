@@ -1,0 +1,19 @@
+hypothesis,value,verdict,detail,rule_status
+"Ns=8, K=16: внеосевые триплеты добавляют к DBP ≥ 1 п.п.",-4.41923323138203,не доказано,RM 784; 43.56 ± 0.78,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"Ns=8, K=16: внеосевые лучше осевых (E038) при том же K",-3.6851838679849322,справочно,43.56 против 47.25,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"Ns=8, K=32: внеосевые триплеты добавляют к DBP ≥ 1 п.п.",-0.29091685041610305,не доказано,RM 976; 47.69 ± 1.82,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"Ns=8, K=32: внеосевые лучше осевых (E038) при том же K",1.552030727647768,справочно,47.69 против 46.14,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"Ns=8, K=64: внеосевые триплеты добавляют к DBP ≥ 1 п.п.",3.079166370296605,не доказано,RM 1360; 51.06 ± 1.07,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"Ns=8, K=64: внеосевые лучше осевых (E038) при том же K",-1.1935415036631412,справочно,51.06 против 52.25,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"Ns=8, K=128: внеосевые триплеты добавляют к DBP ≥ 1 п.п.",10.74258482111103,подтверждено,RM 2128; 58.72 ± 0.38,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"Ns=16, K=16: внеосевые триплеты добавляют к DBP ≥ 1 п.п.",2.484529482893514,не доказано,RM 1376; 53.35 ± 1.26,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"Ns=16, K=16: внеосевые лучше осевых (E038) при том же K",-3.7129241055551603,справочно,53.35 против 57.07,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"Ns=16, K=32: внеосевые триплеты добавляют к DBP ≥ 1 п.п.",1.744789814353794,не доказано,RM 1568; 52.61 ± 1.71,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"Ns=16, K=32: внеосевые лучше осевых (E038) при том же K",-3.6282808165587923,справочно,52.61 против 56.24,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"Ns=16, K=64: внеосевые триплеты добавляют к DBP ≥ 1 п.п.",4.277686890959522,подтверждено,RM 1952; 55.15 ± 0.39,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"Ns=16, K=64: внеосевые лучше осевых (E038) при том же K",-1.757593000924686,справочно,55.15 против 56.90,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+"Ns=16, K=128: внеосевые триплеты добавляют к DBP ≥ 1 п.п.",11.167935130521371,подтверждено,RM 2720; 62.04 ± 0.79,DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+820 RM: A лучше DBP + внеосевых (> 2 std),4.78625791308059,подтверждено,A A1 M15 Nc63 mag_K64 (834 RM) против DBP Ns8 K0 (592 RM),DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+1200 RM: A лучше DBP + внеосевых (> 2 std),9.561135215875957,подтверждено,A A1 M15 Nc63 geo_Kth16 (1242 RM) против DBP Ns16 K0 (1184 RM),DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+2000 RM: A лучше DBP + внеосевых (> 2 std),10.13301088270859,подтверждено,A A1 M15 Nc63 mag_K128 (1602 RM) против DBP Ns16 K64 (1952 RM),DRAFT: to be confirmed by the user before the first run; must not change after results are seen
+2500 RM: A лучше DBP + внеосевых (> 2 std),6.554520236147667,подтверждено,A A1 M15 Nc63 mag_K128 (1602 RM) против DBP Ns8 K128 (2128 RM),DRAFT: to be confirmed by the user before the first run; must not change after results are seen

@@ -1,0 +1,36 @@
+=== 2026-11-06T12:35:52+07:00 E055 main: .venv/bin/python -u -m constellation_denoiser.runner --exp E055 --stage main ===
+JOBS=1 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+[2026-11-06 12:35:59] running 30 tasks with JOBS=1, THREADS=1, DEVICE=cpu
+[2026-11-06 12:35:59] JOBS_ADAPTIVE: число процессов по свободным ядрам, до 48
+[2026-11-06 12:53:47] [ok 1/30] real_W15_h54_const_0.001_cm1_200k_seed17: val=22.36% test=22.11% diverged=False time=1058s; ETA ~516 min
+[2026-11-06 13:10:59] [ok 2/30] real_W15_h54_const_0.001_cm1_200k_seed29: val=21.43% test=21.64% diverged=False time=1026s; ETA ~490 min
+[2026-11-06 13:24:35] [ok 3/30] real_W15_h54_const_0.001_cm1_200k_seed43: val=19.18% test=19.38% diverged=False time=812s; ETA ~437 min
+[2026-11-06 13:37:58] [ok 4/30] real_W15_h54_const_0.001_cm1_200k_seed71: val=21.38% test=21.53% diverged=False time=794s; ETA ~403 min
+[2026-11-06 13:38:01] [ok 5/30] real_W15_h54_const_0.001_cm1_200k_seed57: val=19.00% test=19.09% diverged=False time=801s; ETA ~310 min
+[2026-11-06 13:51:19] [ok 6/30] real_W17_h48_const_0.001_cm1_200k_seed29: val=20.74% test=21.35% diverged=False time=793s; ETA ~301 min
+[2026-11-06 13:51:32] [ok 7/30] real_W17_h48_const_0.001_cm1_200k_seed17: val=19.97% test=20.56% diverged=False time=807s; ETA ~248 min
+[2026-11-06 14:04:16] [ok 8/30] real_W17_h48_const_0.001_cm1_200k_seed43: val=27.49% test=27.97% diverged=False time=773s; ETA ~243 min
+[2026-11-06 14:05:07] [ok 9/30] real_W17_h48_const_0.001_cm1_200k_seed57: val=23.48% test=23.49% diverged=False time=811s; ETA ~208 min
+[2026-11-06 14:05:11] [ok 10/30] real_W17_h48_const_0.001_cm1_200k_seed71: val=21.25% test=21.73% diverged=False time=774s; ETA ~178 min
+[2026-11-06 14:06:17] [ok 11/30] real_W21_h32_const_0.001_cm1_200k_seed29: val=18.06% test=18.71% diverged=False time=808s; ETA ~156 min
+[2026-11-06 14:06:33] [ok 12/30] real_W21_h32_const_0.001_cm1_200k_seed17: val=18.24% test=18.85% diverged=False time=825s; ETA ~136 min
+[2026-11-06 14:07:11] [ok 13/30] real_W21_h32_const_0.001_cm1_200k_seed57: val=16.83% test=17.15% diverged=False time=824s; ETA ~119 min
+[2026-11-06 14:07:33] [ok 14/30] real_W21_h32_const_0.001_cm1_200k_seed43: val=17.11% test=17.87% diverged=False time=851s; ETA ~105 min
+[2026-11-06 14:18:05] [ok 15/30] real_W21_h32_const_0.001_cm1_200k_seed71: val=17.80% test=17.35% diverged=False time=774s; ETA ~102 min
+[2026-11-06 14:19:19] [ok 16/30] real_W25_h24_const_0.001_cm1_200k_seed17: val=12.96% test=13.80% diverged=False time=844s; ETA ~90 min
+[2026-11-06 14:20:12] [ok 17/30] real_W25_h24_const_0.001_cm1_200k_seed29: val=10.55% test=10.22% diverged=False time=831s; ETA ~80 min
+[2026-11-06 14:36:02] [ok 18/30] real_W25_h24_const_0.001_cm1_200k_seed43: val=8.88% test=9.28% diverged=False time=946s; ETA ~80 min
+[2026-11-06 14:40:19] [ok 19/30] real_W25_h24_const_0.001_cm1_200k_seed57: val=11.49% test=11.72% diverged=False time=800s; ETA ~72 min
+[2026-11-06 14:43:00] [ok 20/30] real_W25_h24_const_0.001_cm1_200k_seed71: val=5.25% test=5.12% diverged=False time=860s; ETA ~64 min
+[2026-11-06 14:58:55] [ok 21/30] real_W31_h16_const_0.001_cm1_200k_seed17: val=5.10% test=5.06% diverged=False time=951s; ETA ~61 min
+[2026-11-06 15:04:08] [ok 22/30] real_W31_h16_const_0.001_cm1_200k_seed29: val=2.98% test=2.94% diverged=False time=826s; ETA ~54 min
+[2026-11-06 15:04:29] [ok 23/30] real_W31_h16_const_0.001_cm1_200k_seed43: val=4.38% test=4.46% diverged=False time=645s; ETA ~45 min
+[2026-11-06 15:09:14] [ok 24/30] real_W31_h16_const_0.001_cm1_200k_seed57: val=3.46% test=3.60% diverged=False time=829s; ETA ~38 min
+[2026-11-06 15:13:37] [ok 25/30] real_W31_h16_const_0.001_cm1_200k_seed71: val=3.23% test=3.56% diverged=False time=889s; ETA ~32 min
+[2026-11-06 15:15:56] [ok 26/30] real_W31_h32_const_0.001_cm1_200k_seed17: val=17.92% test=18.16% diverged=False time=913s; ETA ~25 min
+[2026-11-06 15:16:02] [ok 27/30] real_W31_h32_const_0.001_cm1_200k_seed29: val=14.99% test=15.55% diverged=False time=889s; ETA ~18 min
+[2026-11-06 15:16:13] [ok 28/30] real_W31_h32_const_0.001_cm1_200k_seed43: val=17.77% test=17.55% diverged=False time=765s; ETA ~11 min
+[2026-11-06 15:18:34] [ok 29/30] real_W31_h32_const_0.001_cm1_200k_seed57: val=17.84% test=18.16% diverged=False time=841s; ETA ~6 min
+[2026-11-06 15:26:03] [ok 30/30] real_W31_h32_const_0.001_cm1_200k_seed71: val=16.08% test=16.20% diverged=False time=903s; ETA ~0 min
+[2026-11-06 15:26:05] finished: 30 ok, 0 failed
+=== 2026-11-06T15:26:06+07:00 E055 main exit=0 ===

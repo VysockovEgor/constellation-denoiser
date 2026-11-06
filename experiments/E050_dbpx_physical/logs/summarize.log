@@ -1,0 +1,22 @@
+=== 2026-11-06T12:23:18+07:00 E050 summarize: .venv/bin/python -m constellation_denoiser.summarize_E050 ===
+JOBS=auto THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+   diff_pp   two_se  two_std  signal                                                   question                  arm  arm_test  arm_rm_xiao  arm_rm_project                     ref  ref_test  ref_rm_xiao  ref_n
+-35.129351 1.419766 2.459107   False start: DBP-X (no training, honest lengths) vs windowed DBP  start Ns1 classical -0.419676        120.8          2055.0   E028 a dbp_Ns4_L31_R7 34.709676        216.7      3
+-25.594019 1.419766 2.459107   False start: DBP-X (no training, honest lengths) vs windowed DBP  start Ns2 classical  9.115657        195.9          6158.0   E028 a dbp_Ns4_L31_R7 34.709676        216.7      3
+ -9.593414 1.419766 2.459107   False start: DBP-X (no training, honest lengths) vs windowed DBP  start Ns4 classical 25.116261        309.6          6172.0   E028 a dbp_Ns4_L31_R7 34.709676        216.7      3
+ -1.232014 2.067603 3.581193   False start: DBP-X (no training, honest lengths) vs windowed DBP  start Ns8 classical 43.653824        550.6          9272.0  E028 a dbp_Ns8_L31_R15 44.885838        445.9      3
+ 12.294774 0.250515 0.433905    True start: DBP-X (no training, honest lengths) vs windowed DBP start Ns10 classical 58.580665        673.3         11334.0  E028 a dbp_Ns12_L31_R7 46.285890        650.0      3
+ 17.475191 2.925976 5.067938    True start: DBP-X (no training, honest lengths) vs windowed DBP start Ns16 classical 71.420470       1041.7         17520.0 E028 a dbp_Ns16_L31_R15 53.945278        891.8      3
+ 33.982432 2.925976 5.067938    True start: DBP-X (no training, honest lengths) vs windowed DBP start Ns20 classical 87.927710       1287.3         21644.0 E028 a dbp_Ns16_L31_R15 53.945278        891.8      3
+ 33.610106 1.777601 3.078895    True start: DBP-X (no training, honest lengths) vs windowed DBP start Ns40 classical 89.084653       2515.2         42264.0 E028 a dbp_Ns32_L31_R15 55.474548       1783.6      3
+ 38.895750 1.777601 3.078895    True start: DBP-X (no training, honest lengths) vs windowed DBP start Ns80 classical 94.370298       4969.3         83284.0 E028 a dbp_Ns32_L31_R15 55.474548       1783.6      3
+-29.862612 1.419766 2.459107   False start: DBP-X (no training, honest lengths) vs windowed DBP      start Ns1 ridge  4.847064        132.2          2058.0   E028 a dbp_Ns4_L31_R7 34.709676        216.7      3
+  4.792763 1.419766 2.459107    True start: DBP-X (no training, honest lengths) vs windowed DBP      start Ns2 ridge 39.502439        205.0          3092.0   E028 a dbp_Ns4_L31_R7 34.709676        216.7      3
+ 40.382010 1.419766 2.459107    True start: DBP-X (no training, honest lengths) vs windowed DBP      start Ns4 ridge 75.091686        355.1          6184.0   E028 a dbp_Ns4_L31_R7 34.709676        216.7      3
+ 46.902131 2.067603 3.581193    True start: DBP-X (no training, honest lengths) vs windowed DBP      start Ns8 ridge 91.787969        641.6          9296.0  E028 a dbp_Ns8_L31_R15 44.885838        445.9      3
+ 47.581553 0.250515 0.433905    True start: DBP-X (no training, honest lengths) vs windowed DBP     start Ns10 ridge 93.867443        787.2         11364.0  E028 a dbp_Ns12_L31_R7 46.285890        650.0      3
+ 42.421314 2.925976 5.067938    True start: DBP-X (no training, honest lengths) vs windowed DBP     start Ns16 ridge 96.366592       1222.1         17348.0 E028 a dbp_Ns16_L31_R15 53.945278        891.8      3
+ 45.191763 1.482863 2.568394    True start: DBP-X (no training, honest lengths) vs windowed DBP     start Ns20 ridge 96.725774       1513.2         21484.0  E028 a dbp_Ns24_L31_R7 51.534011       1299.9      3
+ 41.304158 1.777601 3.078895    True start: DBP-X (no training, honest lengths) vs windowed DBP     start Ns40 ridge 96.778706       2784.9         21684.0 E028 a dbp_Ns32_L31_R15 55.474548       1783.6      3
+ 41.731396 1.777601 3.078895    True start: DBP-X (no training, honest lengths) vs windowed DBP     start Ns80 ridge 97.205944       5880.0         83524.0 E028 a dbp_Ns32_L31_R15 55.474548       1783.6      3
+=== 2026-11-06T12:23:20+07:00 E050 summarize exit=0 ===

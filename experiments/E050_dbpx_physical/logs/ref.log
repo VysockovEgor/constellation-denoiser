@@ -1,0 +1,13 @@
+=== 2026-11-06T12:26:08+07:00 E050 ref: .venv/bin/python -u -m constellation_denoiser.runner --exp E050 --stage ref ===
+JOBS=37 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+[2026-11-06 12:26:10] running 20 tasks with JOBS=37, THREADS=1, DEVICE=cpu
+[2026-11-06 12:26:10] JOBS_ADAPTIVE: число процессов по свободным ядрам, до 48
+[2026-11-06 16:29:35] [ok 1/20] dbp_Ns20_L31_R7_const_0.001_cm1_100k_seed127: val=50.04% test=51.16% diverged=False time=14596s; ETA ~4625 min
+[2026-11-06 16:32:25] [ok 2/20] dbp_Ns20_L31_R7_const_0.001_cm1_100k_seed43: val=49.14% test=50.48% diverged=False time=14769s; ETA ~2216 min
+[2026-11-06 16:33:24] [ok 3/20] dbp_Ns20_L31_R7_const_0.001_cm1_100k_seed57: val=47.89% test=48.24% diverged=False time=14828s; ETA ~1401 min
+[2026-11-06 16:35:45] [ok 4/20] dbp_Ns20_L31_R7_const_0.001_cm1_100k_seed71: val=48.76% test=49.43% diverged=False time=14969s; ETA ~998 min
+[2026-11-06 16:38:03] [ok 5/20] dbp_Ns20_L31_R7_const_0.001_cm1_100k_seed113: val=47.81% test=48.41% diverged=False time=15105s; ETA ~756 min
+[2026-11-06 16:39:41] [ok 6/20] dbp_Ns20_L31_R7_const_0.001_cm1_100k_seed83: val=48.72% test=49.39% diverged=False time=15204s; ETA ~592 min
+[2026-11-06 16:40:33] [ok 7/20] dbp_Ns20_L31_R7_const_0.001_cm1_100k_seed17: val=46.87% test=48.02% diverged=False time=15258s; ETA ~472 min
+[2026-11-06 16:43:08] [ok 8/20] dbp_Ns20_L31_R7_const_0.001_cm1_100k_seed29: val=50.68% test=51.52% diverged=False time=15413s; ETA ~385 min
+[2026-11-06 16:59:55] [ok 9/20] dbp_Ns20_L31_R7_const_0.001_cm1_100k_seed101: val=49.48% test=50.68% diverged=False time=16417s; ETA ~335 min
