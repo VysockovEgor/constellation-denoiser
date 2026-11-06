@@ -603,6 +603,111 @@ def probe_test(smoke: bool) -> int:
     return 0
 
 
+def rm_detail(ns: int, step_len: int, total_len: int, R: int = R_KERR) -> dict:
+    """Multiplications and additions per output symbol, 4 or 3 real multiplications per complex product.
+
+    Complex product by a fixed coefficient: 4M + 2A, or 3M + 3A (precomputed c + d, d - c). Symmetric FIR of length L
+    per output: (L - 1)/2 complex pre-additions (L - 1 real), (L + 1)/2 complex products, L - 1 real additions of
+    the accumulation. Overlap-save with a radix-2 FFT of size T (T chosen to minimize the multiplications, as Xiao's
+    C_conv): per block 2 FFTs of (T/2) log2 T butterflies (one twiddle product + 2 complex additions = 4 real) and T
+    pointwise products, divided by T - k + 1 outputs. Kerr step (direct in both columns): |u|^2 2M + 1A, symmetric
+    phase convolution (R + 1)/2 M + R - 1 A, rotation one complex product (exp from a table: 0). D_total one filter,
+    output gain one complex product."""
+    out = {"n_steps": ns, "step_len": step_len, "total_len": total_len, "R": R}
+    for cm, ca in ((4, 2), (3, 3)):
+        def direct(L):
+            return cm * (L + 1) / 2, (L - 1) + ca * (L + 1) / 2 + (L - 1)
+
+        def fft(k):
+            best = None
+            for p in range(1, 24):
+                T = 2 ** p
+                if T - k + 1 <= 0:
+                    continue
+                m = cm * (T * p + T) / (T - k + 1)
+                a = (T * p * (4 + ca) + T * ca) / (T - k + 1)
+                if best is None or m < best[0]:
+                    best = (m, a, T)
+            return best
+
+        kerr_m, kerr_a = 2 + (R + 1) / 2 + cm, 1 + (R - 1) + ca
+        dm_s, da_s = direct(step_len)
+        dm_t, da_t = direct(total_len)
+        fm_s, fa_s, T_s = fft(step_len)
+        fm_t, fa_t, T_t = fft(total_len)
+        out[f"rm_direct_{cm}"] = round(dm_t + ns * (dm_s + kerr_m) + cm, 1)
+        out[f"adds_direct_{cm}"] = round(da_t + ns * (da_s + kerr_a) + ca, 1)
+        out[f"rm_fft_{cm}"] = round(fm_t + ns * (fm_s + kerr_m) + cm, 1)
+        out[f"adds_fft_{cm}"] = round(fa_t + ns * (fa_s + kerr_a) + ca, 1)
+        out["fft_size_step"], out["fft_size_total"] = T_s, T_t
+    return out
+
+
+def file_stats(smoke: bool) -> int:
+    """DBP-X with the ridge kernel at Ns = 8, 12, 20 on the test files, spread over files.
+
+    Configuration chosen on validation only: Ns 8 and 20 from start_best.csv (ridge rows, sign of the classical rows),
+    Ns 12 by the same grid as start (_start_job, both signs, minimum validation MSE, honest lengths on validation).
+    Per test file: BER and raw BER on [EDGE, T - EDGE), reduction; mean and SE over the files; pooled reduction and
+    its bootstrap over files (2000 resamples, seed 0); effective SNR 10 log10(E|tx|^2 / MSE) of the output and of the
+    raw signal. Exact filters and honest FIR lengths."""
+    out_dir = results_dir(smoke)
+    start = pd.read_csv(out_dir / "start_best.csv")
+    data = load(smoke, ("validation", "test"))
+    val, test = data["validation"], data["test"]
+    power = float(np.mean(np.abs(val.rx_c) ** 2))
+    shape = alpha_shape("ridge")
+    rows, files = [], []
+    for ns in ((8,) if smoke else (8, 12, 20)):
+        if ns in set(start.n_steps):
+            cls = start[(start.alpha_kind == "classical") & (start.n_steps == ns)]
+            sign = cls.loc[cls.val_mse_trim.idxmin(), "sign"]
+            r = start[(start.alpha_kind == "ridge") & (start.n_steps == ns) & (start.sign == sign)].iloc[0]
+            cfg = {"sign": float(sign), "mult": float(r["mult"]), "g": float(r.g), "gain": complex(r.gain_re, r.gain_im),
+                   "step_len": int(r.honest_step_len), "total_len": int(r.honest_total_len), "source": "start_best.csv"}
+        else:
+            grid = pd.DataFrame([x for sg in (1.0, -1.0) for x in _start_job((ns, sg, "ridge", smoke))])
+            exact = grid[(grid.step_len == 0) & (grid.total_len == 0)]
+            b = exact.loc[exact.val_mse_trim.idxmin()]
+            part = grid[grid.sign == b.sign]
+            cfg = {"sign": float(b.sign), "mult": float(b["mult"]), "g": float(b.g), "gain": complex(b.gain_re, b.gain_im),
+                   "step_len": honest_len(part, "step_len", b.val_reduction_trim),
+                   "total_len": honest_len(part, "total_len", b.val_reduction_trim), "source": "grid on validation here"}
+        for filters in ("exact", "honest"):
+            if filters == "honest" and (cfg["step_len"] < 1 or cfg["total_len"] < 1):
+                continue                                         # no honest length found (smoke grid)
+            sl, tl = (None, None) if filters == "exact" else (cfg["step_len"], cfg["total_len"])
+            z = cfg["gain"] * dbpx(test.rx_c, ns, cfg["g"], cfg["mult"], cfg["sign"], shape, power, sl, tl)
+            zr, tr, rr = regions(z)["trim"], regions(test.tx_c)["trim"], regions(test.rx_c)["trim"]
+            per = []
+            for f in range(test.n_files):
+                b_f, raw_f = ber(zr[f], tr[f]), ber(rr[f], tr[f])
+                per.append((b_f, raw_f, 100 * (raw_f - b_f) / raw_f))
+                files.append({"n_steps": ns, "filters": filters, "file": test.names[f], "ber": b_f, "raw": raw_f,
+                              "reduction": per[-1][2]})
+            per = np.array(per)
+            rng = np.random.default_rng(0)
+            boot = []
+            for _ in range(200 if smoke else 2000):
+                i = rng.integers(0, len(per), len(per))
+                boot.append(100 * (per[i, 1].sum() - per[i, 0].sum()) / per[i, 1].sum())
+            sig = float(np.mean(np.abs(tr) ** 2))
+            rows.append({"n_steps": ns, "kernel": "ridge", "filters": filters, **{k: v for k, v in cfg.items() if k != "gain"},
+                         "n_files": test.n_files, "reduction_mean_over_files": per[:, 2].mean(),
+                         "reduction_se_over_files": per[:, 2].std(ddof=1) / np.sqrt(len(per)),
+                         "reduction_pooled": 100 * (per[:, 1].sum() - per[:, 0].sum()) / per[:, 1].sum(),
+                         "pooled_boot_se": float(np.std(boot, ddof=1)), "pooled_boot_lo": float(np.percentile(boot, 2.5)),
+                         "pooled_boot_hi": float(np.percentile(boot, 97.5)), "ber_pooled": per[:, 0].mean(),
+                         "raw_pooled": per[:, 1].mean(),
+                         "snr_eff_out_db": 10 * np.log10(sig / np.mean(np.abs(zr - tr) ** 2)),
+                         "snr_eff_raw_db": 10 * np.log10(sig / np.mean(np.abs(rr - tr) ** 2)),
+                         **rm_detail(ns, cfg["step_len"], cfg["total_len"])})
+            print(rows[-1], flush=True)
+    pd.DataFrame(rows).to_csv(out_dir / "file_stats.csv", index=False)
+    pd.DataFrame(files).to_csv(out_dir / "file_stats_per_file.csv", index=False)
+    return 0
+
+
 def env_int(name: str, default: int) -> int:
     value = os.environ.get(name, "")
     return int(value) if value.isdigit() else default
@@ -623,6 +728,8 @@ def main(argv: list[str]) -> int:
         from .gate import jobs_now
 
         return start(smoke, env_int("JOBS", 1 if smoke else jobs_now(total=True)[0]))
+    if action == "file_stats":
+        return file_stats(smoke)
     if action == "probe_test":
         return probe_test(smoke)
     if action == "plan":
