@@ -120,6 +120,50 @@ EXTRA_TABLES = {
     "E046": [("results/a_summary.csv", {"arch": "арх.", "mode": "обучение", "M": "M", "n_c": "N_c", "set": "набор",
               "n_terms": "членов", "rm": "RM", "val_mean": "валидация", "test_mean": "тест, %", "test_std": "std"},
               "Архитектура A и контроли (первые строки)")],
+    "E050": [("results/probe_test.csv", {"n_steps": "Ns", "g": "γ", "mult": "множитель c", "filters": "фильтры",
+              "probe_reduction_trim": "на файлах пробы, %", "test_reduction_trim": "тест, %", "test_q2_gain_trim": "ΔQ², дБ"},
+              "Пробы (подбор на 2 файлах валидации) на 45 тестовых файлах"),
+             ("results/start_table.csv", {"alpha_kind": "ядро", "n_steps": "Ns", "mult": "множитель c", "g": "γ",
+              "val_reduction_trim": "валидация, %", "test_honest_reduction_trim": "тест (честные КИХ), %",
+              "honest_step_len": "КИХ шага", "honest_total_len": "КИХ D_total", "rm_project": "RM прямая", "rm_xiao": "RM БПФ"},
+              "Старт без обучения (выбор по валидации)"),
+             ("results/file_stats.csv", {"n_steps": "Ns", "filters": "фильтры", "reduction_mean_over_files": "среднее по файлам, %",
+              "reduction_se_over_files": "SE по файлам", "pooled_boot_lo": "бутстреп 2.5 %", "pooled_boot_hi": "бутстреп 97.5 %",
+              "snr_eff_out_db": "эфф. SNR, дБ", "rm_direct_4": "прямая 4", "rm_direct_3": "прямая 3", "rm_fft_4": "БПФ 4",
+              "rm_fft_3": "БПФ 3", "adds_fft_4": "сложений (БПФ 4)", "fft_size_step": "размер БПФ"},
+              "Ридж-ядро: разброс по 45 тестовым файлам и цена"),
+             ("results/train_summary.csv", {"ns": "Ns", "L": "КИХ", "alpha_init": "старт α", "training": "обучение", "n": "seeds",
+              "test_mean": "тест, %", "test_se": "SE", "test_std": "std", "plateau_mean": "плато, итер.", "diverged": "разошлись",
+              "rm_project": "RM прямая", "rm_xiao": "RM БПФ"}, "Обученный DBP-X (10 seeds)"),
+             ("results/windowed_dbp_summary.csv", {"source": "источник", "variant": "вариант", "n": "seeds", "test_mean": "тест, %",
+              "test_se": "SE", "rm_project": "RM прямая", "rm_xiao": "RM БПФ"}, "Эталон: DBP в окне (E028 и E050 ref)")],
+    "E051": [("results/best_by_validation.csv", {"arch": "арх.", "mode": "подгонка", "M": "M", "n_c": "N_c", "rm": "RM",
+              "test_mean": "тест, %", "test_std": "std"}, "Лучшие по валидации (полный набор)"),
+             ("results/splits_full.csv", {"split_seed": "разбиение", "A1": "A1", "A3": "A3", "K": "K", "LK": "LK", "T": "T"},
+              "Три разбиения E023, тест, %")],
+    "E052": [("results/summary.csv", {"n_steps": "Ns", "alpha_kind": "ядро", "M": "M", "K": "K", "n_terms": "членов", "n": "реплик",
+              "test_mean": "тест, %", "test_se": "SE", "rm_project_total": "RM прямая", "rm_fft_total": "RM БПФ"},
+              "DBP-X + внешние внеосевые триплеты (крест)"),
+             ("results/verdicts.csv", {"convention": "конвенция", "arm": "ветка", "arm_test": "тест, %", "arm_rm": "RM",
+              "ref_test": "Ns 40, %", "ref_rm": "RM Ns 40", "gap_pp": "разрыв, п.п.", "reached": "достигает"},
+              "Ns 8 + триплеты против Ns 40")],
+    "E053": [("results/summary.csv", {"base": "база", "variant": "вариант", "size": "S / K / r", "n_real_params": "параметров",
+              "test_mean": "тест, %", "test_se": "SE", "test_std": "std", "rm_fast": "RM (рекурсия)"}, "H1: чирпы и контроли"),
+             ("results/verdicts.csv", {"base": "база", "question": "вопрос", "verdict": "вердикт", "variant": "вариант",
+              "size": "размер", "diff_pp": "разница, п.п.", "two_se": "2 SE", "two_std": "2 std"}, "Вердикты"),
+             ("results/rm_vs_M.csv", {"M": "M", "terms": "членов", "rm_direct": "таблица", "rm_oc_reuse": "OC 3.3.3",
+              "rm_grouped": "группировка", "rm_chirp_S1": "1 чирп", "rm_xiao_K1": "Xiao K=1", "rm_xiao_K=M": "Xiao K=M"},
+              "H2: RM на символ (без Керра)")],
+    "E054": [("results/summary.csv", {"n_steps": "Ns", "mode": "ветка", "L": "КИХ", "n": "seeds", "test_mean": "тест, %",
+              "test_se": "SE", "test_std": "std", "rm_direct_4": "прямая 4", "rm_direct_3": "прямая 3", "rm_fft_4": "БПФ 4",
+              "rm_fft_3": "БПФ 3", "cascade_support": "носитель каскада"}, "Обрезка КИХ во время обучения")],
+    "E055": [("results/summary.csv", {"window": "окно", "hidden": "нейронов", "params": "параметров", "rm": "RM", "n": "seeds",
+              "test_mean": "тест, %", "test_se": "SE", "ber_mean": "BER", "reached_55": "≥ 55 %"},
+              "Малый вещественный tanh-MLP")],
+    "E056": [("results/ablation.csv", {"level": "уровень RM", "name": "ветка", "source": "источник", "M": "M", "n_c": "N_c",
+              "set": "набор", "rm": "RM", "test_mean": "тест, %", "test_se": "SE", "note": "примечание"}, "Абляция при равном RM"),
+             ("results/ablation_verdicts.csv", {"level": "уровень", "question": "сравнение", "diff_pp": "разница, п.п.",
+              "two_se": "2 SE", "two_std": "2 std", "signal": "значимо", "reverse_signal": "значимо обратное"}, "Сравнения")],
     "E043": [("results/level_best.csv", {"level": "уровень", "family": "семейство", "label": "точка", "rm_repo": "RM",
               "rm_buffered_my_estimate": "RM буфер", "rm_arxiv_2409_20023": "RM arXiv", "test_mean": "тест, %",
               "test_min": "мин", "test_max": "макс", "q2_mean": "Q², дБ"}, "Лучшие по валидации на уровнях RM")],
@@ -149,7 +193,8 @@ TEST, VAL = "test_reduction_valbest_select", "best_val_reduction"
 # the control is a different model (complex_a vs physics models): "worse than control" is not an anomaly there
 CONTROL_IS_OTHER_MODEL = {"E016", "E017", "E018", "E020", "E021", "E022", "E023", "E024", "E025", "E026", "E027",
                           "E028", "E029", "E030", "E031", "E032", "E033", "E034", "E035", "E036", "E037", "E038",
-                          "E039", "E040", "E041", "E043", "E044", "E045", "E046", "E047", "E048", "E049"}
+                          "E039", "E040", "E041", "E043", "E044", "E045", "E046", "E047", "E048", "E049",
+                          "E050", "E051", "E052", "E053", "E054", "E055", "E056"}
 COLUMN_RU = {
     "hypothesis": "гипотеза", "candidate": "кандидат", "candidate_macs": "умножений (кандидат)",
     "reference": "эталон", "reference_macs": "умножений (эталон)", "diff_pp": "разница, п.п.",
@@ -509,7 +554,11 @@ def build_experiment(exp: str) -> None:
         pass
     else:
         result = grouped(exp)
-        parts.append(results_table(result[1]) if result else "Результатов нет (эксперимент не запускался).\n")
+        has_extra = any((d / rel).is_file() for rel, _, _ in EXTRA_TABLES.get(exp, []))
+        if result:
+            parts.append(results_table(result[1]))
+        elif not has_extra:
+            parts.append("Результатов нет (эксперимент не запускался).\n")
     for rel, columns, caption in EXTRA_TABLES.get(exp, []):
         if (d / rel).is_file():
             frame = pd.read_csv(d / rel)

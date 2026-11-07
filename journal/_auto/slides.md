@@ -226,6 +226,10 @@
 
 ---
 
+![](figs/experiments/E040_triplet_cascade/figures/E040_cascade_vs_one_step.png)
+
+---
+
 ![](figs/experiments/E044_triplet_audit/figures/E044_coef_map_M31.png)
 
 ---
@@ -235,3 +239,7 @@
 ---
 
 ![](figs/experiments/E046_kerr_offaxis/figures/E046_gain_vs_offaxis_terms.png)
+
+---
+
+![](figs/experiments/E048_kerr_offaxis_dbp/figures/E048_gain_vs_offaxis_terms.png)

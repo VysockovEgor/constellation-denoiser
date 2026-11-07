@@ -356,6 +356,14 @@
 
 :::
 
+## E040
+
+::: {layout-ncol=3}
+
+![E040 · E040_cascade_vs_one_step.png · 2026-11-05](figs/experiments/E040_triplet_cascade/figures/E040_cascade_vs_one_step.png){group="gallery"}
+
+:::
+
 ## E044
 
 ::: {layout-ncol=3}
@@ -370,7 +378,7 @@
 
 ::: {layout-ncol=3}
 
-![E045 · E045_references_vs_rm.png · 2026-11-04](figs/experiments/E045_reference_families/figures/E045_references_vs_rm.png){group="gallery"}
+![E045 · E045_references_vs_rm.png · 2026-11-05](figs/experiments/E045_reference_families/figures/E045_references_vs_rm.png){group="gallery"}
 
 :::
 
@@ -381,5 +389,75 @@
 ![E046 · E046_gain_vs_offaxis_terms.png · 2026-11-05](figs/experiments/E046_kerr_offaxis/figures/E046_gain_vs_offaxis_terms.png){group="gallery"}
 
 ![E046 · E046_a_vs_controls_rm.png · 2026-11-05](figs/experiments/E046_kerr_offaxis/figures/E046_a_vs_controls_rm.png){group="gallery"}
+
+:::
+
+## E048
+
+::: {layout-ncol=3}
+
+![E048 · E048_gain_vs_offaxis_terms.png · 2026-11-05](figs/experiments/E048_kerr_offaxis_dbp/figures/E048_gain_vs_offaxis_terms.png){group="gallery"}
+
+![E048 · E048_a_vs_controls_rm.png · 2026-11-05](figs/experiments/E048_kerr_offaxis_dbp/figures/E048_a_vs_controls_rm.png){group="gallery"}
+
+:::
+
+## E050
+
+::: {layout-ncol=3}
+
+![E050 · E050_dbpx_vs_rm.png · 2026-11-06](figs/experiments/E050_dbpx_physical/figures/E050_dbpx_vs_rm.png){group="gallery"}
+
+:::
+
+## E051
+
+::: {layout-ncol=3}
+
+![E051 · E051_gain_vs_offaxis_terms.png · 2026-11-06](figs/experiments/E051_am_liang_kumar/figures/E051_gain_vs_offaxis_terms.png){group="gallery"}
+
+![E051 · E051_lk_vs_a1_rm.png · 2026-11-06](figs/experiments/E051_am_liang_kumar/figures/E051_lk_vs_a1_rm.png){group="gallery"}
+
+:::
+
+## E052
+
+::: {layout-ncol=3}
+
+![E052 · E052_dbpx_triplets_vs_rm.png · 2026-11-06](figs/experiments/E052_dbpx_triplets/figures/E052_dbpx_triplets_vs_rm.png){group="gallery"}
+
+:::
+
+## E053
+
+::: {layout-ncol=3}
+
+![E053 · E053_heatmap_A1_M11_nc63.png · 2026-11-05](figs/experiments/E053_chirp_triplets/figures/E053_heatmap_A1_M11_nc63.png){group="gallery"}
+
+![E053 · E053_heatmap_A1_M15_nc63.png · 2026-11-05](figs/experiments/E053_chirp_triplets/figures/E053_heatmap_A1_M15_nc63.png){group="gallery"}
+
+![E053 · E053_heatmap_A1_M8_nc31.png · 2026-11-05](figs/experiments/E053_chirp_triplets/figures/E053_heatmap_A1_M8_nc31.png){group="gallery"}
+
+![E053 · E053_heatmap_T3_M21.png · 2026-11-05](figs/experiments/E053_chirp_triplets/figures/E053_heatmap_T3_M21.png){group="gallery"}
+
+![E053 · E053_reduction_vs_S.png · 2026-11-07](figs/experiments/E053_chirp_triplets/figures/E053_reduction_vs_S.png){group="gallery"}
+
+![E053 · E053_rm_vs_M.png · 2026-11-06](figs/experiments/E053_chirp_triplets/figures/E053_rm_vs_M.png){group="gallery"}
+
+:::
+
+## E054
+
+::: {layout-ncol=3}
+
+![E054 · E054_pruning.png · 2026-11-07](figs/experiments/E054_dbpx_pruning/figures/E054_pruning.png){group="gallery"}
+
+:::
+
+## E056
+
+::: {layout-ncol=3}
+
+![E056 · E056_ablation_vs_rm.png · 2026-11-06](figs/experiments/E056_kerr_offaxis_ablation/figures/E056_ablation_vs_rm.png){group="gallery"}
 
 :::
