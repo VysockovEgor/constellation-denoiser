@@ -116,12 +116,12 @@ def main(smoke: bool | None = None) -> int:
                                          ref_test=q.test_mean))
     sp = t[t.split_seed.astype(str) != "E004"]
     if len(sp):
-        spg = sp.groupby(["split_seed", "variant", "size"]).test_reduction.agg(["mean", "std", "size"]).reset_index()
+        spg = sp.groupby(["split_seed", "variant", "size"]).test_reduction.agg(mean="mean", std="std", n="count").reset_index()
         spg.to_csv(res / "splits_summary.csv", index=False)
         for seed, part in spg.groupby("split_seed"):
             full = part[part.variant == "full"].iloc[0]
             for _, r in part[part.variant.isin(["chirp_imag", "chirp_joint_imag"]) & part["size"].isin([3, 5, 8])].iterrows():
-                c = compare(r["mean"], r["std"], r["size_y"] if "size_y" in r else 5, full["mean"], full["std"], 5)
+                c = compare(r["mean"], r["std"], r["n"], full["mean"], full["std"], full["n"])
                 verdicts.append(dict(c, question=f"split {seed}: chirp vs (i)", variant=r.variant, size=r["size"],
                                      test=r["mean"], ref_test=full["mean"]))
     pd.DataFrame(verdicts).to_csv(res / "verdicts.csv", index=False)
