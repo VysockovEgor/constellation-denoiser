@@ -1,0 +1,16 @@
+=== 2026-11-06T22:57:24+07:00 E054 summarize: .venv/bin/python -m constellation_denoiser.e054_prune summarize ===
+JOBS=43 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/src/constellation_denoiser/e054_prune.py", line 379, in <module>
+    sys.exit(main(sys.argv[1:]))
+             ^^^^^^^^^^^^^^^^^^
+  File "/home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/src/constellation_denoiser/e054_prune.py", line 373, in main
+    return summarize(smoke)
+           ^^^^^^^^^^^^^^^^
+  File "/home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/src/constellation_denoiser/e054_prune.py", line 270, in summarize
+    for l in r["levels"]:
+             ~^^^^^^^^^^
+KeyError: 'levels'
+=== 2026-11-06T22:57:26+07:00 E054 summarize exit=1 ===
