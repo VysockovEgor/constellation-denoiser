@@ -15,3 +15,9 @@ Traceback (most recent call last):
     raise ValueError(f"cannot insert {column}, already exists")
 ValueError: cannot insert size, already exists
 === 2026-11-05T21:51:59+07:00 E053 summarize exit=1 ===
+=== 2026-11-07T13:08:07+07:00 E053 summarize: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/.venv/bin/python -m constellation_denoiser.summarize_E053 ===
+JOBS=auto THREADS=auto DEVICE=auto SEEDS=default SMOKE=0 FORCE=0
+       base                                               question      verdict          passing  ref_test  ref_std  ref_n
+A1_M11_nc63 H1: S <= 5 chirps (<= 20 parameters) within std of (i)  не доказано                  64.602034 0.222063      5
+ A1_M8_nc31 H1: S <= 5 chirps (<= 20 parameters) within std of (i) подтверждено chirp_complex S5 51.486592 0.256422      5
+=== 2026-11-07T13:08:10+07:00 E053 summarize exit=0 ===
