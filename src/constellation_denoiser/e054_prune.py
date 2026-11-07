@@ -267,6 +267,9 @@ def summarize(smoke: bool) -> int:
     rows = []
     for p in sorted((res / "runs").glob("*.json")):
         r = json.loads(p.read_text(encoding="utf-8"))
+        if "levels" not in r:                      # not a run result (reported, not counted)
+            print(f"пропущен {p.name}: нет поля levels, ключи {sorted(r)[:8]}")
+            continue
         for l in r["levels"]:
             rows.append(dict({k: r.get(k) for k in ("n_steps", "seed", "mode", "alpha_kind", "start_val_reduction",
                                                     "ld_before", "ld_after")}, **l))
