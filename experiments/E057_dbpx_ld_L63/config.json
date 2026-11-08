@@ -1,0 +1,79 @@
+{
+ "data_manifest_sha256": "cb5f2de47145c02d6485969ce116df2253a271c979a927452ea454551a48c0a8",
+ "split_source": "experiments/E004_training_file_curve/config.json (train_pool_files[:30], validation 45, test 45), as E007-E019",
+ "dataset_root": "data/raw/archive",
+ "n_train_files": 30,
+ "base_lr": {
+  "peak_lr": 0.001,
+  "schedule": "const",
+  "warmup": 0,
+  "c_mult": 1.0,
+  "floor_frac": 0.1,
+  "optimizer": "adam",
+  "weight_decay": 0.0
+ },
+ "ckpt_every": 10000,
+ "eval_rule": "validation and (report-only) test every max(500, steps/40) steps; selection only by validation",
+ "control": {
+  "runs": {
+   "a_const_1e-3_20k": {
+    "spec": {
+     "model": "complex_a",
+     "window": 31,
+     "hidden": 48,
+     "name": "complex_a"
+    },
+    "n_train_files": 30,
+    "steps": 20000
+   }
+  },
+  "targets": {
+   "a_const_1e-3_20k": {
+    "target": 62.191,
+    "tol": 0.7,
+    "seeds": [
+     17,
+     29
+    ],
+    "metric": "test_reduction_valbest_select",
+    "source": "experiments/E009_kerr_ablation/results/complex_mlp_ablation_summary.csv (variant a); reproduced in E010-E019 (62.19)"
+   }
+  }
+ },
+ "experiment_id": "E057",
+ "title": "DBP-X, Ns = 20: joint LS start of the cascade (direct_ld) at L = 63",
+ "date": "2026-11-08 (start)",
+ "base_git_commit": "(this commit; branch exp/E044-E047)",
+ "question": "Does the direct_ld arm of E054 (taps truncated to L, then joint fit of the cascade by Xiao's L_D with L-BFGS, then Adam on MSE) at L = 63 reach the progressive arm of E054 at L = 63 (99.07 %, 10 seeds)? Fills the missing point L = 63 of direct_ld in E054.",
+ "model": "as E054: e054_prune.run(ns=20, mode='direct_ld', target=63) without changes; D_total exact and fixed; start = physical taps truncated to 63, L-BFGS 300 iterations on L_D (the lowest L_D kept), alpha and sign/multiplier of the E050 start choice (validation), complex gain by LS on train",
+ "schedule": {
+  "iterations": "e054_prune.iters_to(63) = warm 3000 + 2 x (shrink 1000 + fine 2000) = 9000 (the budget of the progressive arm up to L = 63)",
+  "optimizer": "Adam 1e-3, 4 whole train files per iteration, circular shift, MSE on all symbols",
+  "selection": "checkpoint with the minimum validation MSE (every 100 iterations); test reported there"
+ },
+ "n_steps": 20,
+ "fir_len": 63,
+ "R": 7,
+ "seeds": [
+  17,
+  29,
+  43,
+  57,
+  71
+ ],
+ "references": {
+  "progressive_L63": "experiments/E054_dbpx_pruning/results/summary.csv (Ns 20, progressive, L 63, 10 seeds)",
+  "abrupt_L63": "same file (abrupt, L 63, 5 seeds)",
+  "direct_ld_L31": "same file (direct_ld, L 31, 5 seeds)"
+ },
+ "rm": "e054_prune.rm_both and dbpx.rm_columns at L = 63 (direct and FFT, 4 and 3 RM per complex product); the RM convention is not changed (pending advisor)",
+ "rule_draft": {
+  "compare": "direct_ld L63 (5 seeds) vs progressive L63 of E054 (10 seeds): a difference is a signal if |diff| > 2 SE and > 2 std (E054 rule); otherwise 'no difference proven'",
+  "report": "mean, std, SE, range over seeds; share of the progressive L = 255 level kept; RM in both conventions; L_D before/after L-BFGS",
+  "limits": "one schedule, no tuning; 5 seeds; circular files; one channel, one polarization, 1 sps; the reference arm is from another experiment (same code, same data, same start choice)"
+ },
+ "value_filter": {
+  "changes_next_step": "yes: whether the joint LS start keeps its advantage when the filter is long enough (L = 63) or the two starts coincide",
+  "needed_for_main_claim": "no: completes the E054 curve"
+ }
+}

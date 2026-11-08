@@ -5,6 +5,7 @@
 Inputs: results/start_best.csv, results/unit_test.json, results/dbpx_runs/*.json (dbpx train), results/runs/*.json
 (stage ref, runner), E028 results/runs_table.csv (grid a, phys_dbp). Writes results/start_table.csv,
 results/train_summary.csv, results/verdicts.csv, figures/E050_dbpx_vs_rm.png. The rule is config.json rule_draft.
+PLOT_ONLY=1 redraws the figure from the saved CSV tables without recomputing them.
 """
 
 from __future__ import annotations
@@ -73,6 +74,8 @@ def nearest(ref: pd.DataFrame, rm: float, column: str = "rm_xiao") -> pd.Series:
 
 
 def main() -> int:
+    if os.environ.get("PLOT_ONLY", "0") == "1":
+        return plot_from_tables()
     smoke = os.environ.get("SMOKE", "0") == "1"
     res = results_root("E050", smoke)
     fig_dir = exp_dir("E050") / ("results_smoke" if smoke else "figures")
@@ -157,32 +160,50 @@ def main() -> int:
     return 0
 
 
+KERNEL_LABEL = {"classical": "классическое ядро Керра", "ridge": "ридж-ядро Керра"}
+INIT_LABEL = {"zero": "с нуля", "classical": "с классического ядра", "ridge": "с ридж-ядра"}
+TRAINING_LABEL = {"one": "1 этап", "two": "2 этапа"}
+
+
+def merge_windowed(win_g: pd.DataFrame) -> pd.DataFrame:
+    """One series "DBP в окне": the E050 reference (10 seeds) where it exists, else E028 grid a."""
+    order = win_g.assign(_pref=(win_g.source != "E050 ref").astype(int)).sort_values("_pref")
+    return order.drop_duplicates(["n_steps", "L", "R"]).drop(columns="_pref")
+
+
+def plot_from_tables() -> int:
+    """Redraw the figure from the saved summary tables only (PLOT_ONLY=1): results/runs/*.json are not needed."""
+    res, fig_dir = results_root("E050", False), exp_dir("E050") / "figures"
+    read = lambda name: pd.read_csv(res / name) if (res / name).is_file() else pd.DataFrame()
+    plot(read("windowed_dbp_summary.csv"), read("start_table.csv"), read("train_summary.csv"), fig_dir)
+    return 0
+
+
 def plot(win_g, start, tr_g, fig_dir) -> None:
     import matplotlib
 
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
 
-    fig, axes = plt.subplots(1, 2, figsize=(12, 4.8), sharey=True)
+    win = merge_windowed(win_g) if len(win_g) else win_g
+    fig, axes = plt.subplots(1, 2, figsize=(12, 5.6), sharey=True)
     for ax, col, title in ((axes[0], "rm_xiao", "RM, формулы Xiao (overlap-save)"),
                            (axes[1], "rm_project", "RM, конвенция проекта (прямой КИХ)")):
-        if len(win_g):
-            for src, mk in (("E028 a", "o"), ("E050 ref", "s")):
-                p = win_g[win_g.source == src]
-                ax.errorbar(p[col], p.test_mean, yerr=p.test_std, fmt=mk, color="tab:gray", label=f"DBP в окне ({src})")
+        if len(win):
+            ax.errorbar(win[col], win.test_mean, yerr=win.test_std, fmt="o", color="tab:gray", label="DBP в окне")
         if len(start) and col in start:
             for kind, mk in (("classical", "^"), ("ridge", "v")):
                 p = start[(start.alpha_kind == kind) & start[col].notna()]
                 if "test_honest_reduction_trim" in p:
                     ax.plot(p[col], p.test_honest_reduction_trim, mk, color="tab:blue", mfc="none",
-                            label=f"DBP-X старт без обучения ({kind})")
+                            label=f"DBP-X без обучения, {KERNEL_LABEL[kind]}")
         if len(tr_g):
             for kind, color in (("zero", "tab:orange"), ("ridge", "tab:green"), ("classical", "tab:red")):
                 for training, mk in (("one", "D"), ("two", "P")):
                     p = tr_g[(tr_g.alpha_init == kind) & (tr_g.training == training)]
                     if len(p):
                         ax.errorbar(p[col], p.test_mean, yerr=p.test_std, fmt=mk, color=color,
-                                    label=f"DBP-X обучен, α₀={kind}, {training}")
+                                    label=f"DBP-X обучен: Керр {INIT_LABEL[kind]}, {TRAINING_LABEL[training]}")
         ax.set_xscale("log")
         ax.set_xlabel(title)
         ax.grid(alpha=0.3)
@@ -190,7 +211,7 @@ def plot(win_g, start, tr_g, fig_dir) -> None:
     axes[0].set_ylim(bottom=-10)
     handles, labels = axes[0].get_legend_handles_labels()
     fig.legend(handles, labels, loc="lower center", ncol=3, fontsize=8, frameon=False)
-    fig.tight_layout(rect=(0, 0.14, 1, 1))
+    fig.tight_layout(rect=(0, 0.17, 1, 1))
     fig.savefig(fig_dir / "E050_dbpx_vs_rm.png", dpi=150)
     plt.close(fig)
 
