@@ -34,6 +34,11 @@ def main() -> int:
     from .window_data import load_fileset, resolve_paths
 
     smoke = os.environ.get("SMOKE", "0") == "1"
+    if os.environ.get("PLOT_ONLY", "0") == "1":                # redraw from the saved results, no data needed
+        res = results_root(EXP, smoke)
+        frame = pd.read_csv(res / "prune_curve.csv")
+        plot(frame, json.loads((res / "verdict.json").read_text(encoding="utf-8")), int(frame.K.max()), smoke)
+        return 0
     cfg = json.loads((exp_dir(EXP) / "config.json").read_text(encoding="utf-8"))
     files = default_files(30, smoke)
     data = {k: load_fileset(resolve_paths(v)) for k, v in files.items()}
@@ -138,10 +143,14 @@ def plot(frame: pd.DataFrame, verdict: dict, n: int, smoke: bool) -> None:
             ax.axvline(kv, color=color, ls=":", lw=1.2)
         ax.axhline(full - 0.5, color="0.4", ls="--", lw=1, label="полный набор − 0.5 п.п.")
         ax.set_xlabel("оставлено триплетов K (из 368)")
+        ax.set_ylim(30, full + 2)
+        low = frame[(frame.score == "abs") & (frame[f"{split}_reduction"] < 30)].K.max()
         ax.text(0.02, 0.96, title, transform=ax.transAxes, va="top")
+        ax.text(0.45, 0.04, f"K ≤ {low}: ниже 30 %\n(K = 0: {frame[frame.K == 0][f'{split}_reduction'].iloc[0]:.0f} %)",
+                transform=ax.transAxes, va="bottom", fontsize=11, color="0.3")
         ax.grid(alpha=0.3)
     axes[0].set_ylabel("снижение BER, %")
-    axes[0].legend(loc="lower right", fontsize=11)
+    axes[0].legend(loc="center right", fontsize=11)
     fig.tight_layout()
     out = (exp_dir(EXP) / ("results_smoke" if smoke else "figures"))
     out.mkdir(parents=True, exist_ok=True)
