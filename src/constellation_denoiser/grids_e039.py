@@ -464,6 +464,18 @@ def e057_tasks(stage: str, options: Options) -> list[dict]:
 BUILDERS["E057"] = e057_tasks
 
 
+def e059_tasks(stage: str, options: Options) -> list[dict]:
+    """E059 trains DBP-X in e059_kerr_width (dbpx.train_one); the runner only trains the control."""
+    exp = "E059"
+    directory, config = load_config(exp)
+    if stage == "control":
+        return control_tasks(exp, directory, config, options)
+    raise SystemExit(f"E059: неизвестная стадия {stage!r}")
+
+
+BUILDERS["E059"] = e059_tasks
+
+
 def _register() -> None:
     from . import grids
 

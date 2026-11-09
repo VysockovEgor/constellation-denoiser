@@ -1,0 +1,89 @@
+{
+ "data_manifest_sha256": "cb5f2de47145c02d6485969ce116df2253a271c979a927452ea454551a48c0a8",
+ "split_source": "experiments/E004_training_file_curve/config.json (train_pool_files[:30], validation 45, test 45), as E007-E019",
+ "dataset_root": "data/raw/archive",
+ "n_train_files": 30,
+ "base_lr": {
+  "peak_lr": 0.001,
+  "schedule": "const",
+  "warmup": 0,
+  "c_mult": 1.0,
+  "floor_frac": 0.1,
+  "optimizer": "adam",
+  "weight_decay": 0.0
+ },
+ "ckpt_every": 10000,
+ "eval_rule": "validation and (report-only) test every max(500, steps/40) steps; selection only by validation",
+ "control": {
+  "runs": {
+   "a_const_1e-3_20k": {
+    "spec": {
+     "model": "complex_a",
+     "window": 31,
+     "hidden": 48,
+     "name": "complex_a"
+    },
+    "n_train_files": 30,
+    "steps": 20000
+   }
+  },
+  "targets": {
+   "a_const_1e-3_20k": {
+    "target": 62.191,
+    "tol": 0.7,
+    "seeds": [
+     17,
+     29
+    ],
+    "metric": "test_reduction_valbest_select",
+    "source": "experiments/E009_kerr_ablation/results/complex_mlp_ablation_summary.csv (variant a); reproduced in E010-E019 (62.19)"
+   }
+  }
+ },
+ "experiment_id": "E059",
+ "title": "Trained DBP-X: width of the Kerr window R = 1, 3, 7, 15 at Ns = 8 and 20",
+ "date": "2026-11-09 (start)",
+ "base_git_commit": "(this commit; branch exp/E044-E047)",
+ "question": "How much BER reduction does trained DBP-X gain from the memory of the Kerr phase (window R = 3, 7, 15 against the instantaneous R = 1) at Ns = 8 and 20, and at what cost?",
+ "model": "dbpx.DBPX trained by dbpx.train_one without changes: D_total exact and fixed; Ns steps [symmetric FIR L = 255 by circular FFT, Kerr phase with symmetric alpha of R taps]; complex output gain",
+ "start": "physical taps (L = 255); alpha = g * delta / (Ns * P) (classical kernel: the same start for every R, memory only by training); sign, multiplier and g of the E050 start choice for classical (start_best.csv, validation): Ns 8: sign +1, mult 0.85, g 0.16; Ns 20: sign +1, mult 1.05, g 0.38",
+ "training": "two stages as the best E050 arm: L_D (Xiao) 3000 iterations Adam 1e-3 (lowest L_D kept), then MSE Adam 1e-4, 5000 iterations, 4 whole train files per iteration with a random circular shift; checkpoint with the minimum validation MSE (every 100 iterations), test reported there",
+ "grid": {
+  "n_steps": [
+   8,
+   20
+  ],
+  "R": [
+   1,
+   3,
+   7,
+   15
+  ],
+  "L": 255,
+  "alpha_init": "classical",
+  "training": "two"
+ },
+ "seeds": [
+  17,
+  29,
+  43,
+  57,
+  71
+ ],
+ "reproduction": "Ns 20, R 7 repeats the E050 arm 'classical, two' (99.249 %, 10 seeds; same seeds 17-71 among them): difference within 2 SE expected",
+ "rm": "dbpx.rm_columns (project, xiao, merged) and e054_prune.rm_both (direct and FFT, 4 and 3 RM per complex product), D_total 401 taps; the RM convention is not changed (pending advisor)",
+ "notes": [
+  "Ns 8 at L = 255 was not in the E050 truncation unit test (only Ns 20, 40); the step memory at Ns 8 is about 34 symbols, far below 255",
+  "the cost is dominated by the FIR of 255 taps: R changes the RM by less than 2 % in the direct convention"
+ ],
+ "rule_draft": {
+  "memory_helps": "at a given Ns, R > 1 is better than R = 1 if test(R) - test(1) > 2 SE and > 2 std (5 seeds); otherwise 'not proven'",
+  "sufficient_R": "the smallest R whose mean is within max(2 SE, 2 std) of the best R at that Ns",
+  "report": "mean, std, SE, range over seeds; RM in all columns; plateau iteration",
+  "limits": "one schedule, no tuning of the schedule or of g per R; 5 seeds; circular files; one channel, one polarization, 1 sps"
+ },
+ "value_filter": {
+  "changes_next_step": "yes: whether the Kerr memory is worth its cost in DBP-X or R = 1 suffices",
+  "needed_for_main_claim": "yes: E016/E056 showed Kerr memory helps the closed-form models; not checked for trained DBP-X"
+ }
+}
