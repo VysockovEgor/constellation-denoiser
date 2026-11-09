@@ -19,17 +19,34 @@ PX = 72 / 100                                   # dpi 100: points per pixel
 rows = []
 
 
-def keep(series, fft, direct, red, spread, source):
-    for f, d, y, s in zip(fft, direct, red, spread):
-        rows.append({"series": series, "rm_fft": float(f), "rm_direct": float(d), "test_reduction_pct": float(y),
-                     "test_std_pct": None if s is None else float(s), "source": source})
+def keep(series, fft, direct, red, spread, source, env_fft=None, env_direct=None, variant=None):
+    n = len(list(red))
+    env_fft = [None] * n if env_fft is None else env_fft
+    env_direct = [None] * n if env_direct is None else env_direct
+    variant = [None] * n if variant is None else variant
+    for f, d, y, s, ef, ed, v in zip(fft, direct, red, spread, env_fft, env_direct, variant):
+        rows.append({"series": series, "config": v, "rm_fft": float(f), "rm_direct": float(d), "test_reduction_pct": float(y),
+                     "test_std_pct": None if s is None else float(s), "in_envelope_fft": ef, "in_envelope_direct": ed,
+                     "source": source})
+
+
+def envelope(frame: pd.DataFrame, col: str) -> pd.Series:
+    """Upper envelope over cost: a configuration is on it if its validation reduction beats every cheaper one
+    (selection by validation, as E056; test values are drawn)."""
+    best, on = -1e9, pd.Series(False, index=frame.index)
+    for i, r in frame.sort_values([col, "val_mean"], ascending=[True, False]).iterrows():
+        if r.val_mean > best:
+            best, on[i] = r.val_mean, True
+    return on
 
 
 # (a) windowed DBP: E050 windowed_dbp_summary.csv, E050 reference (10 seeds) where it exists, else E028 grid a (3 seeds)
 w = pd.read_csv(E050 / "results/windowed_dbp_summary.csv")
 w = w.assign(_p=(w.source != "E050 ref").astype(int)).sort_values("_p").drop_duplicates(["n_steps", "L", "R"])
+w["env_fft"], w["env_direct"] = envelope(w, "rm_xiao"), envelope(w, "rm_project")
 keep("Старый DBP в окне", w.rm_xiao, w.rm_project, w.test_mean, w.test_std,
-     "E050/results/windowed_dbp_summary.csv (E050 ref where present, else E028 a); rm_xiao, rm_project, test_mean ± test_std")
+     "E050/results/windowed_dbp_summary.csv (E050 ref where present, else E028 a); rm_xiao, rm_project, test_mean ± test_std; "
+     "envelope by validation (val_mean)", w.env_fft, w.env_direct, w.variant)
 # long training of the same DBP: E028 a_summary.csv, stage a_long, 400 000 steps; FFT cost of the same configuration
 a28 = pd.read_csv(ROOT / "E028_dbp_depth_layerwise/results/a_summary.csv")
 lg = a28[(a28.stage == "a_long") & (a28.variant == "dbp_Ns32_L31_R15")].iloc[0]
@@ -65,8 +82,12 @@ def note(ax, text, xy, xytext, color, ha="left"):
 
 for ax, col_w, col_fs, col_tr, xl in ((axes[0], "rm_xiao", "rm_fft_4", "rm_fft_4", "RM на символ, цена по БПФ"),
                                        (axes[1], "rm_project", "rm_direct_4", "rm_direct_4", "RM на символ, прямой счёт")):
-    ax.errorbar(w[col_w], w.test_mean, yerr=w.test_std, fmt="o", color=GREY, ms=MS, elinewidth=3, capsize=6,
+    e = w[w["env_fft" if col_w == "rm_xiao" else "env_direct"]].sort_values(col_w)
+    ax.errorbar(e[col_w], e.test_mean, yerr=e.test_std, fmt="-o", color=GREY, lw=LW, ms=MS, elinewidth=3, capsize=6,
                 capthick=3, mec="white", mew=1.5, zorder=3)
+    top = e.loc[e.test_mean.idxmax()]
+    note(ax, f"лучший старый DBP: {top.test_mean:.1f} %", (top[col_w], top.test_mean),
+         (400 if col_w == "rm_xiao" else top[col_w] * 0.45, 30), GREY)
     x_long = lg_fft if col_w == "rm_xiao" else lg.rm
     ax.plot([x_long], [lg.test_mean], "s", color=GREY, ms=MS * 1.1, mec=INK, mew=2.5, zorder=4)
     ax.plot(fs[col_fs], fs.reduction_mean_over_files, color=BLUE, lw=LW, marker="^", ms=MS * 1.15, mec="white",
@@ -80,7 +101,8 @@ for ax, col_w, col_fs, col_tr, xl in ((axes[0], "rm_xiao", "rm_fft_4", "rm_fft_4
     ax.tick_params(labelsize=28 * PX, width=1.5, length=8)
     for s in ("top", "right"):
         ax.spines[s].set_visible(False)
-    note(ax, "после долгого обучения: 61.7 %", (x_long, lg.test_mean), (x_long * (0.09 if col_w == "rm_xiao" else 0.12), 70), INK2)
+    note(ax, f"после долгого обучения: {lg.test_mean:.1f} %", (x_long, lg.test_mean),
+         (x_long * (0.09 if col_w == "rm_xiao" else 0.12), 70), INK2)
 
 a, b = axes
 a.set_xlim(150, 3000)
@@ -91,8 +113,6 @@ a.set_ylim(-10, 105)
 a.set_ylabel("снижение BER на тесте, %", fontsize=28 * PX)
 a.axvline(1400, color=INK2, lw=3 * PX + 0.3, ls=(0, (4, 4)), zorder=0)
 a.text(1400 * 1.04, -6, "1.4k RM", fontsize=28 * PX, color=INK2)
-note(a, "51–55 %", (1300, 51.5), (950, 26), GREY)
-note(b, "51–55 %", (1776, 51.5), (1300, 26), GREY)
 note(a, "до 97 %", (float(fs.rm_fft_4.iloc[-1]), float(fs.reduction_mean_over_files.iloc[-1])), (560, 80), BLUE)
 note(b, "до 97 %", (float(fs.rm_direct_4.iloc[-1]), float(fs.reduction_mean_over_files.iloc[-1])), (2600, 80), BLUE)
 note(a, f"{t63.test_mean:.2f} % при {t63.rm_fft_4:,.0f} RM (БПФ)".replace(",", " "), (t63.rm_fft_4, t63.test_mean),
@@ -101,7 +121,7 @@ note(b, f"{t63.test_mean:.2f} % при {t63.rm_direct_4:,.0f} RM".replace(",", "
      (290, 104), INK)
 
 handles = [
-    Line2D([], [], color=GREY, lw=0, marker="o", ms=MS, label="Старый DBP в окне (как у других)"),
+    Line2D([], [], color=GREY, lw=LW, marker="o", ms=MS, label="Старый DBP в окне (как у других), лучшие конфигурации"),
     Line2D([], [], color=BLUE, lw=LW, marker="^", ms=MS * 1.15, label="DBP-X без обучения (физические веса, ридж-ядро Керра)"),
     Line2D([], [], color=INK, lw=0, marker="D", ms=MS * 1.05, label="DBP-X обученный"),
 ]
