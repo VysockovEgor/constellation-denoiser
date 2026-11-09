@@ -1,0 +1,4 @@
+=== 2026-11-09T14:17:05+07:00 E059 weights: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/.venv/bin/python -m constellation_denoiser.e059_kerr_weights ===
+JOBS=auto THREADS=auto DEVICE=auto SEEDS=default SMOKE=0 FORCE=0
+wrote /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/experiments/E059_dbpx_kerr_width/results/kerr_weights.csv 3640 rows
+=== 2026-11-09T14:17:07+07:00 E059 weights exit=0 ===
