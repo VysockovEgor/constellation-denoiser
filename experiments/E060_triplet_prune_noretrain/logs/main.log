@@ -1,0 +1,29 @@
+=== 2026-11-09T17:00:28+07:00 E060 main: /home/redyuk/DDC/OS/NY/Egor/constellation-denoiser/.venv/bin/python -u -m constellation_denoiser.e060_triplet_prune ===
+JOBS=auto THREADS=auto DEVICE=auto SEEDS=default SMOKE=0 FORCE=0
+{
+ "rule": "For each score: K_val = the smallest K with validation reduction >= validation reduction of the full set - 0.5 p.p.; the number of removable terms is 368 - K_val; test is reported at K_val (test drop vs the full set). The smallest K with test drop <= 0.5 p.p. is reported for information only and is not used for any choice. The score with the smaller K_val is called better only if the two K_val differ by >= 16 terms (two grid steps).",
+ "coefficients": "experiments/E035_triplet_hybrid/results/warm_M15.npz (lambda 1e-4, warm_info.json)",
+ "n_terms_full": 368,
+ "tolerance_pp": 0.5,
+ "abs": {
+  "full_val": 67.88375295737843,
+  "full_test": 69.26523934846006,
+  "K_val": 312,
+  "removed_K_val": 56,
+  "rm_K_val": 3772,
+  "test_at_K_val": 68.87047442919126,
+  "test_drop_at_K_val": 0.39476491926879476,
+  "K_test_report_only": 296
+ },
+ "abs_rms": {
+  "full_val": 67.88375295737843,
+  "full_test": 69.26523934846006,
+  "K_val": 312,
+  "removed_K_val": 56,
+  "rm_K_val": 3772,
+  "test_at_K_val": 68.87047442919126,
+  "test_drop_at_K_val": 0.39476491926879476,
+  "K_test_report_only": 296
+ }
+}
+=== 2026-11-09T17:02:36+07:00 E060 main exit=0 ===
