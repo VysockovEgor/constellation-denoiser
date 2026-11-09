@@ -1,0 +1,45 @@
+=== 2026-11-08T14:13:13+07:00 queue e057: host=hocalhost commit=962fec2 ===
+JOBS=44: {'cores': 48, 'load_1min': 1.21, 'foreign_running_threads': 2.0, 'reserve': 0, 'mem_available_gb': 363.8}
+=== 2026-11-08T14:13:15+07:00 E057_dbpx_ld_L63: stage control (control) JOBS=44 ===
+=== 2026-11-08T14:13:15+07:00 E057 control: .venv/bin/python -u -m constellation_denoiser.runner --exp E057 --stage control --no-control-gate ===
+JOBS=44 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+[2026-11-08 14:13:17] running 2 tasks with JOBS=44, THREADS=1, DEVICE=cpu
+[2026-11-08 14:13:17] JOBS_ADAPTIVE: число процессов по свободным ядрам, до 48
+[2026-11-08 14:16:55] [ok 1/2] control_complex_a_w31_h48_N30_20k_seed29: val=60.74% test=62.37% diverged=False time=215s; ETA ~4 min
+[2026-11-08 14:17:04] [ok 2/2] control_complex_a_w31_h48_N30_20k_seed17: val=59.43% test=60.40% diverged=False time=224s; ETA ~0 min
+[2026-11-08 14:17:04] finished: 2 ok, 0 failed
+=== 2026-11-08T14:17:05+07:00 E057 control exit=0 ===
+=== 2026-11-08T14:17:05+07:00 E057 check-control: .venv/bin/python -m constellation_denoiser.runner --exp E057 --stage control --check-control ===
+JOBS=44 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+[2026-11-08 14:17:06] control a_const_1e-3_20k: mean test_reduction_valbest_select = 62.19% по 2 seed; цель 62.191±0.7 п.п. -> OK
+=== 2026-11-08T14:17:07+07:00 E057 check-control exit=0 ===
+JOBS=44: {'cores': 48, 'load_1min': 2.9, 'foreign_running_threads': 2.0, 'reserve': 0, 'mem_available_gb': 363.6}
+=== 2026-11-08T14:17:08+07:00 E057_dbpx_ld_L63: stage fit (other) JOBS=44 ===
+=== 2026-11-08T14:17:09+07:00 E057 fit: .venv/bin/python -u -m constellation_denoiser.e057_ld63 fit ===
+JOBS=44 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+[2026-11-08 14:51:50] [1/5] Ns20_direct_ld_L63_seed29.json: ok, L63 99.15 (2075 s) (в работе 4, предел 43)
+[2026-11-08 14:52:00] [2/5] Ns20_direct_ld_L63_seed57.json: ok, L63 99.09 (2085 s) (в работе 3, предел 43)
+[2026-11-08 14:52:07] [3/5] Ns20_direct_ld_L63_seed17.json: ok, L63 99.09 (2092 s) (в работе 2, предел 43)
+[2026-11-08 14:52:08] [4/5] Ns20_direct_ld_L63_seed71.json: ok, L63 99.09 (2092 s) (в работе 1, предел 43)
+[2026-11-08 14:52:32] [5/5] Ns20_direct_ld_L63_seed43.json: ok, L63 99.10 (2117 s) (в работе 0, предел 43)
+=== 2026-11-08T14:52:32+07:00 E057 fit exit=0 ===
+JOBS=44: {'cores': 48, 'load_1min': 4.48, 'foreign_running_threads': 2.0, 'reserve': 0, 'mem_available_gb': 363.8}
+=== 2026-11-08T14:52:34+07:00 E057_dbpx_ld_L63: stage summarize (other) JOBS=44 ===
+=== 2026-11-08T14:52:34+07:00 E057 summarize: .venv/bin/python -m constellation_denoiser.e057_ld63 summarize ===
+JOBS=44 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+ n_steps        mode   L  n  test_mean  test_std  val_mean  q2_mean  ld_before  ld_after    start_val  rm_project  rm_xiao  rm_direct_4  rm_direct_3  rm_fft_4  rm_fft_3  sum_filter_len  cascade_support      time_s  test_se  test_range source  share_of_progressive_L255
+      20   direct_ld  63  5  99.101667  0.029481 98.924909 4.347704   0.301955  0.068007    90.984561      3564.0   1235.5       3564.0       2703.0    1235.5     936.7            1260             1241 2092.197324 0.013184    0.068056   E057                   0.999832
+      20      abrupt  31  5  96.663768  0.545956 96.469704 3.490137        NaN       NaN    96.236054      2284.0   1140.9       2284.0       1743.0    1140.9     865.7             620              601         NaN 0.244159    1.319521   E054                   0.975236
+      20      abrupt  63  5  99.038149  0.074695 98.890350 4.307566        NaN       NaN    96.236054      3564.0   1235.5       3564.0       2703.0    1235.5     936.7            1260             1241         NaN 0.033405    0.181481   E054                   0.999191
+      20      abrupt 255  5  99.134939  0.054685 98.980504 4.370918        NaN       NaN    96.236054     11244.0   1421.2      11244.0       8463.0    1421.2    1075.9            5100             5081         NaN 0.024456    0.132330   E054                   1.000168
+      20      direct  31 10  97.128058  0.274570 97.029037 3.593135        NaN       NaN -1749.772736      2284.0   1140.9       2284.0       1743.0    1140.9     865.7             620              601         NaN 0.086827    0.809104   E054                   0.979921
+      20   direct_ld  31  5  97.860789  0.047404 97.724353 3.794672        NaN       NaN    21.197551      2284.0   1140.9       2284.0       1743.0    1140.9     865.7             620              601         NaN 0.021200    0.113426   E054                   0.987313
+      20 progressive  31 10  96.799879  0.420884 96.670298 3.518342        NaN       NaN    96.236054      2284.0   1140.9       2284.0       1743.0    1140.9     865.7             620              601         NaN 0.133095    1.451851   E054                   0.976610
+      20 progressive  63 10  99.070664  0.046946 98.967357 4.327645        NaN       NaN    96.236054      3564.0   1235.5       3564.0       2703.0    1235.5     936.7            1260             1241         NaN 0.014846    0.139892   E054                   0.999519
+      20 progressive 255 10  99.118303  0.069231 98.992149 4.360091        NaN       NaN    96.236054     11244.0   1421.2      11244.0       8463.0    1421.2    1075.9            5100             5081         NaN 0.021893    0.234413   E054                   1.000000
+                                      compare  diff_pp   two_se  two_std  n_a  n_b             verdict
+direct_ld L63 (E057) - progressive L63 (E054) 0.031003 0.039710 0.093893    5   10 разница не доказана
+     direct_ld L63 (E057) - abrupt L63 (E054) 0.063518 0.071824 0.149389    5    5 разница не доказана
+=== 2026-11-08T14:52:36+07:00 E057 summarize exit=0 ===
+=== 2026-11-08T14:52:36+07:00 queue e057 завершена; строк ОШИБКА: 0
+0 ===

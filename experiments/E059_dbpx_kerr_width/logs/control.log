@@ -1,0 +1,4 @@
+=== 2026-11-09T12:15:09+07:00 E059 control: .venv/bin/python -u -m constellation_denoiser.runner --exp E059 --stage control --no-control-gate ===
+JOBS=44 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+[2026-11-09 12:15:11] running 2 tasks with JOBS=44, THREADS=1, DEVICE=cpu
+[2026-11-09 12:15:11] JOBS_ADAPTIVE: число процессов по свободным ядрам, до 48

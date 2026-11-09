@@ -1,0 +1,8 @@
+=== 2026-11-08T14:17:09+07:00 E057 fit: .venv/bin/python -u -m constellation_denoiser.e057_ld63 fit ===
+JOBS=44 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+[2026-11-08 14:51:50] [1/5] Ns20_direct_ld_L63_seed29.json: ok, L63 99.15 (2075 s) (в работе 4, предел 43)
+[2026-11-08 14:52:00] [2/5] Ns20_direct_ld_L63_seed57.json: ok, L63 99.09 (2085 s) (в работе 3, предел 43)
+[2026-11-08 14:52:07] [3/5] Ns20_direct_ld_L63_seed17.json: ok, L63 99.09 (2092 s) (в работе 2, предел 43)
+[2026-11-08 14:52:08] [4/5] Ns20_direct_ld_L63_seed71.json: ok, L63 99.09 (2092 s) (в работе 1, предел 43)
+[2026-11-08 14:52:32] [5/5] Ns20_direct_ld_L63_seed43.json: ok, L63 99.10 (2117 s) (в работе 0, предел 43)
+=== 2026-11-08T14:52:32+07:00 E057 fit exit=0 ===
