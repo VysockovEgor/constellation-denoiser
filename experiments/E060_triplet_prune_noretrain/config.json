@@ -1,0 +1,20 @@
+{
+ "experiment_id": "E060",
+ "title": "Triplets T (T3 + FIR7, M = 15): pruning the ready coefficients without refitting",
+ "date": "2026-11-09 (start)",
+ "base_git_commit": "ce97584 (branch exp/E044-E047)",
+ "data_manifest_sha256": "cb5f2de47145c02d6485969ce116df2253a271c979a927452ea454551a48c0a8",
+ "split_source": "experiments/E004_training_file_curve/config.json (train_pool_files[:30], validation 45, test 45), as E035/E039",
+ "dataset_root": "data/raw/archive",
+ "n_train_files": 30,
+ "question": "How many of the 368 triplet terms of the ready closed-form model T (M = 15) with the smallest coefficients can be set to zero without refitting, while the BER reduction drops by at most 0.5 p.p.?",
+ "model": "y_k = x_k + sum_{m <= n, |m|,|n|,|m+n| <= 15} C_mn x_{k+m} x_{k+n} x*_{k+m+n} + FIR7 (triplets.py, T3); window-31 centres, zeros outside the file",
+ "coefficients": "experiments/E035_triplet_hybrid/results/warm_M15.npz: ridge closed form on all 30 train files, lambda 1e-4 chosen by validation BER from [1e-8, 1e-6, 1e-4, 1e-3, 1e-2, 1e-1] (warm_info.json); no refit here",
+ "lambda_grid": [1e-08, 1e-06, 0.0001, 0.001, 0.01, 0.1],
+ "pruning": "keep the K terms with the largest score, the others C = 0, kept C unchanged; FIR7 always kept; scores: abs = |C_mn|, abs_rms = |C_mn| * rms(T_mn) on the 30 train files; K = 368, 360, ..., 8, 0",
+ "rm": "repository convention 12 K + 4 * 7",
+ "seeds": "none (deterministic, no training); one coefficient set (all 30 train files), no bootstrap replicas",
+ "control": "not run: no training; the full set (K = 368) must reproduce the closed-form T3 M15 numbers of E039/E035",
+ "rule_draft": "For each score: K_val = the smallest K with validation reduction >= validation reduction of the full set - 0.5 p.p.; the number of removable terms is 368 - K_val; test is reported at K_val (test drop vs the full set). The smallest K with test drop <= 0.5 p.p. is reported for information only and is not used for any choice. The score with the smaller K_val is called better only if the two K_val differ by >= 16 terms (two grid steps).",
+ "git_commit": "unknown (set by the commit that adds this folder)"
+}
