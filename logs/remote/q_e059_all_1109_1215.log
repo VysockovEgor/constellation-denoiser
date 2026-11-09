@@ -5,3 +5,83 @@ JOBS=44: {'cores': 48, 'load_1min': 1.17, 'foreign_running_threads': 2.0, 'reser
 JOBS=44 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
 [2026-11-09 12:15:11] running 2 tasks with JOBS=44, THREADS=1, DEVICE=cpu
 [2026-11-09 12:15:11] JOBS_ADAPTIVE: число процессов по свободным ядрам, до 48
+[2026-11-09 12:18:52] [ok 1/2] control_complex_a_w31_h48_N30_20k_seed17: val=59.43% test=60.40% diverged=False time=218s; ETA ~4 min
+[2026-11-09 12:18:53] [ok 2/2] control_complex_a_w31_h48_N30_20k_seed29: val=60.74% test=62.37% diverged=False time=219s; ETA ~0 min
+[2026-11-09 12:18:53] finished: 2 ok, 0 failed
+=== 2026-11-09T12:18:54+07:00 E059 control exit=0 ===
+=== 2026-11-09T12:18:54+07:00 E059 check-control: .venv/bin/python -m constellation_denoiser.runner --exp E059 --stage control --check-control ===
+JOBS=44 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+[2026-11-09 12:18:55] control a_const_1e-3_20k: mean test_reduction_valbest_select = 62.19% по 2 seed; цель 62.191±0.7 п.п. -> OK
+=== 2026-11-09T12:18:55+07:00 E059 check-control exit=0 ===
+JOBS=44: {'cores': 48, 'load_1min': 3.01, 'foreign_running_threads': 2.0, 'reserve': 0, 'mem_available_gb': 364.8}
+=== 2026-11-09T12:18:57+07:00 E059_dbpx_kerr_width: stage fit (other) JOBS=44 ===
+=== 2026-11-09T12:18:57+07:00 E059 fit: .venv/bin/python -u -m constellation_denoiser.e059_kerr_width train ===
+JOBS=44 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+E059 train: 40 прогонов без результата
+[2026-11-09 12:30:32] [1/40] [ok] dbpx_Ns8_L255_R1_seed17: val=47.24 test=47.93 time=692s (в работе 39, предел 43)
+[2026-11-09 12:30:56] [2/40] [ok] dbpx_Ns8_L255_R3_seed43: val=80.46 test=81.01 time=716s (в работе 38, предел 43)
+[2026-11-09 12:31:14] [3/40] [ok] dbpx_Ns8_L255_R3_seed57: val=80.42 test=80.87 time=734s (в работе 37, предел 43)
+[2026-11-09 12:33:03] [4/40] [ok] dbpx_Ns8_L255_R7_seed57: val=89.67 test=89.81 time=843s (в работе 36, предел 42)
+[2026-11-09 12:33:13] [5/40] [ok] dbpx_Ns8_L255_R1_seed43: val=47.08 test=47.71 time=853s (в работе 35, предел 43)
+[2026-11-09 12:33:17] [6/40] [ok] dbpx_Ns8_L255_R1_seed71: val=47.31 test=47.86 time=857s (в работе 34, предел 43)
+[2026-11-09 12:33:22] [7/40] [ok] dbpx_Ns8_L255_R1_seed29: val=47.33 test=47.94 time=861s (в работе 33, предел 43)
+[2026-11-09 12:33:27] [8/40] [ok] dbpx_Ns8_L255_R1_seed57: val=47.10 test=47.60 time=866s (в работе 32, предел 42)
+[2026-11-09 12:34:21] [9/40] [ok] dbpx_Ns8_L255_R15_seed43: val=94.88 test=94.93 time=920s (в работе 31, предел 42)
+[2026-11-09 12:34:22] [10/40] [ok] dbpx_Ns8_L255_R3_seed29: val=80.30 test=80.70 time=920s (в работе 30, предел 44)
+[2026-11-09 12:34:29] [11/40] [ok] dbpx_Ns8_L255_R3_seed71: val=80.72 test=81.30 time=929s (в работе 29, предел 43)
+[2026-11-09 12:34:33] [12/40] [ok] dbpx_Ns8_L255_R3_seed17: val=80.64 test=81.29 time=932s (в работе 28, предел 43)
+[2026-11-09 12:35:26] [13/40] [ok] dbpx_Ns8_L255_R7_seed29: val=89.48 test=89.65 time=985s (в работе 27, предел 43)
+[2026-11-09 12:35:36] [14/40] [ok] dbpx_Ns8_L255_R15_seed57: val=94.80 test=94.89 time=995s (в работе 26, предел 43)
+[2026-11-09 12:35:41] [15/40] [ok] dbpx_Ns8_L255_R7_seed71: val=89.65 test=89.82 time=1001s (в работе 25, предел 43)
+[2026-11-09 12:35:59] [16/40] [ok] dbpx_Ns8_L255_R7_seed17: val=89.64 test=89.77 time=1019s (в работе 24, предел 43)
+[2026-11-09 12:36:08] [17/40] [ok] dbpx_Ns8_L255_R7_seed43: val=89.61 test=89.78 time=1028s (в работе 23, предел 43)
+[2026-11-09 12:38:02] [18/40] [ok] dbpx_Ns8_L255_R15_seed71: val=94.80 test=94.92 time=1142s (в работе 22, предел 43)
+[2026-11-09 12:38:26] [19/40] [ok] dbpx_Ns8_L255_R15_seed17: val=94.83 test=95.00 time=1165s (в работе 21, предел 43)
+[2026-11-09 12:39:23] [20/40] [ok] dbpx_Ns8_L255_R15_seed29: val=94.86 test=94.98 time=1223s (в работе 20, предел 43)
+[2026-11-09 12:40:47] [21/40] [ok] dbpx_Ns20_L255_R1_seed57: val=92.07 test=92.27 time=1306s (в работе 19, предел 43)
+[2026-11-09 12:41:09] [22/40] [ok] dbpx_Ns20_L255_R3_seed43: val=98.99 test=99.09 time=1329s (в работе 18, предел 43)
+[2026-11-09 12:41:41] [23/40] [ok] dbpx_Ns20_L255_R3_seed57: val=99.04 test=99.07 time=1361s (в работе 17, предел 43)
+[2026-11-09 12:42:11] [24/40] [ok] dbpx_Ns20_L255_R3_seed71: val=99.00 test=99.05 time=1391s (в работе 16, предел 43)
+[2026-11-09 12:42:28] [25/40] [ok] dbpx_Ns20_L255_R3_seed29: val=98.99 test=99.08 time=1407s (в работе 15, предел 43)
+[2026-11-09 12:42:53] [26/40] [ok] dbpx_Ns20_L255_R1_seed29: val=92.15 test=92.08 time=1433s (в работе 14, предел 43)
+[2026-11-09 12:43:00] [27/40] [ok] dbpx_Ns20_L255_R1_seed71: val=91.80 test=91.91 time=1440s (в работе 13, предел 43)
+[2026-11-09 12:43:05] [28/40] [ok] dbpx_Ns20_L255_R1_seed17: val=92.04 test=91.95 time=1444s (в работе 12, предел 43)
+[2026-11-09 12:43:56] [29/40] [ok] dbpx_Ns20_L255_R7_seed71: val=99.11 test=99.24 time=1496s (в работе 11, предел 43)
+[2026-11-09 12:43:58] [30/40] [ok] dbpx_Ns20_L255_R7_seed57: val=99.17 test=99.29 time=1497s (в работе 10, предел 42)
+[2026-11-09 12:44:13] [31/40] [ok] dbpx_Ns20_L255_R1_seed43: val=91.71 test=91.73 time=1512s (в работе 9, предел 43)
+[2026-11-09 12:45:10] [32/40] [ok] dbpx_Ns20_L255_R3_seed17: val=99.02 test=99.07 time=1569s (в работе 8, предел 43)
+[2026-11-09 12:47:00] [33/40] [ok] dbpx_Ns20_L255_R7_seed17: val=99.10 test=99.21 time=1679s (в работе 7, предел 43)
+[2026-11-09 12:47:53] [34/40] [ok] dbpx_Ns20_L255_R7_seed29: val=99.09 test=99.23 time=1733s (в работе 6, предел 43)
+[2026-11-09 12:48:16] [35/40] [ok] dbpx_Ns20_L255_R7_seed43: val=99.11 test=99.27 time=1756s (в работе 5, предел 43)
+[2026-11-09 12:48:27] [36/40] [ok] dbpx_Ns20_L255_R15_seed43: val=99.32 test=99.44 time=1767s (в работе 4, предел 43)
+[2026-11-09 12:48:54] [37/40] [ok] dbpx_Ns20_L255_R15_seed57: val=99.37 test=99.41 time=1794s (в работе 3, предел 43)
+[2026-11-09 12:49:44] [38/40] [ok] dbpx_Ns20_L255_R15_seed71: val=99.32 test=99.41 time=1844s (в работе 2, предел 42)
+[2026-11-09 12:52:19] [39/40] [ok] dbpx_Ns20_L255_R15_seed29: val=99.32 test=99.36 time=1999s (в работе 1, предел 43)
+[2026-11-09 12:52:27] [40/40] [ok] dbpx_Ns20_L255_R15_seed17: val=99.35 test=99.40 time=2007s (в работе 0, предел 43)
+=== 2026-11-09T12:52:28+07:00 E059 fit exit=0 ===
+JOBS=44: {'cores': 48, 'load_1min': 3.03, 'foreign_running_threads': 2.0, 'reserve': 0, 'mem_available_gb': 364.6}
+=== 2026-11-09T12:52:30+07:00 E059_dbpx_kerr_width: stage summarize (other) JOBS=44 ===
+=== 2026-11-09T12:52:30+07:00 E059 summarize: .venv/bin/python -m constellation_denoiser.e059_kerr_width summarize ===
+JOBS=44 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+ ns  R  n  test_mean  test_std  test_se  test_range  rm_direct_4  rm_fft_4
+  8  1  5  47.807479  0.150110 0.067131    0.340278       4956.0     544.0
+  8  3  5  81.034444  0.260789 0.116628    0.597376       4964.0     586.7
+  8  7  5  89.765209  0.066300 0.029650    0.166358       4980.0     603.1
+  8 15  5  94.944988  0.046614 0.020846    0.113426       5012.0     615.7
+ 20  1  5  91.989111  0.201974 0.090325    0.540663      11184.0    1273.5
+ 20  3  5  99.070664  0.014247 0.006372    0.037809      11204.0    1380.2
+ 20  7  5  99.247609  0.030010 0.013421    0.075617      11244.0    1421.2
+ 20 15  5  99.404892  0.026948 0.012051    0.075617      11324.0    1452.7
+  diff_pp   two_se  two_std better worse  ns                                                    question  best_R  sufficient_R  tolerance_pp within_2se
+33.226965 0.269138 0.521578   True False   8                     R=3 better than R=1 (Kerr memory helps)     NaN           NaN           NaN        NaN
+41.957730 0.146775 0.300220   True False   8                     R=7 better than R=1 (Kerr memory helps)     NaN           NaN           NaN        NaN
+47.137510 0.140587 0.300220   True False   8                    R=15 better than R=1 (Kerr memory helps)     NaN           NaN           NaN        NaN
+      NaN      NaN      NaN    NaN   NaN   8 sufficient R (smallest within max(2 SE, 2 std) of the best)    15.0          15.0      0.093227        NaN
+ 7.081553 0.181100 0.403947   True False  20                     R=3 better than R=1 (Kerr memory helps)     NaN           NaN           NaN        NaN
+ 7.258497 0.182634 0.403947   True False  20                     R=7 better than R=1 (Kerr memory helps)     NaN           NaN           NaN        NaN
+ 7.415781 0.182252 0.403947   True False  20                    R=15 better than R=1 (Kerr memory helps)     NaN           NaN           NaN        NaN
+      NaN      NaN      NaN    NaN   NaN  20 sufficient R (smallest within max(2 SE, 2 std) of the best)    15.0          15.0      0.053896        NaN
+-0.001512 0.030998 0.060019  False False  20   reproduction: Ns 20, R 7 vs E050 classical two (10 seeds)     NaN           NaN           NaN       True
+=== 2026-11-09T12:52:32+07:00 E059 summarize exit=0 ===
+=== 2026-11-09T12:52:32+07:00 queue e059 завершена; строк ОШИБКА: 0
+0 ===

@@ -1,0 +1,10 @@
+diff_pp,two_se,two_std,better,worse,ns,question,best_R,sufficient_R,tolerance_pp,within_2se
+33.226965102650375,0.26913784235650917,0.5215780015226589,True,False,8,R=3 better than R=1 (Kerr memory helps),,,,
+41.957729970887364,0.14677535287230706,0.3002203844998123,True,False,8,R=7 better than R=1 (Kerr memory helps),,,,
+47.137509924760856,0.14058704476405084,0.3002203844998123,True,False,8,R=15 better than R=1 (Kerr memory helps),,,,
+,,,,,8,"sufficient R (smallest within max(2 SE, 2 std) of the best)",15.0,15.0,0.09322717687579643,
+7.081553177813916,0.18109970332936653,0.40394747397053926,True,False,20,R=3 better than R=1 (Kerr memory helps),,,,
+7.258497485727261,0.182633994402055,0.40394747397053926,True,False,20,R=7 better than R=1 (Kerr memory helps),,,,
+7.415781314983562,0.18225163255766355,0.40394747397053926,True,False,20,R=15 better than R=1 (Kerr memory helps),,,,
+,,,,,20,"sufficient R (smallest within max(2 SE, 2 std) of the best)",15.0,15.0,0.0538955111534212,
+-0.0015123445120934775,0.03099793895602017,0.060019312134260344,False,False,20,"reproduction: Ns 20, R 7 vs E050 classical two (10 seeds)",,,,True

@@ -1,0 +1,22 @@
+=== 2026-11-09T12:52:30+07:00 E059 summarize: .venv/bin/python -m constellation_denoiser.e059_kerr_width summarize ===
+JOBS=44 THREADS=1 DEVICE=cpu SEEDS=default SMOKE=0 FORCE=0
+ ns  R  n  test_mean  test_std  test_se  test_range  rm_direct_4  rm_fft_4
+  8  1  5  47.807479  0.150110 0.067131    0.340278       4956.0     544.0
+  8  3  5  81.034444  0.260789 0.116628    0.597376       4964.0     586.7
+  8  7  5  89.765209  0.066300 0.029650    0.166358       4980.0     603.1
+  8 15  5  94.944988  0.046614 0.020846    0.113426       5012.0     615.7
+ 20  1  5  91.989111  0.201974 0.090325    0.540663      11184.0    1273.5
+ 20  3  5  99.070664  0.014247 0.006372    0.037809      11204.0    1380.2
+ 20  7  5  99.247609  0.030010 0.013421    0.075617      11244.0    1421.2
+ 20 15  5  99.404892  0.026948 0.012051    0.075617      11324.0    1452.7
+  diff_pp   two_se  two_std better worse  ns                                                    question  best_R  sufficient_R  tolerance_pp within_2se
+33.226965 0.269138 0.521578   True False   8                     R=3 better than R=1 (Kerr memory helps)     NaN           NaN           NaN        NaN
+41.957730 0.146775 0.300220   True False   8                     R=7 better than R=1 (Kerr memory helps)     NaN           NaN           NaN        NaN
+47.137510 0.140587 0.300220   True False   8                    R=15 better than R=1 (Kerr memory helps)     NaN           NaN           NaN        NaN
+      NaN      NaN      NaN    NaN   NaN   8 sufficient R (smallest within max(2 SE, 2 std) of the best)    15.0          15.0      0.093227        NaN
+ 7.081553 0.181100 0.403947   True False  20                     R=3 better than R=1 (Kerr memory helps)     NaN           NaN           NaN        NaN
+ 7.258497 0.182634 0.403947   True False  20                     R=7 better than R=1 (Kerr memory helps)     NaN           NaN           NaN        NaN
+ 7.415781 0.182252 0.403947   True False  20                    R=15 better than R=1 (Kerr memory helps)     NaN           NaN           NaN        NaN
+      NaN      NaN      NaN    NaN   NaN  20 sufficient R (smallest within max(2 SE, 2 std) of the best)    15.0          15.0      0.053896        NaN
+-0.001512 0.030998 0.060019  False False  20   reproduction: Ns 20, R 7 vs E050 classical two (10 seeds)     NaN           NaN           NaN       True
+=== 2026-11-09T12:52:32+07:00 E059 summarize exit=0 ===
