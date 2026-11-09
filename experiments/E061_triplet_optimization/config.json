@@ -1,0 +1,42 @@
+{
+ "experiment_id": "E061",
+ "title": "Triplet model T3 + FIR7 (M = 15) made cheaper: tied coefficients (mirror, g(m n)) and pruning with refit",
+ "date": "2026-11-09 (start)",
+ "base_git_commit": "9af95d6 (branch exp/E044-E047)",
+ "data_manifest_sha256": "cb5f2de47145c02d6485969ce116df2253a271c979a927452ea454551a48c0a8",
+ "split_source": "experiments/E004_training_file_curve/config.json (train_pool_files[:30], validation 45, test 45), as E035/E060",
+ "dataset_root": "data/raw/archive",
+ "n_train_files": 30,
+ "question": "How much cheaper can the triplet model T3 + FIR7 (M = 15, 368 merged terms: 31 axial, 337 off-axis) be made by tying coefficients (mirror symmetry, one coefficient per p = m n) and by pruning off-axis terms with refit, without losing quality; where do these variants lie against the E056 ablation arms and DBP-X on one RM axis?",
+ "model": "y_k = x_k + sum_{(m,n) in S} C_mn x_{k+m} x_{k+n} x*_{k+m+n} + FIR7(x)_k; S within m <= n, |m|, |n|, |m + n| <= 15 (triplets.triplet_terms(15, 'T3')); window-31 centres, zeros outside the file; the 31 axial terms (m = 0 or n = 0) and the FIR7 are always kept, only off-axis terms are pruned",
+ "fit": "ridge least squares in closed form on the residual s - x over all 30 train files; tied coefficients: c = B theta with real theta (Re, Im per group), theta = solve(Re(B^H G B) + lambda * mean diag * I, Re(B^H A^H r)); lambda from [1e-8, 1e-6, 1e-4, 1e-3, 1e-2, 1e-1] by pooled validation BER, separately for every variant and K",
+ "lambda_grid": [1e-08, 1e-06, 0.0001, 0.001, 0.01, 0.1],
+ "variants": {
+  "T0": "368 free complex coefficients (reproduces E035 warm_M15 / E060 full)",
+  "T1": "mirror symmetry: C(m, n) tied to C(-n, -m) (merged partner); tie by equality or by conjugation, whichever the free T0 ratio supports (smaller median |phase|); self-partners (m = -n) stay single",
+  "T2": "off-axis C(m, n) = g(p), one free complex g per signed p = m n; axial terms keep one coefficient each (31)",
+  "T2c": "coarse: off-axis grouped by sign(p) and |p| bins [1], [2], [3-4], [5-8], [9-16], [17-32], [33-64], [65-128], [129-225]",
+  "T3": "skipped (see README): the proposed phase m n beta2 (2 pi / T)^2 z is the frequency-domain kernel; for symbol (time) indices the first-order kernel has a different form and also needs the pulse shape and the launch power, which are unknown",
+  "T4": "keep the K off-axis terms with the largest |C| of T0, refit",
+  "T5mn": "keep the K off-axis terms with the smallest |m n| (ties: max(|m|, |n|), then |m| + |n|, then (m, n)), refit",
+  "T5max": "keep the K off-axis terms with the smallest max(|m|, |n|) (ties: |m n|, then (m, n)), refit",
+  "T6": "the chosen tying (T1 or T2) restricted to the kept terms of the chosen pruning order, refit"
+ },
+ "K_offaxis": [8, 16, 32, 48, 64, 96, 128, 192, 256, 337],
+ "K_note": "K counts kept OFF-AXIS terms (the 31 axial are always kept), so the full set is K = 337 (368 terms in total) instead of 368 of the request",
+ "rm": {
+  "naive_a": "8 RM per term (two complex products to build x_{k+m} x_{k+n} x*_{k+m+n}) + 4 RM per term (product with the coefficient) + 4 RM per FIR tap = 12 n_terms + 28",
+  "shared_b": "8 RM per term + 4 RM per independent complex coefficient (tied triplets are summed first; a conjugate tie C T1 + C* T2 = Re C (T1 + T2) + i Im C (T1 - T2) costs 2 real-by-complex products = 4 RM) + 28 = 8 n_terms + 4 n_groups + 28",
+  "plot_axis": "triplet models: shared_b (direct, no FFT is involved); DBP-X: FFT count of Xiao (rm_fft_4); E056 arms: project convention (= naive_a, they have no tied coefficients)"
+ },
+ "metric": "test BER reduction (raw - model) / raw * 100 with pooled BER over the 45 test files (all files have the same length, so it equals the mean of the per-file BER); spread between files: std and range of the per-file reduction; Q^2 = 20 log10(sqrt(10) erfcinv(8 BER / 3)) (q2.py)",
+ "references_on_plot": {
+  "E056 arms": "experiments/E056_kerr_offaxis_ablation/results/ablation_all_configs.csv: upper envelope by validation over RM per arm, as in E056_ablation_vs_rm.png",
+  "DBP-X trained": "experiments/E054_dbpx_pruning/results/summary.csv: Ns 20 progressive L 63 (99.07 %, rm_fft_4 1235.5) and L 255 (99.12 %, 1421.2)",
+  "DBP-X untrained": "experiments/E050_dbpx_physical/results/file_stats.csv: ridge kernel, honest filters, Ns 8 / 12 / 20 (91.72 / 94.91 / 96.70 %, rm_fft_4 618.6 / 894.4 / 1449.5)"
+ },
+ "seeds": "none (deterministic closed form, no training); one coefficient set per variant (all 30 train files)",
+ "control": "no network training, so the complex_a control is not run; reproduction check instead: T0 validation reduction must equal E060 full (67.884 %) within 0.05 p.p., otherwise the other variants are not reported",
+ "rule_draft": "Selection only by validation: lambda per (variant, K); the 'best' point of a variant = max validation reduction; the 'cheapest without loss' point = the smallest RM_b with validation reduction >= T0 validation - 0.5 p.p. Tying direction of T1: equality if median |arg(C(m,n)/C(-n,-m))| < median |arg(C(m,n)/conj C(-n,-m))|, else conjugation. 'g(m n) helps' if T2 has validation >= T0 - 0.5 p.p. at a smaller RM_b than T0; otherwise 'g(m n) costs quality' with the loss in p.p. For T6: tying = the one of T1 / T2 with the smaller RM_b among those with validation >= T0 - 0.5 p.p. (if none: the larger validation); pruning order = the one of T4 / T5mn / T5max with the smallest RM_b reaching validation >= T0 - 0.5 p.p. (if none: the largest mean validation over the K grid). A difference between two variants on test is called real only if it exceeds 2 SE of the paired per-file difference. 'Comparable to DBP-X at 1.4k RM' = some triplet point with RM_b <= 1400 and test >= 99.07 - 5 p.p. Test is computed once at the end for the selected lambda of every (variant, K) and is never used for any choice.",
+ "git_commit": "unknown (set by the commit that adds this folder)"
+}
