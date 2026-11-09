@@ -1,0 +1,19 @@
+{
+ "mirror": {
+  "n_pairs": 176,
+  "abs_ratio_minus_1_median": 0.031883110830043304,
+  "abs_ratio_minus_1_p90": 0.12173594713247737,
+  "phase_equal_median_rad": 0.03208563315021297,
+  "phase_equal_p90_rad": 0.13322613422521012,
+  "phase_conj_median_rad": 1.2510182756646007,
+  "phase_conj_p90_rad": 3.034407947460161,
+  "tie": "equality"
+ },
+ "p_groups": {
+  "n_groups": 128,
+  "n_groups_multi": 117,
+  "pooled_rel_rms": 0.09062902279642122,
+  "median_group_rel_rms": 0.050930688945610515,
+  "random_grouping_pooled_rel_rms": 0.781681748202703
+ }
+}
