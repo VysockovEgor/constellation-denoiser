@@ -121,7 +121,7 @@ note(b, f"{t63.test_mean:.2f} % при {t63.rm_direct_4:,.0f} RM".replace(",", "
      (290, 104), INK)
 
 handles = [
-    Line2D([], [], color=GREY, lw=LW, marker="o", ms=MS, label="Старый DBP в окне (как у других), лучшие конфигурации"),
+    Line2D([], [], color=GREY, lw=LW, marker="o", ms=MS, label="Старый DBP в окне"),
     Line2D([], [], color=BLUE, lw=LW, marker="^", ms=MS * 1.15, label="DBP-X без обучения (физические веса, ридж-ядро Керра)"),
     Line2D([], [], color=INK, lw=0, marker="D", ms=MS * 1.05, label="DBP-X обученный"),
 ]
